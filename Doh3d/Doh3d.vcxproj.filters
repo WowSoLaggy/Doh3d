@@ -7,18 +7,42 @@
     <Filter Include="src\RenderMan">
       <UniqueIdentifier>{ddca1673-052f-4779-b0d4-7b8b9b5a40c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Common">
+      <UniqueIdentifier>{39b6ba5e-86be-4dae-b999-0a1f21a37de8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{4fc569f9-9a2f-4430-bd6c-61f6fc6054c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Doh3d.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderMan.h">
-      <Filter>src\RenderMan</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="RenderMan.cpp">
+    <ClCompile Include="Include\Doh3d\RenderMan.cpp">
       <Filter>src\RenderMan</Filter>
     </ClCompile>
+    <ClCompile Include="Include\Doh3d\WinClassReg.cpp">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\Doh3d\RenderMan.h">
+      <Filter>src\RenderMan</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\RenderPars.h">
+      <Filter>src\RenderMan</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\ErrCodes.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\StartupPars.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\Log.h">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\WinClasReg.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

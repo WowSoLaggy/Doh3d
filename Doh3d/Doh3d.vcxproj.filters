@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{50b5c495-99b8-488c-a2ad-1e47bdd42b6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RenderMan">
+      <UniqueIdentifier>{ddca1673-052f-4779-b0d4-7b8b9b5a40c1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Doh3d.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderMan.h">
+      <Filter>src\RenderMan</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RenderMan.cpp">
+      <Filter>src\RenderMan</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

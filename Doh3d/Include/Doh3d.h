@@ -32,6 +32,8 @@
 #include "Doh3d\RenderMan.h"
 #include "Doh3d\StartupPars.h"
 #include "Doh3d\WinClasReg.h"
+#include "Doh3d\Drawer.h"
+#include "Doh3d\MessagePeeker.h"
 
 
 #endif // DOH3D_H

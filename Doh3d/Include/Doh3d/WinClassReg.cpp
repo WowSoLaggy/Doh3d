@@ -13,7 +13,7 @@ namespace Doh3d
 		wc.cbClsExtra = 0;
 		wc.cbWndExtra = 0;
 		wc.hbrBackground = (HBRUSH)(6);
-		wc.hCursor = LoadCursor(pStartupPars.hInstance, IDC_ARROW);
+		wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 		wc.hIcon = LoadIcon(pStartupPars.hInstance, IDI_APPLICATION);
 		wc.hInstance = pStartupPars.hInstance;
 		wc.lpszClassName = pStartupPars.ApplicationName.c_str();

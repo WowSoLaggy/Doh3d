@@ -19,13 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Include\Doh3d\Drawer.cpp" />
+    <ClCompile Include="Include\Doh3d\MessagePeeker.cpp" />
     <ClCompile Include="Include\Doh3d\RenderMan.cpp" />
     <ClCompile Include="Include\Doh3d\WinClassReg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\Log.h" />
     <ClInclude Include="Include\Doh3d.h" />
+    <ClInclude Include="Include\Doh3d\Drawer.h" />
     <ClInclude Include="Include\Doh3d\ErrCodes.h" />
+    <ClInclude Include="Include\Doh3d\MessagePeeker.h" />
     <ClInclude Include="Include\Doh3d\RenderMan.h" />
     <ClInclude Include="Include\Doh3d\RenderPars.h" />
     <ClInclude Include="Include\Doh3d\StartupPars.h" />

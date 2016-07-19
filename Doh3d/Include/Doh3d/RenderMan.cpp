@@ -35,12 +35,12 @@ namespace Doh3d
 			return err;
 		}
 
-		err = CreateRenderDevice(pRenderPars);
+		/*err = CreateRenderDevice(pRenderPars);
 		if (err != err_noErr)
 		{
 			echo("ERROR: Can't create RenderDevice.");
 			return err;
-		}
+		}*/
 
 		m_isCreated = true;
 		return err_noErr;
@@ -88,7 +88,7 @@ namespace Doh3d
 
 		DWORD dwStyle = WS_VISIBLE | WS_POPUP;
 		if (pRenderPars.WndCaption)
-			dwStyle |= WS_CAPTION;
+			dwStyle |= WS_CAPTION | WS_SYSMENU;
 
 		m_hWindow = CreateWindowEx(0, pStartupPars.ApplicationName.c_str(), pStartupPars.ApplicationName.c_str(), dwStyle,
 			(m_screenWidth - pRenderPars.ResolutionWidth) / 2, (m_screenHeight - pRenderPars.ResolutionHeight) / 2,

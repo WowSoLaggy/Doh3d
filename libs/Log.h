@@ -72,33 +72,20 @@
 
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-// Logger global aliases (defines)
+// Logger global defines
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 
 
-// Initializes logger. Should be called first of all. Writes the welcome message to the log
-// Params:
-// [in] const std::string & pLogFileName	- log file name (ex. "Logs\myLog.log"). Warning: Directory should exist
-// [in] const std::string & pProductName	- product name used in the welcome message
-// [in] const std::string & pFilePath		- name of the file to take version from. Can be empty
-#define LOGINIT(pLogFileName, pProductName, pFilePath) Log::Log<void>::Init(pLogFileName, pProductName, pFilePath, -1)
+// Creates RAII log object
+#define LOGINIT ::Log::unique_log unique_log
 
-// Initializes logger. Should be called first of all. Writes the welcome message to the log. Checks if the log file is to be rotated
-// Params:
-// [in] const std::string & pLogFileName	- log file name (ex. "Logs\myLog.log"). Warning: Directory should exist
-// [in] const std::string & pProductName	- product name used in the welcome message
-// [in] const std::string & pFilePath		- name of the file to take version from. Can be empty
-// [in] int					pRotateFileSize	- maximum size of the log file. Checked only on the log init. -1 means no log rotation, 0 means rotate every time the log is inited
-#define LOGINIT_ROTATE(pLogFileName, pProductName, pFilePath, pRotateFileSize) Log::Log<void>::Init(pLogFileName, pProductName, pFilePath, pRotateFileSize)
 
-// Disposes logger. Writes the bye message to the log
-#define LOGDISPOSE Log::Log<void>::Dispose()
-
-// Macros that should be called before any echo-calls. Initializes the log object for the current function
+// Initializes the log object for the current function. Should be called before any echo-calls
 // Params:
 // [in] std::string pPrefix	- function name
 #define LOG(pPrefix) ::Log::Log<void> log(pPrefix)
+
 
 // Logs all given args
 #define echo log.Echo
@@ -159,9 +146,9 @@ namespace Log
 		strProductVersion.clear();
 		strProductVersion.
 			append(std::to_string((verInfo->dwProductVersionMS >> 16) & 0xffff).append(".").
-				append(std::to_string((verInfo->dwProductVersionMS >> 0) & 0xffff)).append(".").
-				append(std::to_string((verInfo->dwProductVersionLS >> 16) & 0xffff)).append(".").
-				append(std::to_string((verInfo->dwProductVersionLS >> 0) & 0xffff)));
+				   append(std::to_string((verInfo->dwProductVersionMS >> 0) & 0xffff)).append(".").
+				   append(std::to_string((verInfo->dwProductVersionLS >> 16) & 0xffff)).append(".").
+				   append(std::to_string((verInfo->dwProductVersionLS >> 0) & 0xffff)));
 
 		return true;
 	}
@@ -178,14 +165,15 @@ namespace Log
 	}
 
 
-	
+
 	// Returns the size of the file with the given name. It doesn't check it's existance
 	// Params:
 	// [in] const std::string & pFileName	- name of the file to get size of
-	static size_t GetFileSize(const std::string &pFileName)
+	static long int GetFileSize(const std::string &pFileName)
 	{
-		std::ifstream file(pFileName.c_str(), std::ios::ate | std::ios::binary);
-		return (size_t)file.tellg();
+		struct stat stat_buf;
+		int rc = stat(pFileName.c_str(), &stat_buf);
+		return (rc == 0) ? stat_buf.st_size : -1;
 	}
 
 
@@ -217,6 +205,8 @@ namespace Log
 		template <typename ... Args>
 		void Echo(Args ... pArgs)
 		{
+			std::unique_lock<std::mutex> lock(s_logMutex);
+
 			if (!s_isInitialized)
 				return;
 
@@ -242,8 +232,9 @@ namespace Log
 			bool gotVersion = false;
 			std::string version = "";
 
-			s_logMutex.lock();
 			{
+				std::unique_lock<std::mutex> lock(s_logMutex);
+
 				if (pProductName.empty())
 					s_productName = "Logging"; // To write something like "Logging started"
 				else
@@ -255,7 +246,6 @@ namespace Log
 
 				s_isInitialized = true;
 			}
-			s_logMutex.unlock();
 
 			// Print welcome message
 
@@ -284,15 +274,15 @@ namespace Log
 			echo("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 			echo("");
 
-			s_logMutex.lock();
 			{
+				std::unique_lock<std::mutex> lock(s_logMutex);
+
 				// Clear static vars
 				s_productName.clear();
 				s_logFileName.clear();
 
 				s_isInitialized = false;
 			}
-			s_logMutex.unlock();
 		}
 
 		// Returns the DateTime string like this: "YYYY.MM.DD HH.MM.SS"
@@ -309,14 +299,14 @@ namespace Log
 			if (!localtime_s(&newTime, &Clock))
 			{
 				sprintf_s(&dateTimeStr[0],
-					dateTimeStr.size(),
-					"%04d.%02d.%02d %02d:%02d:%02d",
-					1900 + newTime.tm_year,
-					1 + newTime.tm_mon,
-					newTime.tm_mday,
-					newTime.tm_hour,
-					newTime.tm_min,
-					newTime.tm_sec);
+						  dateTimeStr.size(),
+						  "%04d.%02d.%02d %02d:%02d:%02d",
+						  1900 + newTime.tm_year,
+						  1 + newTime.tm_mon,
+						  newTime.tm_mday,
+						  newTime.tm_hour,
+						  newTime.tm_min,
+						  newTime.tm_sec);
 			}
 			else
 				sprintf_s(&dateTimeStr[0], dateTimeStr.size(), "[unknown]");
@@ -337,12 +327,10 @@ namespace Log
 		static std::mutex s_logMutex;			// Locker to provide thread-safety of Logger operations
 
 
-		// Logs current date and time
+												// Logs current date and time
 		void EchoDateTime()
 		{
 			std::string dateTimeStr = GetDateTimeString();
-
-			s_logMutex.lock();
 
 			std::fstream m_logFile(s_logFileName, std::ios::app);
 			if (m_prefix.empty())
@@ -378,8 +366,6 @@ namespace Log
 			std::cout << pPar << std::endl;
 			m_logFile << pPar << std::endl;
 			m_logFile.close();
-
-			s_logMutex.unlock();
 		}
 
 	private:
@@ -391,7 +377,7 @@ namespace Log
 				return;
 			if (!CheckFileExists(pFileName))
 				return;
-			if ((pRotateFileSize != 0) && (static_cast<int>(GetFileSize(pFileName)) < pRotateFileSize))
+			if ((pRotateFileSize != 0) && (GetFileSize(pFileName) < pRotateFileSize))
 				return;
 
 			// Generate new file name. Iterate through the file names to find the absent file name
@@ -411,6 +397,51 @@ namespace Log
 		}
 
 	}; // Log
+
+
+
+	   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+	   // Logger RAII container
+	   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+
+	   // RAII container for Log. Initializes static members in the ctor and releases in the dtor.
+	   // The Log class should be called only while the lifetime of this container
+	class unique_log final
+	{
+	public:
+
+		// Initializes logger. Should be called first of all. Writes the welcome message to the log
+		// Params:
+		// [in] const std::string & pLogFileName	- log file name (ex. "Logs\myLog.log"). Warning: Directory should exist
+		// [in] const std::string & pProductName	- product name used in the welcome message
+		// [in] const std::string & pFilePath		- name of the file to take version from. Can be empty
+		unique_log(const std::string &pLogFileName, const std::string &pProductName, const std::string &pFilePath)
+		{
+			::Log::Log<void>::Init(pLogFileName, pProductName, pFilePath, -1);
+		}
+
+		// Initializes logger with file rotation. Should be called first of all. Writes the welcome message to the log. Checks if the log file is to be rotated
+		// Params:
+		// [in] const std::string & pLogFileName	- log file name (ex. "Logs\myLog.log"). Warning: Directory should exist
+		// [in] const std::string & pProductName	- product name used in the welcome message
+		// [in] const std::string & pFilePath		- name of the file to take version from. Can be empty
+		// [in] int					pRotateFileSize	- maximum size of the log file. Checked only on the log init. -1 means no log rotation, 0 means rotate every time the log is inited
+		unique_log(const std::string &pLogFileName, const std::string &pProductName, const std::string &pFilePath, int pRotateFileSize)
+		{
+			::Log::Log<void>::Init(pLogFileName, pProductName, pFilePath, pRotateFileSize);
+		}
+
+		// Disposes logger. Writes the bye message to the log
+		~unique_log()
+		{
+			::Log::Log<void>::Dispose();
+		}
+
+	};
+
+
 
 	template<typename T>
 	volatile bool Log<T>::s_isInitialized = false;

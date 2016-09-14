@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef STARTUPPARS_H
-#define STARTUPPARS_H
+#ifndef DOH3D_STARTUPPARS_H
+#define DOH3D_STARTUPPARS_H
 
 
 namespace Doh3d
@@ -11,20 +11,19 @@ namespace Doh3d
 	{
 
 		StartupPars()
-			: hInstance(nullptr), hPrevInstance(nullptr), lpCmdLine(nullptr), nCmdShow(0), ApplicationName("") { }
+			: hInstance(nullptr), hPrevInstance(nullptr), lpCmdLine(nullptr), nCmdShow(0) { }
 
-		StartupPars(HINSTANCE &pHInstance, HINSTANCE &pHPrevInstance, LPSTR &pLpCmdLine, int &pNCmdShow, std::string pApplicationName)
-			: hInstance(pHInstance), hPrevInstance(pHPrevInstance), lpCmdLine(pLpCmdLine), nCmdShow(pNCmdShow), ApplicationName(pApplicationName) { }
+		StartupPars(HINSTANCE &pHInstance, HINSTANCE &pHPrevInstance, LPSTR &pLpCmdLine, int &pNCmdShow)
+			: hInstance(pHInstance), hPrevInstance(pHPrevInstance), lpCmdLine(pLpCmdLine), nCmdShow(pNCmdShow) { }
 
 		HINSTANCE hInstance;			// Win32 application entry point parameters
 		HINSTANCE hPrevInstance;		//
 		LPSTR lpCmdLine;				//
 		int nCmdShow;					//
-		std::string ApplicationName;	// Name of the application
 
 	};
 
 } // ns Doh3d
 
 
-#endif // STARTUPPARS_H
+#endif // DOH3D_STARTUPPARS_H

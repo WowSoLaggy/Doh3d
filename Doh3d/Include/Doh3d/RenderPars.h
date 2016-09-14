@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef RENDERPARS_H
-#define RENDERPARS_H
+#ifndef DOH3D_RENDERPARS_H
+#define DOH3D_RENDERPARS_H
 
 
 namespace Doh3d
@@ -25,4 +25,4 @@ namespace Doh3d
 } // ns Doh3d
 
 
-#endif // RENDERPARS_H
+#endif // DOH3D_RENDERPARS_H

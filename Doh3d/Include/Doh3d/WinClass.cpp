@@ -1,12 +1,19 @@
 #include "..\Doh3d.h"
-#include "WinClasReg.h"
+#include "WinClass.h"
 
 
 namespace Doh3d
 {
+	
+	StartupPars WinClass::m_startupPars;
+	std::string WinClass::m_applicationName;
 
-	void WinClassReg(StartupPars &pStartupPars)
+
+	void WinClass::Register(const StartupPars &pStartupPars, const std::string &pApplicationName)
 	{
+		m_startupPars = pStartupPars;
+		m_applicationName = pApplicationName;
+
 		WNDCLASS wc;
 		wc.style = CS_OWNDC;
 		wc.lpfnWndProc = WndProc;
@@ -16,17 +23,17 @@ namespace Doh3d
 		wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 		wc.hIcon = LoadIcon(pStartupPars.hInstance, IDI_APPLICATION);
 		wc.hInstance = pStartupPars.hInstance;
-		wc.lpszClassName = pStartupPars.ApplicationName.c_str();
+		wc.lpszClassName = m_applicationName.c_str();
 		wc.lpszMenuName = nullptr;
 		RegisterClass(&wc);
 	}
 
-	void WinClassUnreg(StartupPars &pStartupPars)
+	void WinClass::Unregister()
 	{
-		UnregisterClass(pStartupPars.ApplicationName.c_str(), pStartupPars.hInstance);
+		UnregisterClass(m_applicationName.c_str(), m_startupPars.hInstance);
 	}
 
-	LRESULT __stdcall WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+	LRESULT __stdcall WinClass::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
 		switch (msg)
 		{

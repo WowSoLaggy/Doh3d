@@ -5,7 +5,7 @@
 namespace Doh3d
 {
 
-	UINT WinPeekMessage()
+	bool WinPeekExit()
 	{
 		MSG msg;
 		UINT res = 0;
@@ -17,7 +17,7 @@ namespace Doh3d
 			DispatchMessage(&msg);
 		}
 
-		return res;
+		return (res == WM_QUIT);
 	}
 
 } // ns Doh3d

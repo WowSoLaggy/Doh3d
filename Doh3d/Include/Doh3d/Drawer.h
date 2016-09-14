@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef DRAWER_H
-#define DRAWER_H
+#ifndef DOH3D_DRAWER_H
+#define DOH3D_DRAWER_H
 
 
 namespace Doh3d
@@ -11,12 +11,12 @@ namespace Doh3d
 	{
 	public:
 
-		static ErrCode BeginScene();
-		static ErrCode EndScene();
+		static ErrCode3d BeginScene();
+		static ErrCode3d EndScene();
 
 	};
 
 } // ns Doh3d
 
 
-#endif // DRAWER_H
+#endif // DOH3D_DRAWER_H

@@ -1,15 +1,17 @@
 #pragma once
 
-#ifndef MESSAGEPEEKER_H
-#define MESSAGEPEEKER_H
+#ifndef DOH3D_MESSAGEPEEKER_H
+#define DOH3D_MESSAGEPEEKER_H
 
 
 namespace Doh3d
 {
 
-	UINT WinPeekMessage();
+	// Peeks and translates the windows messages.
+	// Returns true if the WM_QUIT message aquired
+	bool WinPeekExit();
 
 } // ns Doh3d
 
 
-#endif // MESSAGEPEEKER_H
+#endif // DOH3D_MESSAGEPEEKER_H

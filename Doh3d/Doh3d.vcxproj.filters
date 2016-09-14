@@ -16,19 +16,61 @@
     <Filter Include="src\Drawer">
       <UniqueIdentifier>{577a2763-aae4-4aee-b2dc-162a283b5587}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\InputMan">
+      <UniqueIdentifier>{67b4b245-d48f-48e4-9dbc-52eedd4496c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Win">
+      <UniqueIdentifier>{024a9a70-334e-4bd1-9396-65c4054208ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Cursor">
+      <UniqueIdentifier>{cfeee99e-a35f-43cd-9d15-9c6688b84d0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Sprite">
+      <UniqueIdentifier>{5dfbb3a1-46c2-4514-ac13-4c85594decd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Matrices">
+      <UniqueIdentifier>{cdf1a4f0-7df7-470e-89ac-29bb90efe6fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ResourceMan">
+      <UniqueIdentifier>{8036d05f-bd05-4631-8d68-1609d7cbca3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Include\Doh3d\RenderMan.cpp">
       <Filter>src\RenderMan</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Doh3d\WinClassReg.cpp">
-      <Filter>src\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Include\Doh3d\Drawer.cpp">
       <Filter>src\Drawer</Filter>
     </ClCompile>
+    <ClCompile Include="Include\Doh3d\Charset.cpp">
+      <Filter>src\InputMan</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Doh3d\InputMan.cpp">
+      <Filter>src\InputMan</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Doh3d\WinClass.cpp">
+      <Filter>src\Win</Filter>
+    </ClCompile>
     <ClCompile Include="Include\Doh3d\MessagePeeker.cpp">
+      <Filter>src\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Doh3d\Screen.cpp">
       <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Doh3d\Texture.cpp">
+      <Filter>src\ResourceMan</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Doh3d\Cursor.cpp">
+      <Filter>src\Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Doh3d\Sprite.cpp">
+      <Filter>src\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Doh3d\Matrix.cpp">
+      <Filter>src\Matrices</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Doh3d\ResourceMan.cpp">
+      <Filter>src\ResourceMan</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,23 +83,50 @@
     <ClInclude Include="Include\Doh3d\RenderPars.h">
       <Filter>src\RenderMan</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Doh3d\ErrCodes.h">
-      <Filter>src\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\StartupPars.h">
-      <Filter>src\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\libs\Log.h">
       <Filter>libs</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\WinClasReg.h">
-      <Filter>src\Common</Filter>
     </ClInclude>
     <ClInclude Include="Include\Doh3d\Drawer.h">
       <Filter>src\Drawer</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Doh3d\MessagePeeker.h">
+    <ClInclude Include="Include\Doh3d\ErrCodes3d.h">
       <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\InputMan.h">
+      <Filter>src\InputMan</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\InputPars.h">
+      <Filter>src\InputMan</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\WinClass.h">
+      <Filter>src\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\MessagePeeker.h">
+      <Filter>src\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\StartupPars.h">
+      <Filter>src\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\Screen.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\Texture.h">
+      <Filter>src\ResourceMan</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\dirent.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\Cursor.h">
+      <Filter>src\Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\Sprite.h">
+      <Filter>src\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\Matrix.h">
+      <Filter>src\Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Doh3d\ResourceMan.h">
+      <Filter>src\ResourceMan</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,11 +1,15 @@
 #include "..\Doh3d.h"
 #include "RenderMan.h"
 
+#include "WinClass.h"
+#include "Screen.h"
+
 
 namespace Doh3d
 {
 
 	bool RenderMan::m_isCreated = false;
+	RenderPars RenderMan::m_renderPars;
 
 	HWND RenderMan::m_hWindow;
 	IDirect3D9 *RenderMan::m_direct3d;
@@ -16,97 +20,91 @@ namespace Doh3d
 	D3DSURFACE_DESC RenderMan::m_defaultRenderTargetDesc;
 
 
-	ErrCode RenderMan::Recreate(RenderPars &pRenderPars, StartupPars &pStartupPars)
+	ErrCode3d RenderMan::Recreate(const RenderPars &pRenderPars)
 	{
 		LOG("RenderMan::Recreate()");
-		ErrCode err;
+		ErrCode3d err;
+
+		m_renderPars = pRenderPars;
 
 		err = Dispose();
-		if (err != err_noErr)
+		if (err != err3d_noErr)
 		{
 			echo("ERROR: Can't Dispose RenderMan.");
 			return err;
 		}
 
-		err = CreateWnd(pRenderPars, pStartupPars);
-		if (err != err_noErr)
+		err = CreateWnd(WinClass::GetStartupPars());
+		if (err != err3d_noErr)
 		{
 			echo("ERROR: Can't create Wnd.");
 			return err;
 		}
 
-		/*err = CreateRenderDevice(pRenderPars);
-		if (err != err_noErr)
+		err = CreateRenderDevice();
+		if (err != err3d_noErr)
 		{
 			echo("ERROR: Can't create RenderDevice.");
 			return err;
-		}*/
+		}
 
 		m_isCreated = true;
-		return err_noErr;
+		return err3d_noErr;
 	}
 
 
-	ErrCode RenderMan::Dispose()
+	ErrCode3d RenderMan::Dispose()
 	{
 		LOG("RenderMan::Dispose()");
-		ErrCode err;
+		ErrCode3d err;
 
 		m_isCreated = false;
 
 		err = DisposeRenderDevice();
-		if (err != err_noErr)
+		if (err != err3d_noErr)
 		{
 			echo("ERROR: Can't dispose RenderDevice.");
 			return err;
 		}
 
 		err = DisposeWnd();
-		if (err != err_noErr)
+		if (err != err3d_noErr)
 		{
 			echo("ERROR: Can't dispose Wnd.");
 			return err;
 		}
 
-		return err_noErr;
+		return err3d_noErr;
 	}
 
 
-	ErrCode RenderMan::CreateWnd(RenderPars &pRenderPars, StartupPars &pStartupPars)
+	ErrCode3d RenderMan::CreateWnd(const StartupPars &pStartupPars)
 	{
 		LOG("RDManager::CreateWnd()");
-
-		// Get screen size
-
-		RECT rectDesktop;
-		HWND hDesktop = GetDesktopWindow();
-		GetWindowRect(hDesktop, &rectDesktop);
-		LONG m_screenWidth = rectDesktop.right - rectDesktop.left;
-		LONG m_screenHeight = rectDesktop.bottom - rectDesktop.top;
 
 		// Create window
 
 		DWORD dwStyle = WS_VISIBLE | WS_POPUP;
-		if (pRenderPars.WndCaption)
+		if (m_renderPars.WndCaption)
 			dwStyle |= WS_CAPTION | WS_SYSMENU;
 
-		m_hWindow = CreateWindowEx(0, pStartupPars.ApplicationName.c_str(), pStartupPars.ApplicationName.c_str(), dwStyle,
-			(m_screenWidth - pRenderPars.ResolutionWidth) / 2, (m_screenHeight - pRenderPars.ResolutionHeight) / 2,
-			pRenderPars.ResolutionWidth, pRenderPars.ResolutionHeight,
-			nullptr, nullptr, pStartupPars.hInstance, nullptr);
+		m_hWindow = CreateWindowEx(0, WinClass::GetApplicationName().c_str(), WinClass::GetApplicationName().c_str(), dwStyle,
+								   (Screen::GetDesktopWidth() - m_renderPars.ResolutionWidth) / 2, (Screen::GetDesktopHeight() - m_renderPars.ResolutionHeight) / 2,
+								   m_renderPars.ResolutionWidth, m_renderPars.ResolutionHeight,
+								   nullptr, nullptr, pStartupPars.hInstance, nullptr);
 		if (m_hWindow == nullptr)
 		{
 			echo("ERROR: Can't create window.");
-			return err_cantCreateWindow;
+			return err3d_cantCreateWindow;
 		}
 
 		ShowWindow(m_hWindow, pStartupPars.nCmdShow);
 		UpdateWindow(m_hWindow);
 
-		return err_noErr;
+		return err3d_noErr;
 	}
 
-	ErrCode RenderMan::DisposeWnd()
+	ErrCode3d RenderMan::DisposeWnd()
 	{
 		if (m_hWindow != nullptr)
 		{
@@ -114,11 +112,11 @@ namespace Doh3d
 			m_hWindow = nullptr;
 		}
 
-		return err_noErr;
+		return err3d_noErr;
 	}
 
 
-	ErrCode RenderMan::CreateRenderDevice(RenderPars &pRenderPars)
+	ErrCode3d RenderMan::CreateRenderDevice()
 	{
 		LOG("RenderMan::CreateRenderDevice()");
 		int res = 0;
@@ -127,7 +125,7 @@ namespace Doh3d
 		if (m_direct3d == nullptr)
 		{
 			echo("ERROR: Can't create Direct3D.");
-			return err_cantCreateDirectX;
+			return err3d_cantCreateDirectX;
 		}
 
 		m_direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &m_caps);
@@ -135,17 +133,17 @@ namespace Doh3d
 		ZeroMemory(&m_presentPars, sizeof(m_presentPars));
 		m_presentPars.EnableAutoDepthStencil = true;
 		m_presentPars.AutoDepthStencilFormat = D3DFMT_D24X8;
-		m_presentPars.BackBufferWidth = pRenderPars.ResolutionWidth;
-		m_presentPars.BackBufferHeight = pRenderPars.ResolutionHeight;
+		m_presentPars.BackBufferWidth = m_renderPars.ResolutionWidth;
+		m_presentPars.BackBufferHeight = m_renderPars.ResolutionHeight;
 		m_presentPars.BackBufferFormat = D3DFMT_A8R8G8B8;
 		m_presentPars.BackBufferCount = 1;
 		m_presentPars.SwapEffect = D3DSWAPEFFECT_DISCARD;
 		//m_presentPars.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
 		m_presentPars.PresentationInterval = D3DPRESENT_INTERVAL_ONE;
 		m_presentPars.hDeviceWindow = m_hWindow;
-		m_presentPars.Windowed = pRenderPars.Windowed;
-		if (!pRenderPars.Windowed)
-			m_presentPars.FullScreen_RefreshRateInHz = pRenderPars.FullScreenRefreshRate;
+		m_presentPars.Windowed = m_renderPars.Windowed;
+		if (!m_renderPars.Windowed)
+			m_presentPars.FullScreen_RefreshRateInHz = m_renderPars.FullScreenRefreshRate;
 
 		res = m_direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, m_hWindow,
 			D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_PUREDEVICE,
@@ -153,7 +151,7 @@ namespace Doh3d
 		if ((res != D3D_OK) || (m_renderDevice == nullptr))
 		{
 			echo("ERROR: Can't create RenderDevice.");
-			return err_cantCreateRenderDevice;
+			return err3d_cantCreateRenderDevice;
 		}
 
 		m_renderDevice->SetRenderState(D3DRS_LIGHTING, false);
@@ -165,10 +163,10 @@ namespace Doh3d
 		m_renderDevice->GetRenderTarget(0, &m_defaultRenderTarget);
 		m_defaultRenderTarget->GetDesc(&m_defaultRenderTargetDesc);
 
-		return err_noErr;
+		return err3d_noErr;
 	}
 
-	ErrCode RenderMan::DisposeRenderDevice()
+	ErrCode3d RenderMan::DisposeRenderDevice()
 	{
 		if (m_renderDevice != nullptr)
 		{
@@ -182,7 +180,7 @@ namespace Doh3d
 			m_direct3d = nullptr;
 		}
 
-		return err_noErr;
+		return err3d_noErr;
 	}
 
 

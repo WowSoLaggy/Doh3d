@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef RENDERMAN_H
-#define RENDERMAN_H
+#ifndef DOH3D_RENDERMAN_H
+#define DOH3D_RENDERMAN_H
 
 
 #include "RenderPars.h"
@@ -16,15 +16,17 @@ namespace Doh3d
 	public:
 
 		static bool IsCreated() { return m_isCreated; }
-		static IDirect3DDevice9 *& GetRenderDevice() { return m_renderDevice; }
-		static HWND & GetHWindow() { return m_hWindow; }
+		static const RenderPars & GetRenderPars() { return m_renderPars; }
+		static IDirect3DDevice9 * const & GetRenderDevice() { return m_renderDevice; }
+		static const HWND & GetHWindow() { return m_hWindow; }
 
-		static ErrCode Recreate(RenderPars &pRenderPars, StartupPars &pStartupPars);
-		static ErrCode Dispose();
+		static ErrCode3d Recreate(const RenderPars &pRenderPars);
+		static ErrCode3d Dispose();
 
 	private:
 
 		static bool m_isCreated;
+		static RenderPars m_renderPars;
 
 		static HWND m_hWindow;
 		static IDirect3D9 *m_direct3d;
@@ -34,15 +36,15 @@ namespace Doh3d
 		static LPDIRECT3DSURFACE9 m_defaultRenderTarget;
 		static D3DSURFACE_DESC m_defaultRenderTargetDesc;
 
-		static ErrCode CreateWnd(RenderPars &pRenderPars, StartupPars &pStartupPars);
-		static ErrCode DisposeWnd();
+		static ErrCode3d CreateWnd(const StartupPars &pStartupPars);
+		static ErrCode3d DisposeWnd();
 
-		static ErrCode CreateRenderDevice(RenderPars &pRenderPars);
-		static ErrCode DisposeRenderDevice();
+		static ErrCode3d CreateRenderDevice();
+		static ErrCode3d DisposeRenderDevice();
 
 	};
 
 } // ns Doh3d
 
 
-#endif // RENDERMAN_H
+#endif // DOH3D_RENDERMAN_H

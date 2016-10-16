@@ -34,99 +34,141 @@
     <Filter Include="src\ResourceMan">
       <UniqueIdentifier>{8036d05f-bd05-4631-8d68-1609d7cbca3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Gui">
+      <UniqueIdentifier>{a3c34a1e-2804-49b5-b25c-1c8803800350}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Gui\Controls">
+      <UniqueIdentifier>{6c682ea2-f043-41f9-a74f-a557c7cb762d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ResourceMan\BitmapFont">
+      <UniqueIdentifier>{67862cf7-610c-413f-9297-d00cee0ebe30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Include\Doh3d\RenderMan.cpp">
-      <Filter>src\RenderMan</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Doh3d\Drawer.cpp">
-      <Filter>src\Drawer</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Doh3d\Charset.cpp">
-      <Filter>src\InputMan</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Doh3d\InputMan.cpp">
-      <Filter>src\InputMan</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Doh3d\WinClass.cpp">
-      <Filter>src\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Doh3d\MessagePeeker.cpp">
-      <Filter>src\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Doh3d\Screen.cpp">
+    <ClCompile Include="Screen.cpp">
       <Filter>src\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Doh3d\Texture.cpp">
-      <Filter>src\ResourceMan</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Doh3d\Cursor.cpp">
+    <ClCompile Include="Cursor.cpp">
       <Filter>src\Cursor</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Doh3d\Sprite.cpp">
-      <Filter>src\Sprite</Filter>
+    <ClCompile Include="Drawer.cpp">
+      <Filter>src\Drawer</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Doh3d\Matrix.cpp">
+    <ClCompile Include="GBase.cpp">
+      <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GButton.cpp">
+      <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GText.cpp">
+      <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="InputMan.cpp">
+      <Filter>src\InputMan</Filter>
+    </ClCompile>
+    <ClCompile Include="Charset.cpp">
+      <Filter>src\InputMan</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
       <Filter>src\Matrices</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Doh3d\ResourceMan.cpp">
+    <ClCompile Include="RenderMan.cpp">
+      <Filter>src\RenderMan</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceMan.cpp">
       <Filter>src\ResourceMan</Filter>
+    </ClCompile>
+    <ClCompile Include="RBitmapFont.cpp">
+      <Filter>src\ResourceMan\BitmapFont</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>src\ResourceMan</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>src\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="MessagePeeker.cpp">
+      <Filter>src\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="WinClass.cpp">
+      <Filter>src\Win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\Doh3d\RenderMan.h">
-      <Filter>src\RenderMan</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Doh3d.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\RenderPars.h">
-      <Filter>src\RenderMan</Filter>
     </ClInclude>
     <ClInclude Include="..\libs\Log.h">
       <Filter>libs</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Doh3d\Drawer.h">
-      <Filter>src\Drawer</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\ErrCodes3d.h">
+    <ClInclude Include="dirent.h">
       <Filter>src\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Doh3d\InputMan.h">
-      <Filter>src\InputMan</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\InputPars.h">
-      <Filter>src\InputMan</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\WinClass.h">
-      <Filter>src\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\MessagePeeker.h">
-      <Filter>src\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\StartupPars.h">
-      <Filter>src\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\Screen.h">
+    <ClInclude Include="ErrCodes3d.h">
       <Filter>src\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Doh3d\Texture.h">
-      <Filter>src\ResourceMan</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Doh3d\dirent.h">
+    <ClInclude Include="Screen.h">
       <Filter>src\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Doh3d\Cursor.h">
+    <ClInclude Include="Cursor.h">
       <Filter>src\Cursor</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Doh3d\Sprite.h">
-      <Filter>src\Sprite</Filter>
+    <ClInclude Include="Drawer.h">
+      <Filter>src\Drawer</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Doh3d\Matrix.h">
+    <ClInclude Include="GBase.h">
+      <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GButton.h">
+      <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GText.h">
+      <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>src\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="InputMan.h">
+      <Filter>src\InputMan</Filter>
+    </ClInclude>
+    <ClInclude Include="InputPars.h">
+      <Filter>src\InputMan</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
       <Filter>src\Matrices</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Doh3d\ResourceMan.h">
+    <ClInclude Include="RenderMan.h">
+      <Filter>src\RenderMan</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPars.h">
+      <Filter>src\RenderMan</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceMan.h">
       <Filter>src\ResourceMan</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapChar.h">
+      <Filter>src\ResourceMan\BitmapFont</Filter>
+    </ClInclude>
+    <ClInclude Include="RBitmapFont.h">
+      <Filter>src\ResourceMan\BitmapFont</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>src\ResourceMan</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>src\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="MessagePeeker.h">
+      <Filter>src\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="StartupPars.h">
+      <Filter>src\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="WinClass.h">
+      <Filter>src\Win</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

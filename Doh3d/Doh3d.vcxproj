@@ -19,38 +19,49 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Include\Doh3d\Charset.cpp" />
-    <ClCompile Include="Include\Doh3d\Cursor.cpp" />
-    <ClCompile Include="Include\Doh3d\Drawer.cpp" />
-    <ClCompile Include="Include\Doh3d\InputMan.cpp" />
-    <ClCompile Include="Include\Doh3d\Matrix.cpp" />
-    <ClCompile Include="Include\Doh3d\MessagePeeker.cpp" />
-    <ClCompile Include="Include\Doh3d\RenderMan.cpp" />
-    <ClCompile Include="Include\Doh3d\ResourceMan.cpp" />
-    <ClCompile Include="Include\Doh3d\Screen.cpp" />
-    <ClCompile Include="Include\Doh3d\Sprite.cpp" />
-    <ClCompile Include="Include\Doh3d\Texture.cpp" />
-    <ClCompile Include="Include\Doh3d\WinClass.cpp" />
+    <ClCompile Include="Charset.cpp" />
+    <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="Drawer.cpp" />
+    <ClCompile Include="GBase.cpp" />
+    <ClCompile Include="GButton.cpp" />
+    <ClCompile Include="GText.cpp" />
+    <ClCompile Include="InputMan.cpp" />
+    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="MessagePeeker.cpp" />
+    <ClCompile Include="RBitmapFont.cpp" />
+    <ClCompile Include="RenderMan.cpp" />
+    <ClCompile Include="ResourceMan.cpp" />
+    <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="WinClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\Log.h" />
+    <ClInclude Include="BitmapChar.h" />
+    <ClInclude Include="Cursor.h" />
+    <ClInclude Include="dirent.h" />
+    <ClInclude Include="Drawer.h" />
+    <ClInclude Include="ErrCodes3d.h" />
+    <ClInclude Include="GBase.h" />
+    <ClInclude Include="GButton.h" />
+    <ClInclude Include="GText.h" />
     <ClInclude Include="Include\Doh3d.h" />
-    <ClInclude Include="Include\Doh3d\Cursor.h" />
-    <ClInclude Include="Include\Doh3d\dirent.h" />
-    <ClInclude Include="Include\Doh3d\Drawer.h" />
-    <ClInclude Include="Include\Doh3d\ErrCodes3d.h" />
-    <ClInclude Include="Include\Doh3d\InputMan.h" />
-    <ClInclude Include="Include\Doh3d\InputPars.h" />
-    <ClInclude Include="Include\Doh3d\Matrix.h" />
-    <ClInclude Include="Include\Doh3d\MessagePeeker.h" />
-    <ClInclude Include="Include\Doh3d\RenderMan.h" />
-    <ClInclude Include="Include\Doh3d\RenderPars.h" />
-    <ClInclude Include="Include\Doh3d\ResourceMan.h" />
-    <ClInclude Include="Include\Doh3d\Screen.h" />
-    <ClInclude Include="Include\Doh3d\Sprite.h" />
-    <ClInclude Include="Include\Doh3d\StartupPars.h" />
-    <ClInclude Include="Include\Doh3d\Texture.h" />
-    <ClInclude Include="Include\Doh3d\WinClass.h" />
+    <ClInclude Include="InputMan.h" />
+    <ClInclude Include="InputPars.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="MessagePeeker.h" />
+    <ClInclude Include="RBitmapFont.h" />
+    <ClInclude Include="RenderMan.h" />
+    <ClInclude Include="RenderPars.h" />
+    <ClInclude Include="ResourceMan.h" />
+    <ClInclude Include="Screen.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="StartupPars.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="WinClass.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46E08EA9-4871-43A1-804C-C14C7A119539}</ProjectGuid>
@@ -111,7 +122,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;$(ProjectDir)Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -131,7 +142,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;$(ProjectDir)Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,7 +164,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;$(ProjectDir)Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -178,7 +189,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;$(ProjectDir)Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>

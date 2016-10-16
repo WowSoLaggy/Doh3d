@@ -30,19 +30,19 @@
 	#include "Log.h"
 #endif // DOH3D_NOLOG
 
-#include "Doh3d\ErrCodes3d.h"
+#include "..\ErrCodes3d.h"
 using namespace Doh3d::Doh3dErrCodes;
 
-#include "Doh3d\RenderMan.h"
-#include "Doh3d\StartupPars.h"
-#include "Doh3d\WinClass.h"
-#include "Doh3d\Drawer.h"
-#include "Doh3d\MessagePeeker.h"
-#include "Doh3d\InputMan.h"
-#include "Doh3d\ResourceMan.h"
-#include "Doh3d\Cursor.h"
-#include "Doh3d\Sprite.h"
-#include "Doh3d\Matrix.h"
+#include "..\RenderMan.h"
+#include "..\StartupPars.h"
+#include "..\WinClass.h"
+#include "..\Drawer.h"
+#include "..\MessagePeeker.h"
+#include "..\InputMan.h"
+#include "..\ResourceMan.h"
+#include "..\Cursor.h"
+#include "..\Sprite.h"
+#include "..\Matrix.h"
 
 
 #endif // DOH3D_H

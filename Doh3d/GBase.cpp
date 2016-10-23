@@ -20,13 +20,6 @@ namespace Doh3d
 	}
 
 
-	ErrCode3d GBase::SetVisible(bool pVisible)
-	{
-		m_isVisible = pVisible;
-		return err3d_noErr;
-	}
-
-
 	ErrCode3d GBase::UpdateTransformMatrix()
 	{
 		D3DXVECTOR2 sizeOrig = GetOriginalSize();

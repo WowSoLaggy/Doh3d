@@ -20,21 +20,22 @@ namespace Doh3d
 				const std::string& pTexNameSelected, const std::string& pTexNameDisabled);
 		virtual ~GButton();
 
-		virtual ErrCode3d Load();
-		virtual ErrCode3d Unload();
+		virtual ErrCode3d Load() override;
+		virtual ErrCode3d Unload() override;
 
-		virtual ErrCode3d Draw(LPD3DXSPRITE pSprite);
+		virtual ErrCode3d Draw(Sprite& pSprite) const override;
 
 		virtual ErrCode3d SetOnClickEvent(std::function<ErrCode3d()> pEvent);
 		virtual ErrCode3d SetText(const std::string& pText);
+		virtual ErrCode3d SetFont(const std::string& pFontName);
 
 		// Handlers
 
 		virtual ErrCode3d Click();
 
-		virtual ErrCode3d OnMouseMove(bool& pHandled);
-		virtual ErrCode3d OnMouseDown(bool& pHandled, int pButton);
-		virtual ErrCode3d OnMouseUp(bool& pHandled, int pButton);
+		virtual ErrCode3d OnMouseMove(bool& pHandled) override;
+		virtual ErrCode3d OnMouseDown(bool& pHandled, int pButton) override;
+		virtual ErrCode3d OnMouseUp(bool& pHandled, int pButton) override;
 
 	protected:
 
@@ -55,7 +56,7 @@ namespace Doh3d
 		Text m_text;
 		D3DXVECTOR3 m_positionText;
 
-		virtual D3DXVECTOR2 GetOriginalSize();
+		virtual D3DXVECTOR2 GetOriginalSize() const override;
 
 	};
 

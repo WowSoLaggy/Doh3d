@@ -104,26 +104,26 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	ErrCode3d GButton::Draw(LPD3DXSPRITE pSprite)
+	ErrCode3d GButton::Draw(Sprite& pSprite) const
 	{
 		LOG("GButton::Draw()");
 		int hRes;
 
-		pSprite->SetTransform(&m_transformMatrix);
+		pSprite.Get()->SetTransform(&m_transformMatrix);
 
 		switch (m_state)
 		{
 		case gstate_pressed:
-			hRes = pSprite->Draw(ResourceMan::GetTexture(m_tiPressed).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiPressed).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
 		case gstate_selected:
-			hRes = pSprite->Draw(ResourceMan::GetTexture(m_tiSelected).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiSelected).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
 		case gstate_disabled:
-			hRes = pSprite->Draw(ResourceMan::GetTexture(m_tiDisabled).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiDisabled).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
 		default:
-			hRes = pSprite->Draw(ResourceMan::GetTexture(m_tiNormal).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiNormal).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
 		}
 
@@ -135,7 +135,7 @@ namespace Doh3d
 
 		if (m_text.IsText())
 		{
-			hRes = pSprite->Draw(m_text.GetTexture(), 0, 0, &m_positionText, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(m_text.GetTexture(), 0, 0, &m_positionText, D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw text.");
@@ -146,7 +146,7 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	D3DXVECTOR2 GButton::GetOriginalSize()
+	D3DXVECTOR2 GButton::GetOriginalSize() const
 	{
 		return ResourceMan::GetTexture(m_tiNormal).GetSize();
 	}
@@ -277,8 +277,12 @@ namespace Doh3d
 
 	ErrCode3d GButton::SetText(const std::string& pText)
 	{
-		m_text.SetText(pText);
-		return err3d_noErr;
+		return m_text.SetText(pText);
+	}
+
+	ErrCode3d GButton::SetFont(const std::string& pFontName)
+	{
+		return m_text.SetFont(pFontName);
 	}
 
 } // ns Doh3d

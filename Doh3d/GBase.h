@@ -25,6 +25,8 @@ namespace Doh3d
 	{
 	public:
 
+		virtual ~GBase();
+
 		int Id() const { return m_id; }
 		bool IsVisible() const { return m_isVisible; }
 
@@ -32,9 +34,14 @@ namespace Doh3d
 		virtual ErrCode3d Unload() PURE;
 
 
-		virtual ErrCode3d Draw(LPD3DXSPRITE pSprite) PURE;
+		virtual ErrCode3d Draw(Sprite& pSprite) const PURE;
 
-		virtual ErrCode3d SetVisible(bool pVisible);
+
+		bool& Visible() { return m_isVisible; }
+		const bool& Visible() const { return m_isVisible; }
+
+		D3DXVECTOR3& Position() { return m_position; }
+		const D3DXVECTOR3& Position() const { return m_position; }
 
 		// Handlers
 
@@ -49,7 +56,6 @@ namespace Doh3d
 	protected:
 
 		GBase();
-		virtual ~GBase();
 
 		int m_id;
 		bool m_isVisible;
@@ -57,7 +63,7 @@ namespace Doh3d
 		D3DXVECTOR3 m_position;
 		D3DXVECTOR2 m_size;
 
-		virtual D3DXVECTOR2 GetOriginalSize() PURE;
+		virtual D3DXVECTOR2 GetOriginalSize() const PURE;
 		virtual bool ContainsPoint(D3DXVECTOR2 pPoint);
 
 		D3DXMATRIX m_transformMatrix;

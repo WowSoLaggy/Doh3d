@@ -43,6 +43,9 @@
     <Filter Include="src\ResourceMan\BitmapFont">
       <UniqueIdentifier>{67862cf7-610c-413f-9297-d00cee0ebe30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Objects">
+      <UniqueIdentifier>{104d7093-0d3c-451b-8774-0e8abc1baf45}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
@@ -95,6 +98,12 @@
     </ClCompile>
     <ClCompile Include="WinClass.cpp">
       <Filter>src\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="GPanel.cpp">
+      <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GGrid.cpp">
+      <Filter>src\Gui\Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +178,24 @@
     </ClInclude>
     <ClInclude Include="WinClass.h">
       <Filter>src\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewport.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ITreeThing.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiList.h">
+      <Filter>src\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="GPanel.h">
+      <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="GGrid.h">
+      <Filter>src\Gui\Controls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

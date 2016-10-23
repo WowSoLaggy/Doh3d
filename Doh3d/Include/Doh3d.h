@@ -11,6 +11,7 @@
 #include <string>
 #include <functional>
 #include <algorithm>
+#include <regex>
 
 
 // DirectX
@@ -30,19 +31,22 @@
 	#include "Log.h"
 #endif // DOH3D_NOLOG
 
-#include "..\ErrCodes3d.h"
+#include "../ErrCodes3d.h"
 using namespace Doh3d::Doh3dErrCodes;
 
-#include "..\RenderMan.h"
-#include "..\StartupPars.h"
-#include "..\WinClass.h"
-#include "..\Drawer.h"
-#include "..\MessagePeeker.h"
-#include "..\InputMan.h"
-#include "..\ResourceMan.h"
-#include "..\Cursor.h"
-#include "..\Sprite.h"
-#include "..\Matrix.h"
+#include "../RenderMan.h"
+#include "../StartupPars.h"
+#include "../WinClass.h"
+#include "../Drawer.h"
+#include "../MessagePeeker.h"
+#include "../InputMan.h"
+#include "../ResourceMan.h"
+#include "../Cursor.h"
+#include "../Sprite.h"
+#include "../Matrix.h"
+#include "../ITreeThing.h"
+#include "../Viewport.h"
+#include "../GuiList.h"
 
 
 #endif // DOH3D_H

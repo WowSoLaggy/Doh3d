@@ -5,7 +5,7 @@
 namespace Doh3d
 {
 
-	GText::GText(float pPosX, float pPosY, const std::string& pText)
+	GText::GText(float pPosX, float pPosY, const std::string& pText, const std::string& pFontName)
 	{
 		m_position.x = roundf(pPosX);
 		m_position.y = roundf(pPosY);
@@ -13,6 +13,7 @@ namespace Doh3d
 		m_size.x = 0;
 		m_size.y = 0;
 		SetText(pText);
+		SetFont(pFontName);
 	}
 
 	GText::~GText()
@@ -59,15 +60,15 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	ErrCode3d GText::Draw(LPD3DXSPRITE pSprite)
+	ErrCode3d GText::Draw(Sprite& pSprite) const
 	{
 		LOG("GText::Draw()");
 		int hRes;
 
-		pSprite->SetTransform(&m_transformMatrix);
+		pSprite.Get()->SetTransform(&m_transformMatrix);
 		if (m_text.IsText())
 		{
-			hRes = pSprite->Draw(m_text.GetTexture(), 0, 0, &m_positionText, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(m_text.GetTexture(), 0, 0, &m_positionText, D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw Text for GText (id: ", m_id, ").");
@@ -78,15 +79,19 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	D3DXVECTOR2 GText::GetOriginalSize()
+	D3DXVECTOR2 GText::GetOriginalSize() const
 	{
 		return D3DXVECTOR2((float)m_text.Width(), (float)m_text.Height());
 	}
 
 	ErrCode3d GText::SetText(const std::string& pText)
 	{
-		m_text.SetText(pText);
-		return err3d_noErr;
+		return m_text.SetText(pText);
+	}
+
+	ErrCode3d GText::SetFont(const std::string& pFontName)
+	{
+		return m_text.SetFont(pFontName);
 	}
 
 } // ns Doh3d

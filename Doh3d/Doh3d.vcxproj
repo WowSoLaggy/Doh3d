@@ -24,6 +24,8 @@
     <ClCompile Include="Drawer.cpp" />
     <ClCompile Include="GBase.cpp" />
     <ClCompile Include="GButton.cpp" />
+    <ClCompile Include="GGrid.cpp" />
+    <ClCompile Include="GPanel.cpp" />
     <ClCompile Include="GText.cpp" />
     <ClCompile Include="InputMan.cpp" />
     <ClCompile Include="Matrix.cpp" />
@@ -46,7 +48,11 @@
     <ClInclude Include="ErrCodes3d.h" />
     <ClInclude Include="GBase.h" />
     <ClInclude Include="GButton.h" />
+    <ClInclude Include="GGrid.h" />
+    <ClInclude Include="GPanel.h" />
     <ClInclude Include="GText.h" />
+    <ClInclude Include="GuiList.h" />
+    <ClInclude Include="ITreeThing.h" />
     <ClInclude Include="Include\Doh3d.h" />
     <ClInclude Include="InputMan.h" />
     <ClInclude Include="InputPars.h" />
@@ -61,6 +67,8 @@
     <ClInclude Include="StartupPars.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Viewport.h" />
     <ClInclude Include="WinClass.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

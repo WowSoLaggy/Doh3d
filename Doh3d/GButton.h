@@ -25,7 +25,7 @@ namespace Doh3d
 
 		virtual ErrCode3d Draw(Sprite& pSprite) const override;
 
-		virtual ErrCode3d SetOnClickEvent(std::function<ErrCode3d()> pEvent);
+		virtual ErrCode3d SetOnClickEvent(std::function<void()> pEvent);
 		virtual ErrCode3d SetText(const std::string& pText);
 		virtual ErrCode3d SetFont(const std::string& pFontName);
 
@@ -51,7 +51,7 @@ namespace Doh3d
 
 		GStates m_state;
 
-		std::function<ErrCode3d()> OnClickEvent;
+		std::function<void()> OnClickEvent;
 
 		Text m_text;
 		D3DXVECTOR3 m_positionText;

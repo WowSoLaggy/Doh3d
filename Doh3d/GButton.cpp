@@ -166,7 +166,7 @@ namespace Doh3d
 		if (m_state == gstate_disabled)
 			return err3d_noErr;
 
-		if (pHandled)
+		if (ContainsPoint(InputMan::GetCursorPosition()))
 		{
 			if (m_state == gstate_normal)
 				m_state = gstate_selected;
@@ -195,7 +195,7 @@ namespace Doh3d
 		if (pButton != MBUTTON_LEFT)
 			return err3d_noErr;
 
-		if (pHandled)
+		if (ContainsPoint(InputMan::GetCursorPosition()))
 			m_state = gstate_pressed;
 		else
 			m_state = gstate_normal;
@@ -227,7 +227,7 @@ namespace Doh3d
 		if (pButton != MBUTTON_LEFT)
 			return err3d_noErr;
 
-		if (pHandled)
+		if (ContainsPoint(InputMan::GetCursorPosition()))
 		{
 			if (m_state == gstate_pressed)
 			{
@@ -247,7 +247,7 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	ErrCode3d GButton::SetOnClickEvent(std::function<ErrCode3d()> pEvent)
+	ErrCode3d GButton::SetOnClickEvent(std::function<void()> pEvent)
 	{
 		OnClickEvent = pEvent;
 		return err3d_noErr;
@@ -256,20 +256,12 @@ namespace Doh3d
 	ErrCode3d GButton::Click()
 	{
 		LOG("GButton::Click()");
-		ErrCode3d err;
-
+		
 		if ((m_state == gstate_disabled) || (!m_isVisible))
 			return err3d_noErr;
 
 		if (OnClickEvent != nullptr)
-		{
-			err = OnClickEvent();
-			if (err != err3d_noErr)
-			{
-				echo("ERROR: Error occurred while OnClickEvent call.");
-				return err;
-			}
-		}
+			OnClickEvent();
 
 		return err3d_noErr;
 	}

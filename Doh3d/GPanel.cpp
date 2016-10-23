@@ -77,19 +77,46 @@ namespace Doh3d
 
 	ErrCode3d GPanel::OnMouseMove(bool &pHandled)
 	{
-		pHandled = false;
+		LOG("GPanel::OnMouseMove()");
+		ErrCode3d err;
+
+		err = GBase::OnMouseMove(pHandled);
+		if (err != err3d_noErr)
+		{
+			echo("ERROR: Error occurred while GBase::OnMouseMove().");
+			return err;
+		}
+
 		return err3d_noErr;
 	}
 
 	ErrCode3d GPanel::OnMouseDown(bool &pHandled, int pButton)
 	{
-		pHandled = false;
+		LOG("GPanel::OnMouseDown()");
+		ErrCode3d err;
+
+		err = GBase::OnMouseDown(pHandled, pButton);
+		if (err != err3d_noErr)
+		{
+			echo("ERROR: Error occurred while GBase::OnMouseDown().");
+			return err;
+		}
+
 		return err3d_noErr;
 	}
 
 	ErrCode3d GPanel::OnMouseUp(bool &pHandled, int pButton)
 	{
-		pHandled = false;
+		LOG("GPanel::OnMouseUp()");
+		ErrCode3d err;
+
+		err = GBase::OnMouseUp(pHandled, pButton);
+		if (err != err3d_noErr)
+		{
+			echo("ERROR: Error occurred while GBase::OnMouseUp().");
+			return err;
+		}
+
 		return err3d_noErr;
 	}
 

@@ -44,36 +44,24 @@ namespace Doh3d
 	ErrCode3d GBase::OnMouseMove(bool& pHandled)
 	{
 		if (ContainsPoint(InputMan::GetCursorPosition()))
-		{
 			pHandled = true;
-			return err3d_noErr;
-		}
 
-		pHandled = false;
 		return err3d_noErr;
 	}
 
 	ErrCode3d GBase::OnMouseDown(bool& pHandled, int pButton)
 	{
 		if (ContainsPoint(InputMan::GetCursorPosition()))
-		{
 			pHandled = true;
-			return err3d_noErr;
-		}
 
-		pHandled = false;
 		return err3d_noErr;
 	}
 
 	ErrCode3d GBase::OnMouseUp(bool& pHandled, int pButton)
 	{
 		if (ContainsPoint(InputMan::GetCursorPosition()))
-		{
 			pHandled = true;
-			return err3d_noErr;
-		}
 
-		pHandled = false;
 		return err3d_noErr;
 	}
 

@@ -40,6 +40,7 @@ namespace Doh3d
 		virtual GridItem* SelectCell(int pCellIndex);
 		virtual int GetSelectedCell() const { return m_selectedCell; }
 		virtual GridItem* GetItem(int pItemIndex);
+		virtual GridItem* GetSelectedItem();
 
 		std::vector<GridItem*>& Items() { return m_items; }
 		const std::vector<GridItem*>& Items() const { return m_items; }

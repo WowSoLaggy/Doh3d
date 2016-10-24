@@ -65,15 +65,17 @@ namespace Doh3d
 		}
 
 
-		void AddChild(ITreeThing* pChild)
+		ITreeThing* AddChild(ITreeThing* pChild)
 		{
 			if (!pChild || pChild->m_parent == this)
-				return;
+				return nullptr;
 			if (pChild->m_parent != nullptr)
 				pChild->m_parent->RemoveChild(pChild);
 
 			pChild->m_parent = this;
 			m_childs.push_back(pChild);
+
+			return pChild;
 		}
 
 		void RemoveChild(ITreeThing* pChild)

@@ -86,7 +86,20 @@ namespace Doh3d
 
 	ErrCode3d GText::SetText(const std::string& pText)
 	{
-		return m_text.SetText(pText);
+		LOG("GText::SetText()");
+		ErrCode3d err3d;
+
+		err3d = m_text.SetText(pText);
+		if (err3d != err3d_noErr)
+		{
+			echo("ERROR: Can't set text.");
+			return err3d;
+		}
+
+		m_positionText.x = roundf(m_position.x + (m_size.x - m_text.Width()) / 2);
+		m_positionText.y = roundf(m_position.y + (m_size.y - m_text.Height()) / 2);
+
+		return err3d_noErr;
 	}
 
 	ErrCode3d GText::SetFont(const std::string& pFontName)

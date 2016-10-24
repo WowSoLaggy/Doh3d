@@ -169,7 +169,7 @@ namespace Doh3d
 
 		m_selectedCell = pCellIndex;
 
-		return m_selectedCell == -1 ? nullptr : m_items[m_selectedCell];
+		return GetSelectedItem();
 	}
 
 	GridItem* GGrid::GetItem(int pItemIndex)
@@ -177,6 +177,11 @@ namespace Doh3d
 		if (pItemIndex < 0 || pItemIndex >= (int)m_items.size())
 			return nullptr;
 		return m_items[pItemIndex];
+	}
+
+	GridItem* GGrid::GetSelectedItem()
+	{
+		return m_selectedCell == -1 ? nullptr : m_items[m_selectedCell];
 	}
 
 } // ns Doh3d

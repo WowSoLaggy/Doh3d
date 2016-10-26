@@ -91,6 +91,7 @@ namespace Doh3d
 		}
 
 		std::vector<ITreeThing*>& GetChilds() { return m_childs; }
+		const std::vector<ITreeThing*>& GetChilds() const { return m_childs; }
 
 	protected:
 

@@ -29,6 +29,11 @@ namespace Doh3d
 		virtual ErrCode3d SetText(const std::string& pText);
 		virtual ErrCode3d SetFont(const std::string& pFontName);
 
+		virtual void Enable() { m_state = GStates::Normal; }
+		virtual void Disable() { m_state = GStates::Disabled; }
+		virtual void SetEnabled(bool pEnabled) { m_state = pEnabled ? GStates::Normal : GStates::Disabled; }
+		virtual bool IsEnabled() { return m_state != GStates::Disabled; }
+
 		// Handlers
 
 		virtual ErrCode3d Click();

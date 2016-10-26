@@ -10,14 +10,14 @@
 namespace Doh3d
 {
 
-	enum GStates : int
+	enum class GStates
 	{
-		gstate_normal = 0,
-		gstate_pressed,
-		gstate_selected,
-		gstate_disabled,
+		Normal,
+		Pressed,
+		Selected,
+		Disabled,
 
-		gstate_end
+		End
 	};
 
 

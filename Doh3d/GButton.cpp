@@ -27,7 +27,7 @@ namespace Doh3d
 		m_tiSelected = 0;
 		m_tiDisabled = 0;
 
-		m_state = gstate_normal;
+		m_state = GStates::Normal;
 
 		OnClickEvent = nullptr;
 	}
@@ -113,13 +113,13 @@ namespace Doh3d
 
 		switch (m_state)
 		{
-		case gstate_pressed:
+		case GStates::Pressed:
 			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiPressed).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
-		case gstate_selected:
+		case GStates::Selected:
 			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiSelected).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
-		case gstate_disabled:
+		case GStates::Disabled:
 			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiDisabled).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
 		default:
@@ -163,16 +163,16 @@ namespace Doh3d
 			return err;
 		}
 
-		if (m_state == gstate_disabled)
+		if (m_state == GStates::Disabled)
 			return err3d_noErr;
 
 		if (ContainsPoint(InputMan::GetCursorPosition()))
 		{
-			if (m_state == gstate_normal)
-				m_state = gstate_selected;
+			if (m_state == GStates::Normal)
+				m_state = GStates::Selected;
 		}
 		else
-			m_state = gstate_normal;
+			m_state = GStates::Normal;
 
 		return err3d_noErr;
 	}
@@ -189,16 +189,16 @@ namespace Doh3d
 			return err;
 		}
 
-		if (m_state == gstate_disabled)
+		if (m_state == GStates::Disabled)
 			return err3d_noErr;
 
 		if (pButton != MBUTTON_LEFT)
 			return err3d_noErr;
 
 		if (ContainsPoint(InputMan::GetCursorPosition()))
-			m_state = gstate_pressed;
+			m_state = GStates::Pressed;
 		else
-			m_state = gstate_normal;
+			m_state = GStates::Normal;
 
 		return err3d_noErr;
 	}
@@ -221,7 +221,7 @@ namespace Doh3d
 			return err;
 		}
 
-		if (m_state == gstate_disabled)
+		if (m_state == GStates::Disabled)
 			return err3d_noErr;
 
 		if (pButton != MBUTTON_LEFT)
@@ -229,7 +229,7 @@ namespace Doh3d
 
 		if (ContainsPoint(InputMan::GetCursorPosition()))
 		{
-			if (m_state == gstate_pressed)
+			if (m_state == GStates::Pressed)
 			{
 				err = Click();
 				if (err != err3d_noErr)
@@ -239,10 +239,10 @@ namespace Doh3d
 				}
 			}
 
-			m_state = gstate_selected;
+			m_state = GStates::Selected;
 		}
 		else
-			m_state = gstate_normal;
+			m_state = GStates::Normal;
 
 		return err3d_noErr;
 	}
@@ -257,7 +257,7 @@ namespace Doh3d
 	{
 		LOG("GButton::Click()");
 		
-		if ((m_state == gstate_disabled) || (!m_isVisible))
+		if ((m_state == GStates::Disabled) || (!m_isVisible))
 			return err3d_noErr;
 
 		if (OnClickEvent != nullptr)

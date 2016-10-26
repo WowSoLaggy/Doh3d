@@ -64,7 +64,7 @@ namespace Doh3d
 		D3DXVECTOR2 m_size;
 
 		virtual D3DXVECTOR2 GetOriginalSize() const PURE;
-		virtual bool ContainsPoint(D3DXVECTOR2 pPoint);
+		virtual bool ContainsPoint(const D3DXVECTOR2& pPoint);
 
 		D3DXMATRIX m_transformMatrix;
 		ErrCode3d UpdateTransformMatrix();

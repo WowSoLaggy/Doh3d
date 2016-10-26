@@ -1,6 +1,8 @@
 #include "Doh3d.h"
 #include "GGrid.h"
 
+#include "HitTest.h"
+
 
 namespace Doh3d
 {
@@ -22,6 +24,8 @@ namespace Doh3d
 		m_numberOfCells = pNumberOfCells;
 		m_selectedCell = -1;
 		m_items.resize(pNumberOfCells, nullptr);
+
+		OnSelectedItemChanged = nullptr;
 	}
 	
 	GGrid::~GGrid() { }
@@ -137,6 +141,20 @@ namespace Doh3d
 			return err;
 		}
 
+		int cellNumber = -1;
+		for (auto* pItem : m_items)
+		{
+			++cellNumber;
+			if (!pItem) continue;
+
+			D3DXVECTOR3 itemTopLeft = m_position + m_gridOffset + m_gridShift * (FLOAT)cellNumber;
+			if (PointContainsInRect(InputMan::GetCursorPosition(), itemTopLeft.x, itemTopLeft.y, itemTopLeft.x + m_itemSize.x, itemTopLeft.y + m_itemSize.y))
+			{
+				SelectCell(cellNumber);
+				break;
+			}
+		}
+
 		return err3d_noErr;
 	}
 
@@ -168,6 +186,9 @@ namespace Doh3d
 			return nullptr;
 
 		m_selectedCell = pCellIndex;
+
+		if (OnSelectedItemChanged != nullptr)
+			OnSelectedItemChanged();
 
 		return GetSelectedItem();
 	}

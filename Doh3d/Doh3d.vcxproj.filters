@@ -46,6 +46,9 @@
     <Filter Include="src\Objects">
       <UniqueIdentifier>{104d7093-0d3c-451b-8774-0e8abc1baf45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Geometry">
+      <UniqueIdentifier>{d42a128c-4e4c-43c7-9a4b-8f5dae3b9315}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="GGrid.h">
       <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="HitTest.h">
+      <Filter>src\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

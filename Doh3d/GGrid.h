@@ -37,6 +37,7 @@ namespace Doh3d
 		virtual void SetFrameOffset(const D3DXVECTOR3& pFrameOffset) { m_frameOffset = pFrameOffset; }
 		virtual void SetGridOffset(const D3DXVECTOR3& pGridOffset) { m_gridOffset = pGridOffset; }
 		virtual void SetGridShift(const D3DXVECTOR3& pGridShift) { m_gridShift = pGridShift; }
+		virtual void SetItemSize(const D3DXVECTOR3& pItemSize) { m_itemSize = pItemSize; }
 		virtual GridItem* SelectCell(int pCellIndex);
 		virtual int GetSelectedCell() const { return m_selectedCell; }
 		virtual GridItem* GetItem(int pItemIndex);
@@ -52,6 +53,11 @@ namespace Doh3d
 		virtual ErrCode3d OnMouseDown(bool& pHandled, int pButton) override;
 		virtual ErrCode3d OnMouseUp(bool& pHandled, int pButton) override;
 
+
+		// Events
+
+		std::function<void(void)> OnSelectedItemChanged;
+
 	protected:
 
 		std::string m_textureName;
@@ -62,6 +68,7 @@ namespace Doh3d
 		D3DXVECTOR3 m_frameOffset;
 		D3DXVECTOR3 m_gridOffset;
 		D3DXVECTOR3 m_gridShift;
+		D3DXVECTOR3 m_itemSize;
 		int m_numberOfCells;
 		int m_selectedCell;
 

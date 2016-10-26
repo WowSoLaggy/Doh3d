@@ -52,6 +52,7 @@
     <ClInclude Include="GPanel.h" />
     <ClInclude Include="GText.h" />
     <ClInclude Include="GuiList.h" />
+    <ClInclude Include="HitTest.h" />
     <ClInclude Include="ITreeThing.h" />
     <ClInclude Include="Include\Doh3d.h" />
     <ClInclude Include="InputMan.h" />

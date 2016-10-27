@@ -4,6 +4,9 @@
 #define INC_DOH3D_TEXTURE_H
 
 
+#include "AlphaMap.h"
+
+
 namespace Doh3d
 {
 
@@ -11,7 +14,7 @@ namespace Doh3d
 	{
 	public:
 
-		Texture(const std::string& pFilePath, D3DXVECTOR2 pSize, int pTotalFrames)
+		Texture(const std::string& pFilePath, const D3DXVECTOR2& pSize, int pTotalFrames)
 			: m_filePath(pFilePath), m_size(pSize), m_totalFrames(pTotalFrames), m_texture(nullptr) { }
 
 
@@ -23,12 +26,19 @@ namespace Doh3d
 		ErrCode3d Load();
 		ErrCode3d Unload();
 
+
+		bool HitTest(int pX, int pY) const;
+		bool HitTest(float pX, float pY) const;
+		bool HitTest(const D3DXVECTOR2& pCoords) const;
+		bool HitTest(const D3DXVECTOR3& pCoords) const;
+
 	private:
 
 		std::string m_filePath;
 		D3DXVECTOR2 m_size;
 		int m_totalFrames;
 
+		AlphaMap m_alphaMap;
 		LPDIRECT3DTEXTURE9 m_texture;
 
 	};

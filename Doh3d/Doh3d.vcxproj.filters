@@ -108,6 +108,9 @@
     <ClCompile Include="GGrid.cpp">
       <Filter>src\Gui\Controls</Filter>
     </ClCompile>
+    <ClCompile Include="AlphaMap.cpp">
+      <Filter>src\ResourceMan</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Doh3d.h">
@@ -202,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="HitTest.h">
       <Filter>src\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="AlphaMap.h">
+      <Filter>src\ResourceMan</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -74,7 +74,7 @@ namespace Doh3d
 
 		std::vector<GridItem*> m_items;
 
-		virtual D3DXVECTOR2 GetOriginalSize() const override;
+		virtual const D3DXVECTOR2& GetOriginalSize() const override;
 	};
 
 } // ns Doh3d

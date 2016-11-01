@@ -87,4 +87,17 @@ namespace Doh3d
 		return PointContainsInRect(pPoint, m_position.x, m_position.y, m_position.x + m_size.x, m_position.y + m_size.y);
 	}
 
+
+	ErrCode3d GBase::SetSize(float pWidth, float pHeight)
+	{
+		m_size.x = pWidth;
+		m_size.y = pHeight;
+		return err3d_noErr;
+	}
+
+	ErrCode3d GBase::SetSize(const D3DXVECTOR2& pSize)
+	{
+		return SetSize(pSize.x, pSize.y);
+	}
+
 } // ns Doh3d

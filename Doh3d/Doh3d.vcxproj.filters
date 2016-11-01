@@ -49,6 +49,9 @@
     <Filter Include="src\Geometry">
       <UniqueIdentifier>{d42a128c-4e4c-43c7-9a4b-8f5dae3b9315}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Gui\Text">
+      <UniqueIdentifier>{69111f54-4631-463b-882e-4f430bbe43f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
@@ -68,9 +71,6 @@
     </ClCompile>
     <ClCompile Include="GText.cpp">
       <Filter>src\Gui\Controls</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>src\Gui</Filter>
     </ClCompile>
     <ClCompile Include="InputMan.cpp">
       <Filter>src\InputMan</Filter>
@@ -111,6 +111,12 @@
     <ClCompile Include="AlphaMap.cpp">
       <Filter>src\ResourceMan</Filter>
     </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>src\Gui\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="TextContainer.cpp">
+      <Filter>src\Gui\Text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Doh3d.h">
@@ -142,9 +148,6 @@
     </ClInclude>
     <ClInclude Include="GText.h">
       <Filter>src\Gui\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>src\Gui</Filter>
     </ClInclude>
     <ClInclude Include="InputMan.h">
       <Filter>src\InputMan</Filter>
@@ -208,6 +211,12 @@
     </ClInclude>
     <ClInclude Include="AlphaMap.h">
       <Filter>src\ResourceMan</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>src\Gui\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="TextContainer.h">
+      <Filter>src\Gui\Text</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

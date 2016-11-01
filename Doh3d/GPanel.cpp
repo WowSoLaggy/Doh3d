@@ -9,11 +9,16 @@ namespace Doh3d
 
 	GPanel::GPanel(float pPosX, float pPosY, float pSizeX, float pSizeY, const std::string& pTextureName)
 	{
+		LOG("GPanel::GPanel()");
+		ErrCode3d err3d;
+
 		m_position.x = roundf(pPosX);
 		m_position.y = roundf(pPosY);
 		m_position.z = 0;
-		m_size.x = pSizeX;
-		m_size.y = pSizeY;
+		
+		err3d = SetSize(pSizeX, pSizeY);
+		if (err3d != err3d_noErr)
+			echo("ERROR: Can't set size.");
 
 		m_textureName = pTextureName;
 
@@ -69,7 +74,7 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	D3DXVECTOR2 GPanel::GetOriginalSize() const
+	const D3DXVECTOR2& GPanel::GetOriginalSize() const
 	{
 		return ResourceMan::GetTexture(m_tiMain).GetSize();
 	}

@@ -48,6 +48,7 @@ namespace Doh3d
 			err3d_invalidTextureDir,
 			err3d_invalidFontDir,
 			err3d_cantParseTextureFileName,
+			err3d_invalidTextAlign,
 
 			err3d_end,
 		};

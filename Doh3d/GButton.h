@@ -5,7 +5,7 @@
 
 
 #include "GBase.h"
-#include "Text.h"
+#include "TextContainer.h"
 
 
 namespace Doh3d
@@ -58,10 +58,9 @@ namespace Doh3d
 
 		std::function<void()> OnClickEvent;
 
-		Text m_text;
-		D3DXVECTOR3 m_positionText;
+		TextContainer m_textContainer;
 
-		virtual D3DXVECTOR2 GetOriginalSize() const override;
+		virtual const D3DXVECTOR2& GetOriginalSize() const override;
 
 	};
 

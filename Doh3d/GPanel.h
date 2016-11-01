@@ -33,7 +33,7 @@ namespace Doh3d
 		int m_tiMain;
 		std::string m_textureName;
 
-		virtual D3DXVECTOR2 GetOriginalSize() const override;
+		virtual const D3DXVECTOR2& GetOriginalSize() const override;
 
 	};
 

@@ -7,6 +7,9 @@
 namespace Doh3d
 {
 
+	
+
+
 	class Text
 	{
 	public:
@@ -17,7 +20,7 @@ namespace Doh3d
 		int Width() const { return m_width; }
 		int Height() const { return m_height; }
 
-		bool IsText() const { return !m_text.empty(); }
+		bool HasText() const { return !m_text.empty(); }
 		LPDIRECT3DTEXTURE9 GetTexture() const { return m_texture; }
 
 		ErrCode3d Load();

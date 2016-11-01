@@ -11,11 +11,16 @@ namespace Doh3d
 					 const std::string& pTexNameNormal, const std::string& pTexNamePressed,
 					 const std::string& pTexNameSelected, const std::string& pTexNameDisabled)
 	{
+		LOG("GButton::GButton()");
+		ErrCode3d err3d;
+
 		m_position.x = roundf(pPosX);
 		m_position.y = roundf(pPosY);
 		m_position.z = 0;
-		m_size.x = pSizeX;
-		m_size.y = pSizeY;
+
+		err3d = SetSize(pSizeX, pSizeY);
+		if (err3d != err3d_noErr)
+			echo("ERROR: Can't set size.");
 
 		m_texNameNormal = pTexNameNormal;
 		m_texNamePressed = pTexNamePressed;
@@ -30,6 +35,8 @@ namespace Doh3d
 		m_state = GStates::Normal;
 
 		OnClickEvent = nullptr;
+
+		m_textContainer.SetTextAlign(TextAlign::Center);
 	}
 
 	GButton::~GButton()
@@ -40,51 +47,56 @@ namespace Doh3d
 	ErrCode3d GButton::Load()
 	{
 		LOG("GButton::Load()");
-		ErrCode3d err;
+		ErrCode3d err3d;
 
-		err = ResourceMan::GetTi(m_texNameNormal, m_tiNormal);
-		if (err != err3d_noErr)
+		err3d = ResourceMan::GetTi(m_texNameNormal, m_tiNormal);
+		if (err3d != err3d_noErr)
 		{
 			echo("ERROR: Can't get TI for GButton (id: ", m_id, "): \"", m_texNameNormal, "\".");
-			return err;
+			return err3d;
 		}
 
-		err = ResourceMan::GetTi(m_texNamePressed, m_tiPressed);
-		if (err != err3d_noErr)
+		err3d = ResourceMan::GetTi(m_texNamePressed, m_tiPressed);
+		if (err3d != err3d_noErr)
 		{
 			echo("ERROR: Can't get TI for GButton (id: ", m_id, "): \"", m_texNamePressed, "\".");
-			return err;
+			return err3d;
 		}
 
-		err = ResourceMan::GetTi(m_texNameSelected, m_tiSelected);
-		if (err != err3d_noErr)
+		err3d = ResourceMan::GetTi(m_texNameSelected, m_tiSelected);
+		if (err3d != err3d_noErr)
 		{
 			echo("ERROR: Can't get TI for GButton (id: ", m_id, "): \"", m_texNameSelected, "\".");
-			return err;
+			return err3d;
 		}
 
-		err = ResourceMan::GetTi(m_texNameDisabled, m_tiDisabled);
-		if (err != err3d_noErr)
+		err3d = ResourceMan::GetTi(m_texNameDisabled, m_tiDisabled);
+		if (err3d != err3d_noErr)
 		{
 			echo("ERROR: Can't get TI for GButton (id: ", m_id, "): \"", m_texNameDisabled, "\".");
-			return err;
+			return err3d;
 		}
 
-		err = UpdateTransformMatrix();
-		if (err != err3d_noErr)
+		err3d = UpdateTransformMatrix();
+		if (err3d != err3d_noErr)
 		{
 			echo("ERROR: Can't update TransformMatrix for GButton (id: ", m_id, ").");
-			return err;
+			return err3d;
 		}
 
-		err = m_text.Load();
-		if (err != err3d_noErr)
+		err3d = m_textContainer.Load();
+		if (err3d != err3d_noErr)
 		{
-			echo("ERROR: Can't load Text for GButton (id: ", m_id, ").");
-			return err;
+			echo("ERROR: Can't load TextContainer for GButton (id: ", m_id, ").");
+			return err3d;
 		}
-		m_positionText.x = roundf(m_position.x + (m_size.x - m_text.Width()) / 2);
-		m_positionText.y = roundf(m_position.y + (m_size.y - m_text.Height()) / 2);
+
+		err3d = m_textContainer.SetBasisPosition(D3DXVECTOR3(GetSize().x / 2, GetSize().y / 2, 0));
+		if (err3d != err3d_noErr)
+		{
+			echo("ERROR: Can't set basis for TextContainer.");
+			return err3d;
+		}
 
 		return err3d_noErr;
 	}
@@ -92,13 +104,13 @@ namespace Doh3d
 	ErrCode3d GButton::Unload()
 	{
 		LOG("GButton::Unload()");
-		ErrCode3d err;
+		ErrCode3d err3d;
 
-		err = m_text.Unload();
-		if (err != err3d_noErr)
+		err3d = m_textContainer.Unload();
+		if (err3d != err3d_noErr)
 		{
-			echo("ERROR: Can't unload Text for GButton (id: ", m_id, ").");
-			return err;
+			echo("ERROR: Can't unload TextContainer for GButton (id: ", m_id, ").");
+			return err3d;
 		}
 
 		return err3d_noErr;
@@ -133,9 +145,9 @@ namespace Doh3d
 			return err3d_cantDrawSprite;
 		}
 
-		if (m_text.IsText())
+		if (m_textContainer.HasText())
 		{
-			hRes = pSprite.Get()->Draw(m_text.GetTexture(), 0, 0, &m_positionText, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(m_textContainer.GetTexture(), 0, 0, &(m_position + m_textContainer.GetPosition()), D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw text.");
@@ -146,7 +158,7 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	D3DXVECTOR2 GButton::GetOriginalSize() const
+	const D3DXVECTOR2& GButton::GetOriginalSize() const
 	{
 		return ResourceMan::GetTexture(m_tiNormal).GetSize();
 	}
@@ -154,13 +166,13 @@ namespace Doh3d
 	ErrCode3d GButton::OnMouseMove(bool& pHandled)
 	{
 		LOG("GButton::OnMouseMove()");
-		ErrCode3d err;
+		ErrCode3d err3d;
 
-		err = GBase::OnMouseMove(pHandled);
-		if (err != err3d_noErr)
+		err3d = GBase::OnMouseMove(pHandled);
+		if (err3d != err3d_noErr)
 		{
 			echo("ERROR: Error occurred while GBase::OnMouseMove().");
-			return err;
+			return err3d;
 		}
 
 		if (m_state == GStates::Disabled)
@@ -180,13 +192,13 @@ namespace Doh3d
 	ErrCode3d GButton::OnMouseDown(bool& pHandled, int pButton)
 	{
 		LOG("GButton::OnMouseDown()");
-		ErrCode3d err;
+		ErrCode3d err3d;
 
-		err = GBase::OnMouseDown(pHandled, pButton);
-		if (err != err3d_noErr)
+		err3d = GBase::OnMouseDown(pHandled, pButton);
+		if (err3d != err3d_noErr)
 		{
 			echo("ERROR: Error occurred while GBase::OnMouseDown().");
-			return err;
+			return err3d;
 		}
 
 		if (m_state == GStates::Disabled)
@@ -206,7 +218,7 @@ namespace Doh3d
 	ErrCode3d GButton::OnMouseUp(bool& pHandled, int pButton)
 	{
 		LOG("GButton::OnMouseUp()");
-		ErrCode3d err;
+		ErrCode3d err3d;
 
 		if (pButton != MBUTTON_LEFT)
 		{
@@ -214,11 +226,11 @@ namespace Doh3d
 			return err3d_noErr;
 		}
 
-		err = GBase::OnMouseUp(pHandled, pButton);
-		if (err != err3d_noErr)
+		err3d = GBase::OnMouseUp(pHandled, pButton);
+		if (err3d != err3d_noErr)
 		{
 			echo("ERROR: Error occurred while GBase::OnMouseUp().");
-			return err;
+			return err3d;
 		}
 
 		if (m_state == GStates::Disabled)
@@ -231,11 +243,11 @@ namespace Doh3d
 		{
 			if (m_state == GStates::Pressed)
 			{
-				err = Click();
-				if (err != err3d_noErr)
+				err3d = Click();
+				if (err3d != err3d_noErr)
 				{
 					echo("ERROR: Error occurred while button click.");
-					return err;
+					return err3d;
 				}
 			}
 
@@ -272,22 +284,29 @@ namespace Doh3d
 		LOG("GButton::SetText()");
 		ErrCode3d err3d;
 
-		err3d = m_text.SetText(pText);
+		err3d = m_textContainer.SetText(pText);
 		if (err3d != err3d_noErr)
 		{
-			echo("ERROR: Can't set text.");
+			echo("ERROR: Can't set text to TextContainer.");
 			return err3d;
 		}
-
-		m_positionText.x = roundf(m_position.x + (m_size.x - m_text.Width()) / 2);
-		m_positionText.y = roundf(m_position.y + (m_size.y - m_text.Height()) / 2);
 
 		return err3d_noErr;
 	}
 
 	ErrCode3d GButton::SetFont(const std::string& pFontName)
 	{
-		return m_text.SetFont(pFontName);
+		LOG("GButton::SetFont()");
+		ErrCode3d err3d;
+
+		err3d = m_textContainer.SetFont(pFontName);
+		if (err3d != err3d_noErr)
+		{
+			echo("ERROR: Can't set font for GButton (id: ", m_id, ").");
+			return err3d;
+		}
+
+		return err3d_noErr;
 	}
 
 } // ns Doh3d

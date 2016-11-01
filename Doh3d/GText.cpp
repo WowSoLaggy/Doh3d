@@ -10,10 +10,10 @@ namespace Doh3d
 		m_position.x = roundf(pPosX);
 		m_position.y = roundf(pPosY);
 		m_position.z = 0;
-		m_size.x = 0;
-		m_size.y = 0;
+		SetSize(0, 0);
 		SetText(pText);
 		SetFont(pFontName);
+		m_textContainer.SetTextAlign(TextAlign::Left);
 	}
 
 	GText::~GText()
@@ -24,23 +24,28 @@ namespace Doh3d
 	ErrCode3d GText::Load()
 	{
 		LOG("GText::Load()");
-		ErrCode3d err;
+		ErrCode3d err3d;
 
-		err = UpdateTransformMatrix();
-		if (err != err3d_noErr)
+		err3d = m_textContainer.Load();
+		if (err3d != err3d_noErr)
+		{
+			echo("ERROR: Can't load TextContainer for GText (id: ", m_id, ").");
+			return err3d;
+		}
+
+		err3d = UpdateTransformMatrix();
+		if (err3d != err3d_noErr)
 		{
 			echo("ERROR: Can't update TransformMatrix for GText (id: ", m_id, ").");
-			return err;
+			return err3d;
 		}
 
-		err = m_text.Load();
-		if (err != err3d_noErr)
+		err3d = SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight());
+		if (err3d != err3d_noErr)
 		{
-			echo("ERROR: Can't load Text for GText (id: ", m_id, ").");
-			return err;
+			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
+			return err3d;
 		}
-		m_positionText.x = roundf(m_position.x + (m_size.x - m_text.Width()) / 2);
-		m_positionText.y = roundf(m_position.y + (m_size.y - m_text.Height()) / 2);
 
 		return err3d_noErr;
 	}
@@ -50,10 +55,10 @@ namespace Doh3d
 		LOG("GText::Unload()");
 		ErrCode3d err;
 
-		err = m_text.Unload();
+		err = m_textContainer.Unload();
 		if (err != err3d_noErr)
 		{
-			echo("ERROR: Can't unload Text for GText (id: ", m_id, ").");
+			echo("ERROR: Can't unload TextContainer for GText (id: ", m_id, ").");
 			return err;
 		}
 
@@ -66,9 +71,9 @@ namespace Doh3d
 		int hRes;
 
 		pSprite.Get()->SetTransform(&m_transformMatrix);
-		if (m_text.IsText())
+		if (m_textContainer.HasText())
 		{
-			hRes = pSprite.Get()->Draw(m_text.GetTexture(), 0, 0, &m_positionText, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(m_textContainer.GetTexture(), 0, 0, &(m_position + m_textContainer.GetPosition()), D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw Text for GText (id: ", m_id, ").");
@@ -79,9 +84,9 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	D3DXVECTOR2 GText::GetOriginalSize() const
+	const D3DXVECTOR2& GText::GetOriginalSize() const
 	{
-		return D3DXVECTOR2((float)m_text.Width(), (float)m_text.Height());
+		return GetSize();
 	}
 
 	ErrCode3d GText::SetText(const std::string& pText)
@@ -89,22 +94,71 @@ namespace Doh3d
 		LOG("GText::SetText()");
 		ErrCode3d err3d;
 
-		err3d = m_text.SetText(pText);
+		err3d = m_textContainer.SetText(pText);
 		if (err3d != err3d_noErr)
 		{
-			echo("ERROR: Can't set text.");
+			echo("ERROR: Can't set text to TextContainer.");
 			return err3d;
 		}
 
-		m_positionText.x = roundf(m_position.x + (m_size.x - m_text.Width()) / 2);
-		m_positionText.y = roundf(m_position.y + (m_size.y - m_text.Height()) / 2);
+		err3d = SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight());
+		if (err3d != err3d_noErr)
+		{
+			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
+			return err3d;
+		}
 
 		return err3d_noErr;
 	}
 
 	ErrCode3d GText::SetFont(const std::string& pFontName)
 	{
-		return m_text.SetFont(pFontName);
+		LOG("GText::SetFont()");
+		ErrCode3d err3d;
+
+		err3d = m_textContainer.SetFont(pFontName);
+		if (err3d != err3d_noErr)
+		{
+			echo("ERROR: Can't set font for GText (id: ", m_id, ").");
+			return err3d;
+		}
+
+		err3d = SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight());
+		if (err3d != err3d_noErr)
+		{
+			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
+			return err3d;
+		}
+
+		return err3d_noErr;
+	}
+
+
+	ErrCode3d GText::SetSize(float pWidth, float pHeight)
+	{
+		LOG("GText::SetSize()");
+		ErrCode3d err3d;
+
+		err3d = GBase::SetSize(pWidth, pHeight);
+		if (err3d != err3d_noErr)
+		{
+			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
+			return err3d;
+		}
+
+		err3d = m_textContainer.SetBasisPosition(D3DXVECTOR3(0, pHeight / 2, 0));
+		if (err3d != err3d_noErr)
+		{
+			echo("ERROR: Can't set basis for TextContainer.");
+			return err3d;
+		}
+
+		return err3d_noErr;
+	}
+
+	ErrCode3d GText::SetSize(const D3DXVECTOR2& pSize)
+	{
+		return SetSize(pSize.x, pSize.y);
 	}
 
 } // ns Doh3d

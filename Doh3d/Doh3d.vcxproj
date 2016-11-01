@@ -37,6 +37,7 @@
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextContainer.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="WinClass.cpp" />
   </ItemGroup>
@@ -69,6 +70,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StartupPars.h" />
     <ClInclude Include="Text.h" />
+    <ClInclude Include="TextContainer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Viewport.h" />

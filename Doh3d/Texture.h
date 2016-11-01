@@ -20,7 +20,7 @@ namespace Doh3d
 
 		const std::string& GetFilePath() const { return m_filePath; }
 		LPDIRECT3DTEXTURE9 Get() { return m_texture; }
-		D3DXVECTOR2 GetSize() const { return m_size; }
+		const D3DXVECTOR2& GetSize() const { return m_size; }
 
 
 		ErrCode3d Load();

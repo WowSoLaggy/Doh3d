@@ -32,9 +32,12 @@ namespace Doh3d
 
 		virtual ErrCode3d Load() PURE;
 		virtual ErrCode3d Unload() PURE;
-
-
 		virtual ErrCode3d Draw(Sprite& pSprite) const PURE;
+
+		virtual ErrCode3d SetSize(float pWidth, float pHeight);
+		virtual ErrCode3d SetSize(const D3DXVECTOR2& pSize);
+
+		const D3DXVECTOR2& GetSize() const { return m_size; }
 
 
 		bool& Visible() { return m_isVisible; }
@@ -61,13 +64,16 @@ namespace Doh3d
 		bool m_isVisible;
 
 		D3DXVECTOR3 m_position;
-		D3DXVECTOR2 m_size;
 
-		virtual D3DXVECTOR2 GetOriginalSize() const PURE;
+		virtual const D3DXVECTOR2& GetOriginalSize() const PURE;
 		virtual bool ContainsPoint(const D3DXVECTOR2& pPoint);
 
 		D3DXMATRIX m_transformMatrix;
 		ErrCode3d UpdateTransformMatrix();
+
+	private:
+
+		D3DXVECTOR2 m_size;
 
 	};
 

@@ -5,7 +5,7 @@
 
 
 #include "GBase.h"
-#include "Text.h"
+#include "TextContainer.h"
 
 
 namespace Doh3d
@@ -20,18 +20,19 @@ namespace Doh3d
 
 		virtual ErrCode3d Load() override;
 		virtual ErrCode3d Unload() override;
-
 		virtual ErrCode3d Draw(Sprite& pSprite) const override;
+
+		virtual ErrCode3d SetSize(float pWidth, float pHeight) override;
+		virtual ErrCode3d SetSize(const D3DXVECTOR2& pSize) override;
 
 		virtual ErrCode3d SetText(const std::string& pText);
 		virtual ErrCode3d SetFont(const std::string& pFontName);
 
 	protected:
 
-		Text m_text;
-		D3DXVECTOR3 m_positionText;
+		TextContainer m_textContainer;
 
-		virtual D3DXVECTOR2 GetOriginalSize() const override;
+		virtual const D3DXVECTOR2& GetOriginalSize() const override;
 
 	};
 

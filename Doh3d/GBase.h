@@ -28,7 +28,6 @@ namespace Doh3d
 		virtual ~GBase();
 
 		int Id() const { return m_id; }
-		bool IsVisible() const { return m_isVisible; }
 
 		virtual ErrCode3d Load() PURE;
 		virtual ErrCode3d Unload() PURE;
@@ -40,8 +39,8 @@ namespace Doh3d
 		const D3DXVECTOR2& GetSize() const { return m_size; }
 
 
-		bool& Visible() { return m_isVisible; }
-		const bool& Visible() const { return m_isVisible; }
+		bool& IsVisible() { return m_isVisible; }
+		const bool& IsVisible() const { return m_isVisible; }
 
 		D3DXVECTOR3& Position() { return m_position; }
 		const D3DXVECTOR3& Position() const { return m_position; }

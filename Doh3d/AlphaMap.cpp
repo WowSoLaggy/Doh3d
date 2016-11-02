@@ -25,7 +25,7 @@ namespace Doh3d
 			{
 				for (int x = 0; x < m_width; ++x)
 				{
-					bool solid = (bits[x * 4 + y * lockedRect.Pitch] != 0);
+					bool solid = (bits[x * 4 + y * lockedRect.Pitch + 3] != 0);
 					m_mask[x + y * m_width] = solid;
 					if (!solid)
 						m_solid = false;

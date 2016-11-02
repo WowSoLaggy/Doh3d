@@ -90,6 +90,9 @@ namespace Doh3d
 			pChild->m_parent = nullptr;
 		}
 
+		ITreeThing* Parent() { return m_parent; }
+		const ITreeThing* Parent() const { return m_parent; }
+
 		std::vector<ITreeThing*>& GetChilds() { return m_childs; }
 		const std::vector<ITreeThing*>& GetChilds() const { return m_childs; }
 

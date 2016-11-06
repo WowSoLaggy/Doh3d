@@ -52,6 +52,12 @@
     <Filter Include="src\Gui\Text">
       <UniqueIdentifier>{69111f54-4631-463b-882e-4f430bbe43f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ResourceMan\Texture">
+      <UniqueIdentifier>{c4a05524-9296-49e5-9d40-06eb26d749b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ResourceMan\Animation">
+      <UniqueIdentifier>{2309e8c4-8079-4809-b097-f51ed8e03ec7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
@@ -90,9 +96,6 @@
     <ClCompile Include="RBitmapFont.cpp">
       <Filter>src\ResourceMan\BitmapFont</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>src\ResourceMan</Filter>
-    </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>src\Sprite</Filter>
     </ClCompile>
@@ -108,14 +111,17 @@
     <ClCompile Include="GGrid.cpp">
       <Filter>src\Gui\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="AlphaMap.cpp">
-      <Filter>src\ResourceMan</Filter>
-    </ClCompile>
     <ClCompile Include="Text.cpp">
       <Filter>src\Gui\Text</Filter>
     </ClCompile>
     <ClCompile Include="TextContainer.cpp">
       <Filter>src\Gui\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="AlphaMap.cpp">
+      <Filter>src\ResourceMan\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>src\ResourceMan\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,9 +179,6 @@
     <ClInclude Include="RBitmapFont.h">
       <Filter>src\ResourceMan\BitmapFont</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>src\ResourceMan</Filter>
-    </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>src\Sprite</Filter>
     </ClInclude>
@@ -209,14 +212,23 @@
     <ClInclude Include="HitTest.h">
       <Filter>src\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="AlphaMap.h">
-      <Filter>src\ResourceMan</Filter>
-    </ClInclude>
     <ClInclude Include="Text.h">
       <Filter>src\Gui\Text</Filter>
     </ClInclude>
     <ClInclude Include="TextContainer.h">
       <Filter>src\Gui\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="AlphaMap.h">
+      <Filter>src\ResourceMan\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>src\ResourceMan\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>src\ResourceMan\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSet.h">
+      <Filter>src\ResourceMan\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -47,6 +47,7 @@ using namespace Doh3d::Doh3dErrCodes;
 #include "../ITreeThing.h"
 #include "../Viewport.h"
 #include "../GuiList.h"
+#include "../AnimationSet.h"
 
 
 #endif // DOH3D_H

@@ -32,7 +32,7 @@ namespace Doh3d
 
 		TextContainer m_textContainer;
 
-		virtual const D3DXVECTOR2& GetOriginalSize() const override;
+		virtual D3DXVECTOR2 GetOriginalSize() const override;
 
 	};
 

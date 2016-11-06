@@ -14,7 +14,7 @@ namespace Doh3d
 	{
 	public:
 
-		ErrCode3d Init(LPDIRECT3DTEXTURE9 pTexture);
+		ErrCode3d Init(bool pAlphaCheck, LPDIRECT3DTEXTURE9 pTexture);
 
 		bool Check(int pX, int pY) const;
 

@@ -64,7 +64,7 @@ namespace Doh3d
 
 		pSprite.Get()->SetTransform(&m_transformMatrix);
 
-		hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiMain).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+		hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiMain).Get(), &ResourceMan::GetTexture(m_tiMain).GetFrame(0), 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw sprite.");
@@ -74,7 +74,7 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	const D3DXVECTOR2& GPanel::GetOriginalSize() const
+	D3DXVECTOR2 GPanel::GetOriginalSize() const
 	{
 		return ResourceMan::GetTexture(m_tiMain).GetSize();
 	}

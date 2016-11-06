@@ -78,7 +78,7 @@ namespace Doh3d
 
 		pSprite.Get()->SetTransform(&m_transformMatrix);
 
-		hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_ti).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+		hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_ti).Get(), &ResourceMan::GetTexture(m_ti).GetFrame(0), 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw sprite.");
@@ -90,7 +90,7 @@ namespace Doh3d
 		if (m_selectedCell != -1)
 		{
 			D3DXVECTOR3 framePos = m_position + m_frameOffset + m_gridShift * (FLOAT)m_selectedCell;
-			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiFrame).Get(), 0, 0, &(framePos), D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiFrame).Get(), &ResourceMan::GetTexture(m_tiFrame).GetFrame(0), 0, &(framePos), D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw sprite.");
@@ -107,7 +107,7 @@ namespace Doh3d
 			if (!pItem) continue;
 
 			D3DXVECTOR3 framePos = m_position + m_gridOffset + m_gridShift * (FLOAT)cellNumber;
-			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(pItem->GetTi()).Get(), 0, 0, &(framePos), D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(pItem->GetTi()).Get(), &ResourceMan::GetTexture(pItem->GetTi()).GetFrame(0), 0, &(framePos), D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw sprite.");
@@ -179,7 +179,7 @@ namespace Doh3d
 	}
 
 
-	const D3DXVECTOR2& GGrid::GetOriginalSize() const
+	D3DXVECTOR2 GGrid::GetOriginalSize() const
 	{
 		return ResourceMan::GetTexture(m_ti).GetSize();
 	}

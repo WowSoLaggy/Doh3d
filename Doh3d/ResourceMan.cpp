@@ -235,7 +235,7 @@ namespace Doh3d
 
 				std::string textureFileName = strTemp.append(ent->d_name, ent->d_namlen).erase(0, pDir.size());
 				auto tokens = SplitString(textureFileName, '_');
-				if (tokens.size() < 4) // 4 are: name, width, height, #frames
+				if (tokens.size() != 5) // name, width, height, #frames, alphaCheck
 				{
 					echo("ERROR: Invalid texture file name: \"", textureFileName, "\".");
 					return err3d_cantParseTextureFileName;
@@ -244,8 +244,8 @@ namespace Doh3d
 
 				m_textures.push_back(Texture(
 					textureFileName,
-					D3DXVECTOR2((FLOAT)std::stoi(tokens[finalToken - 2]), (FLOAT)std::stoi(tokens[finalToken - 1])),
-					std::stoi(SplitString(tokens[finalToken], '.')[0])));
+					D3DXVECTOR2((FLOAT)std::stoi(tokens[1]), (FLOAT)std::stoi(tokens[2])), std::stoi(tokens[3]),
+					SplitString(tokens[4], '.')[0] == "a"));
 			}
 			else if ((ent->d_type == DT_DIR) && (strcmp(ent->d_name, ".") != 0) && (strcmp(ent->d_name, "..") != 0))
 				ParseFontDir(strTemp.append(ent->d_name, ent->d_namlen).append("\\"));

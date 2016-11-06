@@ -5,8 +5,14 @@
 namespace Doh3d
 {
 
-	ErrCode3d AlphaMap::Init(LPDIRECT3DTEXTURE9 pTexture)
+	ErrCode3d AlphaMap::Init(bool pAlphaCheck, LPDIRECT3DTEXTURE9 pTexture)
 	{
+		if (!pAlphaCheck)
+		{
+			m_solid = true;
+			return err3d_noErr;
+		}
+
 		D3DSURFACE_DESC surfaceDesc;
 		pTexture->GetLevelDesc(0, &surfaceDesc);
 

@@ -27,7 +27,7 @@ namespace Doh3d
 			m_size = D3DXVECTOR2((float)surfaceDesc.Width, (float)surfaceDesc.Height);
 		}
 
-		m_alphaMap.Init(m_texture);
+		m_alphaMap.Init(m_alphaCheck, m_texture);
 
 		return err3d_noErr;
 	}
@@ -46,6 +46,9 @@ namespace Doh3d
 
 	bool Texture::HitTest(int pX, int pY) const
 	{
+		if (pX < 0 || pY < 0 || pX >= m_size.x || pY >= m_size.y)
+			return false;
+
 		return m_alphaMap.Check(pX, pY);
 	}
 
@@ -62,6 +65,16 @@ namespace Doh3d
 	bool Texture::HitTest(const D3DXVECTOR3& pCoords) const
 	{
 		return HitTest((int)pCoords.x, (int)pCoords.y);
+	}
+
+	RECT Texture::GetFrame(int pFrameNumber)
+	{
+		RECT rect;
+		rect.left = (LONG)(m_size.x * pFrameNumber);
+		rect.top = (LONG)(m_size.y * pFrameNumber);
+		rect.right = (LONG)(m_size.x * (pFrameNumber + 1));
+		rect.bottom = (LONG)(m_size.y * (pFrameNumber + 1));
+		return rect;
 	}
 
 } // ns Doh3d

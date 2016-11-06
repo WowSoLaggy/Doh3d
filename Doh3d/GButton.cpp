@@ -126,16 +126,16 @@ namespace Doh3d
 		switch (m_state)
 		{
 		case GStates::Pressed:
-			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiPressed).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiPressed).Get(), &ResourceMan::GetTexture(m_tiPressed).GetFrame(0), 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
 		case GStates::Selected:
-			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiSelected).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiSelected).Get(), &ResourceMan::GetTexture(m_tiSelected).GetFrame(0), 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
 		case GStates::Disabled:
-			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiDisabled).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiDisabled).Get(), &ResourceMan::GetTexture(m_tiDisabled).GetFrame(0), 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
 		default:
-			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiNormal).Get(), 0, 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiNormal).Get(), &ResourceMan::GetTexture(m_tiNormal).GetFrame(0), 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 			break;
 		}
 
@@ -158,7 +158,7 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	const D3DXVECTOR2& GButton::GetOriginalSize() const
+	D3DXVECTOR2 GButton::GetOriginalSize() const
 	{
 		return ResourceMan::GetTexture(m_tiNormal).GetSize();
 	}

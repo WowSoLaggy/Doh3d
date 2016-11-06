@@ -38,7 +38,7 @@ namespace Doh3d
 		D3DXVECTOR2 pos = InputMan::GetCursorPosition();
 		
 		pSprite.Get()->SetTransform(&m_identityMatrix);
-		hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_ti).Get(), 0, 0, &D3DXVECTOR3(pos.x, pos.y, 0), D3DCOLOR_ARGB(255, 255, 255, 255));
+		hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_ti).Get(), &ResourceMan::GetTexture(m_ti).GetFrame(0), 0, &D3DXVECTOR3(pos.x, pos.y, 0), D3DCOLOR_ARGB(255, 255, 255, 255));
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw cursor.");

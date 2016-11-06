@@ -84,7 +84,7 @@ namespace Doh3d
 		return err3d_noErr;
 	}
 
-	const D3DXVECTOR2& GText::GetOriginalSize() const
+	D3DXVECTOR2 GText::GetOriginalSize() const
 	{
 		return GetSize();
 	}

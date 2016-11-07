@@ -65,6 +65,21 @@ namespace Doh3d
 		}
 
 
+		virtual T Update(float pDeltaTime)
+		{
+			T err;
+
+			for (auto child : m_childs)
+			{
+				err = child->Update(pDeltaTime);
+				if (err != (T)0)
+					return err;
+			}
+
+			return (T)0;
+		}
+
+
 		ITreeThing* AddChild(ITreeThing* pChild)
 		{
 			if (!pChild || pChild->m_parent == this)

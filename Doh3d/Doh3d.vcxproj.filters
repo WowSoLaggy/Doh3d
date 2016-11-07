@@ -55,7 +55,7 @@
     <Filter Include="src\ResourceMan\Texture">
       <UniqueIdentifier>{c4a05524-9296-49e5-9d40-06eb26d749b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\ResourceMan\Animation">
+    <Filter Include="src\Animation">
       <UniqueIdentifier>{2309e8c4-8079-4809-b097-f51ed8e03ec7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -122,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>src\ResourceMan\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationController.cpp">
+      <Filter>src\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,10 +228,13 @@
       <Filter>src\ResourceMan\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
-      <Filter>src\ResourceMan\Animation</Filter>
+      <Filter>src\Animation</Filter>
     </ClInclude>
     <ClInclude Include="AnimationSet.h">
-      <Filter>src\ResourceMan\Animation</Filter>
+      <Filter>src\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationController.h">
+      <Filter>src\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

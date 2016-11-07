@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AlphaMap.cpp" />
+    <ClCompile Include="AnimationController.cpp" />
     <ClCompile Include="Charset.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Drawer.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="..\libs\Log.h" />
     <ClInclude Include="AlphaMap.h" />
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationController.h" />
     <ClInclude Include="AnimationSet.h" />
     <ClInclude Include="BitmapChar.h" />
     <ClInclude Include="Cursor.h" />

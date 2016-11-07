@@ -71,9 +71,9 @@ namespace Doh3d
 	{
 		RECT rect;
 		rect.left = (LONG)(m_size.x * pFrameNumber);
-		rect.top = (LONG)(m_size.y * pFrameNumber);
+		rect.top = 0;
 		rect.right = (LONG)(m_size.x * (pFrameNumber + 1));
-		rect.bottom = (LONG)(m_size.y * (pFrameNumber + 1));
+		rect.bottom = (LONG)(m_size.y);
 		return rect;
 	}
 

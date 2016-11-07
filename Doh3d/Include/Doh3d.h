@@ -48,6 +48,7 @@ using namespace Doh3d::Doh3dErrCodes;
 #include "../Viewport.h"
 #include "../GuiList.h"
 #include "../AnimationSet.h"
+#include "../AnimationController.h"
 
 
 #endif // DOH3D_H

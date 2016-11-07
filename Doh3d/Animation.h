@@ -14,6 +14,7 @@ namespace Doh3d
 		std::string Name;
 		int BeginFrame;
 		int EndFrame;
+		float Interval;
 
 	};
 

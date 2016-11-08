@@ -236,5 +236,8 @@
     <ClInclude Include="AnimationController.h">
       <Filter>src\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="..\libs\Timer.h">
+      <Filter>libs</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

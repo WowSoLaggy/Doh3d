@@ -46,6 +46,8 @@ namespace Doh3d
 
 	bool AlphaMap::Check(int pX, int pY) const
 	{
+		// TODO: Alpha map check for the current frame, not for the whole texture
+
 		if (m_solid)
 			return true;
 

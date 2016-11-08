@@ -31,6 +31,8 @@
 	#include "Log.h"
 #endif // DOH3D_NOLOG
 
+#include "Timer.h"
+
 #include "../ErrCodes3d.h"
 using namespace Doh3d::Doh3dErrCodes;
 

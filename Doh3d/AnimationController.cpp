@@ -71,9 +71,9 @@ namespace Doh3d
 
 		if (m_currentFrame >= m_currentAnimation->EndFrame - 1)
 		{
-			m_currentFrame = m_currentAnimation->BeginFrame - 1;
 			if (m_repeats != -1 && --m_repeats == 0)
 				return;
+			m_currentFrame = m_currentAnimation->BeginFrame - 1;
 		}
 		else
 			++m_currentFrame;

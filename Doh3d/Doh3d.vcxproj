@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\Log.h" />
+    <ClInclude Include="..\libs\Timer.h" />
     <ClInclude Include="AlphaMap.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationController.h" />

@@ -33,6 +33,7 @@ namespace Doh3d
 		int m_currentFrame;
 		int m_repeats;
 		float m_animationTime;
+		bool m_directOrder;
 
 		void AdvanceFrame();
 

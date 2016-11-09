@@ -29,10 +29,10 @@ namespace Doh3d
 		ErrCode3d Unload();
 
 
-		bool HitTest(int pX, int pY) const;
-		bool HitTest(float pX, float pY) const;
-		bool HitTest(const D3DXVECTOR2& pCoords) const;
-		bool HitTest(const D3DXVECTOR3& pCoords) const;
+		bool HitTest(int pX, int pY, int pFrame) const;
+		bool HitTest(float pX, float pY, int pFrame) const;
+		bool HitTest(const D3DXVECTOR2& pCoords, int pFrame) const;
+		bool HitTest(const D3DXVECTOR3& pCoords, int pFrame) const;
 
 	private:
 

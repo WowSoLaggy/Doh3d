@@ -44,27 +44,27 @@ namespace Doh3d
 	}
 
 
-	bool Texture::HitTest(int pX, int pY) const
+	bool Texture::HitTest(int pX, int pY, int pFrame) const
 	{
 		if (pX < 0 || pY < 0 || pX >= m_size.x || pY >= m_size.y)
 			return false;
 
-		return m_alphaMap.Check(pX, pY);
+		return m_alphaMap.Check(pX + pFrame * (int)m_size.x, pY);
 	}
 
-	bool Texture::HitTest(float pX, float pY) const
+	bool Texture::HitTest(float pX, float pY, int pFrame) const
 	{
-		return HitTest((int)pX, (int)pY);
+		return HitTest((int)pX, (int)pY, pFrame);
 	}
 
-	bool Texture::HitTest(const D3DXVECTOR2& pCoords) const
+	bool Texture::HitTest(const D3DXVECTOR2& pCoords, int pFrame) const
 	{
-		return HitTest((int)pCoords.x, (int)pCoords.y);
+		return HitTest((int)pCoords.x, (int)pCoords.y, pFrame);
 	}
 
-	bool Texture::HitTest(const D3DXVECTOR3& pCoords) const
+	bool Texture::HitTest(const D3DXVECTOR3& pCoords, int pFrame) const
 	{
-		return HitTest((int)pCoords.x, (int)pCoords.y);
+		return HitTest((int)pCoords.x, (int)pCoords.y, pFrame);
 	}
 
 	RECT Texture::GetFrame(int pFrameNumber)

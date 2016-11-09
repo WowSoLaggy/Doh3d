@@ -47,6 +47,7 @@ namespace Doh3d
 		m_currentFrame = m_currentAnimation->BeginFrame - 1;
 		m_repeats = pRepeats;
 		m_animationTime = 0;
+		m_directOrder = (m_currentAnimation->EndFrame >= m_currentAnimation->BeginFrame);
 
 		return true;
 	}
@@ -69,14 +70,28 @@ namespace Doh3d
 		if (!m_currentAnimation)
 			return;
 
-		if (m_currentFrame >= m_currentAnimation->EndFrame - 1)
+		if (m_directOrder)
 		{
-			if (m_repeats != -1 && --m_repeats == 0)
-				return;
-			m_currentFrame = m_currentAnimation->BeginFrame - 1;
+			if (m_currentFrame >= m_currentAnimation->EndFrame - 1)
+			{
+				if (m_repeats != -1 && --m_repeats == 0)
+					return;
+				m_currentFrame = m_currentAnimation->BeginFrame - 1;
+			}
+			else
+				++m_currentFrame;
 		}
 		else
-			++m_currentFrame;
+		{
+			if (m_currentFrame <= m_currentAnimation->EndFrame - 1)
+			{
+				if (m_repeats != -1 && --m_repeats == 0)
+					return;
+				m_currentFrame = m_currentAnimation->BeginFrame - 1;
+			}
+			else
+				--m_currentFrame;
+		}
 	}
 
 } // Doh3d

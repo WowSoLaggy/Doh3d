@@ -2,7 +2,6 @@
 #include "GBase.h"
 
 #include "InputMan.h"
-#include "HitTest.h"
 
 
 namespace Doh3d
@@ -84,7 +83,7 @@ namespace Doh3d
 
 	bool GBase::ContainsPoint(const D3DXVECTOR2& pPoint)
 	{
-		return PointContainsInRect(pPoint, m_position.x, m_position.y, m_position.x + m_size.x, m_position.y + m_size.y);
+		return Geometry::Rect(m_position.x, m_position.y, m_position.x + m_size.x, m_position.y + m_size.y).ContainsPoint(pPoint);
 	}
 
 

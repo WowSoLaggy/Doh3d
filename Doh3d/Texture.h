@@ -15,12 +15,13 @@ namespace Doh3d
 	public:
 
 		Texture(const std::string& pFilePath, const D3DXVECTOR2& pSize, int pTotalFrames, bool pAlphaCheck)
-			: m_filePath(pFilePath), m_size(pSize), m_totalFrames(pTotalFrames), m_texture(nullptr), m_alphaCheck(pAlphaCheck) { }
+			: m_filePath(pFilePath), m_size(pSize), m_size2(pSize / 2), m_totalFrames(pTotalFrames), m_texture(nullptr), m_alphaCheck(pAlphaCheck) { }
 
 
 		const std::string& GetFilePath() const { return m_filePath; }
 		LPDIRECT3DTEXTURE9 Get() { return m_texture; }
 		const D3DXVECTOR2& GetSize() const { return m_size; }
+		const D3DXVECTOR2& GetSize2() const { return m_size2; }
 
 		RECT GetFrame(int pFrameNumber);
 
@@ -38,6 +39,7 @@ namespace Doh3d
 
 		std::string m_filePath;
 		D3DXVECTOR2 m_size;
+		D3DXVECTOR2 m_size2;
 		int m_totalFrames;
 		bool m_alphaCheck;
 

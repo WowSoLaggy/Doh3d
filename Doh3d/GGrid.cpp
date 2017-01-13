@@ -1,8 +1,6 @@
 #include "Doh3d.h"
 #include "GGrid.h"
 
-#include "HitTest.h"
-
 
 namespace Doh3d
 {
@@ -106,7 +104,9 @@ namespace Doh3d
 			++cellNumber;
 			if (!pItem) continue;
 
-			D3DXVECTOR3 framePos = m_position + m_gridOffset + m_gridShift * (FLOAT)cellNumber;
+			D3DXVECTOR3 framePos = m_position + m_gridOffset + m_gridShift * (FLOAT)cellNumber + m_itemSize2;
+			framePos.x -= ResourceMan::GetTexture(pItem->GetTi()).GetSize2().x;
+			framePos.y -= ResourceMan::GetTexture(pItem->GetTi()).GetSize2().y;
 			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(pItem->GetTi()).Get(), &ResourceMan::GetTexture(pItem->GetTi()).GetFrame(0), 0, &(framePos), D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
@@ -153,7 +153,7 @@ namespace Doh3d
 			if (!pItem) continue;
 
 			D3DXVECTOR3 itemTopLeft = m_position + m_gridOffset + m_gridShift * (FLOAT)cellNumber;
-			if (PointContainsInRect(InputMan::GetCursorPosition(), itemTopLeft.x, itemTopLeft.y, itemTopLeft.x + m_itemSize.x, itemTopLeft.y + m_itemSize.y))
+			if (Geometry::Rect(itemTopLeft.x, itemTopLeft.y, itemTopLeft.x + m_itemSize.x, itemTopLeft.y + m_itemSize.y).ContainsPoint(InputMan::GetCursorPosition()))
 			{
 				SelectCell(cellNumber);
 				break;

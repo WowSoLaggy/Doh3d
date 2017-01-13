@@ -126,6 +126,9 @@
     <ClCompile Include="AnimationController.cpp">
       <Filter>src\Animation</Filter>
     </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>src\Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Doh3d.h">
@@ -212,9 +215,6 @@
     <ClInclude Include="GGrid.h">
       <Filter>src\Gui\Controls</Filter>
     </ClInclude>
-    <ClInclude Include="HitTest.h">
-      <Filter>src\Geometry</Filter>
-    </ClInclude>
     <ClInclude Include="Text.h">
       <Filter>src\Gui\Text</Filter>
     </ClInclude>
@@ -238,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="..\libs\Timer.h">
       <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>src\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

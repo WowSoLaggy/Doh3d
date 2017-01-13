@@ -25,6 +25,7 @@ namespace Doh3d
 			D3DSURFACE_DESC surfaceDesc;
 			m_texture->GetLevelDesc(0, &surfaceDesc);
 			m_size = D3DXVECTOR2((float)surfaceDesc.Width, (float)surfaceDesc.Height);
+			m_size2 = m_size / 2;
 		}
 
 		m_alphaMap.Init(m_alphaCheck, m_texture);

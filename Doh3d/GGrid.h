@@ -37,7 +37,7 @@ namespace Doh3d
 		virtual void SetFrameOffset(const D3DXVECTOR3& pFrameOffset) { m_frameOffset = pFrameOffset; }
 		virtual void SetGridOffset(const D3DXVECTOR3& pGridOffset) { m_gridOffset = pGridOffset; }
 		virtual void SetGridShift(const D3DXVECTOR3& pGridShift) { m_gridShift = pGridShift; }
-		virtual void SetItemSize(const D3DXVECTOR3& pItemSize) { m_itemSize = pItemSize; }
+		virtual void SetItemSize(const D3DXVECTOR3& pItemSize) { m_itemSize = pItemSize; m_itemSize2 = m_itemSize / 2; }
 		virtual GridItem* SelectCell(int pCellIndex);
 		virtual int GetSelectedCell() const { return m_selectedCell; }
 		virtual GridItem* GetItem(int pItemIndex);
@@ -69,6 +69,7 @@ namespace Doh3d
 		D3DXVECTOR3 m_gridOffset;
 		D3DXVECTOR3 m_gridShift;
 		D3DXVECTOR3 m_itemSize;
+		D3DXVECTOR3 m_itemSize2;
 		int m_numberOfCells;
 		int m_selectedCell;
 

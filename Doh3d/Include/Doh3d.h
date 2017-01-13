@@ -51,6 +51,7 @@ using namespace Doh3d::Doh3dErrCodes;
 #include "../GuiList.h"
 #include "../AnimationSet.h"
 #include "../AnimationController.h"
+#include "../Rect.h"
 
 
 #endif // DOH3D_H

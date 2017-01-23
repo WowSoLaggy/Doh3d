@@ -20,7 +20,7 @@ namespace Doh3d
 	D3DSURFACE_DESC RenderMan::m_defaultRenderTargetDesc;
 
 
-  bool RenderMan::Recreate(const RenderPars& pRenderPars)
+  bool RenderMan::Recreate(const WinClass& pWinClass, const RenderPars& pRenderPars)
 	{
 		LOG("RenderMan::Recreate()");
 
@@ -32,7 +32,7 @@ namespace Doh3d
 			return false;
 		}
 
-		if (!CreateWnd(WinClass::GetStartupPars()))
+		if (!CreateWnd(pWinClass))
 		{
 			echo("ERROR: Can't create Wnd.");
 			return false;
@@ -71,7 +71,7 @@ namespace Doh3d
 	}
 
 
-  bool RenderMan::CreateWnd(const StartupPars& pStartupPars)
+  bool RenderMan::CreateWnd(const WinClass& pWinClass)
 	{
 		LOG("RDManager::CreateWnd()");
 
@@ -81,17 +81,17 @@ namespace Doh3d
 		if (m_renderPars.WndCaption)
 			dwStyle |= WS_CAPTION | WS_SYSMENU;
 
-		m_hWindow = CreateWindowEx(0, WinClass::GetApplicationName().c_str(), WinClass::GetApplicationName().c_str(), dwStyle,
+		m_hWindow = CreateWindowEx(0, pWinClass.applicationName().c_str(), pWinClass.applicationName().c_str(), dwStyle,
 								   (Screen::GetDesktopWidth() - m_renderPars.ResolutionWidth) / 2, (Screen::GetDesktopHeight() - m_renderPars.ResolutionHeight) / 2,
 								   m_renderPars.ResolutionWidth, m_renderPars.ResolutionHeight,
-								   nullptr, nullptr, pStartupPars.hInstance, nullptr);
+								   nullptr, nullptr, pWinClass.startupPars().hInstance, nullptr);
 		if (m_hWindow == nullptr)
 		{
 			echo("ERROR: Can't create window.");
 			return false;
 		}
 
-		ShowWindow(m_hWindow, pStartupPars.nCmdShow);
+		ShowWindow(m_hWindow, pWinClass.startupPars().nCmdShow);
 		UpdateWindow(m_hWindow);
 
 		return true;

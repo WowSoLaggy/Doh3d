@@ -44,7 +44,7 @@ namespace Doh3d
 	}
 
 
-  bool InputMan::Recreate(const InputPars& pInputPars)
+  bool InputMan::Recreate(const WinClass& pWinClass, const InputPars& pInputPars)
 	{
 		LOG("InputMan::Recreate()");
 
@@ -56,7 +56,7 @@ namespace Doh3d
 			return false;
 		}
 
-		if (!CreateInputDevices())
+		if (!CreateInputDevices(pWinClass))
 		{
 			echo("ERROR: Can't create InputDevice.");
 			return false;
@@ -150,12 +150,12 @@ namespace Doh3d
 	}
 
 
-  bool InputMan::CreateInputDevices()
+  bool InputMan::CreateInputDevices(const WinClass& pWinClass)
 	{
 		LOG("InputMan::CreateInputDevices()");
 		int res = 0;
 
-		res = DirectInput8Create(WinClass::GetStartupPars().hInstance, DIRECTINPUT_VERSION,
+		res = DirectInput8Create(pWinClass.startupPars().hInstance, DIRECTINPUT_VERSION,
 								 IID_IDirectInput8, (void **)&m_directInput, NULL);
 		if ((res != DI_OK) || (m_directInput == nullptr))
 		{

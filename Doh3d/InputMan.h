@@ -5,6 +5,7 @@
 
 
 #include "InputPars.h"
+#include "WinClass.h"
 
 
 namespace Doh3d
@@ -26,7 +27,7 @@ namespace Doh3d
 		static bool Init();
 		static bool Dispose();
 
-		static bool Recreate(const InputPars& pInputPars);
+		static bool Recreate(const WinClass& pWinClass, const InputPars& pInputPars);
 		static bool CheckDevices();
 
 		static bool IsShift();
@@ -51,7 +52,7 @@ namespace Doh3d
 		static DIMOUSESTATE m_mouseState;
 		static DIMOUSESTATE m_mouseStatePrev;
 
-		static bool CreateInputDevices();
+		static bool CreateInputDevices(const WinClass& pWinClass);
 		static bool DisposeInputDevices();
 		static bool AcquireMouse();
 		static bool AcquireKeyboard();

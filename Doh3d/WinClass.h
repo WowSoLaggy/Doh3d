@@ -14,18 +14,18 @@ namespace Doh3d
 	{
 	public:
 
-		const StartupPars& GetStartupPars() { return m_startupPars; }
-		const std::string& GetApplicationName() { return m_applicationName; }
+		const StartupPars& startupPars() const { return d_startupPars; }
+		const std::string& applicationName() const { return d_applicationName; }
 
-		void Register(const StartupPars& pStartupPars, const std::string& pApplicationName);
-		void Unregister();
+		void registerClass(const StartupPars& pStartupPars, const std::string& pApplicationName);
+		void unregisterClass();
 
 	private:
 
-		StartupPars m_startupPars;
-		std::string m_applicationName;
+		StartupPars d_startupPars;
+		std::string d_applicationName;
 
-		static LRESULT __stdcall WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+		static LRESULT __stdcall wndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 	};
 

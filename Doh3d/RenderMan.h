@@ -5,7 +5,7 @@
 
 
 #include "RenderPars.h"
-#include "StartupPars.h"
+#include "WinClass.h"
 
 
 namespace Doh3d
@@ -20,7 +20,7 @@ namespace Doh3d
 		static const LPDIRECT3DDEVICE9& GetRenderDevice() { return m_renderDevice; }
 		static const HWND& GetHWindow() { return m_hWindow; }
 
-		static bool Recreate(const RenderPars& pRenderPars);
+		static bool Recreate(const WinClass& pWinClass, const RenderPars& pRenderPars);
 		static bool Dispose();
 
 	private:
@@ -36,7 +36,7 @@ namespace Doh3d
 		static LPDIRECT3DSURFACE9 m_defaultRenderTarget;
 		static D3DSURFACE_DESC m_defaultRenderTargetDesc;
 
-		static bool CreateWnd(const StartupPars& pStartupPars);
+		static bool CreateWnd(const WinClass& pWinClass);
 		static bool DisposeWnd();
 
 		static bool CreateRenderDevice();

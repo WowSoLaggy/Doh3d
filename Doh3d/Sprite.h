@@ -18,13 +18,13 @@ namespace Doh3d
 		LPD3DXSPRITE Get() const { return m_sprite; }
 
 
-		ErrCode3d Begin();
-		ErrCode3d End();
+		bool Begin();
+    bool End();
 
 
-		ErrCode3d Load();
-		ErrCode3d Unload();
-		ErrCode3d Reload();
+    bool Load();
+    bool Unload();
+    bool Reload();
 
 	private:
 

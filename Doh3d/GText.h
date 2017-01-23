@@ -18,15 +18,15 @@ namespace Doh3d
 		GText(float pPosX, float pPosY, const std::string& pText, const std::string& pFontName);
 		virtual ~GText();
 
-		virtual ErrCode3d Load() override;
-		virtual ErrCode3d Unload() override;
-		virtual ErrCode3d Draw(Sprite& pSprite) const override;
+		virtual bool Load() override;
+		virtual bool Unload() override;
+		virtual bool Draw(Sprite& pSprite) const override;
 
-		virtual ErrCode3d SetSize(float pWidth, float pHeight) override;
-		virtual ErrCode3d SetSize(const D3DXVECTOR2& pSize) override;
+		virtual bool SetSize(float pWidth, float pHeight) override;
+		virtual bool SetSize(const D3DXVECTOR2& pSize) override;
 
-		virtual ErrCode3d SetText(const std::string& pText);
-		virtual ErrCode3d SetFont(const std::string& pFontName);
+		virtual bool SetText(const std::string& pText);
+		virtual bool SetFont(const std::string& pFontName);
 
 	protected:
 

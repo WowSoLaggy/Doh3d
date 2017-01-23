@@ -19,21 +19,19 @@ namespace Doh3d
 	{
 	}
 
-	ErrCode3d RBitmapFont::Load()
+  bool RBitmapFont::Load()
 	{
 		LOG("BFont::Load()");
-		ErrCode3d err;
 		int hRes;
 
 		// Parse .fnt file
 
 		std::string fntPath = "";
 		fntPath.append(ResourceMan::GetFontDir()).append(m_fontName);
-		err = ParseFntFile(fntPath);
-		if (err != err3d_noErr)
+		if (!ParseFntFile(fntPath))
 		{
 			echo("ERROR: Can't parse .fnt file: \"", fntPath, "\".");
-			return err;
+			return false;
 		}
 
 		m_charsetPath.insert(0, ResourceMan::GetFontDir());
@@ -45,13 +43,13 @@ namespace Doh3d
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't create texture for font: \"", m_fontName, "\".");
-			return err3d_cantLoadTexture;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d RBitmapFont::Unload()
+  bool RBitmapFont::Unload()
 	{
 		if (m_charsetTexture != nullptr)
 		{
@@ -61,10 +59,10 @@ namespace Doh3d
 
 		std::vector<BitmapChar>().swap(m_chars);
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d RBitmapFont::GetFontTexture(const std::string& pText, LPDIRECT3DTEXTURE9& pTexture, int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets)
+  bool RBitmapFont::GetFontTexture(const std::string& pText, LPDIRECT3DTEXTURE9& pTexture, int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets)
 	{
 		LOG("BFont::GetFontTexture()");
 		int hRes;
@@ -72,7 +70,7 @@ namespace Doh3d
 		if (pText.empty())
 		{
 			pTexture = nullptr;
-			return err3d_cantCreateTextureForEmptyText;
+			return false;
 		}
 
 		// Get overall text width and height
@@ -96,7 +94,7 @@ namespace Doh3d
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't create font texture.");
-			return err3d_cantCreateTexture;
+			return false;
 		}
 
 		// Get surfaces from textures
@@ -106,14 +104,14 @@ namespace Doh3d
 		if (hRes != D3D_OK)
 		{
 			echo("ERROR: Can't get surface level for charset texture.");
-			return err3d_cantGetSurfaceFromTexture;
+			return false;
 		}
 		LPDIRECT3DSURFACE9 surfDest;
 		hRes = pTexture->GetSurfaceLevel(0, &surfDest);
 		if (hRes != D3D_OK)
 		{
 			echo("ERROR: Can't get surface level for charset texture.");
-			return err3d_cantGetSurfaceFromTexture;
+			return false;
 		}
 
 		// Draw text symbol by symbol
@@ -138,17 +136,17 @@ namespace Doh3d
 			if (hRes != D3D_OK)
 			{
 				echo("ERROR: Can't update surface.");
-				return err3d_cantUpdateSurface;
+				return false;
 			}
 
 			curPos.x += m_chars[pText[i]].AdvanceX - m_chars[pText[i]].OffsetX * 2;
 			pCharOffsets[i + 1] = curPos.x;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d RBitmapFont::ParseFntFile(const std::string& pFntPath)
+  bool RBitmapFont::ParseFntFile(const std::string& pFntPath)
 	{
 		LOG("BFont::ParseFntFile()");
 		int res;
@@ -163,7 +161,7 @@ namespace Doh3d
 		if (!f.is_open())
 		{
 			echo("ERROR: Can't find font file: \"", pFntPath, "\".");
-			return err3d_cantFindFontFile;
+			return false;
 		}
 
 		std::string line;
@@ -175,7 +173,7 @@ namespace Doh3d
 		if (res != 2)
 		{
 			echo("ERROR: Can't parse .fnt file: line with line height.");
-			return err3d_cantParseFontFile;
+			return false;
 		}
 
 		// Get texture path
@@ -184,7 +182,7 @@ namespace Doh3d
 		if (res != 2)
 		{
 			echo("ERROR: Can't parse .fnt file: line with filename.");
-			return err3d_cantParseFontFile;
+			return false;
 		}
 
 		m_charsetPath = std::string(cTmp);
@@ -201,7 +199,7 @@ namespace Doh3d
 		if (res != 1)
 		{
 			echo("ERROR: Can't parse .fnt file: line with chars count.");
-			return err3d_cantParseFontFile;
+			return false;
 		}
 		m_chars.reserve(charCount < 100 ? 100 : charCount);
 
@@ -214,7 +212,7 @@ namespace Doh3d
 			if (res != 8)
 			{
 				echo("ERROR: Can't parse .fnt file: char line with index: \"", i, "\".");
-				return err3d_cantParseFontFile;
+				return false;
 			}
 			if (m_chars.size() <= (unsigned int)id)
 				m_chars.resize(id + 1);
@@ -231,7 +229,7 @@ namespace Doh3d
 
 		f.close();
 
-		return err3d_noErr;
+		return true;
 	}
 
 } // Doh3d

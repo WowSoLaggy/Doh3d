@@ -4,9 +4,6 @@
 #define INC_DOH3D_ALPHAMAP_H
 
 
-#include "ErrCodes3d.h"
-
-
 namespace Doh3d
 {
 
@@ -14,7 +11,7 @@ namespace Doh3d
 	{
 	public:
 
-		ErrCode3d Init(bool pAlphaCheck, LPDIRECT3DTEXTURE9 pTexture);
+		bool Init(bool pAlphaCheck, LPDIRECT3DTEXTURE9 pTexture);
 
 		bool Check(int pX, int pY) const;
 

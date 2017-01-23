@@ -23,11 +23,11 @@ namespace Doh3d
 		static bool IsCreated() { return m_isCreated; }
 		static D3DXVECTOR2 GetCursorPosition() { return m_cursorPosition; }
 
-		static ErrCode3d Init();
-		static ErrCode3d Dispose();
+		static bool Init();
+		static bool Dispose();
 
-		static ErrCode3d Recreate(const InputPars& pInputPars);
-		static ErrCode3d CheckDevices();
+		static bool Recreate(const InputPars& pInputPars);
+		static bool CheckDevices();
 
 		static bool IsShift();
 		static bool IsCtrl();
@@ -51,10 +51,10 @@ namespace Doh3d
 		static DIMOUSESTATE m_mouseState;
 		static DIMOUSESTATE m_mouseStatePrev;
 
-		static ErrCode3d CreateInputDevices();
-		static ErrCode3d DisposeInputDevices();
-		static ErrCode3d AcquireMouse();
-		static ErrCode3d AcquireKeyboard();
+		static bool CreateInputDevices();
+		static bool DisposeInputDevices();
+		static bool AcquireMouse();
+		static bool AcquireKeyboard();
 
 		static char DikToChar(int pDik, bool pShift);
 

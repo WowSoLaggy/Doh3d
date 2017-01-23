@@ -5,7 +5,7 @@
 namespace Doh3d
 {
 
-	ErrCode3d Sprite::Begin()
+  bool Sprite::Begin()
 	{
 		LOG("Sprite::Begin()");
 		HRESULT hRes;
@@ -14,13 +14,13 @@ namespace Doh3d
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't begin sprite.");
-			return err3d_cantBeginSprite;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Sprite::End()
+  bool Sprite::End()
 	{
 		LOG("Sprite::End()");
 		HRESULT hRes;
@@ -29,14 +29,14 @@ namespace Doh3d
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't end sprite.");
-			return err3d_cantEndSprite;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d Sprite::Load()
+  bool Sprite::Load()
 	{
 		LOG("Sprite::Load()");
 		HRESULT hRes;
@@ -45,13 +45,13 @@ namespace Doh3d
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't create sprite.");
-			return err3d_cantCreateSprite;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Sprite::Unload()
+  bool Sprite::Unload()
 	{
 		if (m_sprite != nullptr)
 		{
@@ -59,29 +59,26 @@ namespace Doh3d
 			m_sprite = nullptr;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Sprite::Reload()
+  bool Sprite::Reload()
 	{
 		LOG("Sprite::Reload()");
-		ErrCode3d err3d;
 
-		err3d = Unload();
-		if (err3d != err3d_noErr)
+		if (!Unload())
 		{
 			echo("ERROR: Can't unload sprite.");
-			return err3d;
+			return false;
 		}
 
-		err3d = Load();
-		if (err3d != err3d_noErr)
+    if (!Load())
 		{
 			echo("ERROR: Can't load sprite.");
-			return err3d;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 } // Doh3d

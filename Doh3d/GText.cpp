@@ -21,51 +21,45 @@ namespace Doh3d
 	}
 
 
-	ErrCode3d GText::Load()
+  bool GText::Load()
 	{
 		LOG("GText::Load()");
-		ErrCode3d err3d;
 
-		err3d = m_textContainer.Load();
-		if (err3d != err3d_noErr)
+		if (!m_textContainer.Load())
 		{
 			echo("ERROR: Can't load TextContainer for GText (id: ", m_id, ").");
-			return err3d;
+			return false;
 		}
 
-		err3d = UpdateTransformMatrix();
-		if (err3d != err3d_noErr)
+		if (!UpdateTransformMatrix())
 		{
 			echo("ERROR: Can't update TransformMatrix for GText (id: ", m_id, ").");
-			return err3d;
+			return false;
 		}
 
-		err3d = SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight());
-		if (err3d != err3d_noErr)
+		if (!SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight()))
 		{
 			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
-			return err3d;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GText::Unload()
+  bool GText::Unload()
 	{
 		LOG("GText::Unload()");
-		ErrCode3d err;
 
-		err = m_textContainer.Unload();
-		if (err != err3d_noErr)
+		if (!m_textContainer.Unload())
 		{
 			echo("ERROR: Can't unload TextContainer for GText (id: ", m_id, ").");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GText::Draw(Sprite& pSprite) const
+  bool GText::Draw(Sprite& pSprite) const
 	{
 		LOG("GText::Draw()");
 		int hRes;
@@ -77,11 +71,11 @@ namespace Doh3d
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw Text for GText (id: ", m_id, ").");
-				return err3d_cantDrawText;
+				return false;
 			}
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 	D3DXVECTOR2 GText::GetOriginalSize() const
@@ -89,74 +83,65 @@ namespace Doh3d
 		return GetSize();
 	}
 
-	ErrCode3d GText::SetText(const std::string& pText)
+  bool GText::SetText(const std::string& pText)
 	{
 		LOG("GText::SetText()");
-		ErrCode3d err3d;
 
-		err3d = m_textContainer.SetText(pText);
-		if (err3d != err3d_noErr)
+		if (!m_textContainer.SetText(pText))
 		{
 			echo("ERROR: Can't set text to TextContainer.");
-			return err3d;
+			return false;
 		}
 
-		err3d = SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight());
-		if (err3d != err3d_noErr)
+		if (!SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight()))
 		{
 			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
-			return err3d;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GText::SetFont(const std::string& pFontName)
+  bool GText::SetFont(const std::string& pFontName)
 	{
 		LOG("GText::SetFont()");
-		ErrCode3d err3d;
 
-		err3d = m_textContainer.SetFont(pFontName);
-		if (err3d != err3d_noErr)
+		if (!m_textContainer.SetFont(pFontName))
 		{
 			echo("ERROR: Can't set font for GText (id: ", m_id, ").");
-			return err3d;
+			return false;
 		}
 
-		err3d = SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight());
-		if (err3d != err3d_noErr)
+		if (!SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight()))
 		{
 			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
-			return err3d;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d GText::SetSize(float pWidth, float pHeight)
+  bool GText::SetSize(float pWidth, float pHeight)
 	{
 		LOG("GText::SetSize()");
-		ErrCode3d err3d;
 
-		err3d = GBase::SetSize(pWidth, pHeight);
-		if (err3d != err3d_noErr)
+		if (!GBase::SetSize(pWidth, pHeight))
 		{
 			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
-			return err3d;
+			return false;
 		}
 
-		err3d = m_textContainer.SetBasisPosition(D3DXVECTOR3(0, pHeight / 2, 0));
-		if (err3d != err3d_noErr)
+		if (!m_textContainer.SetBasisPosition(D3DXVECTOR3(0, pHeight / 2, 0)))
 		{
 			echo("ERROR: Can't set basis for TextContainer.");
-			return err3d;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GText::SetSize(const D3DXVECTOR2& pSize)
+  bool GText::SetSize(const D3DXVECTOR2& pSize)
 	{
 		return SetSize(pSize.x, pSize.y);
 	}

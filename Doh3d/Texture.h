@@ -26,8 +26,8 @@ namespace Doh3d
 		RECT GetFrame(int pFrameNumber);
 
 
-		ErrCode3d Load();
-		ErrCode3d Unload();
+		bool Load();
+    bool Unload();
 
 
 		bool HitTest(int pX, int pY, int pFrame) const;

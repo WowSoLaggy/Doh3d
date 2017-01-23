@@ -143,9 +143,6 @@
     <ClInclude Include="..\libs\Log.h">
       <Filter>libs</Filter>
     </ClInclude>
-    <ClInclude Include="ErrCodes3d.h">
-      <Filter>src\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>src\Common</Filter>
     </ClInclude>

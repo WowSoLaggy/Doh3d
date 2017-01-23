@@ -9,22 +9,20 @@ namespace Doh3d
 	D3DXMATRIX Cursor::m_identityMatrix = Matrix::Identity();
 
 
-	ErrCode3d Cursor::SetCursorTexture(const std::string& pTextureName)
+  bool Cursor::SetCursorTexture(const std::string& pTextureName)
 	{
 		LOG("Cursor::SetCursorTexture()");
-		ErrCode3d err3d;
 
-		err3d = ResourceMan::GetTi(pTextureName, m_ti);
-		if (err3d != err3d_noErr)
+		if (!ResourceMan::GetTi(pTextureName, m_ti))
 		{
 			echo("ERROR: Can't find cursor's texture to set.");
-			return err3d;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Cursor::Draw(const Sprite& pSprite)
+  bool Cursor::Draw(const Sprite& pSprite)
 	{
 		LOG("Cursor::Draw()");
 		HRESULT hRes;
@@ -32,7 +30,7 @@ namespace Doh3d
 		if (m_ti == -1)
 		{
 			echo("ERROR: Can't draw cursor: cursor texture is not set.");
-			return err3d_cantCursorTextureIsNotSet;
+			return false;
 		}
 
 		D3DXVECTOR2 pos = InputMan::GetCursorPosition();
@@ -42,10 +40,10 @@ namespace Doh3d
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw cursor.");
-			return err3d_cantDrawSprite;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 } // ns Doh3d

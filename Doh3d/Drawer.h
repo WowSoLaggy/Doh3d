@@ -11,8 +11,8 @@ namespace Doh3d
 	{
 	public:
 
-		static ErrCode3d BeginScene();
-		static ErrCode3d EndScene();
+		static bool BeginScene();
+		static bool EndScene();
 
 	};
 

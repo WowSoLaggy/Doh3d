@@ -7,9 +7,6 @@
 namespace Doh3d
 {
 
-	
-
-
 	class Text
 	{
 	public:
@@ -23,11 +20,11 @@ namespace Doh3d
 		bool HasText() const { return !m_text.empty(); }
 		LPDIRECT3DTEXTURE9 GetTexture() const { return m_texture; }
 
-		ErrCode3d Load();
-		ErrCode3d Unload();
+		bool Load();
+    bool Unload();
 
-		ErrCode3d SetText(const std::string& pText);
-		ErrCode3d SetFont(const std::string& pFont);
+    bool SetText(const std::string& pText);
+    bool SetFont(const std::string& pFont);
 
 		unsigned int GetTextLength() const { return m_text.length(); }
 		int GetCharOffset(int pPos) const { return m_charOffsets[pPos]; }
@@ -45,8 +42,8 @@ namespace Doh3d
 		LPDIRECT3DTEXTURE9 m_texture;
 		std::vector<int> m_charOffsets;
 
-		ErrCode3d CreateTexture();
-		ErrCode3d DisposeTexture();
+    bool CreateTexture();
+    bool DisposeTexture();
 	};
 
 } // ns Doh3d

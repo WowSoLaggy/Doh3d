@@ -9,14 +9,12 @@ namespace Doh3d
 				 const std::string& pTextureName, const std::string& pFrameTextureName)
 	{
 		LOG("GGrid::GGrid()");
-		ErrCode3d err3d;
 
 		m_position.x = roundf(pPosX);
 		m_position.y = roundf(pPosY);
 		m_position.z = 0;
 		
-		err3d = SetSize(pSizeX, pSizeY);
-		if (err3d != err3d_noErr)
+		if (!SetSize(pSizeX, pSizeY))
 			echo("ERROR: Can't set size.");
 
 		m_textureName = pTextureName;
@@ -34,42 +32,38 @@ namespace Doh3d
 	GGrid::~GGrid() { }
 
 
-	ErrCode3d GGrid::Load()
+  bool GGrid::Load()
 	{
 		LOG("GGrid::Load()");
-		ErrCode3d err;
 
-		err = ResourceMan::GetTi(m_textureName, m_ti);
-		if (err != err3d_noErr)
+		if (!ResourceMan::GetTi(m_textureName, m_ti))
 		{
 			echo("ERROR: Can't get TI for GGrid (id: ", m_id, "): \"", m_textureName, "\".");
-			return err;
+			return false;
 		}
 
-		err = ResourceMan::GetTi(m_frameTextureName, m_tiFrame);
-		if (err != err3d_noErr)
+		if (!ResourceMan::GetTi(m_frameTextureName, m_tiFrame))
 		{
 			echo("ERROR: Can't get TI for GGrid frame (id: ", m_id, "): \"", m_textureName, "\".");
-			return err;
+			return false;
 		}
 
-		err = UpdateTransformMatrix();
-		if (err != err3d_noErr)
+		if (!UpdateTransformMatrix())
 		{
 			echo("ERROR: Can't update TransformMatrix for GGrid (id: ", m_id, ").");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GGrid::Unload()
+  bool GGrid::Unload()
 	{
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d GGrid::Draw(Sprite& pSprite) const
+  bool GGrid::Draw(Sprite& pSprite) const
 	{
 		LOG("GGrid::Draw()");
 		int hRes;
@@ -80,7 +74,7 @@ namespace Doh3d
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw sprite.");
-			return err3d_cantDrawSprite;
+			return false;
 		}
 
 		// Selection frame
@@ -92,7 +86,7 @@ namespace Doh3d
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw sprite.");
-				return err3d_cantDrawSprite;
+				return false;
 			}
 		}
 
@@ -111,39 +105,35 @@ namespace Doh3d
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw sprite.");
-				return err3d_cantDrawSprite;
+				return false;
 			}
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d GGrid::OnMouseMove(bool& pHandled)
+  bool GGrid::OnMouseMove(bool& pHandled)
 	{
 		LOG("GGrid::OnMouseMove()");
-		ErrCode3d err;
 
-		err = GBase::OnMouseMove(pHandled);
-		if (err != err3d_noErr)
+		if (!GBase::OnMouseMove(pHandled))
 		{
 			echo("ERROR: Error occurred while GBase::OnMouseMove().");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GGrid::OnMouseDown(bool& pHandled, int pButton)
+  bool GGrid::OnMouseDown(bool& pHandled, int pButton)
 	{
 		LOG("GGrid::OnMouseDown()");
-		ErrCode3d err;
 
-		err = GBase::OnMouseDown(pHandled, pButton);
-		if (err != err3d_noErr)
+		if (!GBase::OnMouseDown(pHandled, pButton))
 		{
 			echo("ERROR: Error occurred while GBase::OnMouseDown().");
-			return err;
+			return false;
 		}
 
 		int cellNumber = -1;
@@ -160,22 +150,20 @@ namespace Doh3d
 			}
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GGrid::OnMouseUp(bool& pHandled, int pButton)
+  bool GGrid::OnMouseUp(bool& pHandled, int pButton)
 	{
 		LOG("GButton::OnMouseUp()");
-		ErrCode3d err;
 
-		err = GBase::OnMouseUp(pHandled, pButton);
-		if (err != err3d_noErr)
+		if (!GBase::OnMouseUp(pHandled, pButton))
 		{
 			echo("ERROR: Error occurred while GBase::OnMouseUp().");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 

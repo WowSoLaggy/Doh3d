@@ -5,7 +5,7 @@
 namespace Doh3d
 {
 
-	ErrCode3d Texture::Load()
+  bool Texture::Load()
 	{
 		LOG("RTexture::Load()");
 		HRESULT hRes;
@@ -17,7 +17,7 @@ namespace Doh3d
 		if (hRes != S_OK || !m_texture)
 		{
 			echo("ERROR: Can't create texture from file: \"", m_filePath, "\".");
-			return err3d_cantLoadTexture;
+			return false;
 		}
 
 		if ((m_size.x == 0) && (m_size.y == 0))
@@ -30,10 +30,10 @@ namespace Doh3d
 
 		m_alphaMap.Init(m_alphaCheck, m_texture);
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Texture::Unload()
+  bool Texture::Unload()
 	{
 		if (m_texture != nullptr)
 		{
@@ -41,7 +41,7 @@ namespace Doh3d
 			m_texture = nullptr;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 

@@ -15,11 +15,11 @@ namespace Doh3d
 	{
 	public:
 
-		static ErrCode3d Init();
-		static ErrCode3d Dispose();
+		static bool Init();
+		static bool Dispose();
 
-		static ErrCode3d LoadResources();
-		static ErrCode3d UnloadResources();
+		static bool LoadResources();
+		static bool UnloadResources();
 
 
 		static void SetTextureDir(const std::string& pTextureDir) { m_textureDir = pTextureDir; }
@@ -29,8 +29,8 @@ namespace Doh3d
 
 
 		static Texture GetTexture(int pTi);
-		static ErrCode3d GetTi(const std::string& pTextureName, int& pTi);
-		static ErrCode3d CreateFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
+		static bool GetTi(const std::string& pTextureName, int& pTi);
+		static bool CreateFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
 										   int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets);
 
 	private:
@@ -42,8 +42,8 @@ namespace Doh3d
 		static std::vector<RBitmapFont> m_fonts;
 
 
-		static ErrCode3d ParseTextureDir(const std::string& pDir);
-		static ErrCode3d ParseFontDir(const std::string& pDir);
+		static bool ParseTextureDir(const std::string& pDir);
+		static bool ParseFontDir(const std::string& pDir);
 
 	};
 

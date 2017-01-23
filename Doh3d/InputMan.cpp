@@ -22,60 +22,53 @@ namespace Doh3d
 	DIMOUSESTATE InputMan::m_mouseStatePrev;
 
 
-	ErrCode3d InputMan::Init()
+  bool InputMan::Init()
 	{
 		m_isCreated = false;
-
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d InputMan::Dispose()
+  bool InputMan::Dispose()
 	{
 		LOG("InputMan::Dispose()");
-		ErrCode3d err3d;
 
 		m_isCreated = false;
 
-		err3d = DisposeInputDevices();
-		if (err3d != err3d_noErr)
+		if (!DisposeInputDevices())
 		{
 			echo("ERROR: Can't dispose InputDevices.");
-			return err3d;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d InputMan::Recreate(const InputPars& pInputPars)
+  bool InputMan::Recreate(const InputPars& pInputPars)
 	{
 		LOG("InputMan::Recreate()");
-		ErrCode3d err3d;
 
 		m_inputPars = pInputPars;
 
-		err3d = Dispose();
-		if (err3d != err3d_noErr)
+		if (!Dispose())
 		{
 			echo("ERROR: Can't dispose InputDevice.");
-			return err3d;
+			return false;
 		}
 
-		err3d = CreateInputDevices();
-		if (err3d != err3d_noErr)
+		if (!CreateInputDevices())
 		{
 			echo("ERROR: Can't create InputDevice.");
-			return err3d;
+			return false;
 		}
 
 		m_isCreated = true;
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d InputMan::CheckDevices()
+  bool InputMan::CheckDevices()
 	{
 		LOG("InputMan::CheckDevices()");
-		ErrCode3d err3d;
 		HRESULT hRes = 0;
 
 		// Mouse
@@ -85,11 +78,10 @@ namespace Doh3d
 		hRes = m_mouse->GetDeviceState(sizeof(DIMOUSESTATE), &m_mouseState);
 		if (hRes != DI_OK)
 		{
-			err3d = AcquireMouse();
-			if (err3d != err3d_noErr)
+			if (!AcquireMouse())
 			{
 				echo("ERROR: Can't acquire mouse InputDevice.");
-				return err3d;
+				return false;
 			}
 		}
 
@@ -154,14 +146,13 @@ namespace Doh3d
 			}
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d InputMan::CreateInputDevices()
+  bool InputMan::CreateInputDevices()
 	{
 		LOG("InputMan::CreateInputDevices()");
-		ErrCode3d err3d;
 		int res = 0;
 
 		res = DirectInput8Create(WinClass::GetStartupPars().hInstance, DIRECTINPUT_VERSION,
@@ -169,49 +160,47 @@ namespace Doh3d
 		if ((res != DI_OK) || (m_directInput == nullptr))
 		{
 			echo("ERROR: Can't create DirectInput.");
-			return err3d_cantCreateDirectInput;
+			return false;
 		}
 
 		res = m_directInput->CreateDevice(GUID_SysMouse, &m_mouse, NULL);
 		if ((res != DI_OK) || (m_mouse == nullptr))
 		{
 			echo("ERROR: Cat't create mouse InputDevice");
-			return err3d_cantCreateInputDevice;
+			return false;
 		}
 
 		m_mouse->SetDataFormat(&c_dfDIMouse);
 		m_mouse->SetCooperativeLevel(RenderMan::GetHWindow(), DISCL_FOREGROUND | DISCL_EXCLUSIVE);
 
-		err3d = AcquireMouse();
-		if (err3d != err3d_noErr)
+		if (!AcquireMouse())
 		{
 			echo("ERROR: Can't acquire mouse device.");
-			return err3d;
+			return false;
 		}
 
 		res = m_directInput->CreateDevice(GUID_SysKeyboard, &m_keyboard, NULL);
 		if ((res != DI_OK) || (m_keyboard == nullptr))
 		{
 			echo("ERROR: Can't create keyboard InputDevice.");
-			return err3d_cantCreateInputDevice;
+			return false;
 		}
 
 		m_keyboard->SetDataFormat(&c_dfDIKeyboard);
 		m_keyboard->SetCooperativeLevel(RenderMan::GetHWindow(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
 
-		err3d = AcquireKeyboard();
-		if (err3d != err3d_noErr)
+		if (!AcquireKeyboard())
 		{
 			echo("ERROR: Can't acquire mouse device.");
-			return err3d;
+			return false;
 		}
 
 		m_cursorPosition = Screen::GetClientCenter();
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d InputMan::DisposeInputDevices()
+  bool InputMan::DisposeInputDevices()
 	{
 		if (m_mouse != nullptr)
 		{
@@ -233,24 +222,24 @@ namespace Doh3d
 			m_directInput = nullptr;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d InputMan::AcquireMouse()
+  bool InputMan::AcquireMouse()
 	{
 		m_mouse->Acquire();
 		ZeroMemory(&m_mouseState, sizeof(m_mouseState));
 		ZeroMemory(&m_mouseStatePrev, sizeof(m_mouseStatePrev));
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d InputMan::AcquireKeyboard()
+  bool InputMan::AcquireKeyboard()
 	{
 		m_keyboard->Acquire();
 		ZeroMemory(m_keys, sizeof(m_keys));
 
-		return err3d_noErr;
+		return true;
 	}
 
 

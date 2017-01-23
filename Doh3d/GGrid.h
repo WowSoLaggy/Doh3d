@@ -28,10 +28,10 @@ namespace Doh3d
 			  const std::string& pTextureName, const std::string& pFrameTextureName);
 		virtual ~GGrid();
 
-		virtual ErrCode3d Load() override;
-		virtual ErrCode3d Unload() override;
+		virtual bool Load() override;
+		virtual bool Unload() override;
 
-		virtual ErrCode3d Draw(Sprite& pSprite) const override;
+		virtual bool Draw(Sprite& pSprite) const override;
 
 
 		virtual void SetFrameOffset(const D3DXVECTOR3& pFrameOffset) { m_frameOffset = pFrameOffset; }
@@ -49,9 +49,9 @@ namespace Doh3d
 
 		// Handlers
 
-		virtual ErrCode3d OnMouseMove(bool& pHandled) override;
-		virtual ErrCode3d OnMouseDown(bool& pHandled, int pButton) override;
-		virtual ErrCode3d OnMouseUp(bool& pHandled, int pButton) override;
+		virtual bool OnMouseMove(bool& pHandled) override;
+		virtual bool OnMouseDown(bool& pHandled, int pButton) override;
+		virtual bool OnMouseUp(bool& pHandled, int pButton) override;
 
 
 		// Events

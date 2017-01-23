@@ -5,13 +5,12 @@
 namespace Doh3d
 {
 
-	ErrCode3d AlphaMap::Init(bool pAlphaCheck, LPDIRECT3DTEXTURE9 pTexture)
+	bool AlphaMap::Init(bool pAlphaCheck, LPDIRECT3DTEXTURE9 pTexture)
 	{
+    m_solid = true;
+
 		if (!pAlphaCheck)
-		{
-			m_solid = true;
-			return err3d_noErr;
-		}
+			return false;
 
 		D3DSURFACE_DESC surfaceDesc;
 		pTexture->GetLevelDesc(0, &surfaceDesc);
@@ -20,8 +19,6 @@ namespace Doh3d
 		m_height = surfaceDesc.Height;
 		m_mask.resize(m_width * m_height);
 
-		m_solid = true;
-		
 		D3DLOCKED_RECT lockedRect;
 		if (SUCCEEDED(pTexture->LockRect(0, &lockedRect, NULL, D3DLOCK_DISCARD)))
 		{
@@ -40,7 +37,7 @@ namespace Doh3d
 			pTexture->UnlockRect(0);
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 

@@ -5,10 +5,6 @@
 namespace Doh3d
 {
 	
-	StartupPars WinClass::m_startupPars;
-	std::string WinClass::m_applicationName;
-
-
 	void WinClass::Register(const StartupPars& pStartupPars, const std::string& pApplicationName)
 	{
 		m_startupPars = pStartupPars;

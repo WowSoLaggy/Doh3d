@@ -4,7 +4,6 @@
 #define INC_DOH3D_TEXTCONTAINER_H
 
 
-#include "ErrCodes3d.h"
 #include "Text.h"
 
 
@@ -26,21 +25,21 @@ namespace Doh3d
 		bool HasText() const { return m_text.HasText(); }
 		LPDIRECT3DTEXTURE9 GetTexture() const { return m_text.GetTexture(); }
 		
-		ErrCode3d SetText(const std::string& pText);
-		ErrCode3d SetFont(const std::string& pFontName);
+    bool SetText(const std::string& pText);
+    bool SetFont(const std::string& pFontName);
 		
 		int TextWidth() const { return m_text.Width(); }
 		int TextHeight() const { return m_text.Height(); }
 
 
-		ErrCode3d SetBasisPosition(const D3DXVECTOR3& pPosition);
+    bool SetBasisPosition(const D3DXVECTOR3& pPosition);
 		const D3DXVECTOR3& GetPosition() const { return m_textPosition; }
 
-		ErrCode3d SetTextAlign(TextAlign pTextAlign);
+    bool SetTextAlign(TextAlign pTextAlign);
 
 
-		ErrCode3d Load();
-		ErrCode3d Unload();
+    bool Load();
+    bool Unload();
 
 	private:
 
@@ -49,7 +48,7 @@ namespace Doh3d
 		TextAlign m_textAlign;
 		class Text m_text;
 
-		ErrCode3d UpdatePosition();
+    bool UpdatePosition();
 
 	};
 

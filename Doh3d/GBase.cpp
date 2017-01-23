@@ -20,7 +20,7 @@ namespace Doh3d
 	}
 
 
-	ErrCode3d GBase::UpdateTransformMatrix()
+  bool GBase::UpdateTransformMatrix()
 	{
 		D3DXVECTOR2 sizeOrig = GetOriginalSize();
 		D3DXVECTOR2 scaleCenter(m_position.x, m_position.y);
@@ -37,47 +37,47 @@ namespace Doh3d
 
 		D3DXMatrixTransformation2D(&m_transformMatrix, &scaleCenter, 0, &scale, 0, 0, 0);
 
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d GBase::OnMouseMove(bool& pHandled)
+  bool GBase::OnMouseMove(bool& pHandled)
 	{
 		if (ContainsPoint(InputMan::GetCursorPosition()))
 			pHandled = true;
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GBase::OnMouseDown(bool& pHandled, int pButton)
+  bool GBase::OnMouseDown(bool& pHandled, int pButton)
 	{
 		if (ContainsPoint(InputMan::GetCursorPosition()))
 			pHandled = true;
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GBase::OnMouseUp(bool& pHandled, int pButton)
+  bool GBase::OnMouseUp(bool& pHandled, int pButton)
 	{
 		if (ContainsPoint(InputMan::GetCursorPosition()))
 			pHandled = true;
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GBase::OnKeyPressed(int pKey)
+  bool GBase::OnKeyPressed(int pKey)
 	{
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GBase::OnKeyDown(int pKey)
+  bool GBase::OnKeyDown(int pKey)
 	{
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GBase::OnKeyUp(int pKey)
+  bool GBase::OnKeyUp(int pKey)
 	{
-		return err3d_noErr;
+		return true;
 	}
 
 
@@ -87,14 +87,14 @@ namespace Doh3d
 	}
 
 
-	ErrCode3d GBase::SetSize(float pWidth, float pHeight)
+  bool GBase::SetSize(float pWidth, float pHeight)
 	{
 		m_size.x = pWidth;
 		m_size.y = pHeight;
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GBase::SetSize(const D3DXVECTOR2& pSize)
+  bool GBase::SetSize(const D3DXVECTOR2& pSize)
 	{
 		return SetSize(pSize.x, pSize.y);
 	}

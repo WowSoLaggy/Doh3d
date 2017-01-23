@@ -20,14 +20,14 @@ namespace Doh3d
 				const std::string& pTexNameSelected, const std::string& pTexNameDisabled);
 		virtual ~GButton();
 
-		virtual ErrCode3d Load() override;
-		virtual ErrCode3d Unload() override;
+		virtual bool Load() override;
+		virtual bool Unload() override;
 
-		virtual ErrCode3d Draw(Sprite& pSprite) const override;
+		virtual bool Draw(Sprite& pSprite) const override;
 
-		virtual ErrCode3d SetOnClickEvent(std::function<void()> pEvent);
-		virtual ErrCode3d SetText(const std::string& pText);
-		virtual ErrCode3d SetFont(const std::string& pFontName);
+		virtual bool SetOnClickEvent(std::function<void()> pEvent);
+		virtual bool SetText(const std::string& pText);
+		virtual bool SetFont(const std::string& pFontName);
 
 		virtual void Enable() { m_state = GStates::Normal; }
 		virtual void Disable() { m_state = GStates::Disabled; }
@@ -36,11 +36,11 @@ namespace Doh3d
 
 		// Handlers
 
-		virtual ErrCode3d Click();
+		virtual bool Click();
 
-		virtual ErrCode3d OnMouseMove(bool& pHandled) override;
-		virtual ErrCode3d OnMouseDown(bool& pHandled, int pButton) override;
-		virtual ErrCode3d OnMouseUp(bool& pHandled, int pButton) override;
+		virtual bool OnMouseMove(bool& pHandled) override;
+		virtual bool OnMouseDown(bool& pHandled, int pButton) override;
+		virtual bool OnMouseUp(bool& pHandled, int pButton) override;
 
 	protected:
 

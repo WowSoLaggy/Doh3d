@@ -10,14 +10,12 @@ namespace Doh3d
 	GPanel::GPanel(float pPosX, float pPosY, float pSizeX, float pSizeY, const std::string& pTextureName)
 	{
 		LOG("GPanel::GPanel()");
-		ErrCode3d err3d;
 
 		m_position.x = roundf(pPosX);
 		m_position.y = roundf(pPosY);
 		m_position.z = 0;
 		
-		err3d = SetSize(pSizeX, pSizeY);
-		if (err3d != err3d_noErr)
+		if (!SetSize(pSizeX, pSizeY))
 			echo("ERROR: Can't set size.");
 
 		m_textureName = pTextureName;
@@ -30,34 +28,31 @@ namespace Doh3d
 	}
 
 
-	ErrCode3d GPanel::Load()
+  bool GPanel::Load()
 	{
 		LOG("GPanel::Load()");
-		ErrCode3d err;
 
-		err = ResourceMan::GetTi(m_textureName, m_tiMain);
-		if (err != err3d_noErr)
+		if (!ResourceMan::GetTi(m_textureName, m_tiMain))
 		{
 			echo("ERROR: Can't get TI for panel (id: ", m_id, ").");
-			return err;
+			return false;
 		}
 
-		err = UpdateTransformMatrix();
-		if (err != err3d_noErr)
+		if (!UpdateTransformMatrix())
 		{
 			echo("ERROR: Can't update TransformMatrix for button (id: ", m_id, ").");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GPanel::Unload()
+  bool GPanel::Unload()
 	{
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GPanel::Draw(Sprite& pSprite) const
+  bool GPanel::Draw(Sprite& pSprite) const
 	{
 		LOG("GPanel::Draw()");
 		int hRes;
@@ -68,10 +63,10 @@ namespace Doh3d
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw sprite.");
-			return err3d_cantDrawSprite;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 	D3DXVECTOR2 GPanel::GetOriginalSize() const
@@ -80,49 +75,43 @@ namespace Doh3d
 	}
 
 
-	ErrCode3d GPanel::OnMouseMove(bool &pHandled)
+  bool GPanel::OnMouseMove(bool &pHandled)
 	{
 		LOG("GPanel::OnMouseMove()");
-		ErrCode3d err;
 
-		err = GBase::OnMouseMove(pHandled);
-		if (err != err3d_noErr)
+		if (!GBase::OnMouseMove(pHandled))
 		{
 			echo("ERROR: Error occurred while GBase::OnMouseMove().");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GPanel::OnMouseDown(bool &pHandled, int pButton)
+  bool GPanel::OnMouseDown(bool &pHandled, int pButton)
 	{
 		LOG("GPanel::OnMouseDown()");
-		ErrCode3d err;
 
-		err = GBase::OnMouseDown(pHandled, pButton);
-		if (err != err3d_noErr)
+		if (!GBase::OnMouseDown(pHandled, pButton))
 		{
 			echo("ERROR: Error occurred while GBase::OnMouseDown().");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d GPanel::OnMouseUp(bool &pHandled, int pButton)
+  bool GPanel::OnMouseUp(bool &pHandled, int pButton)
 	{
 		LOG("GPanel::OnMouseUp()");
-		ErrCode3d err;
 
-		err = GBase::OnMouseUp(pHandled, pButton);
-		if (err != err3d_noErr)
+		if (!GBase::OnMouseUp(pHandled, pButton))
 		{
 			echo("ERROR: Error occurred while GBase::OnMouseUp().");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 } // ns Doh3d

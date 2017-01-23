@@ -25,110 +25,99 @@ namespace Doh3d
 	}
 
 
-	ErrCode3d Text::Load()
+  bool Text::Load()
 	{
 		LOG("Text::Load()");
-		ErrCode3d err;
 
-		err = CreateTexture();
-		if (err != err3d_noErr)
+		if (!CreateTexture())
 		{
 			echo("ERROR: Can't create texture for Text.");
-			return err;
+			return false;
 		}
 
 		m_loaded = true;
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Text::Unload()
+  bool Text::Unload()
 	{
 		LOG("Text::Unload()");
-		ErrCode3d err;
 
-		err = DisposeTexture();
-		if (err != err3d_noErr)
+		if (!DisposeTexture())
 		{
 			echo("ERROR: Can't dispose texture for Text.");
-			return err;
+			return false;
 		}
 
 		m_loaded = false;
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Text::SetText(const std::string& pText)
+  bool Text::SetText(const std::string& pText)
 	{
 		LOG("Text::SetText()");
-		ErrCode3d err;
 
 		if (pText == m_text)
-			return err3d_noErr;
+			return true;
 
 		m_text = pText;
 
 		if (m_loaded)
 		{
-			err = CreateTexture();
-			if (err != err3d_noErr)
+			if (!CreateTexture())
 			{
 				echo("ERROR: Can't create texture for Text.");
-				return err;
+				return false;
 			}
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Text::SetFont(const std::string& pFont)
+  bool Text::SetFont(const std::string& pFont)
 	{
 		LOG("Text::SetFont()");
-		ErrCode3d err;
 
 		if (pFont == m_font)
-			return err3d_noErr;
+			return true;
 
 		m_font = pFont;
 
 		if (m_loaded)
 		{
-			err = CreateTexture();
-			if (err != err3d_noErr)
+			if (!CreateTexture())
 			{
 				echo("ERROR: Can't create texture for Text.");
-				return err;
+				return false;
 			}
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Text::CreateTexture()
+  bool Text::CreateTexture()
 	{
 		LOG("Text::CreateTexture()");
-		ErrCode3d err;
 
-		err = DisposeTexture();
-		if (err != err3d_noErr)
+		if (!DisposeTexture())
 		{
 			echo("ERROR: Can't dispose texture for Text.");
-			return err;
+			return false;
 		}
 
 		if (m_text.empty())
-			return err3d_noErr;
+			return true;
 
-		err = ResourceMan::CreateFontTexture(m_text, m_font, m_texture, m_width, m_height, m_charOffsets);
-		if (err != err3d_noErr)
+		if (!ResourceMan::CreateFontTexture(m_text, m_font, m_texture, m_width, m_height, m_charOffsets))
 		{
 			echo("ERROR: Can't get Text texture.");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Text::DisposeTexture()
+  bool Text::DisposeTexture()
 	{
 		if (m_texture != nullptr)
 		{
@@ -136,7 +125,7 @@ namespace Doh3d
 			m_texture = nullptr;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 } // ns Doh3d

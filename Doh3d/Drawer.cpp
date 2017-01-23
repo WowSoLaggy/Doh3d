@@ -5,7 +5,7 @@
 namespace Doh3d
 {
 
-	ErrCode3d Drawer::BeginScene()
+  bool Drawer::BeginScene()
 	{
 		LOG("Drawer::BeginScene()");
 		int hRes = 0;
@@ -14,20 +14,20 @@ namespace Doh3d
 		if (hRes != 0)
 		{
 			echo("ERROR: Can't clear RenderDevice.");
-			return err3d_cantBeginScene;
+			return false;
 		}
 
 		hRes = RenderMan::GetRenderDevice()->BeginScene();
 		if (hRes != 0)
 		{
 			echo("ERROR: Can't begin RenderDevice scene.");
-			return err3d_cantBeginScene;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d Drawer::EndScene()
+  bool Drawer::EndScene()
 	{
 		LOG("Drawer::EndScene()");
 		int hRes = 0;
@@ -36,17 +36,17 @@ namespace Doh3d
 		if (hRes != 0)
 		{
 			echo("ERROR: Can't end RenderDevice scene.");
-			return err3d_cantEndScene;
+			return false;
 		}
 
 		hRes = RenderMan::GetRenderDevice()->Present(NULL, NULL, NULL, NULL);
 		if (hRes != 0)
 		{
 			echo("ERROR: Can't present RenderDevice.");
-			return err3d_cantEndScene;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 } // ns Doh3d

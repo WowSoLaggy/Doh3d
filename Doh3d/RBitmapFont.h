@@ -19,10 +19,10 @@ namespace Doh3d
 
 		std::string GetFontName() const { return m_fontName; }
 
-		ErrCode3d Load();
-		ErrCode3d Unload();
+		bool Load();
+    bool Unload();
 
-		ErrCode3d GetFontTexture(const std::string& pText, LPDIRECT3DTEXTURE9& pTexture, int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets);
+    bool GetFontTexture(const std::string& pText, LPDIRECT3DTEXTURE9& pTexture, int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets);
 
 	private:
 
@@ -35,7 +35,7 @@ namespace Doh3d
 
 		std::vector<BitmapChar> m_chars;
 
-		ErrCode3d ParseFntFile(const std::string& pFntPath);
+    bool ParseFntFile(const std::string& pFntPath);
 	};
 
 } // ns Doh3d

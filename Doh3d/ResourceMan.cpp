@@ -15,32 +15,30 @@ namespace Doh3d
 	std::vector<RBitmapFont> ResourceMan::m_fonts;
 
 
-	ErrCode3d ResourceMan::Init()
+  bool ResourceMan::Init()
 	{
 		LOG("ResourceMan::Init()");
-		ErrCode3d err3d;
 
 		// Index textures
 
 		if (m_textureDir.empty())
 		{
 			echo("ERROR: Invalid texture dir.");
-			return err3d_invalidTextureDir;
+			return false;
 		}
 		
 		DIR *dir = opendir(m_textureDir.c_str());
 		if (dir == nullptr)
 		{
 			echo("ERROR: Can't find texture folder.");
-			return err3d_invalidTextureDir;
+			return false;
 		}
 
 		std::string textureDir = m_textureDir;
-		err3d = ParseTextureDir(textureDir.append("\\"));
-		if (err3d != err3d_noErr)
+		if (ParseTextureDir(textureDir.append("\\")))
 		{
 			echo("ERROR: Can't parse texture directory.");
-			return err3d;
+			return false;
 		}
 
 		// Index fonts
@@ -48,55 +46,53 @@ namespace Doh3d
 		if (m_fontDir.empty())
 		{
 			echo("ERROR: Invalid font dir.");
-			return err3d_invalidFontDir;
+			return false;
 		}
 
 		dir = opendir(m_fontDir.c_str());
 		if (dir == nullptr)
 		{
 			echo("ERROR: Can't find font folder.");
-			return err3d_invalidFontDir;
+			return false;
 		}
 
 		std::string fontsDir = m_fontDir;
-		err3d = ParseFontDir(fontsDir.append("\\"));
-		if (err3d != err3d_noErr)
+		if (ParseFontDir(fontsDir.append("\\")))
 		{
 			echo("ERROR: Can't parse font directory.");
-			return err3d;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d ResourceMan::Dispose()
+  bool ResourceMan::Dispose()
 	{
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d ResourceMan::LoadResources()
+  bool ResourceMan::LoadResources()
 	{
 		LOG("ResourceManager::LoadResources()");
-		ErrCode3d err3d;
 
 		if (m_textureDir.empty())
 		{
 			echo("ERROR: Invalid texture dir.");
-			return err3d_invalidTextureDir;
+			return false;
 		}
 
 		if (m_fontDir.empty())
 		{
 			echo("ERROR: Invalid font dir.");
-			return err3d_invalidFontDir;
+			return false;
 		}
 
 		DIR* dir = opendir(m_textureDir.c_str());
 		if (dir == nullptr)
 		{
 			echo("ERROR: Invalid texture dir.");
-			return err3d_invalidTextureDir;
+			return false;
 		}
 		closedir(dir);
 
@@ -104,59 +100,54 @@ namespace Doh3d
 		if (dir == nullptr)
 		{
 			echo("ERROR: Invalid font dir.");
-			return err3d_invalidTextureDir;
+			return false;
 		}
 		closedir(dir);
 
 		for (auto& texture : m_textures)
 		{
-			err3d = texture.Load();
-			if (err3d != err3d_noErr)
+			if (!texture.Load())
 			{
 				echo("ERROR: Can't load texture: \"", texture.GetFilePath(), "\".");
-				return err3d;
+				return false;
 			}
 		}
 
 		for (auto& font : m_fonts)
 		{
-			err3d = font.Load();
-			if (err3d != err3d_noErr)
+			if (!font.Load())
 			{
 				echo("ERROR: Can't load font: \"", font.GetFontName(), "\".");
-				return err3d;
+				return false;
 			}
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d ResourceMan::UnloadResources()
+  bool ResourceMan::UnloadResources()
 	{
 		LOG("ResourceManager::UnloadResources()");
-		ErrCode3d err3d;
 
 		for (auto& font : m_fonts)
 		{
-			err3d = font.Unload();
-			if (err3d != err3d_noErr)
+			if (!font.Unload())
 			{
 				echo("ERROR: Can't unload font: \"", font.GetFontName(), "\".");
-				return err3d;
+				return false;
 			}
 		}
 
 		for (auto& texture : m_textures)
 		{
-			err3d = texture.Unload();
-			if (err3d != err3d_noErr)
+			if (!texture.Unload())
 			{
 				echo("ERROR: Can't unload texture: \"", texture.GetFilePath(), "\".");
-				return err3d;
+				return false;
 			}
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 
@@ -165,7 +156,7 @@ namespace Doh3d
 		return m_textures[pTi];
 	}
 
-	ErrCode3d ResourceMan::GetTi(const std::string& pTextureName, int& pTi)
+  bool ResourceMan::GetTi(const std::string& pTextureName, int& pTi)
 	{
 		LOG("ResourceManager::GetTi()");
 
@@ -173,19 +164,18 @@ namespace Doh3d
 		if (it == m_textures.end())
 		{
 			echo("ERROR: Can't get ti for texture: \"", pTextureName, "\".");
-			return err3d_textureNotFound;
+			return false;
 		}
 
 		pTi = std::distance(m_textures.begin(), it);
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d ResourceMan::CreateFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
+  bool ResourceMan::CreateFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
 											 int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets)
 	{
 		LOG("ResourceMan::CreateFontTexture()");
-		ErrCode3d err;
 
 		std::string fontPath = "";
 		fontPath.append(pFont).append(".fnt");
@@ -194,21 +184,20 @@ namespace Doh3d
 		if (it == m_fonts.end())
 		{
 			echo("ERROR: Can't find font: \"", pFont, "\".");
-			return err3d_fontNotFound;
+			return false;
 		}
 
-		err = it->GetFontTexture(pText, pTexture, pTexWidth, pTexHeight, pCharOffsets);
-		if (err != err3d_noErr)
+		if (it->GetFontTexture(pText, pTexture, pTexWidth, pTexHeight, pCharOffsets))
 		{
 			echo("ERROR: Can't get font texture for font: \"", pFont, "\".");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d ResourceMan::ParseTextureDir(const std::string& pDir)
+  bool ResourceMan::ParseTextureDir(const std::string& pDir)
 	{
 		LOG("ResourceMan::ParseFontDir()");
 
@@ -216,14 +205,14 @@ namespace Doh3d
 
 		DIR *dir = opendir(pDir.c_str());
 		if (dir == nullptr)
-			return err3d_noFontsFolder;
+			return false;
 
 		while (true)
 		{
 			ent = readdir(dir);
 
 			if (ent == nullptr)
-				return err3d_noErr;
+				return true;
 
 			std::string strTemp = pDir;
 
@@ -238,7 +227,7 @@ namespace Doh3d
 				if (tokens.size() != 5) // name, width, height, #frames, alphaCheck
 				{
 					echo("ERROR: Invalid texture file name: \"", textureFileName, "\".");
-					return err3d_cantParseTextureFileName;
+					return false;
 				}
 				int finalToken = tokens.size() - 1;
 
@@ -251,23 +240,23 @@ namespace Doh3d
 				ParseFontDir(strTemp.append(ent->d_name, ent->d_namlen).append("\\"));
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d ResourceMan::ParseFontDir(const std::string& pDir)
+  bool ResourceMan::ParseFontDir(const std::string& pDir)
 	{
 		struct dirent *ent;
 
 		DIR *dir = opendir(pDir.c_str());
 		if (dir == nullptr)
-			return err3d_noTexturesFolder;
+			return false;
 
 		while (true)
 		{
 			ent = readdir(dir);
 
 			if (ent == nullptr)
-				return err3d_noErr;
+				return true;
 
 			std::string strTemp = pDir;
 
@@ -279,7 +268,7 @@ namespace Doh3d
 				ParseFontDir(strTemp.append(ent->d_name, ent->d_namlen).append("\\"));
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 	
 } // ns Doh3d

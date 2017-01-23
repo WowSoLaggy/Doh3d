@@ -56,7 +56,6 @@
     <ClInclude Include="BitmapChar.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Drawer.h" />
-    <ClInclude Include="ErrCodes3d.h" />
     <ClInclude Include="GBase.h" />
     <ClInclude Include="GButton.h" />
     <ClInclude Include="GGrid.h" />

@@ -20,65 +20,58 @@ namespace Doh3d
 	D3DSURFACE_DESC RenderMan::m_defaultRenderTargetDesc;
 
 
-	ErrCode3d RenderMan::Recreate(const RenderPars& pRenderPars)
+  bool RenderMan::Recreate(const RenderPars& pRenderPars)
 	{
 		LOG("RenderMan::Recreate()");
-		ErrCode3d err;
 
 		m_renderPars = pRenderPars;
 
-		err = Dispose();
-		if (err != err3d_noErr)
+		if (!Dispose())
 		{
-			echo("ERROR: Can't Dispose RenderMan.");
-			return err;
+			echo("ERROR: Can't dispose RenderMan.");
+			return false;
 		}
 
-		err = CreateWnd(WinClass::GetStartupPars());
-		if (err != err3d_noErr)
+		if (!CreateWnd(WinClass::GetStartupPars()))
 		{
 			echo("ERROR: Can't create Wnd.");
-			return err;
+			return false;
 		}
 
-		err = CreateRenderDevice();
-		if (err != err3d_noErr)
+		if (!CreateRenderDevice())
 		{
 			echo("ERROR: Can't create RenderDevice.");
-			return err;
+			return false;
 		}
 
 		m_isCreated = true;
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d RenderMan::Dispose()
+  bool RenderMan::Dispose()
 	{
 		LOG("RenderMan::Dispose()");
-		ErrCode3d err;
 
 		m_isCreated = false;
 
-		err = DisposeRenderDevice();
-		if (err != err3d_noErr)
+		if (!DisposeRenderDevice())
 		{
 			echo("ERROR: Can't dispose RenderDevice.");
-			return err;
+			return false;
 		}
 
-		err = DisposeWnd();
-		if (err != err3d_noErr)
+		if (!DisposeWnd())
 		{
 			echo("ERROR: Can't dispose Wnd.");
-			return err;
+			return false;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d RenderMan::CreateWnd(const StartupPars& pStartupPars)
+  bool RenderMan::CreateWnd(const StartupPars& pStartupPars)
 	{
 		LOG("RDManager::CreateWnd()");
 
@@ -95,16 +88,16 @@ namespace Doh3d
 		if (m_hWindow == nullptr)
 		{
 			echo("ERROR: Can't create window.");
-			return err3d_cantCreateWindow;
+			return false;
 		}
 
 		ShowWindow(m_hWindow, pStartupPars.nCmdShow);
 		UpdateWindow(m_hWindow);
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d RenderMan::DisposeWnd()
+  bool RenderMan::DisposeWnd()
 	{
 		if (m_hWindow != nullptr)
 		{
@@ -112,11 +105,11 @@ namespace Doh3d
 			m_hWindow = nullptr;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 
-	ErrCode3d RenderMan::CreateRenderDevice()
+  bool RenderMan::CreateRenderDevice()
 	{
 		LOG("RenderMan::CreateRenderDevice()");
 		int res = 0;
@@ -125,7 +118,7 @@ namespace Doh3d
 		if (m_direct3d == nullptr)
 		{
 			echo("ERROR: Can't create Direct3D.");
-			return err3d_cantCreateDirectX;
+			return false;
 		}
 
 		m_direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &m_caps);
@@ -151,7 +144,7 @@ namespace Doh3d
 		if ((res != D3D_OK) || (m_renderDevice == nullptr))
 		{
 			echo("ERROR: Can't create RenderDevice.");
-			return err3d_cantCreateRenderDevice;
+			return false;
 		}
 
 		m_renderDevice->SetRenderState(D3DRS_LIGHTING, false);
@@ -163,10 +156,10 @@ namespace Doh3d
 		m_renderDevice->GetRenderTarget(0, &m_defaultRenderTarget);
 		m_defaultRenderTarget->GetDesc(&m_defaultRenderTargetDesc);
 
-		return err3d_noErr;
+		return true;
 	}
 
-	ErrCode3d RenderMan::DisposeRenderDevice()
+  bool RenderMan::DisposeRenderDevice()
 	{
 		if (m_renderDevice != nullptr)
 		{
@@ -180,7 +173,7 @@ namespace Doh3d
 			m_direct3d = nullptr;
 		}
 
-		return err3d_noErr;
+		return true;
 	}
 
 

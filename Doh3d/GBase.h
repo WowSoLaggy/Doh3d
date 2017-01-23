@@ -4,9 +4,6 @@
 #define INC_DOH3D_GBASE_H
 
 
-#include "ErrCodes3d.h"
-
-
 namespace Doh3d
 {
 
@@ -29,12 +26,12 @@ namespace Doh3d
 
 		int Id() const { return m_id; }
 
-		virtual ErrCode3d Load() PURE;
-		virtual ErrCode3d Unload() PURE;
-		virtual ErrCode3d Draw(Sprite& pSprite) const PURE;
+		virtual bool Load() PURE;
+		virtual bool Unload() PURE;
+		virtual bool Draw(Sprite& pSprite) const PURE;
 
-		virtual ErrCode3d SetSize(float pWidth, float pHeight);
-		virtual ErrCode3d SetSize(const D3DXVECTOR2& pSize);
+		virtual bool SetSize(float pWidth, float pHeight);
+		virtual bool SetSize(const D3DXVECTOR2& pSize);
 
 		const D3DXVECTOR2& GetSize() const { return m_size; }
 
@@ -47,13 +44,13 @@ namespace Doh3d
 
 		// Handlers
 
-		virtual ErrCode3d OnMouseMove(bool& pHandled);
-		virtual ErrCode3d OnMouseDown(bool& pHandled, int pButton);
-		virtual ErrCode3d OnMouseUp(bool& pHandled, int pButton);
+		virtual bool OnMouseMove(bool& pHandled);
+		virtual bool OnMouseDown(bool& pHandled, int pButton);
+		virtual bool OnMouseUp(bool& pHandled, int pButton);
 
-		virtual ErrCode3d OnKeyPressed(int pKey);
-		virtual ErrCode3d OnKeyDown(int pKey);
-		virtual ErrCode3d OnKeyUp(int pKey);
+		virtual bool OnKeyPressed(int pKey);
+		virtual bool OnKeyDown(int pKey);
+		virtual bool OnKeyUp(int pKey);
 
 	protected:
 
@@ -68,7 +65,7 @@ namespace Doh3d
 		virtual bool ContainsPoint(const D3DXVECTOR2& pPoint);
 
 		D3DXMATRIX m_transformMatrix;
-		ErrCode3d UpdateTransformMatrix();
+    bool UpdateTransformMatrix();
 
 	private:
 

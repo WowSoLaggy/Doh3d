@@ -20,8 +20,8 @@ namespace Doh3d
 		static const LPDIRECT3DDEVICE9& GetRenderDevice() { return m_renderDevice; }
 		static const HWND& GetHWindow() { return m_hWindow; }
 
-		static ErrCode3d Recreate(const RenderPars& pRenderPars);
-		static ErrCode3d Dispose();
+		static bool Recreate(const RenderPars& pRenderPars);
+		static bool Dispose();
 
 	private:
 
@@ -36,11 +36,11 @@ namespace Doh3d
 		static LPDIRECT3DSURFACE9 m_defaultRenderTarget;
 		static D3DSURFACE_DESC m_defaultRenderTargetDesc;
 
-		static ErrCode3d CreateWnd(const StartupPars& pStartupPars);
-		static ErrCode3d DisposeWnd();
+		static bool CreateWnd(const StartupPars& pStartupPars);
+		static bool DisposeWnd();
 
-		static ErrCode3d CreateRenderDevice();
-		static ErrCode3d DisposeRenderDevice();
+		static bool CreateRenderDevice();
+		static bool DisposeRenderDevice();
 
 	};
 

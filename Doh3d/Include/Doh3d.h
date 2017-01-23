@@ -35,9 +35,6 @@
 
 #include "Timer.h"
 
-#include "../ErrCodes3d.h"
-using namespace Doh3d::Doh3dErrCodes;
-
 #include "../RenderMan.h"
 #include "../StartupPars.h"
 #include "../WinClass.h"

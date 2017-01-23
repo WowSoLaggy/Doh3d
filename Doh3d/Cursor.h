@@ -14,9 +14,9 @@ namespace Doh3d
 	{
 	public:
 
-		static ErrCode3d SetCursorTexture(const std::string& pTextureName);
+		static bool SetCursorTexture(const std::string& pTextureName);
 
-		static ErrCode3d Draw(const Sprite& pSprite);
+		static bool Draw(const Sprite& pSprite);
 
 	private:
 

@@ -7,7 +7,7 @@
 namespace Doh3d
 {
 
-// T is the type of error
+	// T is the type of error
 	template <typename T>
 	class ITreeThing
 	{
@@ -20,6 +20,7 @@ namespace Doh3d
 		}
 
 
+		// TODO: Move such funcs to the separate interface
 		virtual T Draw(Sprite& pSprite, const D3DXVECTOR3& pOffset) const
 		{
 			T err;

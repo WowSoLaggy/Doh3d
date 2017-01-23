@@ -28,9 +28,6 @@
     <Filter Include="src\Sprite">
       <UniqueIdentifier>{5dfbb3a1-46c2-4514-ac13-4c85594decd6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Matrices">
-      <UniqueIdentifier>{cdf1a4f0-7df7-470e-89ac-29bb90efe6fe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\ResourceMan">
       <UniqueIdentifier>{8036d05f-bd05-4631-8d68-1609d7cbca3b}</UniqueIdentifier>
     </Filter>
@@ -58,6 +55,9 @@
     <Filter Include="src\Animation">
       <UniqueIdentifier>{2309e8c4-8079-4809-b097-f51ed8e03ec7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Math">
+      <UniqueIdentifier>{d2a2cdcc-9247-4549-afd7-b61b20f89116}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
@@ -83,9 +83,6 @@
     </ClCompile>
     <ClCompile Include="Charset.cpp">
       <Filter>src\InputMan</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>src\Matrices</Filter>
     </ClCompile>
     <ClCompile Include="RenderMan.cpp">
       <Filter>src\RenderMan</Filter>
@@ -129,6 +126,15 @@
     <ClCompile Include="Rect.cpp">
       <Filter>src\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2I.cpp">
+      <Filter>src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>src\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Doh3d.h">
@@ -136,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="..\libs\Log.h">
       <Filter>libs</Filter>
-    </ClInclude>
-    <ClInclude Include="dirent.h">
-      <Filter>src\Common</Filter>
     </ClInclude>
     <ClInclude Include="ErrCodes3d.h">
       <Filter>src\Common</Filter>
@@ -166,9 +169,6 @@
     </ClInclude>
     <ClInclude Include="InputPars.h">
       <Filter>src\InputMan</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>src\Matrices</Filter>
     </ClInclude>
     <ClInclude Include="RenderMan.h">
       <Filter>src\RenderMan</Filter>
@@ -241,6 +241,18 @@
     </ClInclude>
     <ClInclude Include="Rect.h">
       <Filter>src\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\dirent.h">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2I.h">
+      <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>src\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

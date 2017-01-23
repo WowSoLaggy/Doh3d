@@ -5,9 +5,9 @@
 namespace Doh3d
 {
 
-	D3DXMATRIX Matrix::Identity()
+  Matrix Matrix::Identity()
 	{
-		D3DXMATRIX matr;
+    Matrix matr;
 		D3DXMatrixIdentity(&matr);
 		return matr;
 	}

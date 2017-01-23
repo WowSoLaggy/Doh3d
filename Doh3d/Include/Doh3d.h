@@ -12,6 +12,8 @@
 #include <functional>
 #include <algorithm>
 #include <regex>
+#include <sstream>
+#include <iomanip>
 
 
 // DirectX

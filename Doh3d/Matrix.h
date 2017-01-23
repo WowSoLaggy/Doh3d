@@ -7,13 +7,13 @@
 namespace Doh3d
 {
 
-	class Matrix
-	{
-	public:
+  class Matrix : public D3DXMATRIX
+  {
+  public:
 
-		static D3DXMATRIX Identity();
+    static Matrix Identity();
 
-	};
+  };
 
 } // ns Doh3d
 

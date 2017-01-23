@@ -30,6 +30,7 @@
     <ClCompile Include="GPanel.cpp" />
     <ClCompile Include="GText.cpp" />
     <ClCompile Include="InputMan.cpp" />
+    <ClCompile Include="Math.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MessagePeeker.cpp" />
     <ClCompile Include="RBitmapFont.cpp" />
@@ -41,9 +42,11 @@
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextContainer.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Vector2I.cpp" />
     <ClCompile Include="WinClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\libs\dirent.h" />
     <ClInclude Include="..\libs\Log.h" />
     <ClInclude Include="..\libs\Timer.h" />
     <ClInclude Include="AlphaMap.h" />
@@ -52,7 +55,6 @@
     <ClInclude Include="AnimationSet.h" />
     <ClInclude Include="BitmapChar.h" />
     <ClInclude Include="Cursor.h" />
-    <ClInclude Include="dirent.h" />
     <ClInclude Include="Drawer.h" />
     <ClInclude Include="ErrCodes3d.h" />
     <ClInclude Include="GBase.h" />
@@ -65,6 +67,7 @@
     <ClInclude Include="Include\Doh3d.h" />
     <ClInclude Include="InputMan.h" />
     <ClInclude Include="InputPars.h" />
+    <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MessagePeeker.h" />
     <ClInclude Include="RBitmapFont.h" />
@@ -79,6 +82,7 @@
     <ClInclude Include="TextContainer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Vector2I.h" />
     <ClInclude Include="Viewport.h" />
     <ClInclude Include="WinClass.h" />
   </ItemGroup>
@@ -142,6 +146,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;$(ProjectDir)Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,6 +167,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;$(ProjectDir)Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -185,6 +191,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;$(ProjectDir)Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -210,6 +217,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)..\libs\;$(ProjectDir)Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

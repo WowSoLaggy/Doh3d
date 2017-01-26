@@ -17,25 +17,25 @@ namespace Doh3d
 		RBitmapFont(const std::string& pFontName);
 		~RBitmapFont();
 
-		std::string GetFontName() const { return m_fontName; }
+		std::string getFontName() const { return d_fontName; }
 
-		bool Load();
-    bool Unload();
+		bool load();
+    bool unload();
 
-    bool GetFontTexture(const std::string& pText, LPDIRECT3DTEXTURE9& pTexture, int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets);
+    bool getFontTexture(const std::string& pText, LPDIRECT3DTEXTURE9& pTexture, int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets);
 
 	private:
 
-		std::string m_fontName;
-		std::string m_charsetPath;
-		LPDIRECT3DTEXTURE9 m_charsetTexture;
+		std::string d_fontName;
+		std::string d_charsetPath;
+		LPDIRECT3DTEXTURE9 d_charsetTexture;
 
-		int m_lineHeight;
-		int m_lineBase;
+		int d_lineHeight;
+		int d_lineBase;
 
-		std::vector<BitmapChar> m_chars;
+		std::vector<BitmapChar> d_chars;
 
-    bool ParseFntFile(const std::string& pFntPath);
+    bool parseFntFile(const std::string& pFntPath);
 	};
 
 } // ns Doh3d

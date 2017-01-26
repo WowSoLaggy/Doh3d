@@ -11,16 +11,16 @@ namespace Doh3d
 	{
 		LOG("GPanel::GPanel()");
 
-		m_position.x = roundf(pPosX);
-		m_position.y = roundf(pPosY);
-		m_position.z = 0;
+		d_position.x = roundf(pPosX);
+		d_position.y = roundf(pPosY);
+		d_position.z = 0;
 		
-		if (!SetSize(pSizeX, pSizeY))
+		if (!setSize(pSizeX, pSizeY))
 			echo("ERROR: Can't set size.");
 
-		m_textureName = pTextureName;
+		d_textureName = pTextureName;
 
-		m_tiMain = 0;
+		d_tiMain = 0;
 	}
 
 	GPanel::~GPanel()
@@ -28,38 +28,38 @@ namespace Doh3d
 	}
 
 
-  bool GPanel::Load()
+  bool GPanel::load()
 	{
-		LOG("GPanel::Load()");
+		LOG("GPanel::load()");
 
-		if (!ResourceMan::GetTi(m_textureName, m_tiMain))
+		if (!ResourceMan::getTi(d_textureName, d_tiMain))
 		{
-			echo("ERROR: Can't get TI for panel (id: ", m_id, ").");
+			echo("ERROR: Can't get TI for panel (id: ", d_id, ").");
 			return false;
 		}
 
-		if (!UpdateTransformMatrix())
+		if (!updateTransformMatrix())
 		{
-			echo("ERROR: Can't update TransformMatrix for button (id: ", m_id, ").");
+			echo("ERROR: Can't update TransformMatrix for button (id: ", d_id, ").");
 			return false;
 		}
 
 		return true;
 	}
 
-  bool GPanel::Unload()
+  bool GPanel::unload()
 	{
 		return true;
 	}
 
-  bool GPanel::Draw(Sprite& pSprite) const
+  bool GPanel::draw(Sprite& pSprite) const
 	{
-		LOG("GPanel::Draw()");
+		LOG("GPanel::draw()");
 		int hRes;
 
-		pSprite.Get()->SetTransform(&m_transformMatrix);
+		pSprite.get()->SetTransform(&d_transformMatrix);
 
-		hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiMain).Get(), &ResourceMan::GetTexture(m_tiMain).GetFrame(0), 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+		hRes = pSprite.get()->Draw(ResourceMan::getTexture(d_tiMain).get(), &ResourceMan::getTexture(d_tiMain).getFrame(0), 0, &d_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw sprite.");
@@ -69,45 +69,45 @@ namespace Doh3d
 		return true;
 	}
 
-	D3DXVECTOR2 GPanel::GetOriginalSize() const
+	D3DXVECTOR2 GPanel::getOriginalSize() const
 	{
-		return ResourceMan::GetTexture(m_tiMain).GetSize();
+		return ResourceMan::getTexture(d_tiMain).getSize();
 	}
 
 
-  bool GPanel::OnMouseMove(bool &pHandled)
+  bool GPanel::onMouseMove(bool &pHandled)
 	{
-		LOG("GPanel::OnMouseMove()");
+		LOG("GPanel::onMouseMove()");
 
-		if (!GBase::OnMouseMove(pHandled))
+		if (!GBase::onMouseMove(pHandled))
 		{
-			echo("ERROR: Error occurred while GBase::OnMouseMove().");
+			echo("ERROR: Error occurred while GBase::onMouseMove().");
 			return false;
 		}
 
 		return true;
 	}
 
-  bool GPanel::OnMouseDown(bool &pHandled, int pButton)
+  bool GPanel::onMouseDown(bool &pHandled, int pButton)
 	{
-		LOG("GPanel::OnMouseDown()");
+		LOG("GPanel::onMouseDown()");
 
-		if (!GBase::OnMouseDown(pHandled, pButton))
+		if (!GBase::onMouseDown(pHandled, pButton))
 		{
-			echo("ERROR: Error occurred while GBase::OnMouseDown().");
+			echo("ERROR: Error occurred while GBase::onMouseDown().");
 			return false;
 		}
 
 		return true;
 	}
 
-  bool GPanel::OnMouseUp(bool &pHandled, int pButton)
+  bool GPanel::onMouseUp(bool &pHandled, int pButton)
 	{
-		LOG("GPanel::OnMouseUp()");
+		LOG("GPanel::onMouseUp()");
 
-		if (!GBase::OnMouseUp(pHandled, pButton))
+		if (!GBase::onMouseUp(pHandled, pButton))
 		{
-			echo("ERROR: Error occurred while GBase::OnMouseUp().");
+			echo("ERROR: Error occurred while GBase::onMouseUp().");
 			return false;
 		}
 

@@ -7,7 +7,7 @@
 namespace Doh3d
 {
 
-	int Screen::GetDesktopWidth()
+	int Screen::getDesktopWidth()
 	{
 		RECT rectDesktop;
 		HWND hDesktop = GetDesktopWindow();
@@ -15,7 +15,7 @@ namespace Doh3d
 		return (rectDesktop.right - rectDesktop.left);
 	}
 
-	int Screen::GetDesktopHeight()
+	int Screen::getDesktopHeight()
 	{
 		RECT rectDesktop;
 		HWND hDesktop = GetDesktopWindow();
@@ -24,20 +24,20 @@ namespace Doh3d
 	}
 
 
-	int Screen::GetClientWidth()
+	int Screen::getClientWidth()
 	{
-		return RenderMan::GetRenderPars().ResolutionWidth;
+		return RenderMan::getRenderPars().resolutionWidth();
 	}
 
-	int Screen::GetClientHeight()
+	int Screen::getClientHeight()
 	{
-		return RenderMan::GetRenderPars().ResolutionHeight;
+		return RenderMan::getRenderPars().resolutionHeight();
 	}
 
 
-	D3DXVECTOR2 Screen::GetClientCenter()
+	D3DXVECTOR2 Screen::getClientCenter()
 	{
-		return D3DXVECTOR2((FLOAT)(RenderMan::GetRenderPars().ResolutionWidth / 2), (FLOAT)(RenderMan::GetRenderPars().ResolutionHeight / 2));
+		return D3DXVECTOR2((FLOAT)(RenderMan::getRenderPars().resolutionWidth() / 2), (FLOAT)(RenderMan::getRenderPars().resolutionHeight() / 2));
 	}
 
 } // ns Doh3d

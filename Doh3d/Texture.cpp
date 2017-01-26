@@ -5,76 +5,76 @@
 namespace Doh3d
 {
 
-  bool Texture::Load()
+  bool Texture::load()
 	{
-		LOG("RTexture::Load()");
+		LOG("RTexture::load()");
 		HRESULT hRes;
 
-		std::string strTemp = ResourceMan::GetTextureDir();
+		std::string strTemp = ResourceMan::getTextureDir();
 
-		hRes = D3DXCreateTextureFromFileEx(RenderMan::GetRenderDevice(), strTemp.append("\\").append(m_filePath).c_str(),
-										   D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, &m_texture);
-		if (hRes != S_OK || !m_texture)
+		hRes = D3DXCreateTextureFromFileEx(RenderMan::getRenderDevice(), strTemp.append("\\").append(d_filePath).c_str(),
+										   D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, &d_texture);
+		if (hRes != S_OK || !d_texture)
 		{
-			echo("ERROR: Can't create texture from file: \"", m_filePath, "\".");
+			echo("ERROR: Can't create texture from file: \"", d_filePath, "\".");
 			return false;
 		}
 
-		if ((m_size.x == 0) && (m_size.y == 0))
+		if ((d_size.x == 0) && (d_size.y == 0))
 		{
 			D3DSURFACE_DESC surfaceDesc;
-			m_texture->GetLevelDesc(0, &surfaceDesc);
-			m_size = D3DXVECTOR2((float)surfaceDesc.Width, (float)surfaceDesc.Height);
-			m_size2 = m_size / 2;
+			d_texture->GetLevelDesc(0, &surfaceDesc);
+			d_size = D3DXVECTOR2((float)surfaceDesc.Width, (float)surfaceDesc.Height);
+			d_size2 = d_size / 2;
 		}
 
-		m_alphaMap.Init(m_alphaCheck, m_texture);
+		d_alphaMap.init(d_alphaCheck, d_texture);
 
 		return true;
 	}
 
-  bool Texture::Unload()
+  bool Texture::unload()
 	{
-		if (m_texture != nullptr)
+		if (d_texture != nullptr)
 		{
-			m_texture->Release();
-			m_texture = nullptr;
+			d_texture->Release();
+			d_texture = nullptr;
 		}
 
 		return true;
 	}
 
 
-	bool Texture::HitTest(int pX, int pY, int pFrame) const
+	bool Texture::hitTest(int pX, int pY, int pFrame) const
 	{
-		if (pX < 0 || pY < 0 || pX >= m_size.x || pY >= m_size.y)
+		if (pX < 0 || pY < 0 || pX >= d_size.x || pY >= d_size.y)
 			return false;
 
-		return m_alphaMap.Check(pX + pFrame * (int)m_size.x, pY);
+		return d_alphaMap.check(pX + pFrame * (int)d_size.x, pY);
 	}
 
-	bool Texture::HitTest(float pX, float pY, int pFrame) const
+	bool Texture::hitTest(float pX, float pY, int pFrame) const
 	{
-		return HitTest((int)pX, (int)pY, pFrame);
+		return hitTest((int)pX, (int)pY, pFrame);
 	}
 
-	bool Texture::HitTest(const D3DXVECTOR2& pCoords, int pFrame) const
+	bool Texture::hitTest(const D3DXVECTOR2& pCoords, int pFrame) const
 	{
-		return HitTest((int)pCoords.x, (int)pCoords.y, pFrame);
+		return hitTest((int)pCoords.x, (int)pCoords.y, pFrame);
 	}
 
-	bool Texture::HitTest(const D3DXVECTOR3& pCoords, int pFrame) const
+	bool Texture::hitTest(const D3DXVECTOR3& pCoords, int pFrame) const
 	{
-		return HitTest((int)pCoords.x, (int)pCoords.y, pFrame);
+		return hitTest((int)pCoords.x, (int)pCoords.y, pFrame);
 	}
 
-	RECT Texture::GetFrame(int pFrameNumber)
+	RECT Texture::getFrame(int pFrameNumber)
 	{
 		RECT rect;
-		rect.left = (LONG)(m_size.x * pFrameNumber);
+		rect.left = (LONG)(d_size.x * pFrameNumber);
 		rect.top = 0;
-		rect.right = (LONG)(m_size.x * (pFrameNumber + 1));
-		rect.bottom = (LONG)(m_size.y);
+		rect.right = (LONG)(d_size.x * (pFrameNumber + 1));
+		rect.bottom = (LONG)(d_size.y);
 		return rect;
 	}
 

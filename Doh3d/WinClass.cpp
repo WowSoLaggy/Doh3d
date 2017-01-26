@@ -4,11 +4,17 @@
 
 namespace Doh3d
 {
+
+  StartupPars WinClass::d_startupPars;
+  std::string WinClass::d_applicationName;
+
 	
-	void WinClass::registerClass(const StartupPars& pStartupPars, const std::string& pApplicationName)
+	bool WinClass::registerClass(const StartupPars& pStartupPars, const std::string& pApplicationName)
 	{
+    LOG(__FUNCTION__);
+
 		d_startupPars = pStartupPars;
-		d_applicationName = pApplicationName;
+    d_applicationName = pApplicationName;
 
 		WNDCLASS wc;
 		wc.style = CS_OWNDC;
@@ -21,7 +27,15 @@ namespace Doh3d
 		wc.hInstance = pStartupPars.hInstance;
 		wc.lpszClassName = d_applicationName.c_str();
 		wc.lpszMenuName = nullptr;
-		RegisterClass(&wc);
+
+		ATOM atom = RegisterClass(&wc);
+    if (atom == INVALID_ATOM)
+    {
+      echo("ERROR: Can't register win class.");
+      return false;
+    }
+
+    return true;
 	}
 
 	void WinClass::unregisterClass()

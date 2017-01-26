@@ -5,19 +5,19 @@
 namespace Doh3d
 {
 
-  bool Drawer::BeginScene()
+  bool Drawer::beginScene()
 	{
-		LOG("Drawer::BeginScene()");
+		LOG("Drawer::beginScene()");
 		int hRes = 0;
 
-		hRes = RenderMan::GetRenderDevice()->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255, 101, 156, 239), 1.0f, 0);
+		hRes = RenderMan::getRenderDevice()->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255, 101, 156, 239), 1.0f, 0);
 		if (hRes != 0)
 		{
 			echo("ERROR: Can't clear RenderDevice.");
 			return false;
 		}
 
-		hRes = RenderMan::GetRenderDevice()->BeginScene();
+		hRes = RenderMan::getRenderDevice()->BeginScene();
 		if (hRes != 0)
 		{
 			echo("ERROR: Can't begin RenderDevice scene.");
@@ -27,19 +27,19 @@ namespace Doh3d
 		return true;
 	}
 
-  bool Drawer::EndScene()
+  bool Drawer::endScene()
 	{
-		LOG("Drawer::EndScene()");
+		LOG("Drawer::endScene()");
 		int hRes = 0;
 
-		hRes = RenderMan::GetRenderDevice()->EndScene();
+		hRes = RenderMan::getRenderDevice()->EndScene();
 		if (hRes != 0)
 		{
 			echo("ERROR: Can't end RenderDevice scene.");
 			return false;
 		}
 
-		hRes = RenderMan::GetRenderDevice()->Present(NULL, NULL, NULL, NULL);
+		hRes = RenderMan::getRenderDevice()->Present(NULL, NULL, NULL, NULL);
 		if (hRes != 0)
 		{
 			echo("ERROR: Can't present RenderDevice.");

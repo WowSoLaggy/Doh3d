@@ -14,14 +14,14 @@ namespace Doh3d
 	{
 	public:
 
-		static bool SetCursorTexture(const std::string& pTextureName);
+		static bool setCursorTexture(const std::string& pTextureName);
 
-		static bool Draw(const Sprite& pSprite);
+		static bool draw(const Sprite& pSprite);
 
 	private:
 
-		static int m_ti;
-		static D3DXMATRIX m_identityMatrix;
+		static int d_ti;
+		static D3DXMATRIX d_identityMatrix;
 
 	};
 

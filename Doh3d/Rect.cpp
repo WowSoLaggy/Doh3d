@@ -13,36 +13,36 @@ namespace Doh3d
 		}
 
 		Rect::Rect(float pLeft, float pTop, float pRight, float pBottom)
-			: Left(pLeft), Top(pTop), Right(pRight), Bottom(pBottom)
+			: d_left(pLeft), d_top(pTop), d_right(pRight), d_bottom(pBottom)
 		{
 		}
 
 
 		Rect Rect::operator + (const D3DXVECTOR2& pOffset) const
 		{
-			return Rect(Left + pOffset.x, Top + pOffset.y, Right + pOffset.x, Bottom + pOffset.y);
+			return Rect(d_left + pOffset.x, d_top + pOffset.y, d_right + pOffset.x, d_bottom + pOffset.y);
 		}
 
 		Rect Rect::operator - (const D3DXVECTOR2& pOffset) const
 		{
-			return Rect(Left - pOffset.x, Top - pOffset.y, Right - pOffset.x, Bottom - pOffset.y);
+			return Rect(d_left - pOffset.x, d_top - pOffset.y, d_right - pOffset.x, d_bottom - pOffset.y);
 		}
 
 
-		bool Rect::ContainsPoint(float pX, float pY) const
+		bool Rect::containsPoint(float pX, float pY) const
 		{
-			return !((pX < Left) || (Right < pX) || (pY < Top) || (Bottom < pY));
+			return !((pX < d_left) || (d_right < pX) || (pY < d_top) || (d_bottom < pY));
 		}
 
-		bool Rect::ContainsPoint(const D3DXVECTOR2& pPoint) const
+		bool Rect::containsPoint(const D3DXVECTOR2& pPoint) const
 		{
-			return ContainsPoint(pPoint.x, pPoint.y);
+			return containsPoint(pPoint.x, pPoint.y);
 		}
 
 
-		bool Rect::ContainsRect(const Rect& pRect) const
+		bool Rect::containsRect(const Rect& pRect) const
 		{
-			return Left <= pRect.Left && pRect.Right <= Right && Top <= pRect.Top && pRect.Bottom <= Bottom;
+			return d_left <= pRect.d_left && pRect.d_right <= d_right && d_top <= pRect.d_top && pRect.d_bottom <= d_bottom;
 		}
 
 	} // ns Geometry

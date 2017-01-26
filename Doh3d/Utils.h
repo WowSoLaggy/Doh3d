@@ -25,7 +25,7 @@ namespace Doh3d
 	// Trims the given string from the start (removes all spaces)
 	// Params:
 	// [out] std::string & pString	- string to trim
-	static inline void TrimStringLeadRef(std::string &pString)
+	static inline void trimStringLeadRef(std::string &pString)
 	{
 		pString.erase(pString.begin(), std::find_if(pString.begin(), pString.end(),
 													std::not1(std::ptr_fun<int, int>(std::isspace))));
@@ -34,7 +34,7 @@ namespace Doh3d
 	// Trims the given string from the end (removes all spaces)
 	// Params:
 	// [out] std::string & pString	- string to trim
-	static inline void TrimStringTrailRef(std::string &pString)
+	static inline void trimStringTrailRef(std::string &pString)
 	{
 		pString.erase(std::find_if(pString.rbegin(), pString.rend(),
 								   std::not1(std::ptr_fun<int, int>(std::isspace))).base(), pString.end());
@@ -43,36 +43,36 @@ namespace Doh3d
 	// Trims the given string (removes all spaces)
 	// Params:
 	// [out] std::string & pString	- string to trim
-	static inline void TrimStringRef(std::string &pString)
+	static inline void trimStringRef(std::string &pString)
 	{
-		TrimStringLeadRef(pString);
-		TrimStringTrailRef(pString);
+		trimStringLeadRef(pString);
+		trimStringTrailRef(pString);
 	}
 
 	// Trims the given string from the start (removes all spaces)
 	// Params:
 	// [out] std::string pString	- string to trim
-	static inline std::string TrimStringLead(std::string pString)
+	static inline std::string trimStringLead(std::string pString)
 	{
-		TrimStringLeadRef(pString);
+		trimStringLeadRef(pString);
 		return pString;
 	}
 
 	// Trims the given string from the end (removes all spaces)
 	// Params:
 	// [out] std::string pString	- string to trim
-	static inline std::string TrimStringTrail(std::string pString)
+	static inline std::string trimStringTrail(std::string pString)
 	{
-		TrimStringTrailRef(pString);
+		trimStringTrailRef(pString);
 		return pString;
 	}
 
 	// Trims the given string (removes all spaces)
 	// Params:
 	// [out] std::string pString	- string to trim
-	static inline std::string TrimString(std::string pString)
+	static inline std::string trimString(std::string pString)
 	{
-		TrimStringRef(pString);
+		trimStringRef(pString);
 		return pString;
 	}
 
@@ -84,14 +84,14 @@ namespace Doh3d
 	// [out] std::vector<std::string> & pTokens	- vector of splitted tokens
 	// Returns:
 	// std::vector<std::string>					- vector of splitted tokens (reference to pTokens)
-	static std::vector<std::string> & SplitString(const std::string &pString, char pDelimiter, std::vector<std::string> &pTokens, bool pTrimTokens = false)
+	static std::vector<std::string> & splitString(const std::string &pString, char pDelimiter, std::vector<std::string> &pTokens, bool pTrimTokens = false)
 	{
 		std::stringstream ss(pString);
 		std::string item;
 		if (pTrimTokens)
 		{
 			while (std::getline(ss, item, pDelimiter))
-				pTokens.push_back(TrimString(item));
+				pTokens.push_back(trimString(item));
 		}
 		else
 		{
@@ -109,17 +109,17 @@ namespace Doh3d
 	// [in] char pDelimiter				- delimiter used to split the given string
 	// Returns:
 	// std::vector<std::string>				- vector of splitted tokens
-	static std::vector<std::string> SplitString(const std::string &pString, char pDelimiter, bool pTrimTokens = false)
+	static std::vector<std::string> splitString(const std::string &pString, char pDelimiter, bool pTrimTokens = false)
 	{
 		std::vector<std::string> tokens;
-		return SplitString(pString, pDelimiter, tokens, pTrimTokens);
+		return splitString(pString, pDelimiter, tokens, pTrimTokens);
 	}
 
 
 	// Converts the given string to the boolean value
 	// Params:
 	// [in] const std::string & pString	- string to convert
-	static bool StringToBool(const std::string &pString)
+	static bool stringToBool(const std::string &pString)
 	{
 		std::string str = pString;
 		std::transform(str.begin(), str.end(), str.begin(), ::tolower);
@@ -130,7 +130,7 @@ namespace Doh3d
 	// Reads whole given file to a string
 	// Params:
 	// [in] const std::string & pFileName	- name of the file to read from
-	static std::string ReadFileToString(const std::string &pFileName)
+	static std::string readFileToString(const std::string &pFileName)
 	{
 		std::ifstream fileStream(pFileName);
 		return std::string(std::istreambuf_iterator<char>(fileStream), std::istreambuf_iterator<char>());
@@ -138,7 +138,7 @@ namespace Doh3d
 
 
 	// Returns current date in the Http format
-	static std::string GetHttpDate()
+	static std::string getHttpDate()
 	{
 		std::vector<char> str(100, ' ');
 		time_t now = time(0);
@@ -152,7 +152,7 @@ namespace Doh3d
 	// Checks whether the file with the given name exists
 	// Params:
 	// [in] const std::string & pFileName	- name of the file to check for existance
-	static bool CheckFileExists(const std::string &pFileName)
+	static bool checkFileExists(const std::string &pFileName)
 	{
 		struct stat buffer;
 		return (stat(pFileName.c_str(), &buffer) == 0);
@@ -162,7 +162,7 @@ namespace Doh3d
 	// Check whether the input string is a number (can be parsed to)
 	// Params:
 	// [in] const std::string & pString - input string to be checked
-	static bool IsNumber(const std::string &pString)
+	static bool isNumber(const std::string &pString)
 	{
 		return (
 			(!pString.empty()) &&
@@ -176,7 +176,7 @@ namespace Doh3d
 	// Params:
 	// [in] std::string pDir1	- path to the directory that supposed to be the sub-directory
 	// [in] std::string pDir2	- path to the directory that supposed to be the parent directory
-	static bool IsSameDir(std::string pDir1, std::string pDir2)
+	static bool isSameDir(std::string pDir1, std::string pDir2)
 	{
 		// This implementation is not as good as it should be,
 		// but I don't want to do it anymore
@@ -206,9 +206,9 @@ namespace Doh3d
 	// Params:
 	// [in] path pDir1	- path to the directory that supposed to be the sub-directory
 	// [in] path pDir2	- path to the directory that supposed to be the parent directory
-	static bool IsSameDir(path pDir1, path pDir2)
+	static bool isSameDir(path pDir1, path pDir2)
 	{
-		return IsSameDir(pDir1.string(), pDir2.string());
+		return isSameDir(pDir1.string(), pDir2.string());
 	}
 
 
@@ -216,7 +216,7 @@ namespace Doh3d
 	// Params:
 	// [in] std::string pSubDir		- path to the directory that supposed to be the sub-directory
 	// [in] std::string pParentDir	- path to the directory that supposed to be the parent directory
-	static bool IsSubDir(std::string pSubDir, std::string pParentDir)
+	static bool isSubDir(std::string pSubDir, std::string pParentDir)
 	{
 		// This implementation is not as good as it should be,
 		// but I don't want to do it anymore
@@ -259,9 +259,9 @@ namespace Doh3d
 	// Params:
 	// [in] path pSubDir		- path to the directory that supposed to be the sub-directory
 	// [in] path pParentDir	- path to the directory that supposed to be the parent directory
-	static bool IsSubDir(path pSubDir, path pParentDir)
+	static bool isSubDir(path pSubDir, path pParentDir)
 	{
-		return IsSubDir(pSubDir.string(), pParentDir.string());
+		return isSubDir(pSubDir.string(), pParentDir.string());
 	}
 
 }; // ns Doh3d

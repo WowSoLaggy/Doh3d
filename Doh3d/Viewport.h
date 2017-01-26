@@ -7,18 +7,24 @@
 namespace Doh3d
 {
 
-	struct Viewport
+	class Viewport
 	{
-		float PositionX;
-		float PositionY;
 
-		float Width2;
-		float Height2;
+  public:
 
-		float Left() const { return PositionX - Width2; }
-		float Top() const { return PositionY - Height2; }
-		float Right() const { return PositionX + Width2; }
-		float Bottom() const { return PositionY + Height2; }
+    float left() const { return d_positionX - d_width2; }
+    float top() const { return d_positionY - d_height2; }
+    float right() const { return d_positionX + d_width2; }
+    float bottom() const { return d_positionY + d_height2; }
+
+  private:
+
+		float d_positionX;
+		float d_positionY;
+
+		float d_width2;
+		float d_height2;
+		
 	};
 
 } // ns Doh3d

@@ -21,43 +21,43 @@ namespace Doh3d
 	{
 	public:
 
-		static bool IsCreated() { return m_isCreated; }
-		static D3DXVECTOR2 GetCursorPosition() { return m_cursorPosition; }
+		static bool isCreated() { return d_isCreated; }
+		static D3DXVECTOR2 getCursorPosition() { return d_cursorPosition; }
 
-		static bool Init();
-		static bool Dispose();
+		static bool init();
+		static bool dispose();
 
-		static bool Recreate(const WinClass& pWinClass, const InputPars& pInputPars);
-		static bool CheckDevices();
+		static bool recreate(const InputPars& pInputPars);
+		static bool checkDevices();
 
-		static bool IsShift();
-		static bool IsCtrl();
-		static bool IsAlt();
+		static bool isShift();
+		static bool isCtrl();
+		static bool isAlt();
 
-		static char DikToChar(int pDik);
-		static bool IsPrintable(int pDik);
+		static char dikToChar(int pDik);
+		static bool isPrintable(int pDik);
 
 	private:
 
-		static volatile bool m_isCreated;
-		static InputPars m_inputPars;
-		static D3DXVECTOR2 m_cursorPosition;
+		static volatile bool d_isCreated;
+		static InputPars d_inputPars;
+		static D3DXVECTOR2 d_cursorPosition;
 
-		static LPDIRECTINPUT8 m_directInput;
-		static LPDIRECTINPUTDEVICE8 m_mouse;
-		static LPDIRECTINPUTDEVICE8 m_keyboard;
+		static LPDIRECTINPUT8 d_directInput;
+		static LPDIRECTINPUTDEVICE8 d_mouse;
+		static LPDIRECTINPUTDEVICE8 d_keyboard;
 
-		static char m_keysPrev[256];
-		static char m_keys[256];
-		static DIMOUSESTATE m_mouseState;
-		static DIMOUSESTATE m_mouseStatePrev;
+		static char d_keysPrev[256];
+		static char d_keys[256];
+		static DIMOUSESTATE d_mouseState;
+		static DIMOUSESTATE d_mouseStatePrev;
 
-		static bool CreateInputDevices(const WinClass& pWinClass);
-		static bool DisposeInputDevices();
-		static bool AcquireMouse();
-		static bool AcquireKeyboard();
+		static bool createInputDevices();
+		static bool disposeInputDevices();
+		static bool acquireMouse();
+		static bool acquireKeyboard();
 
-		static char DikToChar(int pDik, bool pShift);
+		static char dikToChar(int pDik, bool pShift);
 
 	};
 

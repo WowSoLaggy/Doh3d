@@ -22,33 +22,33 @@ namespace Doh3d
 	{
 	public:
 
-		bool HasText() const { return m_text.HasText(); }
-		LPDIRECT3DTEXTURE9 GetTexture() const { return m_text.GetTexture(); }
+		bool hasText() const { return d_text.hasText(); }
+		LPDIRECT3DTEXTURE9 getTexture() const { return d_text.getTexture(); }
 		
-    bool SetText(const std::string& pText);
-    bool SetFont(const std::string& pFontName);
+    bool setText(const std::string& pText);
+    bool setFont(const std::string& pFontName);
 		
-		int TextWidth() const { return m_text.Width(); }
-		int TextHeight() const { return m_text.Height(); }
+		int textWidth() const { return d_text.width(); }
+		int textHeight() const { return d_text.height(); }
 
 
-    bool SetBasisPosition(const D3DXVECTOR3& pPosition);
-		const D3DXVECTOR3& GetPosition() const { return m_textPosition; }
+    bool setBasisPosition(const D3DXVECTOR3& pPosition);
+		const D3DXVECTOR3& getPosition() const { return d_textPosition; }
 
-    bool SetTextAlign(TextAlign pTextAlign);
+    bool setTextAlign(TextAlign pTextAlign);
 
 
-    bool Load();
-    bool Unload();
+    bool load();
+    bool unload();
 
 	private:
 
-		D3DXVECTOR3 m_textBasis;
-		D3DXVECTOR3 m_textPosition;
-		TextAlign m_textAlign;
-		class Text m_text;
+		D3DXVECTOR3 d_textBasis;
+		D3DXVECTOR3 d_textPosition;
+		TextAlign d_textAlign;
+		class Text d_text;
 
-    bool UpdatePosition();
+    bool updatePosition();
 
 	};
 

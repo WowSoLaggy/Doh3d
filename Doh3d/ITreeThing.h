@@ -15,19 +15,19 @@ namespace Doh3d
 
 		virtual ~ITreeThing()
 		{
-			for (auto child : m_childs)
+			for (auto child : d_childs)
 				delete child;
 		}
 
 
 		// TODO: Move such funcs to the separate interface
-		virtual T Draw(Sprite& pSprite, const D3DXVECTOR3& pOffset) const
+		virtual T draw(Sprite& pSprite, const D3DXVECTOR3& pOffset) const
 		{
 			T err;
 
-			for (auto child : m_childs)
+			for (auto child : d_childs)
 			{
-				err = child->Draw(pSprite, pOffset);
+				err = child->draw(pSprite, pOffset);
 				if (err != (T)0)
 					return err;
 			}
@@ -36,13 +36,13 @@ namespace Doh3d
 		}
 
 
-		virtual T Load()
+		virtual T load()
 		{
 			T err;
 
-			for (auto child : m_childs)
+			for (auto child : d_childs)
 			{
-				err = child->Load();
+				err = child->load();
 				if (err != (T)0)
 					return err;
 			}
@@ -51,13 +51,13 @@ namespace Doh3d
 		}
 
 
-		virtual T Unload()
+		virtual T unload()
 		{
 			T err;
 
-			for (auto child : m_childs)
+			for (auto child : d_childs)
 			{
-				err = child->Unload();
+				err = child->unload();
 				if (err != (T)0)
 					return err;
 			}
@@ -66,13 +66,13 @@ namespace Doh3d
 		}
 
 
-		virtual T Update(float pDeltaTime)
+		virtual T update(float pDeltaTime)
 		{
 			T err;
 
-			for (auto child : m_childs)
+			for (auto child : d_childs)
 			{
-				err = child->Update(pDeltaTime);
+				err = child->update(pDeltaTime);
 				if (err != (T)0)
 					return err;
 			}
@@ -81,41 +81,41 @@ namespace Doh3d
 		}
 
 
-		ITreeThing* AddChild(ITreeThing* pChild)
+		ITreeThing* addChild(ITreeThing* pChild)
 		{
-			if (!pChild || pChild->m_parent == this)
+			if (!pChild || pChild->d_parent == this)
 				return nullptr;
-			if (pChild->m_parent != nullptr)
-				pChild->m_parent->RemoveChild(pChild);
+			if (pChild->d_parent != nullptr)
+				pChild->d_parent->removeChild(pChild);
 
-			pChild->m_parent = this;
-			m_childs.push_back(pChild);
+			pChild->d_parent = this;
+			d_childs.push_back(pChild);
 
 			return pChild;
 		}
 
-		void RemoveChild(ITreeThing* pChild)
+		void removeChild(ITreeThing* pChild)
 		{
-			if (!pChild || pChild->m_parent != this)
+			if (!pChild || pChild->d_parent != this)
 				return;
-			auto& it = std::find(m_childs.begin(), m_childs.end(), pChild);
-			if (it == m_childs.end())
+			auto& it = std::find(d_childs.begin(), d_childs.end(), pChild);
+			if (it == d_childs.end())
 				return;
 
-			m_childs.erase(it);
-			pChild->m_parent = nullptr;
+			d_childs.erase(it);
+			pChild->d_parent = nullptr;
 		}
 
-		ITreeThing* Parent() { return m_parent; }
-		const ITreeThing* Parent() const { return m_parent; }
+		ITreeThing* parent() { return d_parent; }
+		const ITreeThing* parent() const { return d_parent; }
 
-		std::vector<ITreeThing*>& GetChilds() { return m_childs; }
-		const std::vector<ITreeThing*>& GetChilds() const { return m_childs; }
+		std::vector<ITreeThing*>& getChilds() { return d_childs; }
+		const std::vector<ITreeThing*>& getChilds() const { return d_childs; }
 
 	protected:
 
-		ITreeThing* m_parent;
-		std::vector<ITreeThing*> m_childs;
+		ITreeThing* d_parent;
+		std::vector<ITreeThing*> d_childs;
 	};
 
 } // ns Doh3d

@@ -18,21 +18,21 @@ namespace Doh3d
 		GText(float pPosX, float pPosY, const std::string& pText, const std::string& pFontName);
 		virtual ~GText();
 
-		virtual bool Load() override;
-		virtual bool Unload() override;
-		virtual bool Draw(Sprite& pSprite) const override;
+		virtual bool load() override;
+		virtual bool unload() override;
+		virtual bool draw(Sprite& pSprite) const override;
 
-		virtual bool SetSize(float pWidth, float pHeight) override;
-		virtual bool SetSize(const D3DXVECTOR2& pSize) override;
+		virtual bool setSize(float pWidth, float pHeight) override;
+		virtual bool setSize(const D3DXVECTOR2& pSize) override;
 
-		virtual bool SetText(const std::string& pText);
-		virtual bool SetFont(const std::string& pFontName);
+		virtual bool setText(const std::string& pText);
+		virtual bool setFont(const std::string& pFontName);
 
 	protected:
 
-		TextContainer m_textContainer;
+		TextContainer d_textContainer;
 
-		virtual D3DXVECTOR2 GetOriginalSize() const override;
+		virtual D3DXVECTOR2 getOriginalSize() const override;
 
 	};
 

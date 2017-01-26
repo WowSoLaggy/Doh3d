@@ -15,32 +15,32 @@ namespace Doh3d
 	{
 	public:
 
-		static bool IsCreated() { return m_isCreated; }
-		static const RenderPars& GetRenderPars() { return m_renderPars; }
-		static const LPDIRECT3DDEVICE9& GetRenderDevice() { return m_renderDevice; }
-		static const HWND& GetHWindow() { return m_hWindow; }
+		static bool isCreated() { return d_isCreated; }
+		static const RenderPars& getRenderPars() { return d_renderPars; }
+		static const LPDIRECT3DDEVICE9& getRenderDevice() { return d_renderDevice; }
+		static const HWND& getHWindow() { return d_hWindow; }
 
-		static bool Recreate(const WinClass& pWinClass, const RenderPars& pRenderPars);
-		static bool Dispose();
+		static bool recreate(const RenderPars& pRenderPars, const std::string& pWindowCaption);
+		static bool dispose();
 
 	private:
 
-		static bool m_isCreated;
-		static RenderPars m_renderPars;
+		static bool d_isCreated;
+		static RenderPars d_renderPars;
 
-		static HWND m_hWindow;
-		static LPDIRECT3D9 m_direct3d;
-		static D3DPRESENT_PARAMETERS m_presentPars;
-		static D3DCAPS9 m_caps;
-		static LPDIRECT3DDEVICE9 m_renderDevice;
-		static LPDIRECT3DSURFACE9 m_defaultRenderTarget;
-		static D3DSURFACE_DESC m_defaultRenderTargetDesc;
+		static HWND d_hWindow;
+		static LPDIRECT3D9 d_direct3d;
+		static D3DPRESENT_PARAMETERS d_presentPars;
+		static D3DCAPS9 d_caps;
+		static LPDIRECT3DDEVICE9 d_renderDevice;
+		static LPDIRECT3DSURFACE9 d_defaultRenderTarget;
+		static D3DSURFACE_DESC d_defaultRenderTargetDesc;
 
-		static bool CreateWnd(const WinClass& pWinClass);
-		static bool DisposeWnd();
+		static bool createWnd(const std::string& pWindowCaption);
+		static bool disposeWnd();
 
-		static bool CreateRenderDevice();
-		static bool DisposeRenderDevice();
+		static bool createRenderDevice();
+		static bool disposeRenderDevice();
 
 	};
 

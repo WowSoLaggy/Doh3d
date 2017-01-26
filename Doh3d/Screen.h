@@ -11,13 +11,13 @@ namespace Doh3d
   {
   public:
 
-    static int GetDesktopWidth();
-    static int GetDesktopHeight();
+    static int getDesktopWidth();
+    static int getDesktopHeight();
 
-    static int GetClientWidth();
-    static int GetClientHeight();
+    static int getClientWidth();
+    static int getClientHeight();
 
-    static D3DXVECTOR2 GetClientCenter();
+    static D3DXVECTOR2 getClientCenter();
 
   };
 

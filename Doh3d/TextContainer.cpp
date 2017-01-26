@@ -5,17 +5,17 @@
 namespace Doh3d
 {
 
-  bool TextContainer::Load()
+  bool TextContainer::load()
   {
-    LOG("TextContainer::Load()");
+    LOG("TextContainer::load()");
 
-    if (!m_text.Load())
+    if (!d_text.load())
     {
       echo("ERROR: Can't load text.");
       return false;
     }
 
-    if (!UpdatePosition())
+    if (!updatePosition())
     {
       echo("ERROR: Can't update position.");
       return false;
@@ -24,11 +24,11 @@ namespace Doh3d
     return true;
   }
 
-  bool TextContainer::Unload()
+  bool TextContainer::unload()
   {
-    LOG("TextContainer::Unload()");
+    LOG("TextContainer::unload()");
 
-    if (!m_text.Unload())
+    if (!d_text.unload())
     {
       echo("ERROR: Can't unload text.");
       return false;
@@ -38,23 +38,23 @@ namespace Doh3d
   }
 
 
-  bool TextContainer::UpdatePosition()
+  bool TextContainer::updatePosition()
   {
-    LOG("TextContainer::UpdatePosition()");
+    LOG("TextContainer::updatePosition()");
 
-    m_textPosition = m_textBasis;
-    m_textPosition.y -= m_text.Height() / 2;
+    d_textPosition = d_textBasis;
+    d_textPosition.y -= d_text.height() / 2;
 
-    switch (m_textAlign)
+    switch (d_textAlign)
     {
     case TextAlign::Center:
     {
-      m_textPosition.x -= m_text.Width() / 2;
+      d_textPosition.x -= d_text.width() / 2;
       break;
     }
     case TextAlign::Right:
     {
-      m_textPosition.x -= m_text.Width();
+      d_textPosition.x -= d_text.width();
       break;
     }
     case TextAlign::Left:
@@ -72,13 +72,13 @@ namespace Doh3d
   }
 
 
-  bool TextContainer::SetBasisPosition(const D3DXVECTOR3& pPosition)
+  bool TextContainer::setBasisPosition(const D3DXVECTOR3& pPosition)
   {
-    LOG("TextContainer::SetBasisPosition()");
+    LOG("TextContainer::setBasisPosition()");
 
-    m_textBasis = pPosition;
+    d_textBasis = pPosition;
 
-    if (!UpdatePosition())
+    if (!updatePosition())
     {
       echo("ERROR: Can't update position.");
       return false;
@@ -87,17 +87,17 @@ namespace Doh3d
     return true;
   }
 
-  bool TextContainer::SetText(const std::string& pText)
+  bool TextContainer::setText(const std::string& pText)
   {
-    LOG("TextContainer::SetText()");
+    LOG("TextContainer::setText()");
 
-    if (!m_text.SetText(pText))
+    if (!d_text.setText(pText))
     {
       echo("ERROR: Can't set text.");
       return false;
     }
 
-    if (!UpdatePosition())
+    if (!updatePosition())
     {
       echo("ERROR: Can't update position.");
       return false;
@@ -106,17 +106,17 @@ namespace Doh3d
     return true;
   }
 
-  bool TextContainer::SetFont(const std::string& pFontName)
+  bool TextContainer::setFont(const std::string& pFontName)
   {
-    LOG("TextContainer::SetFont()");
+    LOG("TextContainer::setFont()");
 
-    if (!m_text.SetFont(pFontName))
+    if (!d_text.setFont(pFontName))
     {
       echo("ERROR: Can't set font.");
       return false;
     }
 
-    if (!UpdatePosition())
+    if (!updatePosition())
     {
       echo("ERROR: Can't update position.");
       return false;
@@ -125,13 +125,13 @@ namespace Doh3d
     return true;
   }
 
-  bool TextContainer::SetTextAlign(TextAlign pTextAlign)
+  bool TextContainer::setTextAlign(TextAlign pTextAlign)
   {
-    LOG("TextContainer::SetTextAlign()");
+    LOG("TextContainer::setTextAlign()");
 
-    m_textAlign = pTextAlign;
+    d_textAlign = pTextAlign;
 
-    if (!UpdatePosition())
+    if (!updatePosition())
     {
       echo("ERROR: Can't update position.");
       return false;

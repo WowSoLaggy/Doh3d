@@ -20,47 +20,49 @@ namespace Doh3d
 				const std::string& pTexNameSelected, const std::string& pTexNameDisabled);
 		virtual ~GButton();
 
-		virtual bool Load() override;
-		virtual bool Unload() override;
+		virtual bool load() override;
+		virtual bool unload() override;
 
-		virtual bool Draw(Sprite& pSprite) const override;
+		virtual bool draw(Sprite& pSprite) const override;
 
-		virtual bool SetOnClickEvent(std::function<void()> pEvent);
-		virtual bool SetText(const std::string& pText);
-		virtual bool SetFont(const std::string& pFontName);
+		virtual bool setOnClickEvent(std::function<void()> pEvent);
+		virtual bool setText(const std::string& pText);
+		virtual bool setFont(const std::string& pFontName);
 
-		virtual void Enable() { m_state = GStates::Normal; }
-		virtual void Disable() { m_state = GStates::Disabled; }
-		virtual void SetEnabled(bool pEnabled) { m_state = pEnabled ? GStates::Normal : GStates::Disabled; }
-		virtual bool IsEnabled() { return m_state != GStates::Disabled; }
+		virtual void enable() { d_state = GStates::Normal; }
+		virtual void disable() { d_state = GStates::Disabled; }
+		virtual void setEnabled(bool pEnabled) { d_state = pEnabled ? GStates::Normal : GStates::Disabled; }
+		virtual bool isEnabled() { return d_state != GStates::Disabled; }
 
 		// Handlers
 
-		virtual bool Click();
+		virtual bool click();
 
-		virtual bool OnMouseMove(bool& pHandled) override;
-		virtual bool OnMouseDown(bool& pHandled, int pButton) override;
-		virtual bool OnMouseUp(bool& pHandled, int pButton) override;
+		virtual bool onMouseMove(bool& pHandled) override;
+		virtual bool onMouseDown(bool& pHandled, int pButton) override;
+		virtual bool onMouseUp(bool& pHandled, int pButton) override;
 
 	protected:
 
-		std::string m_texNameNormal;
-		std::string m_texNamePressed;
-		std::string m_texNameSelected;
-		std::string m_texNameDisabled;
+		std::string d_texNameNormal;
+		std::string d_texNamePressed;
+		std::string d_texNameSelected;
+		std::string d_texNameDisabled;
 
-		int m_tiNormal;
-		int m_tiPressed;
-		int m_tiSelected;
-		int m_tiDisabled;
+		int d_tiNormal;
+		int d_tiPressed;
+		int d_tiSelected;
+		int d_tiDisabled;
 
-		GStates m_state;
+		GStates d_state;
 
-		std::function<void()> OnClickEvent;
+		TextContainer d_textContainer;
 
-		TextContainer m_textContainer;
 
-		virtual D3DXVECTOR2 GetOriginalSize() const override;
+		std::function<void()> onClickEvent;
+
+
+		virtual D3DXVECTOR2 getOriginalSize() const override;
 
 	};
 

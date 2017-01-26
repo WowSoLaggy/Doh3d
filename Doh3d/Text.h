@@ -14,36 +14,36 @@ namespace Doh3d
 		Text();
 		~Text();
 
-		int Width() const { return m_width; }
-		int Height() const { return m_height; }
+		int width() const { return d_width; }
+		int height() const { return d_height; }
 
-		bool HasText() const { return !m_text.empty(); }
-		LPDIRECT3DTEXTURE9 GetTexture() const { return m_texture; }
+		bool hasText() const { return !d_text.empty(); }
+		LPDIRECT3DTEXTURE9 getTexture() const { return d_texture; }
 
-		bool Load();
-    bool Unload();
+		bool load();
+    bool unload();
 
-    bool SetText(const std::string& pText);
-    bool SetFont(const std::string& pFont);
+    bool setText(const std::string& pText);
+    bool setFont(const std::string& pFont);
 
-		unsigned int GetTextLength() const { return m_text.length(); }
-		int GetCharOffset(int pPos) const { return m_charOffsets[pPos]; }
+		unsigned int getTextLength() const { return d_text.length(); }
+		int getCharOffset(int pPos) const { return d_charOffsets[pPos]; }
 
 	private:
 
-		bool m_loaded;
+		bool d_loaded;
 
-		int m_width;
-		int m_height;
+		int d_width;
+		int d_height;
 
-		std::string m_text;
-		std::string m_font;
+		std::string d_text;
+		std::string d_font;
 
-		LPDIRECT3DTEXTURE9 m_texture;
-		std::vector<int> m_charOffsets;
+		LPDIRECT3DTEXTURE9 d_texture;
+		std::vector<int> d_charOffsets;
 
-    bool CreateTexture();
-    bool DisposeTexture();
+    bool createTexture();
+    bool disposeTexture();
 	};
 
 } // ns Doh3d

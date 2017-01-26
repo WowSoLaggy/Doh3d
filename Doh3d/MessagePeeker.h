@@ -9,7 +9,7 @@ namespace Doh3d
 
 	// Peeks and translates the windows messages.
 	// Returns true if the WM_QUIT message aquired
-	bool WinPeekExit();
+	bool winPeekExit();
 
 } // ns Doh3d
 

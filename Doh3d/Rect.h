@@ -9,27 +9,25 @@ namespace Doh3d
 	namespace Geometry
 	{
 
-		struct Rect
+		class Rect
 		{
 		public:
 
 			Rect();
-
 			Rect(float pLeft, float pTop, float pRight, float pBottom);
 
 
-			float Left;
-			float Top;
-			float Right;
-			float Bottom;
+			bool containsPoint(float pX, float pY) const;
+			bool containsPoint(const D3DXVECTOR2& pPoint) const;
 
-
-			bool ContainsPoint(float pX, float pY) const;
-			bool ContainsPoint(const D3DXVECTOR2& pPoint) const;
-
-			bool ContainsRect(const Rect& pRect) const;
+			bool containsRect(const Rect& pRect) const;
 
 		public:
+
+      float d_left;
+      float d_top;
+      float d_right;
+      float d_bottom;
 
 			Rect operator + (const D3DXVECTOR2& pOffset) const;
 			Rect operator - (const D3DXVECTOR2& pOffset) const;

@@ -7,90 +7,90 @@ namespace Doh3d
 
   AnimationController::AnimationController()
   {
-    m_animationSet = nullptr;
-    m_currentAnimation = nullptr;
-    m_currentFrame = 0;
+    d_animationSet = nullptr;
+    d_currentAnimation = nullptr;
+    d_currentFrame = 0;
   }
 
 
-  void AnimationController::Update(float pDeltaTime)
+  void AnimationController::update(float pDeltaTime)
   {
-    if (!m_currentAnimation || m_repeats == 0)
+    if (!d_currentAnimation || d_repeats == 0)
       return;
 
-    m_animationTime += pDeltaTime;
-    while (m_animationTime >= m_currentAnimation->Interval)
+    d_animationTime += pDeltaTime;
+    while (d_animationTime >= d_currentAnimation->Interval)
     {
-      AdvanceFrame();
-      m_animationTime -= m_currentAnimation->Interval;
+      advanceFrame();
+      d_animationTime -= d_currentAnimation->Interval;
     }
   }
 
 
-  bool AnimationController::IsAnimationExist(const std::string& pAnimationName) const
+  bool AnimationController::isAnimationExist(const std::string& pAnimationName) const
   {
-    return (HasAnimationSet() && std::find_if(m_animationSet->Animations.begin(), m_animationSet->Animations.end(),
-                                              [&](const auto& anim) { return anim.Name == pAnimationName; }) != m_animationSet->Animations.end());
+    return (hasAnimationSet() && std::find_if(d_animationSet->Animations.begin(), d_animationSet->Animations.end(),
+                                              [&](const auto& anim) { return anim.Name == pAnimationName; }) != d_animationSet->Animations.end());
   }
 
-  bool AnimationController::PlayAnimation(const std::string& pAnimationName, int pRepeats)
+  bool AnimationController::playAnimation(const std::string& pAnimationName, int pRepeats)
   {
-    if (!HasAnimationSet())
+    if (!hasAnimationSet())
       return false;
 
-    auto& it = std::find_if(m_animationSet->Animations.begin(), m_animationSet->Animations.end(),
+    auto& it = std::find_if(d_animationSet->Animations.begin(), d_animationSet->Animations.end(),
                             [&](const auto& anim) { return anim.Name == pAnimationName; });
-    if (it == m_animationSet->Animations.end() || &(*it) == nullptr)
+    if (it == d_animationSet->Animations.end() || &(*it) == nullptr)
       return false;
 
-    m_currentAnimation = &(*it);
-    m_currentFrame = m_currentAnimation->BeginFrame - 1;
-    m_repeats = pRepeats;
-    m_animationTime = 0;
-    m_directOrder = (m_currentAnimation->EndFrame >= m_currentAnimation->BeginFrame);
+    d_currentAnimation = &(*it);
+    d_currentFrame = d_currentAnimation->BeginFrame - 1;
+    d_repeats = pRepeats;
+    d_animationTime = 0;
+    d_directOrder = (d_currentAnimation->EndFrame >= d_currentAnimation->BeginFrame);
 
     return true;
   }
 
-  void AnimationController::StopAnimation(bool pReset)
+  void AnimationController::stopAnimation(bool pReset)
   {
-    m_currentAnimation = nullptr;
+    d_currentAnimation = nullptr;
     if (pReset)
-      ResetAnimation();
+      resetAnimation();
   }
 
-  void AnimationController::ResetAnimation()
+  void AnimationController::resetAnimation()
   {
-    m_currentFrame = m_currentAnimation != nullptr ? m_currentAnimation->BeginFrame - 1 : 0;
+    d_currentFrame = d_currentAnimation != nullptr ? d_currentAnimation->BeginFrame - 1 : 0;
   }
 
 
-  void AnimationController::AdvanceFrame()
+  void AnimationController::advanceFrame()
   {
-    if (!m_currentAnimation)
+    if (!d_currentAnimation)
       return;
 
-    if (m_directOrder)
+    if (d_directOrder)
     {
-      if (m_currentFrame >= m_currentAnimation->EndFrame - 1)
+      if (d_currentFrame >= d_currentAnimation->EndFrame - 1)
       {
-        if (m_repeats != -1 && --m_repeats == 0)
+        if (d_repeats != -1 && --d_repeats == 0)
           return;
-        m_currentFrame = m_currentAnimation->BeginFrame - 1;
+        d_currentFrame = d_currentAnimation->BeginFrame - 1;
       }
       else
-        ++m_currentFrame;
+        ++d_currentFrame;
     }
     else
     {
-      if (m_currentFrame <= m_currentAnimation->EndFrame - 1)
+      if (d_currentFrame <= d_currentAnimation->EndFrame - 1)
       {
-        if (m_repeats != -1 && --m_repeats == 0)
+        if (d_repeats != -1 && --d_repeats == 0)
           return;
-        m_currentFrame = m_currentAnimation->BeginFrame - 1;
+        d_currentFrame = d_currentAnimation->BeginFrame - 1;
       }
       else
-        --m_currentFrame;
+        --d_currentFrame;
     }
   }
 

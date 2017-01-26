@@ -5,12 +5,12 @@
 namespace Doh3d
 {
 
-  bool Sprite::Begin()
+  bool Sprite::begin()
 	{
-		LOG("Sprite::Begin()");
+		LOG("Sprite::begin()");
 		HRESULT hRes;
 
-		hRes = m_sprite->Begin(0);
+		hRes = d_sprite->Begin(0);
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't begin sprite.");
@@ -20,12 +20,12 @@ namespace Doh3d
 		return true;
 	}
 
-  bool Sprite::End()
+  bool Sprite::end()
 	{
-		LOG("Sprite::End()");
+		LOG("Sprite::end()");
 		HRESULT hRes;
 
-		hRes = m_sprite->End();
+		hRes = d_sprite->End();
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't end sprite.");
@@ -36,12 +36,12 @@ namespace Doh3d
 	}
 
 
-  bool Sprite::Load()
+  bool Sprite::load()
 	{
-		LOG("Sprite::Load()");
+		LOG("Sprite::load()");
 		HRESULT hRes;
 
-		hRes = D3DXCreateSprite(RenderMan::GetRenderDevice(), &m_sprite);
+		hRes = D3DXCreateSprite(RenderMan::getRenderDevice(), &d_sprite);
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't create sprite.");
@@ -51,28 +51,28 @@ namespace Doh3d
 		return true;
 	}
 
-  bool Sprite::Unload()
+  bool Sprite::unload()
 	{
-		if (m_sprite != nullptr)
+		if (d_sprite != nullptr)
 		{
-			m_sprite->Release();
-			m_sprite = nullptr;
+			d_sprite->Release();
+			d_sprite = nullptr;
 		}
 
 		return true;
 	}
 
-  bool Sprite::Reload()
+  bool Sprite::reload()
 	{
-		LOG("Sprite::Reload()");
+		LOG("Sprite::reload()");
 
-		if (!Unload())
+		if (!unload())
 		{
 			echo("ERROR: Can't unload sprite.");
 			return false;
 		}
 
-    if (!Load())
+    if (!load())
 		{
 			echo("ERROR: Can't load sprite.");
 			return false;

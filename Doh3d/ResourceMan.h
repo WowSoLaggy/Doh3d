@@ -15,35 +15,35 @@ namespace Doh3d
 	{
 	public:
 
-		static bool Init();
-		static bool Dispose();
+		static bool init();
+		static bool dispose();
 
-		static bool LoadResources();
-		static bool UnloadResources();
-
-
-		static void SetTextureDir(const std::string& pTextureDir) { m_textureDir = pTextureDir; }
-		static void SetFontDir(const std::string& pFontDir) { m_fontDir = pFontDir; }
-		static const std::string& GetTextureDir() { return m_textureDir; }
-		static const std::string& GetFontDir() { return m_fontDir; }
+		static bool loadResources();
+		static bool unloadResources();
 
 
-		static Texture GetTexture(int pTi);
-		static bool GetTi(const std::string& pTextureName, int& pTi);
-		static bool CreateFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
+		static void setTextureDir(const std::string& pTextureDir) { d_textureDir = pTextureDir; }
+		static void setFontDir(const std::string& pFontDir) { d_fontDir = pFontDir; }
+		static const std::string& getTextureDir() { return d_textureDir; }
+		static const std::string& getFontDir() { return d_fontDir; }
+
+
+		static Texture getTexture(int pTi);
+		static bool getTi(const std::string& pTextureName, int& pTi);
+		static bool createFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
 										   int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets);
 
 	private:
 
-		static std::string m_textureDir;
-		static std::string m_fontDir;
+		static std::string d_textureDir;
+		static std::string d_fontDir;
 
-		static std::vector<Texture> m_textures;
-		static std::vector<RBitmapFont> m_fonts;
+		static std::vector<Texture> d_textures;
+		static std::vector<RBitmapFont> d_fonts;
 
 
-		static bool ParseTextureDir(const std::string& pDir);
-		static bool ParseFontDir(const std::string& pDir);
+		static bool parseTextureDir(const std::string& pDir);
+		static bool parseFontDir(const std::string& pDir);
 
 	};
 

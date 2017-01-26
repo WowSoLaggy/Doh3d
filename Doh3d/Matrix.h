@@ -11,7 +11,7 @@ namespace Doh3d
   {
   public:
 
-    static Matrix Identity();
+    static Matrix identity();
 
   };
 

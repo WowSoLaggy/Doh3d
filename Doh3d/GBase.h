@@ -24,52 +24,52 @@ namespace Doh3d
 
 		virtual ~GBase();
 
-		int Id() const { return m_id; }
+		int id() const { return d_id; }
 
-		virtual bool Load() PURE;
-		virtual bool Unload() PURE;
-		virtual bool Draw(Sprite& pSprite) const PURE;
+		virtual bool load() PURE;
+		virtual bool unload() PURE;
+		virtual bool draw(Sprite& pSprite) const PURE;
 
-		virtual bool SetSize(float pWidth, float pHeight);
-		virtual bool SetSize(const D3DXVECTOR2& pSize);
+		virtual bool setSize(float pWidth, float pHeight);
+		virtual bool setSize(const D3DXVECTOR2& pSize);
 
-		const D3DXVECTOR2& GetSize() const { return m_size; }
+		const D3DXVECTOR2& getSize() const { return d_size; }
 
 
-		bool& IsVisible() { return m_isVisible; }
-		const bool& IsVisible() const { return m_isVisible; }
+		bool& isVisible() { return d_isVisible; }
+		const bool& isVisible() const { return d_isVisible; }
 
-		D3DXVECTOR3& Position() { return m_position; }
-		const D3DXVECTOR3& Position() const { return m_position; }
+		D3DXVECTOR3& position() { return d_position; }
+		const D3DXVECTOR3& position() const { return d_position; }
 
 		// Handlers
 
-		virtual bool OnMouseMove(bool& pHandled);
-		virtual bool OnMouseDown(bool& pHandled, int pButton);
-		virtual bool OnMouseUp(bool& pHandled, int pButton);
+		virtual bool onMouseMove(bool& pHandled);
+		virtual bool onMouseDown(bool& pHandled, int pButton);
+		virtual bool onMouseUp(bool& pHandled, int pButton);
 
-		virtual bool OnKeyPressed(int pKey);
-		virtual bool OnKeyDown(int pKey);
-		virtual bool OnKeyUp(int pKey);
+		virtual bool onKeyPressed(int pKey);
+		virtual bool onKeyDown(int pKey);
+		virtual bool onKeyUp(int pKey);
 
 	protected:
 
 		GBase();
 
-		int m_id;
-		bool m_isVisible;
+		int d_id;
+		bool d_isVisible;
 
-		D3DXVECTOR3 m_position;
+		D3DXVECTOR3 d_position;
 
-		virtual D3DXVECTOR2 GetOriginalSize() const PURE;
-		virtual bool ContainsPoint(const D3DXVECTOR2& pPoint);
+		virtual D3DXVECTOR2 getOriginalSize() const PURE;
+		virtual bool containsPoint(const D3DXVECTOR2& pPoint);
 
-		D3DXMATRIX m_transformMatrix;
-    bool UpdateTransformMatrix();
+		D3DXMATRIX d_transformMatrix;
+    bool updateTransformMatrix();
 
 	private:
 
-		D3DXVECTOR2 m_size;
+		D3DXVECTOR2 d_size;
 
 	};
 

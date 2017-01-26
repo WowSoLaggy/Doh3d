@@ -17,23 +17,23 @@ namespace Doh3d
 		GPanel(float pPosX, float pPosY, float pSizeX, float pSizeY, const std::string& pTextureName);
 		virtual ~GPanel();
 
-		virtual bool Load() override;
-		virtual bool Unload() override;
+		virtual bool load() override;
+		virtual bool unload() override;
 
-		virtual bool Draw(Sprite& pSprite) const override;
+		virtual bool draw(Sprite& pSprite) const override;
 
 		// Handlers
 
-		virtual bool OnMouseMove(bool &pHandled) override;
-		virtual bool OnMouseDown(bool &pHandled, int pButton) override;
-		virtual bool OnMouseUp(bool &pHandled, int pButton) override;
+		virtual bool onMouseMove(bool &pHandled) override;
+		virtual bool onMouseDown(bool &pHandled, int pButton) override;
+		virtual bool onMouseUp(bool &pHandled, int pButton) override;
 
 	protected:
 
-		int m_tiMain;
-		std::string m_textureName;
+		int d_tiMain;
+		std::string d_textureName;
 
-		virtual D3DXVECTOR2 GetOriginalSize() const override;
+		virtual D3DXVECTOR2 getOriginalSize() const override;
 
 	};
 

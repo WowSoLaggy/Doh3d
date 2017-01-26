@@ -7,21 +7,22 @@
 namespace Doh3d
 {
 
+  // TODO: change to AlphaTexture that is inherited from the Texture class
 	class AlphaMap
 	{
 	public:
 
-		bool Init(bool pAlphaCheck, LPDIRECT3DTEXTURE9 pTexture);
+		bool init(bool pAlphaCheck, LPDIRECT3DTEXTURE9 pTexture);
 
-		bool Check(int pX, int pY) const;
+		bool check(int pX, int pY) const;
 
 	private:
 
-		int m_width;
-		int m_height;
+		int d_width;
+		int d_height;
 
-		bool m_solid;
-		std::vector<bool> m_mask;
+		bool d_solid;
+		std::vector<bool> d_mask;
 
 	};
 

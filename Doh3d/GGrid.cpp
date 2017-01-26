@@ -10,67 +10,67 @@ namespace Doh3d
 	{
 		LOG("GGrid::GGrid()");
 
-		m_position.x = roundf(pPosX);
-		m_position.y = roundf(pPosY);
-		m_position.z = 0;
+		d_position.x = roundf(pPosX);
+		d_position.y = roundf(pPosY);
+		d_position.z = 0;
 		
-		if (!SetSize(pSizeX, pSizeY))
+		if (!setSize(pSizeX, pSizeY))
 			echo("ERROR: Can't set size.");
 
-		m_textureName = pTextureName;
-		m_frameTextureName = pFrameTextureName;
-		m_ti = 0;
-		m_tiFrame = 0;
+		d_textureName = pTextureName;
+		d_frameTextureName = pFrameTextureName;
+		d_ti = 0;
+		d_tiFrame = 0;
 
-		m_numberOfCells = pNumberOfCells;
-		m_selectedCell = -1;
-		m_items.resize(pNumberOfCells, nullptr);
+		d_numberOfCells = pNumberOfCells;
+		d_selectedCell = -1;
+		d_items.resize(pNumberOfCells, nullptr);
 
-		OnSelectedItemChanged = nullptr;
+		onSelectedItemChanged = nullptr;
 	}
 	
 	GGrid::~GGrid() { }
 
 
-  bool GGrid::Load()
+  bool GGrid::load()
 	{
-		LOG("GGrid::Load()");
+		LOG("GGrid::load()");
 
-		if (!ResourceMan::GetTi(m_textureName, m_ti))
+		if (!ResourceMan::getTi(d_textureName, d_ti))
 		{
-			echo("ERROR: Can't get TI for GGrid (id: ", m_id, "): \"", m_textureName, "\".");
+			echo("ERROR: Can't get TI for GGrid (id: ", d_id, "): \"", d_textureName, "\".");
 			return false;
 		}
 
-		if (!ResourceMan::GetTi(m_frameTextureName, m_tiFrame))
+		if (!ResourceMan::getTi(d_frameTextureName, d_tiFrame))
 		{
-			echo("ERROR: Can't get TI for GGrid frame (id: ", m_id, "): \"", m_textureName, "\".");
+			echo("ERROR: Can't get TI for GGrid frame (id: ", d_id, "): \"", d_textureName, "\".");
 			return false;
 		}
 
-		if (!UpdateTransformMatrix())
+		if (!updateTransformMatrix())
 		{
-			echo("ERROR: Can't update TransformMatrix for GGrid (id: ", m_id, ").");
+			echo("ERROR: Can't update TransformMatrix for GGrid (id: ", d_id, ").");
 			return false;
 		}
 
 		return true;
 	}
 
-  bool GGrid::Unload()
+  bool GGrid::unload()
 	{
 		return true;
 	}
 
 
-  bool GGrid::Draw(Sprite& pSprite) const
+  bool GGrid::draw(Sprite& pSprite) const
 	{
-		LOG("GGrid::Draw()");
+		LOG("GGrid::draw()");
 		int hRes;
 
-		pSprite.Get()->SetTransform(&m_transformMatrix);
+		pSprite.get()->SetTransform(&d_transformMatrix);
 
-		hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_ti).Get(), &ResourceMan::GetTexture(m_ti).GetFrame(0), 0, &m_position, D3DCOLOR_ARGB(255, 255, 255, 255));
+		hRes = pSprite.get()->Draw(ResourceMan::getTexture(d_ti).get(), &ResourceMan::getTexture(d_ti).getFrame(0), 0, &d_position, D3DCOLOR_ARGB(255, 255, 255, 255));
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw sprite.");
@@ -79,10 +79,10 @@ namespace Doh3d
 
 		// Selection frame
 
-		if (m_selectedCell != -1)
+		if (d_selectedCell != -1)
 		{
-			D3DXVECTOR3 framePos = m_position + m_frameOffset + m_gridShift * (FLOAT)m_selectedCell;
-			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(m_tiFrame).Get(), &ResourceMan::GetTexture(m_tiFrame).GetFrame(0), 0, &(framePos), D3DCOLOR_ARGB(255, 255, 255, 255));
+			D3DXVECTOR3 framePos = d_position + d_frameOffset + d_gridShift * (FLOAT)d_selectedCell;
+			hRes = pSprite.get()->Draw(ResourceMan::getTexture(d_tiFrame).get(), &ResourceMan::getTexture(d_tiFrame).getFrame(0), 0, &(framePos), D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw sprite.");
@@ -93,15 +93,15 @@ namespace Doh3d
 		// Items
 
 		int cellNumber = -1;
-		for (auto* pItem : m_items)
+		for (auto* pItem : d_items)
 		{
 			++cellNumber;
 			if (!pItem) continue;
 
-			D3DXVECTOR3 framePos = m_position + m_gridOffset + m_gridShift * (FLOAT)cellNumber + m_itemSize2;
-			framePos.x -= ResourceMan::GetTexture(pItem->GetTi()).GetSize2().x;
-			framePos.y -= ResourceMan::GetTexture(pItem->GetTi()).GetSize2().y;
-			hRes = pSprite.Get()->Draw(ResourceMan::GetTexture(pItem->GetTi()).Get(), &ResourceMan::GetTexture(pItem->GetTi()).GetFrame(0), 0, &(framePos), D3DCOLOR_ARGB(255, 255, 255, 255));
+			D3DXVECTOR3 framePos = d_position + d_gridOffset + d_gridShift * (FLOAT)cellNumber + d_itemSize2;
+			framePos.x -= ResourceMan::getTexture(pItem->getTi()).getSize2().x;
+			framePos.y -= ResourceMan::getTexture(pItem->getTi()).getSize2().y;
+			hRes = pSprite.get()->Draw(ResourceMan::getTexture(pItem->getTi()).get(), &ResourceMan::getTexture(pItem->getTi()).getFrame(0), 0, &(framePos), D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
 				echo("ERROR: Can't draw sprite.");
@@ -113,39 +113,39 @@ namespace Doh3d
 	}
 
 
-  bool GGrid::OnMouseMove(bool& pHandled)
+  bool GGrid::onMouseMove(bool& pHandled)
 	{
-		LOG("GGrid::OnMouseMove()");
+		LOG("GGrid::onMouseMove()");
 
-		if (!GBase::OnMouseMove(pHandled))
+		if (!GBase::onMouseMove(pHandled))
 		{
-			echo("ERROR: Error occurred while GBase::OnMouseMove().");
+			echo("ERROR: Error occurred while GBase::onMouseMove().");
 			return false;
 		}
 
 		return true;
 	}
 
-  bool GGrid::OnMouseDown(bool& pHandled, int pButton)
+  bool GGrid::onMouseDown(bool& pHandled, int pButton)
 	{
-		LOG("GGrid::OnMouseDown()");
+		LOG("GGrid::onMouseDown()");
 
-		if (!GBase::OnMouseDown(pHandled, pButton))
+		if (!GBase::onMouseDown(pHandled, pButton))
 		{
-			echo("ERROR: Error occurred while GBase::OnMouseDown().");
+			echo("ERROR: Error occurred while GBase::onMouseDown().");
 			return false;
 		}
 
 		int cellNumber = -1;
-		for (auto* pItem : m_items)
+		for (auto* pItem : d_items)
 		{
 			++cellNumber;
 			if (!pItem) continue;
 
-			D3DXVECTOR3 itemTopLeft = m_position + m_gridOffset + m_gridShift * (FLOAT)cellNumber;
-			if (Geometry::Rect(itemTopLeft.x, itemTopLeft.y, itemTopLeft.x + m_itemSize.x, itemTopLeft.y + m_itemSize.y).ContainsPoint(InputMan::GetCursorPosition()))
+			D3DXVECTOR3 itemTopLeft = d_position + d_gridOffset + d_gridShift * (FLOAT)cellNumber;
+			if (Geometry::Rect(itemTopLeft.x, itemTopLeft.y, itemTopLeft.x + d_itemSize.x, itemTopLeft.y + d_itemSize.y).containsPoint(InputMan::getCursorPosition()))
 			{
-				SelectCell(cellNumber);
+				selectCell(cellNumber);
 				break;
 			}
 		}
@@ -153,13 +153,13 @@ namespace Doh3d
 		return true;
 	}
 
-  bool GGrid::OnMouseUp(bool& pHandled, int pButton)
+  bool GGrid::onMouseUp(bool& pHandled, int pButton)
 	{
-		LOG("GButton::OnMouseUp()");
+		LOG("GButton::onMouseUp()");
 
-		if (!GBase::OnMouseUp(pHandled, pButton))
+		if (!GBase::onMouseUp(pHandled, pButton))
 		{
-			echo("ERROR: Error occurred while GBase::OnMouseUp().");
+			echo("ERROR: Error occurred while GBase::onMouseUp().");
 			return false;
 		}
 
@@ -167,35 +167,35 @@ namespace Doh3d
 	}
 
 
-	D3DXVECTOR2 GGrid::GetOriginalSize() const
+	D3DXVECTOR2 GGrid::getOriginalSize() const
 	{
-		return ResourceMan::GetTexture(m_ti).GetSize();
+		return ResourceMan::getTexture(d_ti).getSize();
 	}
 
 
-	GridItem* GGrid::SelectCell(int pCellIndex)
+	GridItem* GGrid::selectCell(int pCellIndex)
 	{
-		if (pCellIndex < -1 || pCellIndex >= m_numberOfCells)
+		if (pCellIndex < -1 || pCellIndex >= d_numberOfCells)
 			return nullptr;
 
-		m_selectedCell = pCellIndex;
+		d_selectedCell = pCellIndex;
 
-		if (OnSelectedItemChanged != nullptr)
-			OnSelectedItemChanged();
+		if (onSelectedItemChanged != nullptr)
+			onSelectedItemChanged();
 
-		return GetSelectedItem();
+		return getSelectedItem();
 	}
 
-	GridItem* GGrid::GetItem(int pItemIndex)
+	GridItem* GGrid::getItem(int pItemIndex)
 	{
-		if (pItemIndex < 0 || pItemIndex >= (int)m_items.size())
+		if (pItemIndex < 0 || pItemIndex >= (int)d_items.size())
 			return nullptr;
-		return m_items[pItemIndex];
+		return d_items[pItemIndex];
 	}
 
-	GridItem* GGrid::GetSelectedItem()
+	GridItem* GGrid::getSelectedItem()
 	{
-		return m_selectedCell == -1 ? nullptr : m_items[m_selectedCell];
+		return d_selectedCell == -1 ? nullptr : d_items[d_selectedCell];
 	}
 
 } // ns Doh3d

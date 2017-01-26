@@ -7,13 +7,13 @@ namespace Doh3d
 
 	GText::GText(float pPosX, float pPosY, const std::string& pText, const std::string& pFontName)
 	{
-		m_position.x = roundf(pPosX);
-		m_position.y = roundf(pPosY);
-		m_position.z = 0;
-		SetSize(0, 0);
-		SetText(pText);
-		SetFont(pFontName);
-		m_textContainer.SetTextAlign(TextAlign::Left);
+		d_position.x = roundf(pPosX);
+		d_position.y = roundf(pPosY);
+		d_position.z = 0;
+		setSize(0, 0);
+		setText(pText);
+		setFont(pFontName);
+		d_textContainer.setTextAlign(TextAlign::Left);
 	}
 
 	GText::~GText()
@@ -21,56 +21,56 @@ namespace Doh3d
 	}
 
 
-  bool GText::Load()
+  bool GText::load()
 	{
-		LOG("GText::Load()");
+		LOG("GText::load()");
 
-		if (!m_textContainer.Load())
+		if (!d_textContainer.load())
 		{
-			echo("ERROR: Can't load TextContainer for GText (id: ", m_id, ").");
+			echo("ERROR: Can't load TextContainer for GText (id: ", d_id, ").");
 			return false;
 		}
 
-		if (!UpdateTransformMatrix())
+		if (!updateTransformMatrix())
 		{
-			echo("ERROR: Can't update TransformMatrix for GText (id: ", m_id, ").");
+			echo("ERROR: Can't update TransformMatrix for GText (id: ", d_id, ").");
 			return false;
 		}
 
-		if (!SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight()))
+		if (!setSize((float)d_textContainer.textWidth(), (float)d_textContainer.textHeight()))
 		{
-			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
+			echo("ERROR: Can't set size for GText (id: ", d_id, ").");
 			return false;
 		}
 
 		return true;
 	}
 
-  bool GText::Unload()
+  bool GText::unload()
 	{
-		LOG("GText::Unload()");
+		LOG("GText::unload()");
 
-		if (!m_textContainer.Unload())
+		if (!d_textContainer.unload())
 		{
-			echo("ERROR: Can't unload TextContainer for GText (id: ", m_id, ").");
+			echo("ERROR: Can't unload TextContainer for GText (id: ", d_id, ").");
 			return false;
 		}
 
 		return true;
 	}
 
-  bool GText::Draw(Sprite& pSprite) const
+  bool GText::draw(Sprite& pSprite) const
 	{
-		LOG("GText::Draw()");
+		LOG("GText::draw()");
 		int hRes;
 
-		pSprite.Get()->SetTransform(&m_transformMatrix);
-		if (m_textContainer.HasText())
+		pSprite.get()->SetTransform(&d_transformMatrix);
+		if (d_textContainer.hasText())
 		{
-			hRes = pSprite.Get()->Draw(m_textContainer.GetTexture(), 0, 0, &(m_position + m_textContainer.GetPosition()), D3DCOLOR_ARGB(255, 255, 255, 255));
+			hRes = pSprite.get()->Draw(d_textContainer.getTexture(), 0, 0, &(d_position + d_textContainer.getPosition()), D3DCOLOR_ARGB(255, 255, 255, 255));
 			if (hRes != S_OK)
 			{
-				echo("ERROR: Can't draw Text for GText (id: ", m_id, ").");
+				echo("ERROR: Can't draw Text for GText (id: ", d_id, ").");
 				return false;
 			}
 		}
@@ -78,43 +78,43 @@ namespace Doh3d
 		return true;
 	}
 
-	D3DXVECTOR2 GText::GetOriginalSize() const
+	D3DXVECTOR2 GText::getOriginalSize() const
 	{
-		return GetSize();
+		return getSize();
 	}
 
-  bool GText::SetText(const std::string& pText)
+  bool GText::setText(const std::string& pText)
 	{
-		LOG("GText::SetText()");
+		LOG("GText::setText()");
 
-		if (!m_textContainer.SetText(pText))
+		if (!d_textContainer.setText(pText))
 		{
 			echo("ERROR: Can't set text to TextContainer.");
 			return false;
 		}
 
-		if (!SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight()))
+		if (!setSize((float)d_textContainer.textWidth(), (float)d_textContainer.textHeight()))
 		{
-			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
+			echo("ERROR: Can't set size for GText (id: ", d_id, ").");
 			return false;
 		}
 
 		return true;
 	}
 
-  bool GText::SetFont(const std::string& pFontName)
+  bool GText::setFont(const std::string& pFontName)
 	{
-		LOG("GText::SetFont()");
+		LOG("GText::setFont()");
 
-		if (!m_textContainer.SetFont(pFontName))
+		if (!d_textContainer.setFont(pFontName))
 		{
-			echo("ERROR: Can't set font for GText (id: ", m_id, ").");
+			echo("ERROR: Can't set font for GText (id: ", d_id, ").");
 			return false;
 		}
 
-		if (!SetSize((float)m_textContainer.TextWidth(), (float)m_textContainer.TextHeight()))
+		if (!setSize((float)d_textContainer.textWidth(), (float)d_textContainer.textHeight()))
 		{
-			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
+			echo("ERROR: Can't set size for GText (id: ", d_id, ").");
 			return false;
 		}
 
@@ -122,17 +122,17 @@ namespace Doh3d
 	}
 
 
-  bool GText::SetSize(float pWidth, float pHeight)
+  bool GText::setSize(float pWidth, float pHeight)
 	{
-		LOG("GText::SetSize()");
+		LOG("GText::setSize()");
 
-		if (!GBase::SetSize(pWidth, pHeight))
+		if (!GBase::setSize(pWidth, pHeight))
 		{
-			echo("ERROR: Can't set size for GText (id: ", m_id, ").");
+			echo("ERROR: Can't set size for GText (id: ", d_id, ").");
 			return false;
 		}
 
-		if (!m_textContainer.SetBasisPosition(D3DXVECTOR3(0, pHeight / 2, 0)))
+		if (!d_textContainer.setBasisPosition(D3DXVECTOR3(0, pHeight / 2, 0)))
 		{
 			echo("ERROR: Can't set basis for TextContainer.");
 			return false;
@@ -141,9 +141,9 @@ namespace Doh3d
 		return true;
 	}
 
-  bool GText::SetSize(const D3DXVECTOR2& pSize)
+  bool GText::setSize(const D3DXVECTOR2& pSize)
 	{
-		return SetSize(pSize.x, pSize.y);
+		return setSize(pSize.x, pSize.y);
 	}
 
 } // ns Doh3d

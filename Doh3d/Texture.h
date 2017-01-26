@@ -15,36 +15,36 @@ namespace Doh3d
 	public:
 
 		Texture(const std::string& pFilePath, const D3DXVECTOR2& pSize, int pTotalFrames, bool pAlphaCheck)
-			: m_filePath(pFilePath), m_size(pSize), m_size2(pSize / 2), m_totalFrames(pTotalFrames), m_texture(nullptr), m_alphaCheck(pAlphaCheck) { }
+			: d_filePath(pFilePath), d_size(pSize), d_size2(pSize / 2), d_totalFrames(pTotalFrames), d_texture(nullptr), d_alphaCheck(pAlphaCheck) { }
 
 
-		const std::string& GetFilePath() const { return m_filePath; }
-		LPDIRECT3DTEXTURE9 Get() { return m_texture; }
-		const D3DXVECTOR2& GetSize() const { return m_size; }
-		const D3DXVECTOR2& GetSize2() const { return m_size2; }
+		const std::string& getFilePath() const { return d_filePath; }
+		LPDIRECT3DTEXTURE9 get() { return d_texture; }
+		const D3DXVECTOR2& getSize() const { return d_size; }
+		const D3DXVECTOR2& getSize2() const { return d_size2; }
 
-		RECT GetFrame(int pFrameNumber);
-
-
-		bool Load();
-    bool Unload();
+		RECT getFrame(int pFrameNumber);
 
 
-		bool HitTest(int pX, int pY, int pFrame) const;
-		bool HitTest(float pX, float pY, int pFrame) const;
-		bool HitTest(const D3DXVECTOR2& pCoords, int pFrame) const;
-		bool HitTest(const D3DXVECTOR3& pCoords, int pFrame) const;
+		bool load();
+    bool unload();
+
+
+		bool hitTest(int pX, int pY, int pFrame) const;
+		bool hitTest(float pX, float pY, int pFrame) const;
+		bool hitTest(const D3DXVECTOR2& pCoords, int pFrame) const;
+		bool hitTest(const D3DXVECTOR3& pCoords, int pFrame) const;
 
 	private:
 
-		std::string m_filePath;
-		D3DXVECTOR2 m_size;
-		D3DXVECTOR2 m_size2;
-		int m_totalFrames;
-		bool m_alphaCheck;
+		std::string d_filePath;
+		D3DXVECTOR2 d_size;
+		D3DXVECTOR2 d_size2;
+		int d_totalFrames;
+		bool d_alphaCheck;
 
-		AlphaMap m_alphaMap;
-		LPDIRECT3DTEXTURE9 m_texture;
+		AlphaMap d_alphaMap;
+		LPDIRECT3DTEXTURE9 d_texture;
 
 	};
 

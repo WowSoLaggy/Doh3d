@@ -8,33 +8,33 @@
 namespace Doh3d
 {
 
-	volatile bool InputMan::m_isCreated;
-	InputPars InputMan::m_inputPars;
-	D3DXVECTOR2 InputMan::m_cursorPosition;
+	volatile bool InputMan::d_isCreated;
+	InputPars InputMan::d_inputPars;
+	D3DXVECTOR2 InputMan::d_cursorPosition;
 
-	LPDIRECTINPUT8 InputMan::m_directInput;
-	LPDIRECTINPUTDEVICE8 InputMan::m_mouse;
-	LPDIRECTINPUTDEVICE8 InputMan::m_keyboard;
+	LPDIRECTINPUT8 InputMan::d_directInput;
+	LPDIRECTINPUTDEVICE8 InputMan::d_mouse;
+	LPDIRECTINPUTDEVICE8 InputMan::d_keyboard;
 
-	char InputMan::m_keysPrev[256];
-	char InputMan::m_keys[256];
-	DIMOUSESTATE InputMan::m_mouseState;
-	DIMOUSESTATE InputMan::m_mouseStatePrev;
+	char InputMan::d_keysPrev[256];
+	char InputMan::d_keys[256];
+	DIMOUSESTATE InputMan::d_mouseState;
+	DIMOUSESTATE InputMan::d_mouseStatePrev;
 
 
-  bool InputMan::Init()
+  bool InputMan::init()
 	{
-		m_isCreated = false;
+		d_isCreated = false;
 		return true;
 	}
 
-  bool InputMan::Dispose()
+  bool InputMan::dispose()
 	{
-		LOG("InputMan::Dispose()");
+		LOG("InputMan::dispose()");
 
-		m_isCreated = false;
+		d_isCreated = false;
 
-		if (!DisposeInputDevices())
+		if (!disposeInputDevices())
 		{
 			echo("ERROR: Can't dispose InputDevices.");
 			return false;
@@ -44,104 +44,105 @@ namespace Doh3d
 	}
 
 
-  bool InputMan::Recreate(const WinClass& pWinClass, const InputPars& pInputPars)
+  bool InputMan::recreate(const InputPars& pInputPars)
 	{
-		LOG("InputMan::Recreate()");
+		LOG("InputMan::recreate()");
 
-		m_inputPars = pInputPars;
+		d_inputPars = pInputPars;
 
-		if (!Dispose())
+		if (!dispose())
 		{
 			echo("ERROR: Can't dispose InputDevice.");
 			return false;
 		}
 
-		if (!CreateInputDevices(pWinClass))
+		if (!createInputDevices())
 		{
 			echo("ERROR: Can't create InputDevice.");
 			return false;
 		}
 
-		m_isCreated = true;
+		d_isCreated = true;
 		return true;
 	}
 
-  bool InputMan::CheckDevices()
+  bool InputMan::checkDevices()
 	{
-		LOG("InputMan::CheckDevices()");
+		LOG("InputMan::checkDevices()");
 		HRESULT hRes = 0;
 
 		// Mouse
 
-		memcpy(&m_mouseStatePrev, &m_mouseState, sizeof(m_mouseStatePrev));
+		memcpy(&d_mouseStatePrev, &d_mouseState, sizeof(d_mouseStatePrev));
 
-		hRes = m_mouse->GetDeviceState(sizeof(DIMOUSESTATE), &m_mouseState);
+		hRes = d_mouse->GetDeviceState(sizeof(DIMOUSESTATE), &d_mouseState);
 		if (hRes != DI_OK)
 		{
-			if (!AcquireMouse())
+			if (!acquireMouse())
 			{
 				echo("ERROR: Can't acquire mouse InputDevice.");
 				return false;
 			}
 		}
 
-		m_cursorPosition.x += (int)(m_mouseState.lX * m_inputPars.MouseSensX);
-		m_cursorPosition.y += (int)(m_mouseState.lY * m_inputPars.MouseSensY);
+		d_cursorPosition.x += (int)(d_mouseState.lX * d_inputPars.mouseSensX());
+		d_cursorPosition.y += (int)(d_mouseState.lY * d_inputPars.mouseSensY());
 
-		m_cursorPosition.x = m_cursorPosition.x < 0 ? 0 : m_cursorPosition.x > Screen::GetClientWidth() - 1 ? Screen::GetClientWidth() - 1 : m_cursorPosition.x;
-		m_cursorPosition.y = m_cursorPosition.y < 0 ? 0 : m_cursorPosition.y > Screen::GetClientHeight() - 1 ? Screen::GetClientHeight() - 1 : m_cursorPosition.y;
+		d_cursorPosition.x = d_cursorPosition.x < 0 ? 0 : d_cursorPosition.x > Screen::getClientWidth() - 1 ? Screen::getClientWidth() - 1 : d_cursorPosition.x;
+		d_cursorPosition.y = d_cursorPosition.y < 0 ? 0 : d_cursorPosition.y > Screen::getClientHeight() - 1 ? Screen::getClientHeight() - 1 : d_cursorPosition.y;
 
 		// Mouse move
 
-		if ((m_mouseState.lX != 0) || (m_mouseState.lY != 0))
+		if ((d_mouseState.lX != 0) || (d_mouseState.lY != 0))
 		{
-			if (m_inputPars.OnMouseMove != nullptr)
-				m_inputPars.OnMouseMove();
+			if (d_inputPars.onMouseMove() != nullptr)
+				d_inputPars.onMouseMove()();
 		}
 
 		// Mouse buttons
 
 		for (int i = MBUTTON_LEFT; i <= MBUTTON_RIGHT; ++i)
 		{
-			if ((m_mouseState.rgbButtons[i] & 0x80) && !(m_mouseStatePrev.rgbButtons[i] & 0x80))
+			if ((d_mouseState.rgbButtons[i] & 0x80) && !(d_mouseStatePrev.rgbButtons[i] & 0x80))
 			{
-				if (m_inputPars.OnMouseDown != nullptr)
-					m_inputPars.OnMouseDown(i);
+				if (d_inputPars.onMouseDown() != nullptr)
+					d_inputPars.onMouseDown()(i);
 			}
-			else if (!(m_mouseState.rgbButtons[i] & 0x80) && (m_mouseStatePrev.rgbButtons[i] & 0x80))
+			else if (!(d_mouseState.rgbButtons[i] & 0x80) && (d_mouseStatePrev.rgbButtons[i] & 0x80))
 			{
-				if (m_inputPars.OnMouseUp != nullptr)
-					m_inputPars.OnMouseUp(i);
+				if (d_inputPars.onMouseUp() != nullptr)
+					d_inputPars.onMouseUp()(i);
 			}
 		}
 
 		// Keyboard
 
-		memcpy(m_keysPrev, m_keys, sizeof(m_keys));
+		memcpy(d_keysPrev, d_keys, sizeof(d_keys));
 
-		hRes = m_keyboard->GetDeviceState(sizeof(m_keys), m_keys);
+		hRes = d_keyboard->GetDeviceState(sizeof(d_keys), d_keys);
 		if (hRes != DI_OK)
-			AcquireKeyboard();
+			acquireKeyboard();
 
 		for (int i = 0; i < KBUTTONS_MAX; ++i)
 		{
-			if ((m_keys[i] & 0x80) != 0)
+      // TODO: change this magic const 0x80 to const
+			if ((d_keys[i] & 0x80) != 0)
 			{
-				if ((m_keysPrev[i] & 0x80) == 0)
+				if ((d_keysPrev[i] & 0x80) == 0)
 				{
-					if (m_inputPars.OnKeyDown != nullptr)
-						m_inputPars.OnKeyDown(i);
+					if (d_inputPars.onKeyDown() != nullptr)
+						d_inputPars.onKeyDown()(i);
 				}
 
-				if (m_inputPars.OnKeyPressed != nullptr)
-					m_inputPars.OnKeyPressed(i);
+				if (d_inputPars.onKeyPressed() != nullptr)
+					d_inputPars.onKeyPressed()(i);
 			}
 			else
 			{
-				if ((m_keysPrev[i] & 0x80) != 0)
+				if ((d_keysPrev[i] & 0x80) != 0)
 				{
-					if (m_inputPars.OnKeyUp != nullptr)
-						m_inputPars.OnKeyUp(i);
+					if (d_inputPars.onKeyUp() != nullptr)
+						d_inputPars.onKeyUp()(i);
 				}
 			}
 		}
@@ -150,112 +151,112 @@ namespace Doh3d
 	}
 
 
-  bool InputMan::CreateInputDevices(const WinClass& pWinClass)
+  bool InputMan::createInputDevices()
 	{
-		LOG("InputMan::CreateInputDevices()");
+		LOG("InputMan::createInputDevices()");
 		int res = 0;
 
-		res = DirectInput8Create(pWinClass.startupPars().hInstance, DIRECTINPUT_VERSION,
-								 IID_IDirectInput8, (void **)&m_directInput, NULL);
-		if ((res != DI_OK) || (m_directInput == nullptr))
+		res = DirectInput8Create(WinClass::startupPars().hInstance, DIRECTINPUT_VERSION,
+								 IID_IDirectInput8, (void **)&d_directInput, NULL);
+		if ((res != DI_OK) || (d_directInput == nullptr))
 		{
 			echo("ERROR: Can't create DirectInput.");
 			return false;
 		}
 
-		res = m_directInput->CreateDevice(GUID_SysMouse, &m_mouse, NULL);
-		if ((res != DI_OK) || (m_mouse == nullptr))
+		res = d_directInput->CreateDevice(GUID_SysMouse, &d_mouse, NULL);
+		if ((res != DI_OK) || (d_mouse == nullptr))
 		{
 			echo("ERROR: Cat't create mouse InputDevice");
 			return false;
 		}
 
-		m_mouse->SetDataFormat(&c_dfDIMouse);
-		m_mouse->SetCooperativeLevel(RenderMan::GetHWindow(), DISCL_FOREGROUND | DISCL_EXCLUSIVE);
+		d_mouse->SetDataFormat(&c_dfDIMouse);
+		d_mouse->SetCooperativeLevel(RenderMan::getHWindow(), DISCL_FOREGROUND | DISCL_EXCLUSIVE);
 
-		if (!AcquireMouse())
+		if (!acquireMouse())
 		{
 			echo("ERROR: Can't acquire mouse device.");
 			return false;
 		}
 
-		res = m_directInput->CreateDevice(GUID_SysKeyboard, &m_keyboard, NULL);
-		if ((res != DI_OK) || (m_keyboard == nullptr))
+		res = d_directInput->CreateDevice(GUID_SysKeyboard, &d_keyboard, NULL);
+		if ((res != DI_OK) || (d_keyboard == nullptr))
 		{
 			echo("ERROR: Can't create keyboard InputDevice.");
 			return false;
 		}
 
-		m_keyboard->SetDataFormat(&c_dfDIKeyboard);
-		m_keyboard->SetCooperativeLevel(RenderMan::GetHWindow(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+		d_keyboard->SetDataFormat(&c_dfDIKeyboard);
+		d_keyboard->SetCooperativeLevel(RenderMan::getHWindow(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
 
-		if (!AcquireKeyboard())
+		if (!acquireKeyboard())
 		{
 			echo("ERROR: Can't acquire mouse device.");
 			return false;
 		}
 
-		m_cursorPosition = Screen::GetClientCenter();
+		d_cursorPosition = Screen::getClientCenter();
 
 		return true;
 	}
 
-  bool InputMan::DisposeInputDevices()
+  bool InputMan::disposeInputDevices()
 	{
-		if (m_mouse != nullptr)
+		if (d_mouse != nullptr)
 		{
-			m_mouse->Unacquire();
-			m_mouse->Release();
-			m_mouse = nullptr;
+			d_mouse->Unacquire();
+			d_mouse->Release();
+			d_mouse = nullptr;
 		}
 
-		if (m_keyboard != nullptr)
+		if (d_keyboard != nullptr)
 		{
-			m_keyboard->Unacquire();
-			m_keyboard->Release();
-			m_keyboard = nullptr;
+			d_keyboard->Unacquire();
+			d_keyboard->Release();
+			d_keyboard = nullptr;
 		}
 
-		if (m_directInput != nullptr)
+		if (d_directInput != nullptr)
 		{
-			m_directInput->Release();
-			m_directInput = nullptr;
+			d_directInput->Release();
+			d_directInput = nullptr;
 		}
 
 		return true;
 	}
 
-  bool InputMan::AcquireMouse()
+  bool InputMan::acquireMouse()
 	{
-		m_mouse->Acquire();
-		ZeroMemory(&m_mouseState, sizeof(m_mouseState));
-		ZeroMemory(&m_mouseStatePrev, sizeof(m_mouseStatePrev));
+		d_mouse->Acquire();
+		ZeroMemory(&d_mouseState, sizeof(d_mouseState));
+		ZeroMemory(&d_mouseStatePrev, sizeof(d_mouseStatePrev));
 
 		return true;
 	}
 
-  bool InputMan::AcquireKeyboard()
+  bool InputMan::acquireKeyboard()
 	{
-		m_keyboard->Acquire();
-		ZeroMemory(m_keys, sizeof(m_keys));
+		d_keyboard->Acquire();
+		ZeroMemory(d_keys, sizeof(d_keys));
 
 		return true;
 	}
 
 
-	bool InputMan::IsShift()
+	bool InputMan::isShift()
 	{
-		return ((m_keys[DIK_LSHIFT] & 0x80) || (m_keys[DIK_RSHIFT] & 0x80));
+		return ((d_keys[DIK_LSHIFT] & 0x80) || (d_keys[DIK_RSHIFT] & 0x80));
 	}
 
-	bool InputMan::IsCtrl()
+	bool InputMan::isCtrl()
 	{
-		return ((m_keys[DIK_LCONTROL] & 0x80) || (m_keys[DIK_RCONTROL] & 0x80));
+		return ((d_keys[DIK_LCONTROL] & 0x80) || (d_keys[DIK_RCONTROL] & 0x80));
 	}
 
-	bool InputMan::IsAlt()
+	bool InputMan::isAlt()
 	{
-		return ((m_keys[DIK_LALT] & 0x80) || (m_keys[DIK_RALT] & 0x80));
+		return ((d_keys[DIK_LALT] & 0x80) || (d_keys[DIK_RALT] & 0x80));
 	}
 
 } // Doh3d

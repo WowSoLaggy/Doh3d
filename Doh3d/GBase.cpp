@@ -9,10 +9,10 @@ namespace Doh3d
 
 	GBase::GBase()
 	{
-		static int m_nextId = 0;
-		m_id = m_nextId++;
+		static int nextId = 0;
+		d_id = nextId++;
 
-		m_isVisible = true;
+		d_isVisible = true;
 	}
 
 	GBase::~GBase()
@@ -20,83 +20,83 @@ namespace Doh3d
 	}
 
 
-  bool GBase::UpdateTransformMatrix()
+  bool GBase::updateTransformMatrix()
 	{
-		D3DXVECTOR2 sizeOrig = GetOriginalSize();
-		D3DXVECTOR2 scaleCenter(m_position.x, m_position.y);
+		D3DXVECTOR2 sizeOrig = getOriginalSize();
+		D3DXVECTOR2 scaleCenter(d_position.x, d_position.y);
 
 		D3DXVECTOR2 scale;
-		if ((m_size.x <= 0) || (m_size.y <= 0))
+		if ((d_size.x <= 0) || (d_size.y <= 0))
 		{
-			m_size.x = sizeOrig.x;
-			m_size.y = sizeOrig.y;
+			d_size.x = sizeOrig.x;
+			d_size.y = sizeOrig.y;
 			scale = D3DXVECTOR2(1, 1);
 		}
 		else
-			scale = D3DXVECTOR2(m_size.x / sizeOrig.x, m_size.y / sizeOrig.y);
+			scale = D3DXVECTOR2(d_size.x / sizeOrig.x, d_size.y / sizeOrig.y);
 
-		D3DXMatrixTransformation2D(&m_transformMatrix, &scaleCenter, 0, &scale, 0, 0, 0);
+		D3DXMatrixTransformation2D(&d_transformMatrix, &scaleCenter, 0, &scale, 0, 0, 0);
 
 		return true;
 	}
 
 
-  bool GBase::OnMouseMove(bool& pHandled)
+  bool GBase::onMouseMove(bool& pHandled)
 	{
-		if (ContainsPoint(InputMan::GetCursorPosition()))
+		if (containsPoint(InputMan::getCursorPosition()))
 			pHandled = true;
 
 		return true;
 	}
 
-  bool GBase::OnMouseDown(bool& pHandled, int pButton)
+  bool GBase::onMouseDown(bool& pHandled, int pButton)
 	{
-		if (ContainsPoint(InputMan::GetCursorPosition()))
+		if (containsPoint(InputMan::getCursorPosition()))
 			pHandled = true;
 
 		return true;
 	}
 
-  bool GBase::OnMouseUp(bool& pHandled, int pButton)
+  bool GBase::onMouseUp(bool& pHandled, int pButton)
 	{
-		if (ContainsPoint(InputMan::GetCursorPosition()))
+		if (containsPoint(InputMan::getCursorPosition()))
 			pHandled = true;
 
 		return true;
 	}
 
-  bool GBase::OnKeyPressed(int pKey)
+  bool GBase::onKeyPressed(int pKey)
 	{
 		return true;
 	}
 
-  bool GBase::OnKeyDown(int pKey)
+  bool GBase::onKeyDown(int pKey)
 	{
 		return true;
 	}
 
-  bool GBase::OnKeyUp(int pKey)
+  bool GBase::onKeyUp(int pKey)
 	{
 		return true;
 	}
 
 
-	bool GBase::ContainsPoint(const D3DXVECTOR2& pPoint)
+	bool GBase::containsPoint(const D3DXVECTOR2& pPoint)
 	{
-		return Geometry::Rect(m_position.x, m_position.y, m_position.x + m_size.x, m_position.y + m_size.y).ContainsPoint(pPoint);
+		return Geometry::Rect(d_position.x, d_position.y, d_position.x + d_size.x, d_position.y + d_size.y).containsPoint(pPoint);
 	}
 
 
-  bool GBase::SetSize(float pWidth, float pHeight)
+  bool GBase::setSize(float pWidth, float pHeight)
 	{
-		m_size.x = pWidth;
-		m_size.y = pHeight;
+		d_size.x = pWidth;
+		d_size.y = pHeight;
 		return true;
 	}
 
-  bool GBase::SetSize(const D3DXVECTOR2& pSize)
+  bool GBase::setSize(const D3DXVECTOR2& pSize)
 	{
-		return SetSize(pSize.x, pSize.y);
+		return setSize(pSize.x, pSize.y);
 	}
 
 } // ns Doh3d

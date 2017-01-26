@@ -11,8 +11,8 @@ namespace Doh3d
 	{
 	public:
 
-		static bool BeginScene();
-		static bool EndScene();
+		static bool beginScene();
+		static bool endScene();
 
 	};
 

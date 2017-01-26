@@ -5,7 +5,7 @@
 namespace Doh3d
 {
 
-	bool WinPeekExit()
+	bool winPeekExit()
 	{
 		MSG msg;
 		UINT res = 0;

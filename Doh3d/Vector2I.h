@@ -21,8 +21,8 @@ namespace Doh3d
     const int& y() const { return d_y; }
 
 
-    static Vector2I Empty();
-    static Vector2I Identity();
+    static Vector2I empty();
+    static Vector2I identity();
 
 
   private:

@@ -10,61 +10,61 @@ namespace Doh3d
 
 	RBitmapFont::RBitmapFont(const std::string& pFontName)
 	{
-		m_fontName = pFontName;
-		m_charsetPath = "";
-		m_charsetTexture = nullptr;
+		d_fontName = pFontName;
+		d_charsetPath = "";
+		d_charsetTexture = nullptr;
 	}
 
 	RBitmapFont::~RBitmapFont()
 	{
 	}
 
-  bool RBitmapFont::Load()
+  bool RBitmapFont::load()
 	{
-		LOG("BFont::Load()");
+		LOG("BFont::load()");
 		int hRes;
 
 		// Parse .fnt file
 
 		std::string fntPath = "";
-		fntPath.append(ResourceMan::GetFontDir()).append(m_fontName);
-		if (!ParseFntFile(fntPath))
+		fntPath.append(ResourceMan::getFontDir()).append(d_fontName);
+		if (!parseFntFile(fntPath))
 		{
 			echo("ERROR: Can't parse .fnt file: \"", fntPath, "\".");
 			return false;
 		}
 
-		m_charsetPath.insert(0, ResourceMan::GetFontDir());
+		d_charsetPath.insert(0, ResourceMan::getFontDir());
 
 		// Read texture
 
-		hRes = D3DXCreateTextureFromFileEx(RenderMan::GetRenderDevice(), m_charsetPath.c_str(),
-										   D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT, 0, D3DFMT_UNKNOWN, D3DPOOL_SYSTEMMEM, D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, &m_charsetTexture);
+		hRes = D3DXCreateTextureFromFileEx(RenderMan::getRenderDevice(), d_charsetPath.c_str(),
+										   D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT, 0, D3DFMT_UNKNOWN, D3DPOOL_SYSTEMMEM, D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, &d_charsetTexture);
 		if (hRes != S_OK)
 		{
-			echo("ERROR: Can't create texture for font: \"", m_fontName, "\".");
+			echo("ERROR: Can't create texture for font: \"", d_fontName, "\".");
 			return false;
 		}
 
 		return true;
 	}
 
-  bool RBitmapFont::Unload()
+  bool RBitmapFont::unload()
 	{
-		if (m_charsetTexture != nullptr)
+		if (d_charsetTexture != nullptr)
 		{
-			m_charsetTexture->Release();
-			m_charsetTexture = nullptr;
+			d_charsetTexture->Release();
+			d_charsetTexture = nullptr;
 		}
 
-		std::vector<BitmapChar>().swap(m_chars);
+		std::vector<BitmapChar>().swap(d_chars);
 
 		return true;
 	}
 
-  bool RBitmapFont::GetFontTexture(const std::string& pText, LPDIRECT3DTEXTURE9& pTexture, int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets)
+  bool RBitmapFont::getFontTexture(const std::string& pText, LPDIRECT3DTEXTURE9& pTexture, int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets)
 	{
-		LOG("BFont::GetFontTexture()");
+		LOG("BFont::getFontTexture()");
 		int hRes;
 
 		if (pText.empty())
@@ -76,21 +76,21 @@ namespace Doh3d
 		// Get overall text width and height
 
 		pTexWidth = 0;
-		pTexHeight = m_lineHeight;
+		pTexHeight = d_lineHeight;
 
 		for (unsigned int i = 0; i < pText.size(); ++i)
 		{
-			if (m_chars[pText[i]].Width > (m_chars[pText[i]].AdvanceX - m_chars[pText[i]].OffsetX * 2))
-				pTexWidth += m_chars[pText[i]].Width;
+			if (d_chars[pText[i]].Width > (d_chars[pText[i]].AdvanceX - d_chars[pText[i]].OffsetX * 2))
+				pTexWidth += d_chars[pText[i]].Width;
 			else
-				pTexWidth += m_chars[pText[i]].AdvanceX - m_chars[pText[i]].OffsetX * 2;
+				pTexWidth += d_chars[pText[i]].AdvanceX - d_chars[pText[i]].OffsetX * 2;
 		}
 
 		// Create an empty texture for the new text
 
 		D3DSURFACE_DESC desc;
-		m_charsetTexture->GetLevelDesc(0, &desc);	// Get description to get format
-		hRes = D3DXCreateTexture(RenderMan::GetRenderDevice(), pTexWidth, pTexHeight, D3DX_DEFAULT, 0, desc.Format, D3DPOOL_DEFAULT, &pTexture);
+		d_charsetTexture->GetLevelDesc(0, &desc);	// Get description to get format
+		hRes = D3DXCreateTexture(RenderMan::getRenderDevice(), pTexWidth, pTexHeight, D3DX_DEFAULT, 0, desc.Format, D3DPOOL_DEFAULT, &pTexture);
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't create font texture.");
@@ -100,7 +100,7 @@ namespace Doh3d
 		// Get surfaces from textures
 
 		LPDIRECT3DSURFACE9 surfSrc;
-		hRes = m_charsetTexture->GetSurfaceLevel(0, &surfSrc);
+		hRes = d_charsetTexture->GetSurfaceLevel(0, &surfSrc);
 		if (hRes != D3D_OK)
 		{
 			echo("ERROR: Can't get surface level for charset texture.");
@@ -125,33 +125,33 @@ namespace Doh3d
 		pCharOffsets[0] = 0;
 		for (unsigned int i = 0; i < pText.size(); ++i)
 		{
-			rectSrc.left = m_chars[pText[i]].X;
-			rectSrc.right = m_chars[pText[i]].X + m_chars[pText[i]].Width;
-			rectSrc.top = m_chars[pText[i]].Y;
-			rectSrc.bottom = m_chars[pText[i]].Y + m_chars[pText[i]].Height;
+			rectSrc.left = d_chars[pText[i]].X;
+			rectSrc.right = d_chars[pText[i]].X + d_chars[pText[i]].Width;
+			rectSrc.top = d_chars[pText[i]].Y;
+			rectSrc.bottom = d_chars[pText[i]].Y + d_chars[pText[i]].Height;
 
 			curPosOffset.x = curPos.x;// +m_chars[pText[i]].OffsetX;
-			curPosOffset.y = curPos.y + m_chars[pText[i]].OffsetY;
-			hRes = RenderMan::GetRenderDevice()->UpdateSurface(surfSrc, &rectSrc, surfDest, &curPosOffset);
+			curPosOffset.y = curPos.y + d_chars[pText[i]].OffsetY;
+			hRes = RenderMan::getRenderDevice()->UpdateSurface(surfSrc, &rectSrc, surfDest, &curPosOffset);
 			if (hRes != D3D_OK)
 			{
 				echo("ERROR: Can't update surface.");
 				return false;
 			}
 
-			curPos.x += m_chars[pText[i]].AdvanceX - m_chars[pText[i]].OffsetX * 2;
+			curPos.x += d_chars[pText[i]].AdvanceX - d_chars[pText[i]].OffsetX * 2;
 			pCharOffsets[i + 1] = curPos.x;
 		}
 
 		return true;
 	}
 
-  bool RBitmapFont::ParseFntFile(const std::string& pFntPath)
+  bool RBitmapFont::parseFntFile(const std::string& pFntPath)
 	{
-		LOG("BFont::ParseFntFile()");
+		LOG("BFont::parseFntFile()");
 		int res;
 
-		std::vector<BitmapChar>().swap(m_chars);
+		std::vector<BitmapChar>().swap(d_chars);
 
 		const int tmpLength = 256;
 		int iTmp;
@@ -169,7 +169,7 @@ namespace Doh3d
 
 		// Get line height and base
 		std::getline(f, line);
-		res = sscanf_s(line.c_str(), "common lineHeight=%d base=%d", &m_lineHeight, &m_lineBase);
+		res = sscanf_s(line.c_str(), "common lineHeight=%d base=%d", &d_lineHeight, &d_lineBase);
 		if (res != 2)
 		{
 			echo("ERROR: Can't parse .fnt file: line with line height.");
@@ -185,11 +185,11 @@ namespace Doh3d
 			return false;
 		}
 
-		m_charsetPath = std::string(cTmp);
-		if (m_charsetPath[m_charsetPath.size() - 1] == '\"')
+		d_charsetPath = std::string(cTmp);
+		if (d_charsetPath[d_charsetPath.size() - 1] == '\"')
 		{
 			// Because we can't parse only filename without stupid enclosing \" symbols
-			m_charsetPath.erase(m_charsetPath.size() - 1);
+			d_charsetPath.erase(d_charsetPath.size() - 1);
 		}
 
 		std::getline(f, line);
@@ -201,7 +201,7 @@ namespace Doh3d
 			echo("ERROR: Can't parse .fnt file: line with chars count.");
 			return false;
 		}
-		m_chars.reserve(charCount < 100 ? 100 : charCount);
+		d_chars.reserve(charCount < 100 ? 100 : charCount);
 
 		for (int i = 0; i < charCount; ++i)
 		{
@@ -214,17 +214,17 @@ namespace Doh3d
 				echo("ERROR: Can't parse .fnt file: char line with index: \"", i, "\".");
 				return false;
 			}
-			if (m_chars.size() <= (unsigned int)id)
-				m_chars.resize(id + 1);
+			if (d_chars.size() <= (unsigned int)id)
+				d_chars.resize(id + 1);
 
-			m_chars[id].Id = id;
-			m_chars[id].X = x;
-			m_chars[id].Y = y;
-			m_chars[id].Width = w;
-			m_chars[id].Height = h;
-			m_chars[id].OffsetX = ox;
-			m_chars[id].OffsetY = oy;
-			m_chars[id].AdvanceX = ax;
+			d_chars[id].Id = id;
+			d_chars[id].X = x;
+			d_chars[id].Y = y;
+			d_chars[id].Width = w;
+			d_chars[id].Height = h;
+			d_chars[id].OffsetX = ox;
+			d_chars[id].OffsetY = oy;
+			d_chars[id].AdvanceX = ax;
 		}
 
 		f.close();

@@ -8,60 +8,60 @@
 namespace Doh3d
 {
 
-	bool RenderMan::m_isCreated = false;
-	RenderPars RenderMan::m_renderPars;
+	bool RenderMan::d_isCreated = false;
+	RenderPars RenderMan::d_renderPars;
 
-	HWND RenderMan::m_hWindow;
-	LPDIRECT3D9 RenderMan::m_direct3d;
-	D3DPRESENT_PARAMETERS RenderMan::m_presentPars;
-	D3DCAPS9 RenderMan::m_caps;
-	LPDIRECT3DDEVICE9 RenderMan::m_renderDevice;
-	LPDIRECT3DSURFACE9 RenderMan::m_defaultRenderTarget;
-	D3DSURFACE_DESC RenderMan::m_defaultRenderTargetDesc;
+	HWND RenderMan::d_hWindow;
+	LPDIRECT3D9 RenderMan::d_direct3d;
+	D3DPRESENT_PARAMETERS RenderMan::d_presentPars;
+	D3DCAPS9 RenderMan::d_caps;
+	LPDIRECT3DDEVICE9 RenderMan::d_renderDevice;
+	LPDIRECT3DSURFACE9 RenderMan::d_defaultRenderTarget;
+	D3DSURFACE_DESC RenderMan::d_defaultRenderTargetDesc;
 
 
-  bool RenderMan::Recreate(const WinClass& pWinClass, const RenderPars& pRenderPars)
+  bool RenderMan::recreate(const RenderPars& pRenderPars, const std::string& pWindowCaption)
 	{
-		LOG("RenderMan::Recreate()");
+		LOG("RenderMan::recreate()");
 
-		m_renderPars = pRenderPars;
+		d_renderPars = pRenderPars;
 
-		if (!Dispose())
+		if (!dispose())
 		{
 			echo("ERROR: Can't dispose RenderMan.");
 			return false;
 		}
 
-		if (!CreateWnd(pWinClass))
+		if (!createWnd(pWindowCaption))
 		{
 			echo("ERROR: Can't create Wnd.");
 			return false;
 		}
 
-		if (!CreateRenderDevice())
+		if (!createRenderDevice())
 		{
 			echo("ERROR: Can't create RenderDevice.");
 			return false;
 		}
 
-		m_isCreated = true;
+		d_isCreated = true;
 		return true;
 	}
 
 
-  bool RenderMan::Dispose()
+  bool RenderMan::dispose()
 	{
-		LOG("RenderMan::Dispose()");
+		LOG("RenderMan::dispose()");
 
-		m_isCreated = false;
+		d_isCreated = false;
 
-		if (!DisposeRenderDevice())
+		if (!disposeRenderDevice())
 		{
 			echo("ERROR: Can't dispose RenderDevice.");
 			return false;
 		}
 
-		if (!DisposeWnd())
+		if (!disposeWnd())
 		{
 			echo("ERROR: Can't dispose Wnd.");
 			return false;
@@ -71,106 +71,106 @@ namespace Doh3d
 	}
 
 
-  bool RenderMan::CreateWnd(const WinClass& pWinClass)
+  bool RenderMan::createWnd(const std::string& pWindowCaption)
 	{
-		LOG("RDManager::CreateWnd()");
+		LOG("RDManager::createWnd()");
 
 		// Create window
 
 		DWORD dwStyle = WS_VISIBLE | WS_POPUP;
-		if (m_renderPars.WndCaption)
+		if (d_renderPars.hasBorder())
 			dwStyle |= WS_CAPTION | WS_SYSMENU;
 
-		m_hWindow = CreateWindowEx(0, pWinClass.applicationName().c_str(), pWinClass.applicationName().c_str(), dwStyle,
-								   (Screen::GetDesktopWidth() - m_renderPars.ResolutionWidth) / 2, (Screen::GetDesktopHeight() - m_renderPars.ResolutionHeight) / 2,
-								   m_renderPars.ResolutionWidth, m_renderPars.ResolutionHeight,
-								   nullptr, nullptr, pWinClass.startupPars().hInstance, nullptr);
-		if (m_hWindow == nullptr)
+		d_hWindow = CreateWindowEx(0, pWindowCaption.c_str(), pWindowCaption.c_str(), dwStyle,
+								   (Screen::getDesktopWidth() - d_renderPars.resolutionWidth()) / 2, (Screen::getDesktopHeight() - d_renderPars.resolutionHeight()) / 2,
+								   d_renderPars.resolutionWidth(), d_renderPars.resolutionHeight(),
+								   nullptr, nullptr, WinClass::startupPars().hInstance, nullptr);
+		if (d_hWindow == nullptr)
 		{
 			echo("ERROR: Can't create window.");
 			return false;
 		}
 
-		ShowWindow(m_hWindow, pWinClass.startupPars().nCmdShow);
-		UpdateWindow(m_hWindow);
+		ShowWindow(d_hWindow, WinClass::startupPars().nCmdShow);
+		UpdateWindow(d_hWindow);
 
 		return true;
 	}
 
-  bool RenderMan::DisposeWnd()
+  bool RenderMan::disposeWnd()
 	{
-		if (m_hWindow != nullptr)
+		if (d_hWindow != nullptr)
 		{
-			DestroyWindow(m_hWindow);
-			m_hWindow = nullptr;
+			DestroyWindow(d_hWindow);
+			d_hWindow = nullptr;
 		}
 
 		return true;
 	}
 
 
-  bool RenderMan::CreateRenderDevice()
+  bool RenderMan::createRenderDevice()
 	{
-		LOG("RenderMan::CreateRenderDevice()");
+		LOG("RenderMan::createRenderDevice()");
 		int res = 0;
 
-		m_direct3d = Direct3DCreate9(D3D_SDK_VERSION);
-		if (m_direct3d == nullptr)
+		d_direct3d = Direct3DCreate9(D3D_SDK_VERSION);
+		if (d_direct3d == nullptr)
 		{
 			echo("ERROR: Can't create Direct3D.");
 			return false;
 		}
 
-		m_direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &m_caps);
+		d_direct3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &d_caps);
 
-		ZeroMemory(&m_presentPars, sizeof(m_presentPars));
-		m_presentPars.EnableAutoDepthStencil = true;
-		m_presentPars.AutoDepthStencilFormat = D3DFMT_D24X8;
-		m_presentPars.BackBufferWidth = m_renderPars.ResolutionWidth;
-		m_presentPars.BackBufferHeight = m_renderPars.ResolutionHeight;
-		m_presentPars.BackBufferFormat = D3DFMT_A8R8G8B8;
-		m_presentPars.BackBufferCount = 1;
-		m_presentPars.SwapEffect = D3DSWAPEFFECT_DISCARD;
-		//m_presentPars.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
-		m_presentPars.PresentationInterval = D3DPRESENT_INTERVAL_ONE;
-		m_presentPars.hDeviceWindow = m_hWindow;
-		m_presentPars.Windowed = m_renderPars.Windowed;
-		if (!m_renderPars.Windowed)
-			m_presentPars.FullScreen_RefreshRateInHz = m_renderPars.FullScreenRefreshRate;
+		ZeroMemory(&d_presentPars, sizeof(d_presentPars));
+		d_presentPars.EnableAutoDepthStencil = true;
+		d_presentPars.AutoDepthStencilFormat = D3DFMT_D24X8;
+		d_presentPars.BackBufferWidth = d_renderPars.resolutionWidth();
+		d_presentPars.BackBufferHeight = d_renderPars.resolutionHeight();
+		d_presentPars.BackBufferFormat = D3DFMT_A8R8G8B8;
+		d_presentPars.BackBufferCount = 1;
+		d_presentPars.SwapEffect = D3DSWAPEFFECT_DISCARD;
+		//d_presentPars.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
+		d_presentPars.PresentationInterval = D3DPRESENT_INTERVAL_ONE;
+		d_presentPars.hDeviceWindow = d_hWindow;
+		d_presentPars.Windowed = d_renderPars.windowed();
+		if (!d_renderPars.windowed())
+			d_presentPars.FullScreen_RefreshRateInHz = d_renderPars.fullScreenRefreshRate();
 
-		res = m_direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, m_hWindow,
+		res = d_direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, d_hWindow,
 			D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_PUREDEVICE,
-			&m_presentPars, &m_renderDevice);
-		if ((res != D3D_OK) || (m_renderDevice == nullptr))
+			&d_presentPars, &d_renderDevice);
+		if ((res != D3D_OK) || (d_renderDevice == nullptr))
 		{
 			echo("ERROR: Can't create RenderDevice.");
 			return false;
 		}
 
-		m_renderDevice->SetRenderState(D3DRS_LIGHTING, false);
-		m_renderDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
-		m_renderDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-		m_renderDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-		m_renderDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+		d_renderDevice->SetRenderState(D3DRS_LIGHTING, false);
+		d_renderDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+		d_renderDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+		d_renderDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+		d_renderDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 
-		m_renderDevice->GetRenderTarget(0, &m_defaultRenderTarget);
-		m_defaultRenderTarget->GetDesc(&m_defaultRenderTargetDesc);
+		d_renderDevice->GetRenderTarget(0, &d_defaultRenderTarget);
+		d_defaultRenderTarget->GetDesc(&d_defaultRenderTargetDesc);
 
 		return true;
 	}
 
-  bool RenderMan::DisposeRenderDevice()
+  bool RenderMan::disposeRenderDevice()
 	{
-		if (m_renderDevice != nullptr)
+		if (d_renderDevice != nullptr)
 		{
-			m_renderDevice->Release();
-			m_renderDevice = nullptr;
+			d_renderDevice->Release();
+			d_renderDevice = nullptr;
 		}
 
-		if (m_direct3d != nullptr)
+		if (d_direct3d != nullptr)
 		{
-			m_direct3d->Release();
-			m_direct3d = nullptr;
+			d_direct3d->Release();
+			d_direct3d = nullptr;
 		}
 
 		return true;

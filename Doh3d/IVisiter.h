@@ -15,8 +15,8 @@ namespace Doh3d
   {
   public:
 
-    virtual bool visit(ITreeItem& pTreeItem) { return true; }
-    virtual bool visit(const ITreeItem& pTreeItem) const { return true; }
+    virtual bool visit(ITreeItem& pTreeItem);
+    virtual bool visit(const ITreeItem& pTreeItem) const;
 
   };
 

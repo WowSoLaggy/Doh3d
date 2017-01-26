@@ -30,6 +30,8 @@
     <ClCompile Include="GPanel.cpp" />
     <ClCompile Include="GText.cpp" />
     <ClCompile Include="InputMan.cpp" />
+    <ClCompile Include="ITreeItem.cpp" />
+    <ClCompile Include="IVisiter.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MessagePeeker.cpp" />

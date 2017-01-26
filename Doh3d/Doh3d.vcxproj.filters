@@ -135,6 +135,12 @@
     <ClCompile Include="Math.cpp">
       <Filter>src\Math</Filter>
     </ClCompile>
+    <ClCompile Include="IVisiter.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ITreeItem.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Doh3d.h">

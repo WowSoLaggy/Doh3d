@@ -197,9 +197,6 @@
     <ClInclude Include="Viewport.h">
       <Filter>src\Common</Filter>
     </ClInclude>
-    <ClInclude Include="ITreeThing.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="GuiList.h">
       <Filter>src\Gui</Filter>
     </ClInclude>
@@ -250,6 +247,12 @@
     </ClInclude>
     <ClInclude Include="Math.h">
       <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ITreeItem.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="IVisiter.h">
+      <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

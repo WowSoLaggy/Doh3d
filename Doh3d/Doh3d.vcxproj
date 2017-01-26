@@ -62,10 +62,11 @@
     <ClInclude Include="GPanel.h" />
     <ClInclude Include="GText.h" />
     <ClInclude Include="GuiList.h" />
-    <ClInclude Include="ITreeThing.h" />
+    <ClInclude Include="ITreeItem.h" />
     <ClInclude Include="Include\Doh3d.h" />
     <ClInclude Include="InputMan.h" />
     <ClInclude Include="InputPars.h" />
+    <ClInclude Include="IVisiter.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MessagePeeker.h" />

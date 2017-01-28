@@ -12,7 +12,7 @@ namespace Doh3d
 
   ITreeItem::~ITreeItem()
   {
-    for (auto child : d_childs)
+    for (auto child : d_children)
       delete child;
   }
 
@@ -22,7 +22,7 @@ namespace Doh3d
     if (!pVisiter.visit(*this))
       return false;
 
-    for (auto child : d_childs)
+    for (auto child : d_children)
     {
       if (!pVisiter.visit(*child))
         return false;
@@ -36,7 +36,7 @@ namespace Doh3d
     if (!pVisiter.visit(*this))
       return false;
 
-    for (auto child : d_childs)
+    for (auto child : d_children)
     {
       if (!pVisiter.visit(*child))
         return false;
@@ -54,18 +54,18 @@ namespace Doh3d
       pChild->d_parent->removeChild(pChild);
 
     pChild->d_parent = this;
-    d_childs.push_back(pChild);
+    d_children.push_back(pChild);
   }
 
   void ITreeItem::removeChild(ITreeItem* pChild)
   {
     if (!pChild || pChild->d_parent != this)
       return;
-    auto& it = std::find(d_childs.begin(), d_childs.end(), pChild);
-    if (it == d_childs.end())
+    auto& it = std::find(d_children.begin(), d_children.end(), pChild);
+    if (it == d_children.end())
       return;
 
-    d_childs.erase(it);
+    d_children.erase(it);
     pChild->d_parent = nullptr;
   }
 

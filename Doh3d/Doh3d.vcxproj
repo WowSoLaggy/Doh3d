@@ -29,9 +29,10 @@
     <ClCompile Include="GGrid.cpp" />
     <ClCompile Include="GPanel.cpp" />
     <ClCompile Include="GText.cpp" />
+    <ClCompile Include="IDrawableTreeItem.cpp" />
     <ClCompile Include="InputMan.cpp" />
     <ClCompile Include="ITreeItem.cpp" />
-    <ClCompile Include="IVisiter.cpp" />
+    <ClCompile Include="IUpdatableTreeItem.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MessagePeeker.cpp" />
@@ -64,11 +65,12 @@
     <ClInclude Include="GPanel.h" />
     <ClInclude Include="GText.h" />
     <ClInclude Include="GuiList.h" />
+    <ClInclude Include="IDrawableTreeItem.h" />
     <ClInclude Include="ITreeItem.h" />
     <ClInclude Include="Include\Doh3d.h" />
     <ClInclude Include="InputMan.h" />
     <ClInclude Include="InputPars.h" />
-    <ClInclude Include="IVisiter.h" />
+    <ClInclude Include="IUpdatableTreeItem.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MessagePeeker.h" />

@@ -135,10 +135,13 @@
     <ClCompile Include="Math.cpp">
       <Filter>src\Math</Filter>
     </ClCompile>
-    <ClCompile Include="IVisiter.cpp">
+    <ClCompile Include="ITreeItem.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="ITreeItem.cpp">
+    <ClCompile Include="IUpdatableTreeItem.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="IDrawableTreeItem.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -257,7 +260,10 @@
     <ClInclude Include="ITreeItem.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="IVisiter.h">
+    <ClInclude Include="IUpdatableTreeItem.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawableTreeItem.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>

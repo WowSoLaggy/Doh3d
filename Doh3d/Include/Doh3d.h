@@ -24,16 +24,19 @@
 #include <dinput.h>
 
 
-// Doh3d
+// 3rd party
 
 #ifdef DOH3D_NOLOG
 	#define LOG(x)
 	#define echo(x)
 #else
-	#include "Log.h"
+	#include <Log.h>
 #endif // DOH3D_NOLOG
 
-#include "Timer.h"
+#include <Timer.h>
+
+
+// Doh3d
 
 #include "../RenderMan.h"
 #include "../StartupPars.h"
@@ -45,8 +48,9 @@
 #include "../Cursor.h"
 #include "../Sprite.h"
 #include "../Matrix.h"
-#include "../IVisiter.h"
 #include "../ITreeItem.h"
+#include "../IDrawableTreeItem.h"
+#include "../IUpdatableTreeItem.h"
 #include "../Viewport.h"
 #include "../GuiList.h"
 #include "../AnimationSet.h"

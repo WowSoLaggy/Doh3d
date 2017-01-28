@@ -17,35 +17,6 @@ namespace Doh3d
   }
 
 
-  bool ITreeItem::traverseTree(IVisiter& pVisiter)
-  {
-    if (!pVisiter.visit(*this))
-      return false;
-
-    for (auto child : d_children)
-    {
-      if (!pVisiter.visit(*child))
-        return false;
-    }
-
-    return true;
-  }
-
-  bool ITreeItem::traverseTree(const IVisiter& pVisiter) const
-  {
-    if (!pVisiter.visit(*this))
-      return false;
-
-    for (auto child : d_children)
-    {
-      if (!pVisiter.visit(*child))
-        return false;
-    }
-
-    return true;
-  }
-
-
   void ITreeItem::addChild(ITreeItem* pChild)
   {
     if (!pChild || pChild->d_parent == this)

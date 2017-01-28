@@ -3,8 +3,6 @@
 #ifndef INC_DOH3D_ITREEITEM_H
 #define INC_DOH3D_ITREEITEM_H
 
-#include "IVisiter.h"
-
 
 namespace Doh3d
 {
@@ -23,9 +21,6 @@ namespace Doh3d
     std::vector<ITreeItem*>& children() { return d_children; }
     const std::vector<ITreeItem*>& children() const { return d_children; }
 
-
-    bool traverseTree(IVisiter& pVisiter);
-    bool traverseTree(const IVisiter& pVisiter) const;
 
     void addChild(ITreeItem* pChild);
     void removeChild(ITreeItem* pChild);

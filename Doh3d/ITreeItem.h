@@ -20,8 +20,8 @@ namespace Doh3d
     ITreeItem* parent() { return d_parent; }
     const ITreeItem* parent() const { return d_parent; }
 
-    std::vector<ITreeItem*>& childs() { return d_childs; }
-    const std::vector<ITreeItem*>& childs() const { return d_childs; }
+    std::vector<ITreeItem*>& children() { return d_children; }
+    const std::vector<ITreeItem*>& children() const { return d_children; }
 
 
     bool traverseTree(IVisiter& pVisiter);
@@ -33,7 +33,7 @@ namespace Doh3d
   protected:
 
     ITreeItem* d_parent;
-    std::vector<ITreeItem*> d_childs;
+    std::vector<ITreeItem*> d_children;
 
   };
 

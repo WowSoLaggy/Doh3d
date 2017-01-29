@@ -5,16 +5,16 @@
 namespace Doh3d
 {
 
-  bool IDrawable::drawTree(int x) const
+  bool IDrawableTreeItem::drawTree(Sprite& pSprite) const
   {
-    if (!drawSelf(x))
+    if (!drawSelf(pSprite))
       return false;
 
-    for (auto child : d_children)
+    for (int i = 0; i < (int)d_children.size(); ++i)
     {
-      if (auto* pDrawableChild = dynamic_cast<IDrawable*>(child))
+      if (auto* pDrawableChild = dynamic_cast<IDrawableTreeItem*>(d_children[i]))
       {
-        if (!pDrawableChild->drawTree(x))
+        if (!pDrawableChild->drawTree(pSprite))
           return false;
       }
     }

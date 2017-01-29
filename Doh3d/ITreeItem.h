@@ -22,7 +22,8 @@ namespace Doh3d
     const std::vector<ITreeItem*>& children() const { return d_children; }
 
 
-    void addChild(ITreeItem* pChild);
+    void addChildBack(ITreeItem* pChild);
+    void addChildFront(ITreeItem* pChild);
     void removeChild(ITreeItem* pChild);
 
   protected:

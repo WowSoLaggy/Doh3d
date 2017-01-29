@@ -36,6 +36,17 @@ namespace Doh3d
 	}
 
 
+  void Sprite::setTransform(const D3DXMATRIX* pTransform)
+  {
+    d_sprite->SetTransform(pTransform);
+  }
+
+  HRESULT Sprite::draw(LPDIRECT3DTEXTURE9 pTexture, CONST RECT *pSrcRect, CONST D3DXVECTOR3 *pCenter, CONST D3DXVECTOR3 *pPosition, D3DCOLOR Color)
+  {
+    return d_sprite->Draw(pTexture, pSrcRect, pCenter, pPosition, Color);
+  }
+
+
   bool Sprite::load()
 	{
 		LOG("Sprite::load()");

@@ -10,9 +10,11 @@
 namespace Doh3d
 {
 
-  class IUpdatable : public ITreeItem
+  class IUpdatableTreeItem : public virtual ITreeItem
   {
   public:
+
+    virtual ~IUpdatableTreeItem() { }
 
     bool updateTree(float pDt);
 

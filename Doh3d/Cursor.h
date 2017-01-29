@@ -16,7 +16,7 @@ namespace Doh3d
 
 		static bool setCursorTexture(const std::string& pTextureName);
 
-		static bool draw(const Sprite& pSprite);
+		static bool draw(Sprite& pSprite);
 
 	private:
 

@@ -10,13 +10,15 @@
 namespace Doh3d
 {
 
-  class IDrawable : public ITreeItem
+  class IDrawableTreeItem : public virtual ITreeItem
   {
   public:
 
-    bool drawTree(int x) const;
+    virtual ~IDrawableTreeItem() { }
 
-    virtual bool drawSelf(int x) const PURE;
+    bool drawTree(Sprite& pSprite) const;
+
+    virtual bool drawSelf(Sprite& pSprite) const PURE;
 
   };
 

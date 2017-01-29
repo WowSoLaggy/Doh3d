@@ -17,7 +17,7 @@ namespace Doh3d
   }
 
 
-  void ITreeItem::addChild(ITreeItem* pChild)
+  void ITreeItem::addChildBack(ITreeItem* pChild)
   {
     if (!pChild || pChild->d_parent == this)
       return;
@@ -26,6 +26,17 @@ namespace Doh3d
 
     pChild->d_parent = this;
     d_children.push_back(pChild);
+  }
+
+  void ITreeItem::addChildFront(ITreeItem* pChild)
+  {
+    if (!pChild || pChild->d_parent == this)
+      return;
+    if (pChild->d_parent != nullptr)
+      pChild->d_parent->removeChild(pChild);
+
+    pChild->d_parent = this;
+    d_children.insert(d_children.begin(), pChild);
   }
 
   void ITreeItem::removeChild(ITreeItem* pChild)

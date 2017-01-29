@@ -69,9 +69,6 @@
     <ClCompile Include="Drawer.cpp">
       <Filter>src\Drawer</Filter>
     </ClCompile>
-    <ClCompile Include="GBase.cpp">
-      <Filter>src\Gui\Controls</Filter>
-    </ClCompile>
     <ClCompile Include="GButton.cpp">
       <Filter>src\Gui\Controls</Filter>
     </ClCompile>
@@ -101,9 +98,6 @@
     </ClCompile>
     <ClCompile Include="WinClass.cpp">
       <Filter>src\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="GPanel.cpp">
-      <Filter>src\Gui\Controls</Filter>
     </ClCompile>
     <ClCompile Include="GGrid.cpp">
       <Filter>src\Gui\Controls</Filter>
@@ -144,6 +138,18 @@
     <ClCompile Include="IDrawableTreeItem.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="GPanel_old.cpp">
+      <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GPanel.cpp">
+      <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GBase_old.cpp">
+      <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GBase.cpp">
+      <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Doh3d.h">
@@ -160,9 +166,6 @@
     </ClInclude>
     <ClInclude Include="Drawer.h">
       <Filter>src\Drawer</Filter>
-    </ClInclude>
-    <ClInclude Include="GBase.h">
-      <Filter>src\Gui\Controls</Filter>
     </ClInclude>
     <ClInclude Include="GButton.h">
       <Filter>src\Gui\Controls</Filter>
@@ -208,9 +211,6 @@
     </ClInclude>
     <ClInclude Include="GuiList.h">
       <Filter>src\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="GPanel.h">
-      <Filter>src\Gui\Controls</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>src\Common</Filter>
@@ -265,6 +265,18 @@
     </ClInclude>
     <ClInclude Include="IDrawableTreeItem.h">
       <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GPanel_old.h">
+      <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GPanel.h">
+      <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GBase_old.h">
+      <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GBase.h">
+      <Filter>src\Gui\Controls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

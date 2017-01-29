@@ -15,11 +15,16 @@ namespace Doh3d
 			: d_sprite(nullptr) { }
 
 
-		LPD3DXSPRITE get() const { return d_sprite; }
-
-
 		bool begin();
     bool end();
+
+
+    // TODO: change par type to some typedef
+    void setTransform(const D3DXMATRIX* pTransform);
+
+    // TODO: change return type to bool
+    // TODO: change pars types to some typedef
+    HRESULT draw(LPDIRECT3DTEXTURE9 pTexture, CONST RECT *pSrcRect, CONST D3DXVECTOR3 *pCenter, CONST D3DXVECTOR3 *pPosition, D3DCOLOR Color);
 
 
     bool load();

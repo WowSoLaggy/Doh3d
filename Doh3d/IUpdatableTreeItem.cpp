@@ -5,14 +5,14 @@
 namespace Doh3d
 {
 
-  bool IUpdatable::updateTree(float pDt)
+  bool IUpdatableTreeItem::updateTree(float pDt)
   {
     if (!updateSelf(pDt))
       return false;
 
-    for (auto child : d_children)
+    for (int i = 0; i < (int)d_children.size(); ++i)
     {
-      if (auto* pUpdatableChild = dynamic_cast<IUpdatable*>(child))
+      if (auto* pUpdatableChild = dynamic_cast<IUpdatableTreeItem*>(d_children[i]))
       {
         if (!pUpdatableChild->updateTree(pDt))
           return false;

@@ -22,7 +22,7 @@ namespace Doh3d
 		return true;
 	}
 
-  bool Cursor::draw(const Sprite& pSprite)
+  bool Cursor::draw(Sprite& pSprite)
 	{
 		LOG("Cursor::draw()");
 		HRESULT hRes;
@@ -35,8 +35,8 @@ namespace Doh3d
 
 		D3DXVECTOR2 pos = InputMan::getCursorPosition();
 		
-		pSprite.get()->SetTransform(&d_identityMatrix);
-		hRes = pSprite.get()->Draw(ResourceMan::getTexture(d_ti).get(), &ResourceMan::getTexture(d_ti).getFrame(0), 0, &D3DXVECTOR3(pos.x, pos.y, 0), D3DCOLOR_ARGB(255, 255, 255, 255));
+		pSprite.setTransform(&d_identityMatrix);
+		hRes = pSprite.draw(ResourceMan::getTexture(d_ti).get(), &ResourceMan::getTexture(d_ti).getFrame(0), 0, &D3DXVECTOR3(pos.x, pos.y, 0), D3DCOLOR_ARGB(255, 255, 255, 255));
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw cursor.");

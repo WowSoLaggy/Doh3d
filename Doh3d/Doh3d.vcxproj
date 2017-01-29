@@ -25,9 +25,11 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Drawer.cpp" />
     <ClCompile Include="GBase.cpp" />
+    <ClCompile Include="GBase_old.cpp" />
     <ClCompile Include="GButton.cpp" />
     <ClCompile Include="GGrid.cpp" />
     <ClCompile Include="GPanel.cpp" />
+    <ClCompile Include="GPanel_old.cpp" />
     <ClCompile Include="GText.cpp" />
     <ClCompile Include="IDrawableTreeItem.cpp" />
     <ClCompile Include="InputMan.cpp" />
@@ -60,9 +62,11 @@
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Drawer.h" />
     <ClInclude Include="GBase.h" />
+    <ClInclude Include="GBase_old.h" />
     <ClInclude Include="GButton.h" />
     <ClInclude Include="GGrid.h" />
     <ClInclude Include="GPanel.h" />
+    <ClInclude Include="GPanel_old.h" />
     <ClInclude Include="GText.h" />
     <ClInclude Include="GuiList.h" />
     <ClInclude Include="IDrawableTreeItem.h" />

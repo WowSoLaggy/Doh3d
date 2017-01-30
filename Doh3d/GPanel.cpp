@@ -8,7 +8,7 @@ namespace Doh3d
   bool GPanel::drawSelf(Sprite& pSprite) const
   {
 
-    pSprite.draw();
+    //pSprite.draw();
 
     return true;
   }

@@ -10,7 +10,11 @@ namespace Doh3d
 		LOG("Drawer::beginScene()");
 		int hRes = 0;
 
-		hRes = RenderMan::getRenderDevice()->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255, 101, 156, 239), 1.0f, 0);
+    // TODO: Think of something for color (maybe pass it as a parameter?)
+    //D3DCOLOR clearColor = D3DCOLOR_ARGB(255, 101, 156, 239);
+    D3DCOLOR clearColor = D3DCOLOR_ARGB(255, 0, 0, 0);
+
+		hRes = RenderMan::getRenderDevice()->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, clearColor, 1.0f, 0);
 		if (hRes != 0)
 		{
 			echo("ERROR: Can't clear RenderDevice.");

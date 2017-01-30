@@ -11,6 +11,9 @@
 namespace Doh3d
 {
 
+  using TextureId = int;
+
+
 	class ResourceMan
 	{
 	public:
@@ -24,13 +27,16 @@ namespace Doh3d
 
 		static void setTextureDir(const std::string& pTextureDir) { d_textureDir = pTextureDir; }
 		static void setFontDir(const std::string& pFontDir) { d_fontDir = pFontDir; }
-		static const std::string& getTextureDir() { return d_textureDir; }
-		static const std::string& getFontDir() { return d_fontDir; }
+
+    static const std::string& getTextureDir() { return d_textureDir; }
+    static const std::string& getFontDir() { return d_fontDir; }
 
 
-		static Texture getTexture(int pTi);
-		static bool getTi(const std::string& pTextureName, int& pTi);
-		static bool createFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
+		static Texture& getTexture(TextureId pTi);
+		static bool getTi(const std::string& pTextureName, TextureId& pTi);
+		
+    // TODO: Move to some separate class
+    static bool createFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
 										   int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets);
 
 	private:

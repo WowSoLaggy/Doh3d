@@ -35,7 +35,7 @@ namespace Doh3d
 		}
 
 		std::string textureDir = d_textureDir;
-		if (parseTextureDir(textureDir.append("\\")))
+		if (!parseTextureDir(textureDir.append("\\")))
 		{
 			echo("ERROR: Can't parse texture directory.");
 			return false;
@@ -57,7 +57,7 @@ namespace Doh3d
 		}
 
 		std::string fontsDir = d_fontDir;
-		if (parseFontDir(fontsDir.append("\\")))
+		if (!parseFontDir(fontsDir.append("\\")))
 		{
 			echo("ERROR: Can't parse font directory.");
 			return false;
@@ -151,26 +151,27 @@ namespace Doh3d
 	}
 
 
-	Texture ResourceMan::getTexture(int pTi)
+	Texture& ResourceMan::getTexture(TextureId pTi)
 	{
 		return d_textures[pTi];
 	}
 
-  bool ResourceMan::getTi(const std::string& pTextureName, int& pTi)
+  bool ResourceMan::getTi(const std::string& pTextureName, TextureId& pTi)
 	{
 		LOG("ResourceManager::getTi()");
 
 		auto& it = std::find_if(d_textures.begin(), d_textures.end(), [&](auto& texture) { return pTextureName.compare(texture.getFilePath()) == 0; });
 		if (it == d_textures.end())
 		{
-			echo("ERROR: Can't get ti for texture: \"", pTextureName, "\".");
+			echo("ERROR: Can't get TI for texture: \"", pTextureName, "\".");
 			return false;
 		}
 
-		pTi = std::distance(d_textures.begin(), it);
+    pTi = std::distance(d_textures.begin(), it);
 
 		return true;
 	}
+
 
   bool ResourceMan::createFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
 											 int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets)
@@ -199,7 +200,7 @@ namespace Doh3d
 
   bool ResourceMan::parseTextureDir(const std::string& pDir)
 	{
-		LOG("ResourceMan::parseFontDir()");
+		LOG("ResourceMan::parseTextureDir()");
 
 		struct dirent *ent;
 

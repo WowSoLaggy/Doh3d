@@ -14,6 +14,8 @@
 #include <regex>
 #include <sstream>
 #include <iomanip>
+#include <unordered_map>
+#include <vector>
 
 
 // DirectX

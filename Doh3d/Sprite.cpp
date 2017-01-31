@@ -1,4 +1,4 @@
-#include "Doh3d.h"
+#include "PrecompiledHeader.h"
 #include "Sprite.h"
 
 
@@ -41,9 +41,17 @@ namespace Doh3d
     d_sprite->SetTransform(pTransform);
   }
 
-  HRESULT Sprite::draw(LPDIRECT3DTEXTURE9 pTexture, CONST RECT *pSrcRect, CONST D3DXVECTOR3 *pCenter, CONST D3DXVECTOR3 *pPosition, D3DCOLOR Color)
+  bool Sprite::draw(LPDIRECT3DTEXTURE9 pTexture, CONST RECT *pSrcRect, CONST D3DXVECTOR3 *pCenter, const Position2& pPosition, D3DCOLOR Color)
   {
-    return d_sprite->Draw(pTexture, pSrcRect, pCenter, pPosition, Color);
+    LOG(__FUNCTION__);
+
+    if (d_sprite->Draw(pTexture, pSrcRect, pCenter, pPosition.rawVectorPtr(), Color) != S_OK)
+    {
+      echo("ERROR: Can't draw sprite.");
+      return false;
+    }
+
+    return true;
   }
 
 

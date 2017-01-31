@@ -39,6 +39,8 @@ namespace Doh3d
 
 	private:
 
+    static const char KEY_PRESSED_FLAG = (char)0x80;
+
 		static volatile bool d_isCreated;
 		static InputPars d_inputPars;
 		static D3DXVECTOR2 d_cursorPosition;

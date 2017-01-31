@@ -58,6 +58,8 @@
 #include "../AnimationSet.h"
 #include "../AnimationController.h"
 #include "../Rect.h"
+#include "../Position2.h"
+#include "../IPosition.h"
 
 
 #endif // DOH3D_H

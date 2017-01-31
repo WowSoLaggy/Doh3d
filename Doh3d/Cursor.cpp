@@ -1,4 +1,4 @@
-#include "Doh3d.h"
+#include "PrecompiledHeader.h"
 #include "Cursor.h"
 
 
@@ -35,8 +35,9 @@ namespace Doh3d
 
 		D3DXVECTOR2 pos = InputMan::getCursorPosition();
 		
+    // TODO: restore the cursor drawing
 		pSprite.setTransform(&d_identityMatrix);
-		hRes = pSprite.draw(ResourceMan::getTexture(d_ti).get(), &ResourceMan::getTexture(d_ti).getFrame(0), 0, &D3DXVECTOR3(pos.x, pos.y, 0), D3DCOLOR_ARGB(255, 255, 255, 255));
+		//hRes = pSprite.draw(ResourceMan::getTexture(d_ti).get(), &ResourceMan::getTexture(d_ti).getFrame(0), 0, &D3DXVECTOR3(pos.x, pos.y, 0), D3DCOLOR_ARGB(255, 255, 255, 255));
 		if (hRes != S_OK)
 		{
 			echo("ERROR: Can't draw cursor.");

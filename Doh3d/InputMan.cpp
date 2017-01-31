@@ -1,4 +1,4 @@
-#include "Doh3d.h"
+#include "PrecompiledHeader.h"
 #include "InputMan.h"
 
 #include "RenderMan.h"
@@ -103,12 +103,12 @@ namespace Doh3d
 
 		for (int i = MBUTTON_LEFT; i <= MBUTTON_RIGHT; ++i)
 		{
-			if ((d_mouseState.rgbButtons[i] & 0x80) && !(d_mouseStatePrev.rgbButtons[i] & 0x80))
+			if ((d_mouseState.rgbButtons[i] & KEY_PRESSED_FLAG) && !(d_mouseStatePrev.rgbButtons[i] & KEY_PRESSED_FLAG))
 			{
 				if (d_inputPars.onMouseDown() != nullptr)
 					d_inputPars.onMouseDown()(i);
 			}
-			else if (!(d_mouseState.rgbButtons[i] & 0x80) && (d_mouseStatePrev.rgbButtons[i] & 0x80))
+			else if (!(d_mouseState.rgbButtons[i] & KEY_PRESSED_FLAG) && (d_mouseStatePrev.rgbButtons[i] & KEY_PRESSED_FLAG))
 			{
 				if (d_inputPars.onMouseUp() != nullptr)
 					d_inputPars.onMouseUp()(i);
@@ -125,10 +125,9 @@ namespace Doh3d
 
 		for (int i = 0; i < KBUTTONS_MAX; ++i)
 		{
-      // TODO: change this magic const 0x80 to const
-			if ((d_keys[i] & 0x80) != 0)
+			if ((d_keys[i] & KEY_PRESSED_FLAG) != 0)
 			{
-				if ((d_keysPrev[i] & 0x80) == 0)
+				if ((d_keysPrev[i] & KEY_PRESSED_FLAG) == 0)
 				{
 					if (d_inputPars.onKeyDown() != nullptr)
 						d_inputPars.onKeyDown()(i);
@@ -139,7 +138,7 @@ namespace Doh3d
 			}
 			else
 			{
-				if ((d_keysPrev[i] & 0x80) != 0)
+				if ((d_keysPrev[i] & KEY_PRESSED_FLAG) != 0)
 				{
 					if (d_inputPars.onKeyUp() != nullptr)
 						d_inputPars.onKeyUp()(i);
@@ -246,17 +245,17 @@ namespace Doh3d
 
 	bool InputMan::isShift()
 	{
-		return ((d_keys[DIK_LSHIFT] & 0x80) || (d_keys[DIK_RSHIFT] & 0x80));
+		return ((d_keys[DIK_LSHIFT] & KEY_PRESSED_FLAG) || (d_keys[DIK_RSHIFT] & KEY_PRESSED_FLAG));
 	}
 
 	bool InputMan::isCtrl()
 	{
-		return ((d_keys[DIK_LCONTROL] & 0x80) || (d_keys[DIK_RCONTROL] & 0x80));
+		return ((d_keys[DIK_LCONTROL] & KEY_PRESSED_FLAG) || (d_keys[DIK_RCONTROL] & KEY_PRESSED_FLAG));
 	}
 
 	bool InputMan::isAlt()
 	{
-		return ((d_keys[DIK_LALT] & 0x80) || (d_keys[DIK_RALT] & 0x80));
+		return ((d_keys[DIK_LALT] & KEY_PRESSED_FLAG) || (d_keys[DIK_RALT] & KEY_PRESSED_FLAG));
 	}
 
 } // Doh3d

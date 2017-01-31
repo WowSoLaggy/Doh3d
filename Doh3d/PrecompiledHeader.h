@@ -1,0 +1,10 @@
+#pragma once
+
+#ifndef INC_DOH3D_PRECOMPILEDHEADER_H
+#define INC_DOH3D_PRECOMPILEDHEADER_H
+
+
+#include "Doh3d.h"
+
+
+#endif // INC_DOH3D_PRECOMPILEDHEADER_H

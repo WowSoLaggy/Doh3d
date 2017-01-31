@@ -58,6 +58,9 @@
     <Filter Include="src\Math">
       <UniqueIdentifier>{d2a2cdcc-9247-4549-afd7-b61b20f89116}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\EntityComponents">
+      <UniqueIdentifier>{04e24223-e1d5-47c5-b16b-4742f29926aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
@@ -149,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="GBase.cpp">
       <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Position2.cpp">
+      <Filter>src\EntityComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="PrecompiledHeader.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +286,15 @@
     </ClInclude>
     <ClInclude Include="GBase.h">
       <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="IPosition.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Position2.h">
+      <Filter>src\EntityComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="PrecompiledHeader.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

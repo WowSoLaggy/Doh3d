@@ -73,7 +73,42 @@ namespace Doh3d
   }
 
 
+  bool ResourceMan::reloadResources()
+  {
+    loadResources(true);
+  }
+
   bool ResourceMan::loadResources()
+  {
+    loadResources(false);
+  }
+
+  bool ResourceMan::unloadResources()
+  {
+    LOG("ResourceManager::unloadResources()");
+
+    for (auto& font : d_fonts)
+    {
+      if (!font.unload())
+      {
+        echo("ERROR: Can't unload font: \"", font.getFontName(), "\".");
+        return false;
+      }
+    }
+
+    for (auto& texture : d_textures)
+    {
+      if (!texture.unload())
+      {
+        echo("ERROR: Can't unload texture: \"", texture.getFilePath(), "\".");
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  bool ResourceMan::loadResources(bool pForceReload)
   {
     LOG("ResourceManager::loadResources()");
 
@@ -107,7 +142,8 @@ namespace Doh3d
 
     for (auto& texture : d_textures)
     {
-      if (!texture.load())
+      bool res = pForceReload ? texture.reload() : texture.load();
+      if (!res)
       {
         echo("ERROR: Can't load texture: \"", texture.getFilePath(), "\".");
         return false;
@@ -119,31 +155,6 @@ namespace Doh3d
       if (!font.load())
       {
         echo("ERROR: Can't load font: \"", font.getFontName(), "\".");
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  bool ResourceMan::unloadResources()
-  {
-    LOG("ResourceManager::unloadResources()");
-
-    for (auto& font : d_fonts)
-    {
-      if (!font.unload())
-      {
-        echo("ERROR: Can't unload font: \"", font.getFontName(), "\".");
-        return false;
-      }
-    }
-
-    for (auto& texture : d_textures)
-    {
-      if (!texture.unload())
-      {
-        echo("ERROR: Can't unload texture: \"", texture.getFilePath(), "\".");
         return false;
       }
     }

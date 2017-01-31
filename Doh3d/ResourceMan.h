@@ -21,6 +21,7 @@ namespace Doh3d
     static bool init();
     static bool dispose();
 
+    static bool reloadResources();
     static bool loadResources();
     static bool unloadResources();
 
@@ -48,6 +49,8 @@ namespace Doh3d
     static std::vector<Texture> d_textures;
     static std::vector<RBitmapFont> d_fonts;
 
+
+    static bool loadResources(bool pForceReload);
 
     static bool parseTextureDir(const std::string& pDir);
     static bool parseFontDir(const std::string& pDir);

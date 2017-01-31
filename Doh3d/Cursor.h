@@ -10,20 +10,20 @@
 namespace Doh3d
 {
 
-	class Cursor
-	{
-	public:
+  class Cursor
+  {
+  public:
 
-		static bool setCursorTexture(const std::string& pTextureName);
+    static bool setCursorTexture(const std::string& pTextureName);
 
-		static bool draw(Sprite& pSprite);
+    static bool draw(Sprite& pSprite);
 
-	private:
+  private:
 
-		static int d_ti;
-		static D3DXMATRIX d_identityMatrix;
+    static int d_ti;
+    static D3DXMATRIX d_identityMatrix;
 
-	};
+  };
 
 } // ns Doh3d
 

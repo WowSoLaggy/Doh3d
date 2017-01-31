@@ -77,7 +77,8 @@
     <ClInclude Include="GText.h" />
     <ClInclude Include="GuiList.h" />
     <ClInclude Include="IDrawableTreeItem.h" />
-    <ClInclude Include="IPosition.h" />
+    <ClInclude Include="IPositioned.h" />
+    <ClInclude Include="ITextured.h" />
     <ClInclude Include="ITreeItem.h" />
     <ClInclude Include="Include\Doh3d.h" />
     <ClInclude Include="InputMan.h" />

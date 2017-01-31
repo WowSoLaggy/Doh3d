@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef INC_DOH3D_IPOSITION_H
-#define INC_DOH3D_IPOSITION_H
+#ifndef INC_DOH3D_IPOSITIONED_H
+#define INC_DOH3D_IPOSITIONED_H
 
 
 #include "Position2.h"
@@ -10,11 +10,11 @@
 namespace Doh3d
 {
 
-  class IPosition
+  class IPositioned
   {
   public:
 
-    virtual ~IPosition() { }
+    virtual ~IPositioned() { }
 
     virtual const Position2& getPosition() const { return d_position; }
     virtual void setPosition(const Position2& pPosition) { d_position = pPosition; }
@@ -28,4 +28,4 @@ namespace Doh3d
 } // ns Doh3d
 
 
-#endif // INC_DOH3D_IPOSITION_H
+#endif // INC_DOH3D_IPOSITIONED_H

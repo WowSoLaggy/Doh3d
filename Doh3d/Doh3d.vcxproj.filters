@@ -287,14 +287,17 @@
     <ClInclude Include="GBase.h">
       <Filter>src\Gui\Controls</Filter>
     </ClInclude>
-    <ClInclude Include="IPosition.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Position2.h">
       <Filter>src\EntityComponents</Filter>
     </ClInclude>
     <ClInclude Include="PrecompiledHeader.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="IPositioned.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ITextured.h">
+      <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -75,12 +75,12 @@ namespace Doh3d
 
   bool ResourceMan::reloadResources()
   {
-    loadResources(true);
+    return loadResources(true);
   }
 
   bool ResourceMan::loadResources()
   {
-    loadResources(false);
+    return loadResources(false);
   }
 
   bool ResourceMan::unloadResources()

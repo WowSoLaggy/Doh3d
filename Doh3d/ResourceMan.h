@@ -39,7 +39,6 @@ namespace Doh3d
     static Texture* getTexture(const std::string& pTextureName);
     static bool getTi(const std::string& pTextureName, TextureId& pTi);
 
-    // TODO: Move to some separate class
     static bool createFontTexture(const std::string& pText, const std::string& pFont, LPDIRECT3DTEXTURE9& pTexture,
                                   int& pTexWidth, int& pTexHeight, std::vector<int>& pCharOffsets);
 

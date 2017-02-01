@@ -35,9 +35,9 @@ namespace Doh3d
 	}
 
 
-	D3DXVECTOR2 Screen::getClientCenter()
+  Position2 Screen::getClientCenter()
 	{
-		return D3DXVECTOR2((FLOAT)(RenderMan::getRenderPars().resolutionWidth() / 2), (FLOAT)(RenderMan::getRenderPars().resolutionHeight() / 2));
+		return Position2(RenderMan::getRenderPars().resolutionWidth() / 2, RenderMan::getRenderPars().resolutionHeight() / 2);
 	}
 
 } // ns Doh3d

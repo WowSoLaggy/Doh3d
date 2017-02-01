@@ -4,6 +4,9 @@
 #define INC_DOH3D_SCREEN_H
 
 
+#include "Position2.h"
+
+
 namespace Doh3d
 {
 
@@ -17,7 +20,7 @@ namespace Doh3d
     static int getClientWidth();
     static int getClientHeight();
 
-    static D3DXVECTOR2 getClientCenter();
+    static Position2 getClientCenter();
 
   };
 

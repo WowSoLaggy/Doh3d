@@ -47,6 +47,7 @@
 #include "../MessagePeeker.h"
 #include "../InputMan.h"
 #include "../ResourceMan.h"
+#include "../Screen.h"
 #include "../Cursor.h"
 #include "../Sprite.h"
 #include "../Matrix.h"
@@ -59,8 +60,10 @@
 #include "../AnimationController.h"
 #include "../Rect.h"
 #include "../Position2.h"
+#include "../Size2.h"
 #include "../IPositioned.h"
 #include "../ITextured.h"
+#include "../ISized.h"
 
 
 #endif // DOH3D_H

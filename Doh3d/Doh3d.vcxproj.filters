@@ -159,6 +159,9 @@
     <ClCompile Include="PrecompiledHeader.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="Size2.cpp">
+      <Filter>src\EntityComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Doh3d.h">
@@ -297,6 +300,12 @@
       <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="ITextured.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Size2.h">
+      <Filter>src\EntityComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ISized.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>

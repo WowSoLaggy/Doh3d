@@ -50,6 +50,7 @@
     <ClCompile Include="RenderMan.cpp" />
     <ClCompile Include="ResourceMan.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Size2.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextContainer.cpp" />
@@ -78,6 +79,7 @@
     <ClInclude Include="GuiList.h" />
     <ClInclude Include="IDrawableTreeItem.h" />
     <ClInclude Include="IPositioned.h" />
+    <ClInclude Include="ISized.h" />
     <ClInclude Include="ITextured.h" />
     <ClInclude Include="ITreeItem.h" />
     <ClInclude Include="Include\Doh3d.h" />
@@ -95,6 +97,7 @@
     <ClInclude Include="RenderPars.h" />
     <ClInclude Include="ResourceMan.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Size2.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StartupPars.h" />
     <ClInclude Include="Text.h" />

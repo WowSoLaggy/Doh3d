@@ -30,4 +30,15 @@ namespace Doh3d
   {
   }
 
+
+  Position2 Position2::operator+(const Size2& pSize) const
+  {
+    return Position2(d_rawVector.x + pSize.x(), d_rawVector.y + pSize.y());
+  }
+
+  Position2 Position2::operator-(const Size2& pSize) const
+  {
+    return Position2(d_rawVector.x - pSize.x(), d_rawVector.y - pSize.y());
+  }
+
 } // ns Doh3d

@@ -7,6 +7,9 @@
 namespace Doh3d
 {
 
+  class Size2;
+
+
   class Position2
   {
   public:
@@ -25,6 +28,12 @@ namespace Doh3d
 
     D3DXVECTOR3* rawVectorPtr() { return &d_rawVector; }
     const D3DXVECTOR3* rawVectorPtr() const { return &d_rawVector; }
+
+
+    // Operators
+
+    Position2 operator+(const Size2& pSize) const;
+    Position2 operator-(const Size2& pSize) const;
 
   private:
 

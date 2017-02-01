@@ -21,9 +21,11 @@ namespace Doh3d
     static bool init();
     static bool dispose();
 
+    static bool indexResources();
     static bool reloadResources();
     static bool loadResources();
     static bool unloadResources();
+    static bool clearResources();
 
 
     static void setTextureDir(const std::string& pTextureDir) { d_textureDir = pTextureDir; }

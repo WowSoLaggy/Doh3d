@@ -17,7 +17,23 @@ namespace Doh3d
 
   bool ResourceMan::init()
   {
-    LOG("ResourceMan::init()");
+    return true;
+  }
+
+  bool ResourceMan::dispose()
+  {
+    // Ignore return values, clear all anyway
+
+    unloadResources();
+    clearResources();
+
+    return true;
+  }
+
+
+  bool ResourceMan::indexResources()
+  {
+    LOG("ResourceMan::indexResources()");
 
     // Index textures
 
@@ -66,13 +82,6 @@ namespace Doh3d
     return true;
   }
 
-  bool ResourceMan::dispose()
-  {
-    // TODO:
-    return true;
-  }
-
-
   bool ResourceMan::reloadResources()
   {
     return loadResources(true);
@@ -107,6 +116,15 @@ namespace Doh3d
 
     return true;
   }
+
+  bool ResourceMan::clearResources()
+  {
+    d_textures.clear();
+    d_fonts.clear();
+
+    return true;
+  }
+
 
   bool ResourceMan::loadResources(bool pForceReload)
   {

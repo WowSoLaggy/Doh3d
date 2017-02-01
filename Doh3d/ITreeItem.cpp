@@ -48,7 +48,7 @@ namespace Doh3d
       return;
 
     d_children.erase(it);
-    pChild->d_parent = nullptr;
+    delete pChild;
   }
 
 } // ns Doh3d

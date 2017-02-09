@@ -5,6 +5,12 @@
 namespace Doh3d
 {
 
+  bool IDrawableTreeItem::draw(Sprite& pSprite) const
+  {
+    return drawTree(pSprite);
+  }
+
+
   bool IDrawableTreeItem::drawTree(Sprite& pSprite) const
   {
     if (!drawSelf(pSprite))

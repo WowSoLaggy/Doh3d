@@ -16,8 +16,11 @@ namespace Doh3d
 
     virtual ~IUpdatableTreeItem() { }
 
-    bool updateTree(float pDt);
+    bool update(float pDt);
 
+  private:
+
+    bool updateTree(float pDt);
     virtual bool updateSelf(float pDt) PURE;
 
   };

@@ -17,6 +17,8 @@ namespace Doh3d
 
     virtual ~GBase() { }
 
+  private:
+
     virtual bool updateSelf(float pDt) override;
     virtual bool drawSelf(Sprite& pSprite) const override;
 

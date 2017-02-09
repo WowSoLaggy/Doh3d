@@ -16,8 +16,11 @@ namespace Doh3d
 
     virtual ~IDrawableTreeItem() { }
 
-    bool drawTree(Sprite& pSprite) const;
+    bool draw(Sprite& pSprite) const;
 
+  private:
+
+    bool drawTree(Sprite& pSprite) const;
     virtual bool drawSelf(Sprite& pSprite) const PURE;
 
   };

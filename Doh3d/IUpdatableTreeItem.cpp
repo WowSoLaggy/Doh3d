@@ -5,6 +5,12 @@
 namespace Doh3d
 {
 
+  bool IUpdatableTreeItem::update(float pDt)
+  {
+    return updateTree(pDt);
+  }
+
+
   bool IUpdatableTreeItem::updateTree(float pDt)
   {
     if (!updateSelf(pDt))

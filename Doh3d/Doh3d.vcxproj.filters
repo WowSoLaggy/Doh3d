@@ -22,9 +22,6 @@
     <Filter Include="src\Win">
       <UniqueIdentifier>{024a9a70-334e-4bd1-9396-65c4054208ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Cursor">
-      <UniqueIdentifier>{cfeee99e-a35f-43cd-9d15-9c6688b84d0a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Sprite">
       <UniqueIdentifier>{5dfbb3a1-46c2-4514-ac13-4c85594decd6}</UniqueIdentifier>
     </Filter>
@@ -65,9 +62,6 @@
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
       <Filter>src\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Cursor.cpp">
-      <Filter>src\Cursor</Filter>
     </ClCompile>
     <ClCompile Include="Drawer.cpp">
       <Filter>src\Drawer</Filter>
@@ -172,9 +166,6 @@
     </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>src\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Cursor.h">
-      <Filter>src\Cursor</Filter>
     </ClInclude>
     <ClInclude Include="Drawer.h">
       <Filter>src\Drawer</Filter>

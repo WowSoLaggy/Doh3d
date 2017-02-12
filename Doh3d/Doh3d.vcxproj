@@ -22,7 +22,6 @@
     <ClCompile Include="AlphaMap.cpp" />
     <ClCompile Include="AnimationController.cpp" />
     <ClCompile Include="Charset.cpp" />
-    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Drawer.cpp" />
     <ClCompile Include="GBase.cpp" />
     <ClCompile Include="GBase_old.cpp" />
@@ -67,7 +66,6 @@
     <ClInclude Include="AnimationController.h" />
     <ClInclude Include="AnimationSet.h" />
     <ClInclude Include="BitmapChar.h" />
-    <ClInclude Include="Cursor.h" />
     <ClInclude Include="Drawer.h" />
     <ClInclude Include="GBase.h" />
     <ClInclude Include="GBase_old.h" />

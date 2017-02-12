@@ -23,6 +23,10 @@ namespace Doh3d
     virtual ~Position2() { }
 
 
+    int x() const { return (int)d_rawVector.x; }
+    int y() const { return (int)d_rawVector.y; }
+
+
     D3DXVECTOR3& rawVector() { return d_rawVector; }
     const D3DXVECTOR3& rawVector() const { return d_rawVector; }
 
@@ -31,6 +35,9 @@ namespace Doh3d
 
 
     // Operators
+
+    Position2 operator+(const Position2& pPosition) const;
+    Position2 operator-(const Position2& pPosition) const;
 
     Position2 operator+(const Size2& pSize) const;
     Position2 operator-(const Size2& pSize) const;

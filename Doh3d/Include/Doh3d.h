@@ -48,7 +48,6 @@
 #include "../InputMan.h"
 #include "../ResourceMan.h"
 #include "../Screen.h"
-#include "../Cursor.h"
 #include "../Sprite.h"
 #include "../Matrix.h"
 #include "../ITreeItem.h"

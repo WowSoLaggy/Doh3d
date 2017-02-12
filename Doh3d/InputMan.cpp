@@ -3,6 +3,7 @@
 
 #include "RenderMan.h"
 #include "Screen.h"
+#include "Math.h"
 
 
 namespace Doh3d
@@ -10,7 +11,7 @@ namespace Doh3d
 
   volatile bool InputMan::d_isCreated;
   InputPars InputMan::d_inputPars;
-  D3DXVECTOR2 InputMan::d_cursorPosition;
+  Position2 InputMan::d_cursorPosition;
 
   LPDIRECTINPUT8 InputMan::d_directInput;
   LPDIRECTINPUTDEVICE8 InputMan::d_mouse;
@@ -85,11 +86,12 @@ namespace Doh3d
       }
     }
 
-    d_cursorPosition.x += (int)(d_mouseState.lX * d_inputPars.mouseSensX());
-    d_cursorPosition.y += (int)(d_mouseState.lY * d_inputPars.mouseSensY());
 
-    d_cursorPosition.x = d_cursorPosition.x < 0 ? 0 : d_cursorPosition.x > Screen::getClientWidth() - 1 ? Screen::getClientWidth() - 1 : d_cursorPosition.x;
-    d_cursorPosition.y = d_cursorPosition.y < 0 ? 0 : d_cursorPosition.y > Screen::getClientHeight() - 1 ? Screen::getClientHeight() - 1 : d_cursorPosition.y;
+    // TODO: mouse acceleration
+    Position2 newPosition = Position2(d_mouseState.lX * d_inputPars.mouseSensX(), d_mouseState.lY * d_inputPars.mouseSensY());
+    newPosition = newPosition + d_cursorPosition;
+
+    d_cursorPosition = Position2(clamp(newPosition.x(), 0, Screen::getClientWidth() - 1), clamp(newPosition.y(), 0, Screen::getClientHeight() - 1));
 
     // Mouse move
 
@@ -166,12 +168,30 @@ namespace Doh3d
     res = d_directInput->CreateDevice(GUID_SysMouse, &d_mouse, NULL);
     if ((res != DI_OK) || (d_mouse == nullptr))
     {
-      echo("ERROR: Cat't create mouse InputDevice");
+      echo("ERROR: Cat't create mouse InputDevice.");
       return false;
     }
 
     d_mouse->SetDataFormat(&c_dfDIMouse);
-    d_mouse->SetCooperativeLevel(RenderMan::getHWindow(), DISCL_FOREGROUND | DISCL_EXCLUSIVE);
+    d_mouse->SetCooperativeLevel(RenderMan::getHWindow(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+
+    // TODO: check whether this is needed
+    //if (true)
+    //{
+    //  DIPROPDWORD dipdw;
+    //  dipdw.diph.dwSize = sizeof(DIPROPDWORD);
+    //  dipdw.diph.dwHeaderSize = sizeof(DIPROPHEADER);
+    //  dipdw.diph.dwObj = 0;
+    //  dipdw.diph.dwHow = DIPH_DEVICE;
+    //  dipdw.dwData = 32; // Arbitrary buffer size
+
+    //  res = d_mouse->SetProperty(DIPROP_BUFFERSIZE, &dipdw.diph);
+    //  if (res != DI_OK)
+    //  {
+    //    echo("ERROR: Cat't set mouse property.");
+    //    return false;
+    //  }
+    //}
 
     if (!acquireMouse())
     {

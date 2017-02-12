@@ -35,6 +35,9 @@ namespace Doh3d
     Position2 operator+(const Size2& pSize) const;
     Position2 operator-(const Size2& pSize) const;
 
+
+    static Position2 zero() { return Position2(0, 0); }
+
   private:
 
     D3DXVECTOR3 d_rawVector;

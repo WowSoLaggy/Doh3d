@@ -20,6 +20,10 @@ namespace Doh3d
     virtual const Size2& getSizeHalf() const { return d_sizeHalf; }
     virtual void setSize(const Size2& pSize) { d_size = pSize; d_sizeHalf = pSize / 2; }
 
+  protected:
+
+    ISized() : d_size(0, 0), d_sizeHalf(0, 0) { }
+
   private:
 
     Size2 d_size;

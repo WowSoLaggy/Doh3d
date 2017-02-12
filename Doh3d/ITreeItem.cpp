@@ -8,6 +8,7 @@ namespace Doh3d
   ITreeItem::ITreeItem()
   {
     d_parent = nullptr;
+    d_deleted = false;
   }
 
   ITreeItem::~ITreeItem()
@@ -49,6 +50,15 @@ namespace Doh3d
 
     d_children.erase(it);
     delete pChild;
+  }
+
+
+  void ITreeItem::deleteThis()
+  {
+    d_deleted = true;
+
+    for (auto* pChild : d_children)
+      pChild->deleteThis();
   }
 
 } // ns Doh3d

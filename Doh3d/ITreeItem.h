@@ -26,7 +26,12 @@ namespace Doh3d
     void addChildFront(ITreeItem* pChild);
     void removeChild(ITreeItem* pChild);
 
+    bool isDeleted() { return d_deleted; }
+    void deleteThis();
+
   protected:
+
+    bool d_deleted;
 
     ITreeItem* d_parent;
     std::vector<ITreeItem*> d_children;

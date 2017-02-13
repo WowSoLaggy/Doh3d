@@ -85,13 +85,30 @@ namespace Doh3d
         return false;
       }
     }
+    
 
+    Position2 mouseMove = Position2(0, 0);
 
-    // TODO: mouse acceleration
-    Position2 newPosition = Position2(d_mouseState.lX * d_inputPars.mouseSensX(), d_mouseState.lY * d_inputPars.mouseSensY());
-    newPosition = newPosition + d_cursorPosition;
+    if (d_inputPars.mouseAcceleration())
+    {
+      float curMouseX = d_mouseState.lX * d_inputPars.mouseSensX();
+      float curMouseY = d_mouseState.lY * d_inputPars.mouseSensY();
 
-    d_cursorPosition = Position2(clamp(newPosition.x(), 0, Screen::getClientWidth() - 1), clamp(newPosition.y(), 0, Screen::getClientHeight() - 1));
+      const float linearity = 60.f;     // higher values mean more linear curve, less acceleration
+      const float intersection = 20.0f; // point where accelerated curve intersects with linear curve
+
+      curMouseX = (1.f / (intersection + linearity)) * curMouseX * (std::abs(curMouseX) + linearity);
+      curMouseY = (1.f / (intersection + linearity)) * curMouseY * (std::abs(curMouseY) + linearity);
+
+      mouseMove = Position2(curMouseX, curMouseY);
+    }
+    else
+    {
+      mouseMove = Position2(d_mouseState.lX * d_inputPars.mouseSensX(), d_mouseState.lY * d_inputPars.mouseSensY());
+    }
+
+    d_cursorPosition = d_cursorPosition + mouseMove;
+    d_cursorPosition = Position2(clamp(d_cursorPosition.x(), 0, Screen::getClientWidth() - 1), clamp(d_cursorPosition.y(), 0, Screen::getClientHeight() - 1));
 
     // Mouse move
 
@@ -173,7 +190,7 @@ namespace Doh3d
     }
 
     d_mouse->SetDataFormat(&c_dfDIMouse);
-    d_mouse->SetCooperativeLevel(RenderMan::getHWindow(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+    d_mouse->SetCooperativeLevel(RenderMan::getHWindow(), DISCL_FOREGROUND | DISCL_EXCLUSIVE);
 
     // TODO: check whether this is needed
     //if (true)
@@ -216,7 +233,7 @@ namespace Doh3d
     }
 
     // TODO: restore behaviour
-    //d_cursorPosition = Screen::getClientCenter();
+    d_cursorPosition = Screen::getClientCenter();
 
     return true;
   }

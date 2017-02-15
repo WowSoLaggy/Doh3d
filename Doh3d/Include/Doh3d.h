@@ -63,6 +63,7 @@
 #include "../IPositioned.h"
 #include "../ITextured.h"
 #include "../ISized.h"
+#include "../IInputHandler.h"
 
 
 #endif // DOH3D_H

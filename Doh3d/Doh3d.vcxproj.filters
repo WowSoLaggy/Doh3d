@@ -299,5 +299,8 @@
     <ClInclude Include="ISized.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="IInputHandler.h">
+      <Filter>src\InputMan</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -114,9 +114,9 @@ namespace Doh3d
 
     if ((d_mouseState.lX != 0) || (d_mouseState.lY != 0))
     {
-      if (d_inputPars.onMouseMove() != nullptr)
+      if (d_inputPars.inputHandler())
       {
-        if (!d_inputPars.onMouseMove()())
+        if (!d_inputPars.inputHandler()->onMouseMove())
         {
           echo("ERROR: Error while onMouseMove().");
           return false;
@@ -130,9 +130,9 @@ namespace Doh3d
     {
       if ((d_mouseState.rgbButtons[i] & KEY_PRESSED_FLAG) && !(d_mouseStatePrev.rgbButtons[i] & KEY_PRESSED_FLAG))
       {
-        if (d_inputPars.onMouseDown() != nullptr)
+        if (d_inputPars.inputHandler())
         {
-          if (!d_inputPars.onMouseDown()(i))
+          if (!d_inputPars.inputHandler()->onMouseDown(i))
           {
             echo("ERROR: Error while onMouseDown().");
             return false;
@@ -141,9 +141,9 @@ namespace Doh3d
       }
       else if (!(d_mouseState.rgbButtons[i] & KEY_PRESSED_FLAG) && (d_mouseStatePrev.rgbButtons[i] & KEY_PRESSED_FLAG))
       {
-        if (d_inputPars.onMouseUp() != nullptr)
+        if (d_inputPars.inputHandler())
         {
-          if (!d_inputPars.onMouseUp()(i))
+          if (!d_inputPars.inputHandler()->onMouseUp(i))
           {
             echo("ERROR: Error while onMouseUp().");
             return false;
@@ -166,9 +166,9 @@ namespace Doh3d
       {
         if ((d_keysPrev[i] & KEY_PRESSED_FLAG) == 0)
         {
-          if (d_inputPars.onKeyDown() != nullptr)
+          if (d_inputPars.inputHandler())
           {
-            if (!d_inputPars.onKeyDown()(i))
+            if (!d_inputPars.inputHandler()->onKeyDown(i))
             {
               echo("ERROR: Error while onKeyDown().");
               return false;
@@ -176,9 +176,9 @@ namespace Doh3d
           }
         }
 
-        if (d_inputPars.onKeyPressed() != nullptr)
+        if (d_inputPars.inputHandler())
         {
-          if (!d_inputPars.onKeyPressed()(i))
+          if (!d_inputPars.inputHandler()->onKeyPressed(i))
           {
             echo("ERROR: Error while onKeyPressed().");
             return false;
@@ -189,9 +189,9 @@ namespace Doh3d
       {
         if ((d_keysPrev[i] & KEY_PRESSED_FLAG) != 0)
         {
-          if (d_inputPars.onKeyUp() != nullptr)
+          if (d_inputPars.inputHandler())
           {
-            if (!d_inputPars.onKeyUp()(i))
+            if (!d_inputPars.inputHandler()->onKeyUp(i))
             {
               echo("ERROR: Error while onKeyUp().");
               return false;

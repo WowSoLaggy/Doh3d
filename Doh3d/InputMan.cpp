@@ -115,7 +115,13 @@ namespace Doh3d
     if ((d_mouseState.lX != 0) || (d_mouseState.lY != 0))
     {
       if (d_inputPars.onMouseMove() != nullptr)
-        d_inputPars.onMouseMove()();
+      {
+        if (!d_inputPars.onMouseMove()())
+        {
+          echo("ERROR: Error while onMouseMove().");
+          return false;
+        }
+      }
     }
 
     // Mouse buttons
@@ -125,12 +131,24 @@ namespace Doh3d
       if ((d_mouseState.rgbButtons[i] & KEY_PRESSED_FLAG) && !(d_mouseStatePrev.rgbButtons[i] & KEY_PRESSED_FLAG))
       {
         if (d_inputPars.onMouseDown() != nullptr)
-          d_inputPars.onMouseDown()(i);
+        {
+          if (!d_inputPars.onMouseDown()(i))
+          {
+            echo("ERROR: Error while onMouseDown().");
+            return false;
+          }
+        }
       }
       else if (!(d_mouseState.rgbButtons[i] & KEY_PRESSED_FLAG) && (d_mouseStatePrev.rgbButtons[i] & KEY_PRESSED_FLAG))
       {
         if (d_inputPars.onMouseUp() != nullptr)
-          d_inputPars.onMouseUp()(i);
+        {
+          if (!d_inputPars.onMouseUp()(i))
+          {
+            echo("ERROR: Error while onMouseUp().");
+            return false;
+          }
+        }
       }
     }
 
@@ -149,18 +167,36 @@ namespace Doh3d
         if ((d_keysPrev[i] & KEY_PRESSED_FLAG) == 0)
         {
           if (d_inputPars.onKeyDown() != nullptr)
-            d_inputPars.onKeyDown()(i);
+          {
+            if (!d_inputPars.onKeyDown()(i))
+            {
+              echo("ERROR: Error while onKeyDown().");
+              return false;
+            }
+          }
         }
 
         if (d_inputPars.onKeyPressed() != nullptr)
-          d_inputPars.onKeyPressed()(i);
+        {
+          if (!d_inputPars.onKeyPressed()(i))
+          {
+            echo("ERROR: Error while onKeyPressed().");
+            return false;
+          }
+        }
       }
       else
       {
         if ((d_keysPrev[i] & KEY_PRESSED_FLAG) != 0)
         {
           if (d_inputPars.onKeyUp() != nullptr)
-            d_inputPars.onKeyUp()(i);
+          {
+            if (!d_inputPars.onKeyUp()(i))
+            {
+              echo("ERROR: Error while onKeyUp().");
+              return false;
+            }
+          }
         }
       }
     }
@@ -232,7 +268,6 @@ namespace Doh3d
       return false;
     }
 
-    // TODO: restore behaviour
     d_cursorPosition = Screen::getClientCenter();
 
     return true;

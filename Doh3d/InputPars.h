@@ -7,13 +7,13 @@
 namespace Doh3d
 {
 
-  typedef std::function<void()> Input_MouseMove;
-  typedef std::function<void(int pButton)> Input_MouseDown;
-  typedef std::function<void(int pButton)> Input_MouseUp;
+  typedef std::function<bool()> Input_MouseMove;
+  typedef std::function<bool(int pButton)> Input_MouseDown;
+  typedef std::function<bool(int pButton)> Input_MouseUp;
 
-  typedef std::function<void(int pKey)> Input_KeyPressed;
-  typedef std::function<void(int pKey)> Input_KeyDown;
-  typedef std::function<void(int pKey)> Input_KeyUp;
+  typedef std::function<bool(int pKey)> Input_KeyPressed;
+  typedef std::function<bool(int pKey)> Input_KeyDown;
+  typedef std::function<bool(int pKey)> Input_KeyUp;
 
 
   class InputPars

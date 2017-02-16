@@ -7,18 +7,21 @@
 namespace Doh3d
 {
 
+  using MouseButton = int;
+  using Key = int;
+
+
   class IInputHandler
   {
   public:
 
-    // TODO: change "int pButton" to typedefs
-    virtual bool onMouseMove() PURE;
-    virtual bool onMouseDown(int pButton) PURE;
-    virtual bool onMouseUp(int pButton) PURE;
+    virtual bool onMouseMove() { return true; }
+    virtual bool onMouseDown(MouseButton pButton) { return true; }
+    virtual bool onMouseUp(MouseButton pButton) { return true; }
 
-    virtual bool onKeyPressed(int pKey) PURE;
-    virtual bool onKeyDown(int pKey) PURE;
-    virtual bool onKeyUp(int pKey) PURE;
+    virtual bool onKeyPressed(Key pKey) { return true; }
+    virtual bool onKeyDown(Key pKey) { return true; }
+    virtual bool onKeyUp(Key pKey) { return true; }
 
   };
 

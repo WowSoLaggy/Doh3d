@@ -4,33 +4,38 @@
 #define INC_DOH3D_RECT_H
 
 
+#include "Position2.h"
+#include "Size2.h"
+
+
 namespace Doh3d
 {
 	namespace Geometry
 	{
 
-		class Rect
+		class RectI
 		{
 		public:
 
-			Rect();
-			Rect(float pLeft, float pTop, float pRight, float pBottom);
+      RectI();
+      RectI(int pLeft, int pTop, int pRight, int pBottom);
+      RectI(const Position2& pPosition, const Size2& pSize);
 
 
-			bool containsPoint(float pX, float pY) const;
-			bool containsPoint(const D3DXVECTOR2& pPoint) const;
+			bool containsPoint(int pX, int pY) const;
+			bool containsPoint(const Position2& pPoint) const;
 
-			bool containsRect(const Rect& pRect) const;
+			bool containsRect(const RectI& pRect) const;
 
 		public:
 
-      float d_left;
-      float d_top;
-      float d_right;
-      float d_bottom;
+      int d_left;
+      int d_top;
+      int d_right;
+      int d_bottom;
 
-			Rect operator + (const D3DXVECTOR2& pOffset) const;
-			Rect operator - (const D3DXVECTOR2& pOffset) const;
+      RectI operator + (const Position2& pOffset) const;
+      RectI operator - (const Position2& pOffset) const;
 
 		};
 

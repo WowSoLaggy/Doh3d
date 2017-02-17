@@ -94,8 +94,8 @@ namespace Doh3d
       float curMouseX = d_mouseState.lX * d_inputPars.mouseSensX();
       float curMouseY = d_mouseState.lY * d_inputPars.mouseSensY();
 
-      const float linearity = 120.f;    // higher values mean more linear curve, less acceleration
-      const float intersection = 40.0f; // point where accelerated curve intersects with linear curve
+      const float linearity = 30.f;    // higher values mean more linear curve, less acceleration
+      const float intersection = 10.0f; // point where accelerated curve intersects with linear curve
 
       curMouseX = (1.f / (intersection + linearity)) * curMouseX * (std::abs(curMouseX) + linearity);
       curMouseY = (1.f / (intersection + linearity)) * curMouseY * (std::abs(curMouseY) + linearity);

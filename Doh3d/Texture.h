@@ -23,7 +23,7 @@ namespace Doh3d
     const D3DXVECTOR2& getSize() const { return d_size; }
     const D3DXVECTOR2& getSize2() const { return d_size2; }
 
-    RECT getFrame(int pFrameNumber);
+    RECT getFrame(int pFrameNumber) const;
 
 
     bool reload();

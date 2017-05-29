@@ -81,7 +81,7 @@ namespace Doh3d
     return hitTest((int)pCoords.x, (int)pCoords.y, pFrame);
   }
 
-  RECT Texture::getFrame(int pFrameNumber)
+  RECT Texture::getFrame(int pFrameNumber) const
   {
     RECT rect;
     rect.left = (LONG)(d_size.x * pFrameNumber);

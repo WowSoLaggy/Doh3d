@@ -10,47 +10,44 @@
 namespace Doh3d
 {
 
-	enum class TextAlign
-	{
-		Left,
-		Center,
-		Right,
-	};
+  enum class TextAlign
+  {
+    Left,
+    Center,
+    Right,
+  };
 
 
-	class TextContainer
-	{
-	public:
+  class TextContainer
+  {
+  public:
 
-		bool hasText() const { return d_text.hasText(); }
-		LPDIRECT3DTEXTURE9 getTexture() const { return d_text.getTexture(); }
-		
+    bool hasText() const { return d_text.hasText(); }
+    LPDIRECT3DTEXTURE9 getTexture() const { return d_text.getTexture(); }
+    RECT getRect() const;
+
     bool setText(const std::string& pText);
     bool setFont(const std::string& pFontName);
-		
-		int textWidth() const { return d_text.width(); }
-		int textHeight() const { return d_text.height(); }
+
+    int textWidth() const { return d_text.width(); }
+    int textHeight() const { return d_text.height(); }
 
 
-    bool setBasisPosition(const D3DXVECTOR3& pPosition);
-		const D3DXVECTOR3& getPosition() const { return d_textPosition; }
+    bool setBasisPosition(const Position2& pPosition);
+    const Position2& getPosition() const { return d_textPosition; }
 
     bool setTextAlign(TextAlign pTextAlign);
 
+  private:
 
-    bool load();
-    bool unload();
-
-	private:
-
-		D3DXVECTOR3 d_textBasis;
-		D3DXVECTOR3 d_textPosition;
-		TextAlign d_textAlign;
-		class Text d_text;
+    Position2 d_textBasis;
+    Position2 d_textPosition;
+    TextAlign d_textAlign;
+    class Text d_text;
 
     bool updatePosition();
 
-	};
+  };
 
 } // ns Doh3d
 

@@ -20,9 +20,6 @@ namespace Doh3d
 		bool hasText() const { return !d_text.empty(); }
 		LPDIRECT3DTEXTURE9 getTexture() const { return d_texture; }
 
-		bool load();
-    bool unload();
-
     bool setText(const std::string& pText);
     bool setFont(const std::string& pFont);
 
@@ -30,8 +27,6 @@ namespace Doh3d
 		int getCharOffset(int pPos) const { return d_charOffsets[pPos]; }
 
 	private:
-
-		bool d_loaded;
 
 		int d_width;
 		int d_height;

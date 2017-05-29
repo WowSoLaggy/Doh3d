@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef INC_DOH3D_ISIZED_H
-#define INC_DOH3D_ISIZED_H
+#ifndef INC_DOH3D_ISIZED2_H
+#define INC_DOH3D_ISIZED2_H
 
 
 #include "Size2.h"
@@ -10,11 +10,11 @@
 namespace Doh3d
 {
 
-  class ISized
+  class ISized2
   {
   public:
 
-    virtual ~ISized() { }
+    virtual ~ISized2() { }
 
     virtual const Size2& getSize() const { return d_size; }
     virtual const Size2& getSizeHalf() const { return d_sizeHalf; }
@@ -22,7 +22,7 @@ namespace Doh3d
 
   protected:
 
-    ISized() : d_size(0, 0), d_sizeHalf(0, 0) { }
+    ISized2() : d_size(0, 0), d_sizeHalf(0, 0) { }
 
   private:
 

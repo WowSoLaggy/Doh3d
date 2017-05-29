@@ -60,10 +60,11 @@
 #include "../Rect.h"
 #include "../Position2.h"
 #include "../Size2.h"
-#include "../IPositioned.h"
+#include "../IPositioned2.h"
 #include "../ITextured.h"
-#include "../ISized.h"
+#include "../ISized2.h"
 #include "../IInputHandler.h"
+#include "../TextContainer.h"
 
 
 #endif // DOH3D_H

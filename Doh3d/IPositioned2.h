@@ -10,18 +10,18 @@
 namespace Doh3d
 {
 
-  class IPositioned
+  class IPositioned2
   {
   public:
 
-    virtual ~IPositioned() { }
+    virtual ~IPositioned2() { }
 
     virtual const Position2& getPosition() const { return d_position; }
     virtual void setPosition(const Position2& pPosition) { d_position = pPosition; }
 
   protected:
 
-    IPositioned() : d_position(0, 0) { }
+    IPositioned2() : d_position(0, 0) { }
 
   private:
 

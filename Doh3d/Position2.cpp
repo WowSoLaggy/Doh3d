@@ -31,15 +31,35 @@ namespace Doh3d
   }
 
 
+  Position2::Position2(const Size2& pSize2)
+    : Position2((int)pSize2.x(), (int)pSize2.y())
+  {
+  }
+
+
 
   Position2 Position2::operator+(const Position2& pPosition) const
   {
     return Position2(d_rawVector.x + pPosition.d_rawVector.x, d_rawVector.y + pPosition.d_rawVector.y);
   }
 
+  Position2 Position2::operator+=(const Position2& pPosition)
+  {
+    d_rawVector.x += pPosition.d_rawVector.x;
+    d_rawVector.y += pPosition.d_rawVector.y;
+    return *this;
+  }
+
   Position2 Position2::operator-(const Position2& pPosition) const
   {
     return Position2(d_rawVector.x - pPosition.d_rawVector.x, d_rawVector.y - pPosition.d_rawVector.y);
+  }
+
+  Position2 Position2::operator-=(const Position2& pPosition)
+  {
+    d_rawVector.x -= pPosition.d_rawVector.x;
+    d_rawVector.y -= pPosition.d_rawVector.y;
+    return *this;
   }
 
 

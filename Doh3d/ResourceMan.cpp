@@ -232,7 +232,7 @@ namespace Doh3d
       return false;
     }
 
-    if (it->getFontTexture(pText, pTexture, pTexWidth, pTexHeight, pCharOffsets))
+    if (!it->getFontTexture(pText, pTexture, pTexWidth, pTexHeight, pCharOffsets))
     {
       echo("ERROR: Can't get font texture for font: \"", pFont, "\".");
       return false;

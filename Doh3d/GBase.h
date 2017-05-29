@@ -1,4 +1,4 @@
-// TODO: remove all commented files (keep GText)
+// TODO: remove all commented files
 
 //#pragma once
 //

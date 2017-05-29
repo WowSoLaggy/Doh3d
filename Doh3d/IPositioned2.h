@@ -16,7 +16,7 @@ namespace Doh3d
 
     virtual ~IPositioned2() { }
 
-    virtual const Position2& getPosition() const { return d_position; }
+    virtual const Position2 getPosition() const { return d_position; }
     virtual void setPosition(const Position2& pPosition) { d_position = pPosition; }
 
   protected:

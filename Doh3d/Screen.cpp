@@ -40,4 +40,15 @@ namespace Doh3d
 		return Position2(RenderMan::getRenderPars().resolutionWidth() / 2, RenderMan::getRenderPars().resolutionHeight() / 2);
 	}
 
+  Position2 Screen::getClientTopLeft()
+  {
+    return Position2(0, 0);
+  }
+
+  Position2 Screen::getClientRightBottom()
+  {
+    return Position2(RenderMan::getRenderPars().resolutionWidth(), RenderMan::getRenderPars().resolutionHeight());
+  }
+
+
 } // ns Doh3d

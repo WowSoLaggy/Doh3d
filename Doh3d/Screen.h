@@ -21,6 +21,8 @@ namespace Doh3d
     static int getClientHeight();
 
     static Position2 getClientCenter();
+    static Position2 getClientTopLeft();
+    static Position2 getClientRightBottom();
 
   };
 

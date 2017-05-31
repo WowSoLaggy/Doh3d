@@ -116,7 +116,8 @@ namespace Doh3d
     {
       if (d_inputPars.inputHandler())
       {
-        if (!d_inputPars.inputHandler()->onMouseMove())
+        bool handled = false;
+        if (!d_inputPars.inputHandler()->onMouseMove(handled))
         {
           echo("ERROR: Error while onMouseMove().");
           return false;
@@ -132,7 +133,8 @@ namespace Doh3d
       {
         if (d_inputPars.inputHandler())
         {
-          if (!d_inputPars.inputHandler()->onMouseDown(i))
+          bool handled = false;
+          if (!d_inputPars.inputHandler()->onMouseDown(i, handled))
           {
             echo("ERROR: Error while onMouseDown().");
             return false;
@@ -143,7 +145,8 @@ namespace Doh3d
       {
         if (d_inputPars.inputHandler())
         {
-          if (!d_inputPars.inputHandler()->onMouseUp(i))
+          bool handled = false;
+          if (!d_inputPars.inputHandler()->onMouseUp(i, handled))
           {
             echo("ERROR: Error while onMouseUp().");
             return false;

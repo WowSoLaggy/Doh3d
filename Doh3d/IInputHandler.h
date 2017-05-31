@@ -15,9 +15,9 @@ namespace Doh3d
   {
   public:
 
-    virtual bool onMouseMove() { return true; }
-    virtual bool onMouseDown(MouseButton pButton) { return true; }
-    virtual bool onMouseUp(MouseButton pButton) { return true; }
+    virtual bool onMouseMove(bool& pHandled) { pHandled = false; return true; }
+    virtual bool onMouseDown(MouseButton pButton, bool& pHandled) { pHandled = false; return true; }
+    virtual bool onMouseUp(MouseButton pButton, bool& pHandled) { pHandled = false; return true; }
 
     virtual bool onKeyPressed(Key pKey) { return true; }
     virtual bool onKeyDown(Key pKey) { return true; }

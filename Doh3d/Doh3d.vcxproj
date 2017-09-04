@@ -33,6 +33,7 @@
     <ClCompile Include="GPanel_old.cpp" />
     <ClCompile Include="GText.cpp" />
     <ClCompile Include="IDrawableTreeItem.cpp" />
+    <ClCompile Include="IMovable.cpp" />
     <ClCompile Include="InputMan.cpp" />
     <ClCompile Include="ITreeItem.cpp" />
     <ClCompile Include="IUpdatableTreeItem.cpp" />
@@ -82,6 +83,7 @@
     <ClInclude Include="GuiList.h" />
     <ClInclude Include="IDrawableTreeItem.h" />
     <ClInclude Include="IInputHandler.h" />
+    <ClInclude Include="IMovable.h" />
     <ClInclude Include="IPositioned2I.h" />
     <ClInclude Include="ISized2.h" />
     <ClInclude Include="ITextured.h" />

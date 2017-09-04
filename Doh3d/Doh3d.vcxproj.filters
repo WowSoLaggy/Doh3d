@@ -58,6 +58,9 @@
     <Filter Include="src\Math\Geometry">
       <UniqueIdentifier>{d42a128c-4e4c-43c7-9a4b-8f5dae3b9315}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Physics">
+      <UniqueIdentifier>{ea3cedcf-d4c4-4678-9de6-f5c890d22bae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
@@ -164,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="Size2I.cpp">
       <Filter>src\EntityComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="IMovable.cpp">
+      <Filter>src\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +325,9 @@
     </ClInclude>
     <ClInclude Include="Size2I.h">
       <Filter>src\EntityComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="IMovable.h">
+      <Filter>src\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

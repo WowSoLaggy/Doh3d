@@ -58,7 +58,7 @@
     <Filter Include="src\Math\Geometry">
       <UniqueIdentifier>{d42a128c-4e4c-43c7-9a4b-8f5dae3b9315}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Physics">
+    <Filter Include="src\Math\Physics">
       <UniqueIdentifier>{ea3cedcf-d4c4-4678-9de6-f5c890d22bae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -169,7 +169,8 @@
       <Filter>src\EntityComponents</Filter>
     </ClCompile>
     <ClCompile Include="IMovable.cpp">
-      <Filter>src\Physics</Filter>
+      <Filter>src\Math\Physics</Filter>
+    </ClCompile>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -327,7 +328,8 @@
       <Filter>src\EntityComponents</Filter>
     </ClInclude>
     <ClInclude Include="IMovable.h">
-      <Filter>src\Physics</Filter>
+      <Filter>src\Math\Physics</Filter>
+    </ClInclude>
     </ClInclude>
   </ItemGroup>
 </Project>

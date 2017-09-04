@@ -54,6 +54,7 @@
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextContainer.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Vector2F.cpp" />
     <ClCompile Include="Vector2I.cpp" />
     <ClCompile Include="WinClass.cpp" />
   </ItemGroup>
@@ -103,6 +104,7 @@
     <ClInclude Include="TextContainer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Vector2F.h" />
     <ClInclude Include="Vector2I.h" />
     <ClInclude Include="Viewport.h" />
     <ClInclude Include="WinClass.h" />

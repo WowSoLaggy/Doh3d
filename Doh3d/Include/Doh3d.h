@@ -69,6 +69,7 @@
 #include "../ISized2.h"
 #include "../IInputHandler.h"
 #include "../TextContainer.h"
+#include "../IControlable.h"
 
 
 #endif // DOH3D_H

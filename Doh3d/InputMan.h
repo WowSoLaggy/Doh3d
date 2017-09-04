@@ -6,6 +6,7 @@
 
 #include "InputPars.h"
 #include "WinClass.h"
+#include "Cursor.h"
 
 
 namespace Doh3d
@@ -22,7 +23,8 @@ namespace Doh3d
 	public:
 
 		static bool isCreated() { return d_isCreated; }
-		static Position2 getCursorPosition() { return d_cursorPosition; }
+
+    static const Cursor& getCursor() { return d_cursor; }
 
 		static bool init();
 		static bool dispose();
@@ -43,7 +45,7 @@ namespace Doh3d
 
 		static volatile bool d_isCreated;
 		static InputPars d_inputPars;
-		static Position2 d_cursorPosition;
+		static Cursor d_cursor;
 
 		static LPDIRECTINPUT8 d_directInput;
 		static LPDIRECTINPUTDEVICE8 d_mouse;

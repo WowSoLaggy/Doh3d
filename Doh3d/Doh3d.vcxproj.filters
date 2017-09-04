@@ -154,6 +154,9 @@
     <ClCompile Include="Vector2F.cpp">
       <Filter>src\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>src\InputMan</Filter>
+    </ClCompile>
     <ClCompile Include="Position2I.cpp">
       <Filter>src\EntityComponents</Filter>
     </ClCompile>
@@ -303,6 +306,9 @@
     </ClInclude>
     <ClInclude Include="IPositioned2I.h">
       <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>src\InputMan</Filter>
     </ClInclude>
     <ClInclude Include="Position2I.h">
       <Filter>src\EntityComponents</Filter>

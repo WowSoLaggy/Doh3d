@@ -11,7 +11,7 @@ namespace Doh3d
 
   volatile bool InputMan::d_isCreated;
   InputPars InputMan::d_inputPars;
-  Position2 InputMan::d_cursorPosition;
+  Cursor InputMan::d_cursor;
 
   LPDIRECTINPUT8 InputMan::d_directInput;
   LPDIRECTINPUTDEVICE8 InputMan::d_mouse;
@@ -107,8 +107,10 @@ namespace Doh3d
       mouseMove = Position2I(d_mouseState.lX * d_inputPars.mouseSensX(), d_mouseState.lY * d_inputPars.mouseSensY());
     }
 
-    d_cursorPosition = d_cursorPosition + mouseMove;
-    d_cursorPosition = Position2(clamp(d_cursorPosition.x(), 0, Screen::getClientWidth() - 1), clamp(d_cursorPosition.y(), 0, Screen::getClientHeight() - 1));
+    Position2I newPosition = d_cursor.getPosition() + mouseMove;
+    newPosition.x = clamp(newPosition.x, 0, Screen::getClientWidth() - 1);
+    newPosition.y = clamp(newPosition.y, 0, Screen::getClientHeight() - 1);
+    d_cursor.setPosition(newPosition);
 
     // Mouse move
 
@@ -271,7 +273,7 @@ namespace Doh3d
       return false;
     }
 
-    d_cursorPosition = Screen::getClientCenter();
+    d_cursor.setPosition(Screen::getClientCenter());
 
     return true;
   }

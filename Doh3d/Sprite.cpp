@@ -5,6 +5,14 @@
 namespace Doh3d
 {
 
+  Sprite::Sprite()
+    : d_sprite(nullptr)
+  {
+    d_translation = Position2I::zero();
+    d_scale = Vector2F::identity();
+  }
+
+
   bool Sprite::begin()
 	{
 		LOG("Sprite::begin()");
@@ -36,16 +44,11 @@ namespace Doh3d
 	}
 
 
-  void Sprite::setTransform(const D3DXMATRIX* pTransform)
-  {
-    d_sprite->SetTransform(pTransform);
-  }
-
-  bool Sprite::draw(LPDIRECT3DTEXTURE9 pTexture, CONST RECT *pSrcRect, CONST D3DXVECTOR3 *pCenter, const Position2& pPosition, D3DCOLOR Color)
+  bool Sprite::draw(LPDIRECT3DTEXTURE9 pTexture, CONST RECT *pSrcRect, CONST D3DXVECTOR3 *pCenter, const Position2I& pPosition, D3DCOLOR Color)
   {
     LOG(__FUNCTION__);
 
-    if (d_sprite->Draw(pTexture, pSrcRect, pCenter, pPosition.rawVectorPtr(), Color) != S_OK)
+    if (d_sprite->Draw(pTexture, pSrcRect, pCenter, &toD3DXVECTOR3(pPosition), Color) != S_OK)
     {
       echo("ERROR: Can't draw sprite.");
       return false;
@@ -66,6 +69,8 @@ namespace Doh3d
 			echo("ERROR: Can't create sprite.");
 			return false;
 		}
+
+    updateTransform();
 
 		return true;
 	}
@@ -99,5 +104,35 @@ namespace Doh3d
 
 		return true;
 	}
+
+
+  void Sprite::setTranslation(const Position2I& i_translation)
+  {
+    d_translation = i_translation;
+    updateTransform();
+  }
+
+  void Sprite::setScale(const Vector2F& i_scale)
+  {
+    d_scale = i_scale;
+    updateTransform();
+  }
+
+
+  void Sprite::updateTransform()
+  {
+    D3DXMATRIX translationMatrix;
+    D3DXMatrixTranslation(&translationMatrix, (FLOAT)d_translation.x, (FLOAT)d_translation.y, 0);
+
+    D3DXMATRIX scaleMatrix;
+    D3DXVECTOR2 scaleCenter(0, 0);
+    D3DXVECTOR2 scale((FLOAT)d_scale.x, (FLOAT)d_scale.y);
+    D3DXMatrixTransformation2D(&scaleMatrix, &scaleCenter, 0, &scale, 0, 0, 0);
+
+    D3DXMATRIX finalTransform;
+    D3DXMatrixMultiply(&finalTransform, &translationMatrix, &scaleMatrix);
+
+    d_sprite->SetTransform(&finalTransform);
+  }
 
 } // Doh3d

@@ -4,29 +4,32 @@
 #define INC_DOH3D_SPRITE_H
 
 
-#include "Position2.h"
+#include "IPositioned2I.h"
+#include "Vector2F.h"
 
 
 namespace Doh3d
 {
 
-	class Sprite
+	class Sprite final
 	{
 	public:
 
-		Sprite()
-			: d_sprite(nullptr) { }
+    Sprite();
 
 
 		bool begin();
     bool end();
 
 
-    // TODO: change par type to some typedef
-    void setTransform(const D3DXMATRIX* pTransform);
+    const Position2I& getTranslation() const { return d_translation; }
+    void setTranslation(const Position2I& i_translation);
 
+    const Vector2F& getScale() const { return d_scale; }
+    void setScale(const Vector2F& i_scale);
+    
     // TODO: change pars types to some typedef
-    bool draw(LPDIRECT3DTEXTURE9 pTexture, CONST RECT *pSrcRect, CONST D3DXVECTOR3 *pCenter, const Position2& pPosition, D3DCOLOR Color);
+    bool draw(LPDIRECT3DTEXTURE9 pTexture, CONST RECT *pSrcRect, CONST D3DXVECTOR3 *pCenter, const Position2I& pPosition, D3DCOLOR Color);
 
 
     bool load();
@@ -36,6 +39,11 @@ namespace Doh3d
 	private:
 
 		LPD3DXSPRITE d_sprite;
+
+    Position2I d_translation;
+    Vector2F d_scale;
+
+    void updateTransform();
 
 	};
 

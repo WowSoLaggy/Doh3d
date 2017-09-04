@@ -23,6 +23,7 @@
     <ClCompile Include="AnimationController.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Charset.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Drawer.cpp" />
     <ClCompile Include="GBase.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="AnimationSet.h" />
     <ClInclude Include="BitmapChar.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Drawer.h" />
     <ClInclude Include="GBase.h" />

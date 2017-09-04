@@ -16,9 +16,6 @@
     <Filter Include="src\Drawer">
       <UniqueIdentifier>{577a2763-aae4-4aee-b2dc-162a283b5587}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\InputMan">
-      <UniqueIdentifier>{67b4b245-d48f-48e4-9dbc-52eedd4496c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Win">
       <UniqueIdentifier>{024a9a70-334e-4bd1-9396-65c4054208ff}</UniqueIdentifier>
     </Filter>
@@ -61,6 +58,15 @@
     <Filter Include="src\Math\Physics">
       <UniqueIdentifier>{ea3cedcf-d4c4-4678-9de6-f5c890d22bae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Input">
+      <UniqueIdentifier>{05e9e59a-fc13-4bec-8f13-ba634c298f46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Input\InputMan">
+      <UniqueIdentifier>{67b4b245-d48f-48e4-9dbc-52eedd4496c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Input\Controllers">
+      <UniqueIdentifier>{97361281-85b7-479f-8c60-b55254523c6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
@@ -76,10 +82,10 @@
       <Filter>src\Gui\Controls</Filter>
     </ClCompile>
     <ClCompile Include="InputMan.cpp">
-      <Filter>src\InputMan</Filter>
+      <Filter>src\Input\InputMan</Filter>
     </ClCompile>
     <ClCompile Include="Charset.cpp">
-      <Filter>src\InputMan</Filter>
+      <Filter>src\Input\InputMan</Filter>
     </ClCompile>
     <ClCompile Include="RenderMan.cpp">
       <Filter>src\RenderMan</Filter>
@@ -160,7 +166,7 @@
       <Filter>src\Math</Filter>
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
-      <Filter>src\InputMan</Filter>
+      <Filter>src\Input\InputMan</Filter>
     </ClCompile>
     <ClCompile Include="Position2I.cpp">
       <Filter>src\EntityComponents</Filter>
@@ -170,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="IMovable.cpp">
       <Filter>src\Math\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>src\Input\Controllers</Filter>
     </ClCompile>
     <ClCompile Include="IControlable.cpp">
       <Filter>src\Objects</Filter>
@@ -195,10 +204,10 @@
       <Filter>src\Gui\Controls</Filter>
     </ClInclude>
     <ClInclude Include="InputMan.h">
-      <Filter>src\InputMan</Filter>
+      <Filter>src\Input\InputMan</Filter>
     </ClInclude>
     <ClInclude Include="InputPars.h">
-      <Filter>src\InputMan</Filter>
+      <Filter>src\Input\InputMan</Filter>
     </ClInclude>
     <ClInclude Include="RenderMan.h">
       <Filter>src\RenderMan</Filter>
@@ -306,7 +315,7 @@
       <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="IInputHandler.h">
-      <Filter>src\InputMan</Filter>
+      <Filter>src\Input\InputMan</Filter>
     </ClInclude>
     <ClInclude Include="ISized2.h">
       <Filter>src\Objects</Filter>
@@ -321,7 +330,7 @@
       <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Cursor.h">
-      <Filter>src\InputMan</Filter>
+      <Filter>src\Input\InputMan</Filter>
     </ClInclude>
     <ClInclude Include="Position2I.h">
       <Filter>src\EntityComponents</Filter>
@@ -331,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="IMovable.h">
       <Filter>src\Math\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>src\Input\Controllers</Filter>
     </ClInclude>
     <ClInclude Include="IControlable.h">
       <Filter>src\Objects</Filter>

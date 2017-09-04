@@ -44,6 +44,7 @@
 #include "../StartupPars.h"
 #include "../WinClass.h"
 #include "../Drawer.h"
+#include "../Camera.h"
 #include "../Cursor.h"
 #include "../MessagePeeker.h"
 #include "../InputMan.h"

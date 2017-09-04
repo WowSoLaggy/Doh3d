@@ -150,6 +150,8 @@
     <ClCompile Include="PrecompiledHeader.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>src\Drawer</Filter>
     </ClCompile>
     <ClCompile Include="Vector2F.cpp">
       <Filter>src\Math</Filter>
@@ -300,6 +302,8 @@
     <ClInclude Include="ISized2.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>src\Drawer</Filter>
     </ClInclude>
     <ClInclude Include="Vector2F.h">
       <Filter>src\Math</Filter>

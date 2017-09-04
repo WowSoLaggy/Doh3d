@@ -40,9 +40,6 @@
     <Filter Include="src\Objects">
       <UniqueIdentifier>{104d7093-0d3c-451b-8774-0e8abc1baf45}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Geometry">
-      <UniqueIdentifier>{d42a128c-4e4c-43c7-9a4b-8f5dae3b9315}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Gui\Text">
       <UniqueIdentifier>{69111f54-4631-463b-882e-4f430bbe43f7}</UniqueIdentifier>
     </Filter>
@@ -57,6 +54,9 @@
     </Filter>
     <Filter Include="src\EntityComponents">
       <UniqueIdentifier>{04e24223-e1d5-47c5-b16b-4742f29926aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Math\Geometry">
+      <UniqueIdentifier>{d42a128c-4e4c-43c7-9a4b-8f5dae3b9315}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,7 +115,7 @@
       <Filter>src\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Rect.cpp">
-      <Filter>src\Geometry</Filter>
+      <Filter>src\Math\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>src\Math</Filter>
@@ -255,7 +255,7 @@
       <Filter>libs</Filter>
     </ClInclude>
     <ClInclude Include="Rect.h">
-      <Filter>src\Geometry</Filter>
+      <Filter>src\Math\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="..\libs\dirent.h">
       <Filter>libs</Filter>

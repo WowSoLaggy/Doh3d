@@ -23,6 +23,11 @@ namespace Doh3d
     Vector2I operator-(const Vector2I& i_other) const;
     Vector2I operator-=(const Vector2I& i_other);
 
+    Vector2I operator*(float i_right) const;
+    Vector2I operator*=(float i_right);
+    Vector2I operator/(float i_right) const;
+    Vector2I operator/=(float i_right);
+
   public:
 
     static Vector2I zero() { return { 0, 0 }; }

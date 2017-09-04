@@ -35,19 +35,19 @@ namespace Doh3d
 	}
 
 
-  Position2 Screen::getClientCenter()
+  Position2I Screen::getClientCenter()
 	{
-		return Position2(RenderMan::getRenderPars().resolutionWidth() / 2, RenderMan::getRenderPars().resolutionHeight() / 2);
+		return Position2I(RenderMan::getRenderPars().resolutionWidth() / 2, RenderMan::getRenderPars().resolutionHeight() / 2);
 	}
 
-  Position2 Screen::getClientTopLeft()
+  Position2I Screen::getClientTopLeft()
   {
-    return Position2(0, 0);
+    return Position2I(0, 0);
   }
 
-  Position2 Screen::getClientRightBottom()
+  Position2I Screen::getClientRightBottom()
   {
-    return Position2(RenderMan::getRenderPars().resolutionWidth(), RenderMan::getRenderPars().resolutionHeight());
+    return Position2I(RenderMan::getRenderPars().resolutionWidth(), RenderMan::getRenderPars().resolutionHeight());
   }
 
 

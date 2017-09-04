@@ -46,4 +46,29 @@ namespace Doh3d
   }
 
 
+  Vector2I Vector2I::operator*(float i_right) const
+  {
+    return{ x * i_right, y * i_right };
+  }
+
+  Vector2I Vector2I::operator*=(float i_right)
+  {
+    x = (int)(x * i_right);
+    y = (int)(y * i_right);
+    return *this;
+  }
+
+  Vector2I Vector2I::operator/(float i_right) const
+  {
+    return{ x / i_right, y / i_right };
+  }
+
+  Vector2I Vector2I::operator/=(float i_right)
+  {
+    x = (int)(x / i_right);
+    y = (int)(y / i_right);
+    return *this;
+  }
+
+
 } // ns Doh3d

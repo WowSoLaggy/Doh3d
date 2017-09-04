@@ -147,17 +147,18 @@
     <ClCompile Include="GBase.cpp">
       <Filter>src\Gui\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="Position2.cpp">
-      <Filter>src\EntityComponents</Filter>
-    </ClCompile>
     <ClCompile Include="PrecompiledHeader.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Size2.cpp">
-      <Filter>src\EntityComponents</Filter>
     </ClCompile>
     <ClCompile Include="Vector2F.cpp">
       <Filter>src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Position2I.cpp">
+      <Filter>src\EntityComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Size2I.cpp">
+      <Filter>src\EntityComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,17 +285,11 @@
     <ClInclude Include="GBase.h">
       <Filter>src\Gui\Controls</Filter>
     </ClInclude>
-    <ClInclude Include="Position2.h">
-      <Filter>src\EntityComponents</Filter>
-    </ClInclude>
     <ClInclude Include="PrecompiledHeader.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="ITextured.h">
       <Filter>src\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Size2.h">
-      <Filter>src\EntityComponents</Filter>
     </ClInclude>
     <ClInclude Include="IInputHandler.h">
       <Filter>src\InputMan</Filter>
@@ -302,11 +297,18 @@
     <ClInclude Include="ISized2.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="IPositioned2.h">
-      <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Vector2F.h">
       <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="IPositioned2I.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Position2I.h">
+      <Filter>src\EntityComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Size2I.h">
+      <Filter>src\EntityComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

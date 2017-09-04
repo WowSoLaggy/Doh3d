@@ -33,15 +33,15 @@ namespace Doh3d
     int textHeight() const { return d_text.height(); }
 
 
-    bool setBasisPosition(const Position2& pPosition);
-    const Position2& getPosition() const { return d_textPosition; }
+    bool setBasisPosition(const Position2I& pPosition);
+    const Position2I& getPosition() const { return d_textPosition; }
 
     bool setTextAlign(TextAlign pTextAlign);
 
   private:
 
-    Position2 d_textBasis;
-    Position2 d_textPosition;
+    Position2I d_textBasis;
+    Position2I d_textPosition;
     TextAlign d_textAlign;
     class Text d_text;
 

@@ -87,7 +87,7 @@ namespace Doh3d
     }
     
 
-    Position2 mouseMove = Position2(0, 0);
+    Position2I mouseMove = Position2I(0, 0);
 
     if (d_inputPars.mouseAcceleration())
     {
@@ -100,11 +100,11 @@ namespace Doh3d
       curMouseX = (1.f / (intersection + linearity)) * curMouseX * (std::abs(curMouseX) + linearity);
       curMouseY = (1.f / (intersection + linearity)) * curMouseY * (std::abs(curMouseY) + linearity);
 
-      mouseMove = Position2(curMouseX, curMouseY);
+      mouseMove = Position2I(curMouseX, curMouseY);
     }
     else
     {
-      mouseMove = Position2(d_mouseState.lX * d_inputPars.mouseSensX(), d_mouseState.lY * d_inputPars.mouseSensY());
+      mouseMove = Position2I(d_mouseState.lX * d_inputPars.mouseSensX(), d_mouseState.lY * d_inputPars.mouseSensY());
     }
 
     d_cursorPosition = d_cursorPosition + mouseMove;

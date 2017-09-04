@@ -4,7 +4,7 @@
 #define INC_DOH3D_ISIZED2_H
 
 
-#include "Size2.h"
+#include "Size2I.h"
 
 
 namespace Doh3d
@@ -16,9 +16,9 @@ namespace Doh3d
 
     virtual ~ISized2() { }
 
-    virtual const Size2& getSize() const { return d_size; }
-    virtual const Size2& getSizeHalf() const { return d_sizeHalf; }
-    virtual void setSize(const Size2& pSize) { d_size = pSize; d_sizeHalf = pSize / 2; }
+    virtual const Size2I& getSize() const { return d_size; }
+    virtual const Size2I& getSizeHalf() const { return d_sizeHalf; }
+    virtual void setSize(const Size2I& pSize) { d_size = pSize; d_sizeHalf = pSize / 2; }
 
   protected:
 
@@ -26,8 +26,8 @@ namespace Doh3d
 
   private:
 
-    Size2 d_size;
-    Size2 d_sizeHalf;
+    Size2I d_size;
+    Size2I d_sizeHalf;
 
   };
 

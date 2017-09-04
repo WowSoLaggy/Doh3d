@@ -4,7 +4,7 @@
 #define INC_DOH3D_SCREEN_H
 
 
-#include "Position2.h"
+#include "Vector2I.h"
 
 
 namespace Doh3d
@@ -20,9 +20,9 @@ namespace Doh3d
     static int getClientWidth();
     static int getClientHeight();
 
-    static Position2 getClientCenter();
-    static Position2 getClientTopLeft();
-    static Position2 getClientRightBottom();
+    static Vector2I getClientCenter();
+    static Vector2I getClientTopLeft();
+    static Vector2I getClientRightBottom();
 
   };
 

@@ -23,6 +23,11 @@ namespace Doh3d
     Vector2F operator-(const Vector2F& i_other) const;
     Vector2F operator-=(const Vector2F& i_other);
 
+    Vector2F operator*(float i_right) const;
+    Vector2F operator*=(float i_right);
+    Vector2F operator/(float i_right) const;
+    Vector2F operator/=(float i_right);
+
   public:
 
     static Vector2F zero() { return{ 0, 0 }; }

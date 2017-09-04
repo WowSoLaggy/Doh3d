@@ -37,7 +37,7 @@
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MessagePeeker.cpp" />
-    <ClCompile Include="Position2.cpp" />
+    <ClCompile Include="Position2I.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -49,7 +49,7 @@
     <ClCompile Include="RenderMan.cpp" />
     <ClCompile Include="ResourceMan.cpp" />
     <ClCompile Include="Screen.cpp" />
-    <ClCompile Include="Size2.cpp" />
+    <ClCompile Include="Size2I.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextContainer.cpp" />
@@ -78,7 +78,7 @@
     <ClInclude Include="GuiList.h" />
     <ClInclude Include="IDrawableTreeItem.h" />
     <ClInclude Include="IInputHandler.h" />
-    <ClInclude Include="IPositioned2.h" />
+    <ClInclude Include="IPositioned2I.h" />
     <ClInclude Include="ISized2.h" />
     <ClInclude Include="ITextured.h" />
     <ClInclude Include="ITreeItem.h" />
@@ -89,7 +89,7 @@
     <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MessagePeeker.h" />
-    <ClInclude Include="Position2.h" />
+    <ClInclude Include="Position2I.h" />
     <ClInclude Include="PrecompiledHeader.h" />
     <ClInclude Include="RBitmapFont.h" />
     <ClInclude Include="Rect.h" />
@@ -97,7 +97,7 @@
     <ClInclude Include="RenderPars.h" />
     <ClInclude Include="ResourceMan.h" />
     <ClInclude Include="Screen.h" />
-    <ClInclude Include="Size2.h" />
+    <ClInclude Include="Size2I.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StartupPars.h" />
     <ClInclude Include="Text.h" />

@@ -4,8 +4,8 @@
 #define INC_DOH3D_RECT_H
 
 
-#include "Position2.h"
-#include "Size2.h"
+#include "Vector2I.h"
+#include "Size2I.h"
 
 
 namespace Doh3d
@@ -19,11 +19,11 @@ namespace Doh3d
 
       RectI();
       RectI(int pLeft, int pTop, int pRight, int pBottom);
-      RectI(const Position2& pPosition, const Size2& pSize);
+      RectI(const Vector2I& pPosition, const Size2I& pSize);
 
 
 			bool containsPoint(int pX, int pY) const;
-			bool containsPoint(const Position2& pPoint) const;
+			bool containsPoint(const Vector2I& pPoint) const;
 
 			bool containsRect(const RectI& pRect) const;
 
@@ -34,8 +34,8 @@ namespace Doh3d
       int d_right;
       int d_bottom;
 
-      RectI operator + (const Position2& pOffset) const;
-      RectI operator - (const Position2& pOffset) const;
+      RectI operator + (const Vector2I& pOffset) const;
+      RectI operator - (const Vector2I& pOffset) const;
 
 		};
 

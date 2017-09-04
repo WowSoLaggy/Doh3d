@@ -6,7 +6,6 @@
 
 #include "InputPars.h"
 #include "WinClass.h"
-#include "Position2.h"
 
 
 namespace Doh3d

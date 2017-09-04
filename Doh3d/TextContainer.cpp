@@ -10,18 +10,18 @@ namespace Doh3d
     LOG(__FUNCTION__);
 
     d_textPosition = d_textBasis;
-    d_textPosition -= Doh3d::Position2(0, d_text.height() / 2);
+    d_textPosition -= Doh3d::Position2I(0, d_text.height() / 2);
 
     switch (d_textAlign)
     {
     case TextAlign::Center:
     {
-      d_textPosition -= Doh3d::Position2(d_text.width() / 2, 0);
+      d_textPosition -= Doh3d::Position2I(d_text.width() / 2, 0);
       break;
     }
     case TextAlign::Right:
     {
-      d_textPosition -= Doh3d::Position2(d_text.width(), 0);
+      d_textPosition -= Doh3d::Position2I(d_text.width(), 0);
       break;
     }
     case TextAlign::Left:
@@ -39,7 +39,7 @@ namespace Doh3d
   }
 
 
-  bool TextContainer::setBasisPosition(const Position2& pPosition)
+  bool TextContainer::setBasisPosition(const Position2I& pPosition)
   {
     d_textBasis = pPosition;
 

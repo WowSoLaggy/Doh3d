@@ -17,20 +17,20 @@ namespace Doh3d
 		{
 		}
 
-    RectI::RectI(const Position2& pPosition, const Size2& pSize)
-      : d_left(pPosition.x()), d_top(pPosition.y()), d_right(pPosition.x() + pSize.x()), d_bottom(pPosition.y() + pSize.y())
+    RectI::RectI(const Vector2I& pPosition, const Size2I& pSize)
+      : d_left(pPosition.x), d_top(pPosition.y), d_right(pPosition.x + pSize.x), d_bottom(pPosition.y + pSize.y)
     {
     }
 
 
-    RectI RectI::operator + (const Position2& pOffset) const
+    RectI RectI::operator + (const Vector2I& pOffset) const
 		{
-			return RectI(d_left + pOffset.x(), d_top + pOffset.y(), d_right + pOffset.x(), d_bottom + pOffset.y());
+			return RectI(d_left + pOffset.x, d_top + pOffset.y, d_right + pOffset.x, d_bottom + pOffset.y);
 		}
 
-    RectI RectI::operator - (const Position2& pOffset) const
+    RectI RectI::operator - (const Vector2I& pOffset) const
 		{
-			return RectI(d_left - pOffset.x(), d_top - pOffset.y(), d_right - pOffset.x(), d_bottom - pOffset.y());
+			return RectI(d_left - pOffset.x, d_top - pOffset.y, d_right - pOffset.x, d_bottom - pOffset.y);
 		}
 
 
@@ -39,9 +39,9 @@ namespace Doh3d
 			return !((pX < d_left) || (d_right < pX) || (pY < d_top) || (d_bottom < pY));
 		}
 
-		bool RectI::containsPoint(const Position2& pPoint) const
+		bool RectI::containsPoint(const Vector2I& pPoint) const
 		{
-			return containsPoint(pPoint.x(), pPoint.y());
+			return containsPoint(pPoint.x, pPoint.y);
 		}
 
 

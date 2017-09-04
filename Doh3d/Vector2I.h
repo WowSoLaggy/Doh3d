@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_VECTOR2_H
-#define INC_DOH3D_VECTOR2_H
-
 
 namespace Doh3d
 {
@@ -11,28 +8,26 @@ namespace Doh3d
   {
   public:
 
-    Vector2I(int pX, int pY);
-    Vector2I(float pX, float pY);
+    Vector2I();
+    Vector2I(int i_x, int i_y);
+    Vector2I(float i_x, float i_y);
 
-    int& x() { return d_x; }
-    const int& x() const { return d_x; }
-
-    int& y() { return d_y; }
-    const int& y() const { return d_y; }
+    int x;
+    int y;
 
 
-    static Vector2I empty();
-    static Vector2I identity();
+    // Operators
 
+    Vector2I operator+(const Vector2I& i_other) const;
+    Vector2I operator+=(const Vector2I& i_other);
+    Vector2I operator-(const Vector2I& i_other) const;
+    Vector2I operator-=(const Vector2I& i_other);
 
-  private:
+  public:
 
-    int d_x;
-    int d_y;
+    static Vector2I zero() { return { 0, 0 }; }
+    static Vector2I identity() { return { 1, 1 }; }
 
   };
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_VECTOR2_H

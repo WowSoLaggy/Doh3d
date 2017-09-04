@@ -5,17 +5,45 @@
 namespace Doh3d
 {
 
-  Vector2I::Vector2I(int pX, int pY)
-    : d_x(pX), d_y(pY)
-  { }
+  Vector2I::Vector2I()
+    : Vector2I(0, 0)
+  {
+  }
 
-  Vector2I::Vector2I(float pX, float pY)
-    : d_x((int)pX), d_y((int)pY)
-  { }
+  Vector2I::Vector2I(int i_x, int i_y)
+    : x(i_x), y(i_y)
+  {
+  }
+
+  Vector2I::Vector2I(float i_x, float i_y)
+    : x((int)i_x), y((int)i_y)
+  {
+  }
 
 
-  Vector2I Vector2I::empty() { return Vector2I(0, 0); }
-  Vector2I Vector2I::identity() { return Vector2I(1, 1); }
+  Vector2I Vector2I::operator+(const Vector2I& i_other) const
+  {
+    return{ x + i_other.x, y + i_other.y };
+  }
+
+  Vector2I Vector2I::operator+=(const Vector2I& i_other)
+  {
+    x += i_other.x;
+    y += i_other.y;
+    return *this;
+  }
+
+  Vector2I Vector2I::operator-(const Vector2I& i_other) const
+  {
+    return{ x - i_other.x, y - i_other.y };
+  }
+
+  Vector2I Vector2I::operator-=(const Vector2I& i_other)
+  {
+    x -= i_other.x;
+    y -= i_other.y;
+    return *this;
+  }
 
 
 } // ns Doh3d

@@ -24,6 +24,9 @@ namespace Doh3d
 
     // Operators
 
+    Vector2F operator+() const;
+    Vector2F operator-() const;
+
     Vector2F operator+(const Vector2F& i_other) const;
     Vector2F operator+=(const Vector2F& i_other);
     Vector2F operator-(const Vector2F& i_other) const;

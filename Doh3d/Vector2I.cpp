@@ -26,6 +26,17 @@ namespace Doh3d
   }
 
 
+  Vector2I Vector2I::operator+() const
+  {
+    return{ x, y };
+  }
+
+  Vector2I Vector2I::operator-() const
+  {
+    return{ -x, -y };
+  }
+
+
   Vector2I Vector2I::operator+(const Vector2I& i_other) const
   {
     return{ x + i_other.x, y + i_other.y };

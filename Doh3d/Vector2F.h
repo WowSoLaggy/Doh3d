@@ -18,6 +18,9 @@ namespace Doh3d
     float x;
     float y;
 
+    float lengthSq() { return x * x + y * y; }
+    float length() { return std::sqrt(lengthSq()); }
+
 
     // Operators
 

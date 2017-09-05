@@ -70,6 +70,8 @@
 #include "../IInputHandler.h"
 #include "../TextContainer.h"
 #include "../IControlable.h"
+#include "../Controller.h"
+#include "../IMovable.h"
 
 
 #endif // DOH3D_H

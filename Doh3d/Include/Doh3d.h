@@ -40,6 +40,12 @@
 
 // Doh3d
 
+#include "../Math.h"
+#include "../Rect.h"
+#include "../Matrix.h"
+#include "../Vector2I.h"
+#include "../Vector2F.h"
+
 #include "../RenderMan.h"
 #include "../StartupPars.h"
 #include "../WinClass.h"
@@ -51,9 +57,6 @@
 #include "../ResourceMan.h"
 #include "../Screen.h"
 #include "../Sprite.h"
-#include "../Matrix.h"
-#include "../Vector2I.h"
-#include "../Vector2F.h"
 #include "../ITreeItem.h"
 #include "../IDrawableTreeItem.h"
 #include "../IUpdatableTreeItem.h"
@@ -61,7 +64,6 @@
 #include "../GuiList.h"
 #include "../AnimationSet.h"
 #include "../AnimationController.h"
-#include "../Rect.h"
 #include "../Position2I.h"
 #include "../Size2I.h"
 #include "../IPositioned2I.h"

@@ -4,6 +4,8 @@
 namespace Doh3d
 {
 
+  class Vector2F;
+
   class Vector2I
   {
   public:
@@ -11,6 +13,7 @@ namespace Doh3d
     Vector2I();
     Vector2I(int i_x, int i_y);
     Vector2I(float i_x, float i_y);
+    Vector2I(const Vector2F& i_other);
 
     int x;
     int y;

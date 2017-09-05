@@ -20,6 +20,11 @@ namespace Doh3d
   {
   }
 
+  Vector2F::Vector2F(const Vector2I& i_other)
+    : Vector2F(i_other.x, i_other.y)
+  {
+  }
+
 
   Vector2F Vector2F::operator+(const Vector2F& i_other) const
   {

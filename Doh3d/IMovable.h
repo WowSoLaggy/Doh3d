@@ -20,6 +20,8 @@ namespace Doh3d
     const Vector2F& getAccel() const { return d_accel; }
     void setAccel(const Vector2F& i_accel) { d_accel = i_accel; }
 
+    virtual bool update(float i_dt);
+
   private:
 
     Vector2F d_position;

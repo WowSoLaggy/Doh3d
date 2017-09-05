@@ -19,4 +19,8 @@ namespace Doh3d
     return ss.str();
   }
 
+
+  int sign(int value) { return value >= 0 ? 1 : -1; }
+  float sign(float value) { return value >= 0 ? 1.0f : -1.0f; }
+
 } // ns Doh3d

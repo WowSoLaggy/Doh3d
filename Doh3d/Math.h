@@ -17,6 +17,10 @@ namespace Doh3d
     return pValue < pMinValue ? pMinValue : pValue > pMaxValue ? pMaxValue : pValue;
   }
 
+
+  int sign(int value);
+  float sign(float value);
+
 } // ns Doh3d
 
 

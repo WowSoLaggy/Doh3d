@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef UTILS_H
-#define UTILS_H
-
-
 #define NOMINMAX
 #include <Windows.h>
 #include <string>
@@ -265,6 +261,3 @@ namespace Doh3d
 	}
 
 }; // ns Doh3d
-
-
-#endif // UTILS_H

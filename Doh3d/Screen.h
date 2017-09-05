@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_SCREEN_H
-#define INC_DOH3D_SCREEN_H
-
-
 #include "Vector2I.h"
 
 
@@ -27,6 +23,3 @@ namespace Doh3d
   };
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_SCREEN_H

@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_INPUTMAN_H
-#define INC_DOH3D_INPUTMAN_H
-
-
 #include "InputPars.h"
 #include "WinClass.h"
 #include "Cursor.h"
@@ -66,6 +62,3 @@ namespace Doh3d
 	};
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_INPUTMAN_H

@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_WINCLASS_H
-#define INC_DOH3D_WINCLASS_H
-
-
 #include "StartupPars.h"
 
 
@@ -29,6 +25,3 @@ namespace Doh3d
 	};
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_WINCLASS_H

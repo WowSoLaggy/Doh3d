@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_RECT_H
-#define INC_DOH3D_RECT_H
-
-
 #include "Vector2I.h"
 #include "Size2I.h"
 
@@ -41,6 +37,3 @@ namespace Doh3d
 
 	} // ns Geometry
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_RECT_H

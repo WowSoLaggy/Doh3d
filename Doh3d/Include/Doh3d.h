@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef DOH3D_H
-#define DOH3D_H
-
 
 // System
 
@@ -74,6 +71,3 @@
 #include "../IControlable.h"
 #include "../Controller.h"
 #include "../IMovable.h"
-
-
-#endif // DOH3D_H

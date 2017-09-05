@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_MATH_H
-#define INC_DOH3D_MATH_H
-
 
 namespace Doh3d
 {
@@ -22,6 +19,3 @@ namespace Doh3d
   float sign(float value);
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_MATH_H

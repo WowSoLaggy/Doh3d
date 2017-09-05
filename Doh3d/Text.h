@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_TEXT_H
-#define INC_DOH3D_TEXT_H
-
 
 namespace Doh3d
 {
@@ -42,6 +39,3 @@ namespace Doh3d
 	};
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_TEXT_H

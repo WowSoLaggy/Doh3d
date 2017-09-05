@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_ANIMATIONCONTROLLER_H
-#define INC_DOH3D_ANIMATIONCONTROLLER_H
-
 
 namespace Doh3d
 {
@@ -40,6 +37,3 @@ namespace Doh3d
 	};
 
 } // Doh3d
-
-
-#endif // INC_DOH3D_ANIMATIONCONTROLLER_H

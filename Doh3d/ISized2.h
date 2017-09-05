@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_ISIZED2_H
-#define INC_DOH3D_ISIZED2_H
-
-
 #include "Size2I.h"
 
 
@@ -32,6 +28,3 @@ namespace Doh3d
   };
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_ISIZED_H

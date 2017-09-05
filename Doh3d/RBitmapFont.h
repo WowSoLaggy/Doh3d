@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_BFONT_H
-#define INC_DOH3D_BFONT_H
-
-
 #include "BitmapChar.h"
 
 
@@ -39,6 +35,3 @@ namespace Doh3d
 	};
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_BFONT_H

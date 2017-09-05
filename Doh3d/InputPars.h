@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_INPUTPARS_H
-#define INC_DOH3D_INPUTPARS_H
-
-
 #include "IInputHandler.h"
 
 
@@ -46,6 +42,3 @@ namespace Doh3d
   };
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_INPUTPARS_H

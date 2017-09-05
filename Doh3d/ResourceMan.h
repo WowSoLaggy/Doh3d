@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_RESOURCEMAN_H
-#define INC_DOH3D_RESOURCEMAN_H
-
-
 #include "Texture.h"
 #include "RBitmapFont.h"
 
@@ -59,6 +55,3 @@ namespace Doh3d
   };
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_RESOURCEMAN_H

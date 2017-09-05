@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_RENDERMAN_H
-#define INC_DOH3D_RENDERMAN_H
-
-
 #include "RenderPars.h"
 #include "WinClass.h"
 
@@ -47,6 +43,3 @@ namespace Doh3d
   };
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_RENDERMAN_H

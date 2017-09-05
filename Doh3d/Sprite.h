@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_SPRITE_H
-#define INC_DOH3D_SPRITE_H
-
-
 #include "IPositioned2I.h"
 #include "Vector2F.h"
 
@@ -48,6 +44,3 @@ namespace Doh3d
 	};
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_SPRITE_H

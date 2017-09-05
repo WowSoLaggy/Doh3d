@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_TEXTURE_H
-#define INC_DOH3D_TEXTURE_H
-
-
 #include "AlphaMap.h"
 
 
@@ -52,6 +48,3 @@ namespace Doh3d
   };
 
 } // Doh3d
-
-
-#endif // INC_DOH3D_TEXTURE_H

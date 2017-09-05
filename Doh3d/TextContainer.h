@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef INC_DOH3D_TEXTCONTAINER_H
-#define INC_DOH3D_TEXTCONTAINER_H
-
-
 #include "Text.h"
 
 
@@ -50,6 +46,3 @@ namespace Doh3d
   };
 
 } // ns Doh3d
-
-
-#endif // INC_DOH3D_TEXTCONTAINER_H

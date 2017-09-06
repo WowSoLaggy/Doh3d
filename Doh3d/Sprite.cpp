@@ -112,9 +112,26 @@ namespace Doh3d
     updateTransform();
   }
 
+  void Sprite::resetTranslation()
+  {
+    setTranslation(Position2I::zero());
+  }
+
   void Sprite::setScale(const Vector2F& i_scale)
   {
     d_scale = i_scale;
+    updateTransform();
+  }
+
+  void Sprite::resetScale()
+  {
+    setScale(Vector2F::identity());
+  }
+
+  void Sprite::resetTransform()
+  {
+    d_translation = Position2I::zero();
+    d_scale = Vector2F::identity();
     updateTransform();
   }
 

@@ -34,11 +34,9 @@
     <ClCompile Include="GPanel_old.cpp" />
     <ClCompile Include="GText.cpp" />
     <ClCompile Include="IControlable.cpp" />
-    <ClCompile Include="IDrawableTreeItem.cpp" />
     <ClCompile Include="IMovable.cpp" />
     <ClCompile Include="InputMan.cpp" />
     <ClCompile Include="ITreeItem.cpp" />
-    <ClCompile Include="IUpdatableTreeItem.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MessagePeeker.cpp" />
@@ -86,7 +84,7 @@
     <ClInclude Include="GText.h" />
     <ClInclude Include="GuiList.h" />
     <ClInclude Include="IControlable.h" />
-    <ClInclude Include="IDrawableTreeItem.h" />
+    <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IInputHandler.h" />
     <ClInclude Include="IMovable.h" />
     <ClInclude Include="IPositioned2I.h" />
@@ -96,7 +94,7 @@
     <ClInclude Include="Include\Doh3d.h" />
     <ClInclude Include="InputMan.h" />
     <ClInclude Include="InputPars.h" />
-    <ClInclude Include="IUpdatableTreeItem.h" />
+    <ClInclude Include="IUpdatable.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MessagePeeker.h" />

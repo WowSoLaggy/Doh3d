@@ -138,12 +138,6 @@
     <ClCompile Include="ITreeItem.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="IUpdatableTreeItem.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="IDrawableTreeItem.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="GPanel_old.cpp">
       <Filter>src\Gui\Controls</Filter>
     </ClCompile>
@@ -290,12 +284,6 @@
     <ClInclude Include="ITreeItem.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="IUpdatableTreeItem.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="IDrawableTreeItem.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="GPanel_old.h">
       <Filter>src\Gui\Controls</Filter>
     </ClInclude>
@@ -349,6 +337,12 @@
     </ClInclude>
     <ClInclude Include="Actions.h">
       <Filter>src\Input\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="IUpdatable.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawable.h">
+      <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

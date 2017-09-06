@@ -347,5 +347,8 @@
     <ClInclude Include="IControlable.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Actions.h">
+      <Filter>src\Input\Controllers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

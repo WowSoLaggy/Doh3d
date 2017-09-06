@@ -34,6 +34,17 @@ namespace Doh3d
   }
 
 
+  void Controller::clearBindings()
+  {
+    d_actionMap.clear();
+  }
+
+  void Controller::bindKey(Key i_key, Action i_action)
+  {
+    d_actionMap[i_key] = i_action;
+  }
+
+
   bool Controller::onKeyPressed(Key i_key)
   {
     if (!d_bindedObject)
@@ -47,10 +58,19 @@ namespace Doh3d
     if (!d_bindedObject)
       return true;
 
-    if (i_key == DIK_W) d_bindedObject->goUpBegin();
-    else if (i_key == DIK_D) d_bindedObject->goRightBegin();
-    else if (i_key == DIK_S) d_bindedObject->goDownBegin();
-    else if (i_key == DIK_A) d_bindedObject->goLeftBegin();
+    auto it = d_actionMap.find(i_key);
+    if (it == d_actionMap.end())
+      return true;
+
+    Action action = it->second;
+
+    switch (action)
+    {
+    case Action::GoUp: d_bindedObject->goUpBegin(); break;
+    case Action::GoRight: d_bindedObject->goRightBegin(); break;
+    case Action::GoDown: d_bindedObject->goDownBegin(); break;
+    case Action::GoLeft: d_bindedObject->goLeftBegin(); break;
+    }
 
     return true;
   }
@@ -60,10 +80,19 @@ namespace Doh3d
     if (!d_bindedObject)
       return true;
 
-    if (i_key == DIK_W) d_bindedObject->goUpEnd();
-    else if (i_key == DIK_D) d_bindedObject->goRightEnd();
-    else if (i_key == DIK_S) d_bindedObject->goDownEnd();
-    else if (i_key == DIK_A) d_bindedObject->goLeftEnd();
+    auto it = d_actionMap.find(i_key);
+    if (it == d_actionMap.end())
+      return true;
+
+    Action action = it->second;
+
+    switch (action)
+    {
+    case Action::GoUp: d_bindedObject->goUpEnd(); break;
+    case Action::GoRight: d_bindedObject->goRightEnd(); break;
+    case Action::GoDown: d_bindedObject->goDownEnd(); break;
+    case Action::GoLeft: d_bindedObject->goLeftEnd(); break;
+    }
 
     return true;
   }

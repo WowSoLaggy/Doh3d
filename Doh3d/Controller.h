@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IInputHandler.h"
+#include "Actions.h"
 
 
 namespace Doh3d
@@ -21,6 +22,9 @@ namespace Doh3d
 
     int getId() const { return d_id; }
 
+    void clearBindings();
+    void bindKey(Key i_key, Action i_action);
+
 
     virtual bool onKeyPressed(Key i_key) override;
     virtual bool onKeyDown(Key i_key) override;
@@ -31,6 +35,8 @@ namespace Doh3d
     ControllerId d_id;
 
     IControlable* d_bindedObject;
+
+    std::unordered_map<Key, Action> d_actionMap;
 
   };
 

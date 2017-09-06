@@ -14,6 +14,10 @@ namespace Doh3d
 
     bool draw(Sprite& pSprite) const;
 
+  protected:
+
+    virtual bool drawChildren() const { return true; }
+
   private:
 
     bool drawTree(Sprite& pSprite) const;

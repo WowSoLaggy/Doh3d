@@ -16,6 +16,9 @@ namespace Doh3d
     if (!drawSelf(pSprite))
       return false;
 
+    if (!drawChildren())
+      return true;
+
     for (int i = 0; i < (int)d_children.size(); ++i)
     {
       if (auto* pDrawableChild = dynamic_cast<IDrawableTreeItem*>(d_children[i]))

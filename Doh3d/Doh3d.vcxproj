@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="AlphaMap.cpp" />
     <ClCompile Include="AnimationController.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Charset.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Cursor.cpp" />
@@ -70,7 +69,6 @@
     <ClInclude Include="AnimationController.h" />
     <ClInclude Include="AnimationSet.h" />
     <ClInclude Include="BitmapChar.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Actions.h" />
     <ClInclude Include="Cursor.h" />

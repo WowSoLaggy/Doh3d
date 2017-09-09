@@ -58,6 +58,7 @@
 #include "../ResourceMan.h"
 #include "../Screen.h"
 #include "../Sprite.h"
+#include "../SpriteTransformGuard.h"
 #include "../ITreeItem.h"
 #include "../IDrawable.h"
 #include "../IUpdatable.h"

@@ -177,6 +177,9 @@
     <ClCompile Include="IMovable2I.cpp">
       <Filter>src\Math\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteTransformGuard.cpp">
+      <Filter>src\Sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Doh3d.h">
@@ -352,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="INamed.h">
       <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteTransformGuard.h">
+      <Filter>src\Sprite</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

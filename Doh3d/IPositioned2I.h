@@ -12,7 +12,7 @@ public:
 
   virtual ~IPositioned2I() { }
 
-  virtual const Position2I getPosition() const { return d_position; }
+  virtual const Position2I& getPosition() const { return d_position; }
   virtual void setPosition(const Position2I& pPosition) { d_position = pPosition; }
 
 protected:

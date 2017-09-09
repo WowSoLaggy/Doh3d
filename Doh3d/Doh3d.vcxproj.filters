@@ -338,6 +338,12 @@
     <ClInclude Include="IDrawable.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Position2F.h">
+      <Filter>src\EntityComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="IPositioned2F.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
     <ClInclude Include="INamed.h">
       <Filter>src\Objects</Filter>
     </ClInclude>

@@ -86,6 +86,7 @@
     <ClInclude Include="IInputHandler.h" />
     <ClInclude Include="IMovable.h" />
     <ClInclude Include="INamed.h" />
+    <ClInclude Include="IPositioned2F.h" />
     <ClInclude Include="IPositioned2I.h" />
     <ClInclude Include="ISized2.h" />
     <ClInclude Include="ITextured.h" />
@@ -97,6 +98,7 @@
     <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MessagePeeker.h" />
+    <ClInclude Include="Position2F.h" />
     <ClInclude Include="Position2I.h" />
     <ClInclude Include="PrecompiledHeader.h" />
     <ClInclude Include="RBitmapFont.h" />

@@ -10,7 +10,7 @@ namespace Doh3d
 
     virtual ~IUpdatable() { }
 
-    virtual bool update(float i_dt) { return true; }
+    virtual bool update(float i_dt) PURE;
 
   };
 

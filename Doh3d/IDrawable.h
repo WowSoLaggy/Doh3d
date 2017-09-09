@@ -13,7 +13,7 @@ namespace Doh3d
 
     virtual ~IDrawable() { }
 
-    virtual bool draw(Sprite& i_sprite) const { return true; }
+    virtual bool draw(Sprite& i_sprite) const PURE;
 
   };
 

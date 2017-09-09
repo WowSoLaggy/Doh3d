@@ -85,6 +85,7 @@
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IInputHandler.h" />
     <ClInclude Include="IMovable.h" />
+    <ClInclude Include="INamed.h" />
     <ClInclude Include="IPositioned2I.h" />
     <ClInclude Include="ISized2.h" />
     <ClInclude Include="ITextured.h" />

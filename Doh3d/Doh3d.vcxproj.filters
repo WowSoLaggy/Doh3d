@@ -338,5 +338,8 @@
     <ClInclude Include="IDrawable.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="INamed.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

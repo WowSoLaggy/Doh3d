@@ -40,6 +40,7 @@
 #include "../Math.h"
 #include "../RectI.h"
 #include "../RectF.h"
+#include "../Circle.h"
 #include "../Matrix.h"
 #include "../Vector2I.h"
 #include "../Vector2F.h"

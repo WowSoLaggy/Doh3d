@@ -32,14 +32,14 @@ RectF RectF::operator - (const Vector2F& pOffset) const
 }
 
 
-bool RectF::containsPoint(const Vector2I& pPoint) const
+bool RectF::containsPoint(const Vector2I& i_point) const
 {
-  return !((pPoint.x < d_left) || (d_right < pPoint.x) || (pPoint.y < d_top) || (d_bottom < pPoint.y));
+  return !((i_point.x < d_left) || (d_right < i_point.x) || (i_point.y < d_top) || (d_bottom < i_point.y));
 }
 
-bool RectF::containsPoint(const Vector2F& pPoint) const
+bool RectF::containsPoint(const Vector2F& i_point) const
 {
-  return !((pPoint.x < d_left) || (d_right < pPoint.x) || (pPoint.y < d_top) || (d_bottom < pPoint.y));
+  return !((i_point.x < d_left) || (d_right < i_point.x) || (i_point.y < d_top) || (d_bottom < i_point.y));
 }
 
 

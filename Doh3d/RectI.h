@@ -18,8 +18,8 @@ public:
   virtual ~RectI() { }
 
 
-  virtual bool containsPoint(const Vector2I& pPoint) const override;
-  virtual bool containsPoint(const Vector2F& pPoint) const override;
+  virtual bool containsPoint(const Vector2I& i_point) const override;
+  virtual bool containsPoint(const Vector2F& i_point) const override;
 
   bool containsRect(const RectI& pRect) const;
 

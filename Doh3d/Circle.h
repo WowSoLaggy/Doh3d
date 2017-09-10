@@ -7,7 +7,7 @@
 namespace Doh3d
 {
 
-class Circle : IShape
+class Circle : public IShape
 {
 public:
 

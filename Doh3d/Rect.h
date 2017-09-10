@@ -6,34 +6,31 @@
 
 namespace Doh3d
 {
-	namespace Geometry
-	{
 
-		class RectI
-		{
-		public:
+class RectI
+{
+public:
 
-      RectI();
-      RectI(int pLeft, int pTop, int pRight, int pBottom);
-      RectI(const Vector2I& pPosition, const Size2I& pSize);
+  RectI();
+  RectI(int pLeft, int pTop, int pRight, int pBottom);
+  RectI(const Vector2I& pPosition, const Size2I& pSize);
 
 
-			bool containsPoint(int pX, int pY) const;
-			bool containsPoint(const Vector2I& pPoint) const;
+  bool containsPoint(int pX, int pY) const;
+  bool containsPoint(const Vector2I& pPoint) const;
 
-			bool containsRect(const RectI& pRect) const;
+  bool containsRect(const RectI& pRect) const;
 
-		public:
+public:
 
-      int d_left;
-      int d_top;
-      int d_right;
-      int d_bottom;
+  int d_left;
+  int d_top;
+  int d_right;
+  int d_bottom;
 
-      RectI operator + (const Vector2I& pOffset) const;
-      RectI operator - (const Vector2I& pOffset) const;
+  RectI operator + (const Vector2I& pOffset) const;
+  RectI operator - (const Vector2I& pOffset) const;
 
-		};
+};
 
-	} // ns Geometry
 } // ns Doh3d

@@ -10,17 +10,9 @@ class ICollidable
 {
 public:
 
-  ICollidable();
-  virtual ~ICollidable();
+  virtual ~ICollidable() { }
 
-  const IShape* getCollisionShape() const { return d_collisionShape; }
-
-  void setCollisionShape(const IShape* i_shape);
-  void resetCollisionShape();
-
-private:
-
-  const IShape* d_collisionShape;
+  virtual const IShape* getCollisionShape() const PURE;
 
 };
 

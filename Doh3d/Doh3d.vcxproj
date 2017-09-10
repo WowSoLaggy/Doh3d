@@ -33,7 +33,6 @@
     <ClCompile Include="GPanel.cpp" />
     <ClCompile Include="GPanel_old.cpp" />
     <ClCompile Include="GText.cpp" />
-    <ClCompile Include="ICollidable.cpp" />
     <ClCompile Include="IControlable.cpp" />
     <ClCompile Include="IMovable2F.cpp" />
     <ClCompile Include="IMovable2I.cpp" />

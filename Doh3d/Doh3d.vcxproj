@@ -33,6 +33,7 @@
     <ClCompile Include="GPanel.cpp" />
     <ClCompile Include="GPanel_old.cpp" />
     <ClCompile Include="GText.cpp" />
+    <ClCompile Include="ICollidable.cpp" />
     <ClCompile Include="IControlable.cpp" />
     <ClCompile Include="IMovable2F.cpp" />
     <ClCompile Include="IMovable2I.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="GPanel_old.h" />
     <ClInclude Include="GText.h" />
     <ClInclude Include="GuiList.h" />
+    <ClInclude Include="ICollidable.h" />
     <ClInclude Include="IControlable.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IInputHandler.h" />

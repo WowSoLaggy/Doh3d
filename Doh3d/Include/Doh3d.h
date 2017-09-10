@@ -78,3 +78,4 @@
 #include "../IControlable.h"
 #include "../Controller.h"
 #include "../INamed.h"
+#include "../ICollidable.h"

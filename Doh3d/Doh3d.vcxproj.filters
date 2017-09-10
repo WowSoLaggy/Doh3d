@@ -67,6 +67,9 @@
     <Filter Include="src\Input\Controllers">
       <UniqueIdentifier>{97361281-85b7-479f-8c60-b55254523c6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Math\Collisions">
+      <UniqueIdentifier>{897c0d40-ebcc-40bd-870c-461aba14fcb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Screen.cpp">
@@ -182,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="RectF.cpp">
       <Filter>src\Math\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="ICollidable.cpp">
+      <Filter>src\Math\Collisions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +379,9 @@
     </ClInclude>
     <ClInclude Include="ISized2I.h">
       <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollidable.h">
+      <Filter>src\Math\Collisions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

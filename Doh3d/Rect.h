@@ -15,6 +15,7 @@ public:
   RectI();
   RectI(int pLeft, int pTop, int pRight, int pBottom);
   RectI(const Vector2I& pPosition, const Size2I& pSize);
+  virtual ~RectI() { }
 
 
   virtual bool containsPoint(const Vector2I& pPoint) const override;

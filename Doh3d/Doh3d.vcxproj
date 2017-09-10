@@ -91,6 +91,7 @@
     <ClInclude Include="INamed.h" />
     <ClInclude Include="IPositioned2F.h" />
     <ClInclude Include="IPositioned2I.h" />
+    <ClInclude Include="IShape.h" />
     <ClInclude Include="ISized2.h" />
     <ClInclude Include="ITextured.h" />
     <ClInclude Include="ITreeItem.h" />

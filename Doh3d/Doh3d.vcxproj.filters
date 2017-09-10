@@ -359,5 +359,8 @@
     <ClInclude Include="SpriteTransformGuard.h">
       <Filter>src\Sprite</Filter>
     </ClInclude>
+    <ClInclude Include="IShape.h">
+      <Filter>src\Math\Geometry</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

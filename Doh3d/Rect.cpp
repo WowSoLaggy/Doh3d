@@ -32,14 +32,14 @@ RectI RectI::operator - (const Vector2I& pOffset) const
 }
 
 
-bool RectI::containsPoint(int pX, int pY) const
-{
-  return !((pX < d_left) || (d_right < pX) || (pY < d_top) || (d_bottom < pY));
-}
-
 bool RectI::containsPoint(const Vector2I& pPoint) const
 {
-  return containsPoint(pPoint.x, pPoint.y);
+  return !((pPoint.x < d_left) || (d_right < pPoint.x) || (pPoint.y < d_top) || (d_bottom < pPoint.y));
+}
+
+bool RectI::containsPoint(const Vector2F& pPoint) const
+{
+  return !((pPoint.x < d_left) || (d_right < pPoint.x) || (pPoint.y < d_top) || (d_bottom < pPoint.y));
 }
 
 

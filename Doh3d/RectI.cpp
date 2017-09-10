@@ -1,5 +1,5 @@
 #include "PrecompiledHeader.h"
-#include "Rect.h"
+#include "RectI.h"
 
 
 namespace Doh3d

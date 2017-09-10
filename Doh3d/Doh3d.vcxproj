@@ -48,11 +48,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RBitmapFont.cpp" />
-    <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="RectF.cpp" />
+    <ClCompile Include="RectI.cpp" />
     <ClCompile Include="RenderMan.cpp" />
     <ClCompile Include="ResourceMan.cpp" />
     <ClCompile Include="Screen.cpp" />
-    <ClCompile Include="Size2I.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteTransformGuard.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -92,7 +92,7 @@
     <ClInclude Include="IPositioned2F.h" />
     <ClInclude Include="IPositioned2I.h" />
     <ClInclude Include="IShape.h" />
-    <ClInclude Include="ISized2.h" />
+    <ClInclude Include="ISized2I.h" />
     <ClInclude Include="ITextured.h" />
     <ClInclude Include="ITreeItem.h" />
     <ClInclude Include="Include\Doh3d.h" />
@@ -106,11 +106,13 @@
     <ClInclude Include="Position2I.h" />
     <ClInclude Include="PrecompiledHeader.h" />
     <ClInclude Include="RBitmapFont.h" />
-    <ClInclude Include="Rect.h" />
+    <ClInclude Include="RectF.h" />
+    <ClInclude Include="RectI.h" />
     <ClInclude Include="RenderMan.h" />
     <ClInclude Include="RenderPars.h" />
     <ClInclude Include="ResourceMan.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Size2F.h" />
     <ClInclude Include="Size2I.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteTransformGuard.h" />

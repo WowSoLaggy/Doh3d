@@ -38,7 +38,8 @@
 // Doh3d
 
 #include "../Math.h"
-#include "../Rect.h"
+#include "../RectI.h"
+#include "../RectF.h"
 #include "../Matrix.h"
 #include "../Vector2I.h"
 #include "../Vector2F.h"
@@ -68,8 +69,9 @@
 #include "../AnimationController.h"
 #include "../Position2I.h"
 #include "../Size2I.h"
+#include "../Size2F.h"
 #include "../ITextured.h"
-#include "../ISized2.h"
+#include "../ISized2I.h"
 #include "../IInputHandler.h"
 #include "../TextContainer.h"
 #include "../IControlable.h"

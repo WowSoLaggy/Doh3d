@@ -123,9 +123,6 @@
     <ClCompile Include="AnimationController.cpp">
       <Filter>src\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Rect.cpp">
-      <Filter>src\Math\Geometry</Filter>
-    </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>src\Math</Filter>
     </ClCompile>
@@ -162,9 +159,6 @@
     <ClCompile Include="Position2I.cpp">
       <Filter>src\EntityComponents</Filter>
     </ClCompile>
-    <ClCompile Include="Size2I.cpp">
-      <Filter>src\EntityComponents</Filter>
-    </ClCompile>
     <ClCompile Include="Controller.cpp">
       <Filter>src\Input\Controllers</Filter>
     </ClCompile>
@@ -179,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="SpriteTransformGuard.cpp">
       <Filter>src\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="RectI.cpp">
+      <Filter>src\Math\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="RectF.cpp">
+      <Filter>src\Math\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,9 +269,6 @@
     <ClInclude Include="..\libs\Timer.h">
       <Filter>libs</Filter>
     </ClInclude>
-    <ClInclude Include="Rect.h">
-      <Filter>src\Math\Geometry</Filter>
-    </ClInclude>
     <ClInclude Include="..\libs\dirent.h">
       <Filter>libs</Filter>
     </ClInclude>
@@ -307,9 +304,6 @@
     </ClInclude>
     <ClInclude Include="IInputHandler.h">
       <Filter>src\Input\InputMan</Filter>
-    </ClInclude>
-    <ClInclude Include="ISized2.h">
-      <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Vector2F.h">
       <Filter>src\Math</Filter>
@@ -361,6 +355,18 @@
     </ClInclude>
     <ClInclude Include="IShape.h">
       <Filter>src\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="RectI.h">
+      <Filter>src\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="RectF.h">
+      <Filter>src\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Size2F.h">
+      <Filter>src\EntityComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ISized2I.h">
+      <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

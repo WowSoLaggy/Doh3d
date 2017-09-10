@@ -6,11 +6,11 @@
 namespace Doh3d
 {
 
-  class ISized2
+  class ISized2I
   {
   public:
 
-    virtual ~ISized2() { }
+    virtual ~ISized2I() { }
 
     virtual const Size2I& getSize() const { return d_size; }
     virtual const Size2I& getSizeHalf() const { return d_sizeHalf; }
@@ -18,7 +18,7 @@ namespace Doh3d
 
   protected:
 
-    ISized2() : d_size(0, 0), d_sizeHalf(0, 0) { }
+    ISized2I() : d_size(0, 0), d_sizeHalf(0, 0) { }
 
   private:
 

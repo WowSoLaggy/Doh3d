@@ -21,6 +21,10 @@ public:
   virtual bool containsPoint(const Vector2I& i_point) const override;
   virtual bool containsPoint(const Vector2F& i_point) const override;
 
+
+  Circle operator + (const Vector2F& i_offset) const;
+  Circle operator - (const Vector2F& i_offset) const;
+
 private:
 
   Vector2F d_center;

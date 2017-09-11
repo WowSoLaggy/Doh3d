@@ -21,14 +21,14 @@ RectF::RectF(const Vector2F& pPosition, const Size2F& pSize)
 }
 
 
-RectF RectF::operator + (const Vector2F& pOffset) const
+RectF RectF::operator + (const Vector2F& i_offset) const
 {
-  return RectF(d_left + pOffset.x, d_top + pOffset.y, d_right + pOffset.x, d_bottom + pOffset.y);
+  return RectF(d_left + i_offset.x, d_top + i_offset.y, d_right + i_offset.x, d_bottom + i_offset.y);
 }
 
-RectF RectF::operator - (const Vector2F& pOffset) const
+RectF RectF::operator - (const Vector2F& i_offset) const
 {
-  return RectF(d_left - pOffset.x, d_top - pOffset.y, d_right - pOffset.x, d_bottom - pOffset.y);
+  return RectF(d_left - i_offset.x, d_top - i_offset.y, d_right - i_offset.x, d_bottom - i_offset.y);
 }
 
 

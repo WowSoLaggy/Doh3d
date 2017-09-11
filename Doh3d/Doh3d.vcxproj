@@ -23,6 +23,7 @@
     <ClCompile Include="AnimationController.cpp" />
     <ClCompile Include="Charset.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Drawer.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="AnimationSet.h" />
     <ClInclude Include="BitmapChar.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Actions.h" />
     <ClInclude Include="Cursor.h" />

@@ -186,6 +186,9 @@
     <ClCompile Include="RectF.cpp">
       <Filter>src\Math\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>src\Math\Collisions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Doh3d.h">
@@ -378,6 +381,9 @@
       <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="ICollidable.h">
+      <Filter>src\Math\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
       <Filter>src\Math\Collisions</Filter>
     </ClInclude>
   </ItemGroup>

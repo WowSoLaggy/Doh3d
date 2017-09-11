@@ -79,3 +79,4 @@
 #include "../Controller.h"
 #include "../INamed.h"
 #include "../ICollidable.h"
+#include "../Collider.h"

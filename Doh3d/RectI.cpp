@@ -16,7 +16,7 @@ RectI::RectI(int pLeft, int pTop, int pRight, int pBottom)
 }
 
 RectI::RectI(const Vector2I& pPosition, const Size2I& pSize)
-  : d_left(pPosition.x), d_top(pPosition.y), d_right(pPosition.x + pSize.x), d_bottom(pPosition.y + pSize.y)
+  : RectI(pPosition.x, pPosition.y, pPosition.x + pSize.x, pPosition.y + pSize.y)
 {
 }
 
@@ -46,6 +46,22 @@ bool RectI::containsPoint(const Vector2F& i_point) const
 bool RectI::containsRect(const RectI& pRect) const
 {
   return d_left <= pRect.d_left && pRect.d_right <= d_right && d_top <= pRect.d_top && pRect.d_bottom <= d_bottom;
+}
+
+
+int RectI::getWidth() const
+{
+  return d_right - d_left;
+}
+
+int RectI::getHeight() const
+{
+  return d_bottom - d_top;
+}
+
+Vector2I RectI::getCenter() const
+{
+  return{ d_left + getWidth() / 2, d_top + getHeight() / 2 };
 }
 
 } // Doh3d

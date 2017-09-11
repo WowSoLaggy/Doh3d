@@ -18,6 +18,10 @@ public:
   virtual ~RectF() { }
 
 
+  float getWidth() const;
+  float getHeight() const;
+  Vector2F getCenter() const;
+
   virtual bool containsPoint(const Vector2I& i_point) const override;
   virtual bool containsPoint(const Vector2F& i_point) const override;
 

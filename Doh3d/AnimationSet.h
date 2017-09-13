@@ -10,7 +10,7 @@ namespace Doh3d
 	{
 	public:
 
-		std::vector<Animation> Animations;
+		std::vector<Animation> animations;
 
 	};
 

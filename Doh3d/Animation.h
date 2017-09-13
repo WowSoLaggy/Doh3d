@@ -8,10 +8,18 @@ namespace Doh3d
   {
   public:
 
-    std::string Name;
-    int BeginFrame;
-    int EndFrame;
-    float Interval;
+    Animation(const std::string& i_name, int i_beginFrame, int i_endFrame, float i_interval)
+      : name(i_name)
+      , beginFrame(i_beginFrame)
+      , endFrame(i_endFrame)
+      , interval(i_interval)
+    {
+    }
+
+    std::string name;
+    int beginFrame;
+    int endFrame;
+    float interval;
 
   };
 

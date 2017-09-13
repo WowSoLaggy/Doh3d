@@ -25,6 +25,8 @@ namespace Doh3d
     void clearBindings();
     void bindKey(Key i_key, Action i_action);
 
+    IControlable* getBindedObject() { return d_bindedObject; }
+
 
     virtual bool onKeyPressed(Key i_key) override;
     virtual bool onKeyDown(Key i_key) override;

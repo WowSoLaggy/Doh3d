@@ -36,7 +36,7 @@ namespace Doh3d
 
     IControlable* d_bindedObject;
 
-    std::unordered_map<Key, Action> d_actionMap;
+    std::unordered_map<Key, Action> d_actionMapKeyboard;
 
   };
 

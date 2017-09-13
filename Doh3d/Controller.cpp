@@ -36,12 +36,12 @@ namespace Doh3d
 
   void Controller::clearBindings()
   {
-    d_actionMap.clear();
+    d_actionMapKeyboard.clear();
   }
 
   void Controller::bindKey(Key i_key, Action i_action)
   {
-    d_actionMap[i_key] = i_action;
+    d_actionMapKeyboard[i_key] = i_action;
   }
 
 
@@ -58,8 +58,8 @@ namespace Doh3d
     if (!d_bindedObject)
       return true;
 
-    auto it = d_actionMap.find(i_key);
-    if (it == d_actionMap.end())
+    auto it = d_actionMapKeyboard.find(i_key);
+    if (it == d_actionMapKeyboard.end())
       return true;
 
     Action action = it->second;
@@ -80,8 +80,8 @@ namespace Doh3d
     if (!d_bindedObject)
       return true;
 
-    auto it = d_actionMap.find(i_key);
-    if (it == d_actionMap.end())
+    auto it = d_actionMapKeyboard.find(i_key);
+    if (it == d_actionMapKeyboard.end())
       return true;
 
     Action action = it->second;

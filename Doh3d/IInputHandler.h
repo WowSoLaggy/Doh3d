@@ -4,8 +4,16 @@
 namespace Doh3d
 {
 
-using MouseButton = int;
 using Key = int;
+
+
+enum class MouseButton : int
+{
+  Left,
+  Right,
+
+  End
+};
 
 
 class IInputHandler

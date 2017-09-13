@@ -129,26 +129,26 @@ bool InputMan::checkDevices()
 
   // Mouse buttons
 
-  for (int i = MBUTTON_LEFT; i <= MBUTTON_RIGHT; ++i)
+  for (int iButton = (int)MouseButton::Left; iButton <= (int)MouseButton::End; ++iButton)
   {
-    if ((d_mouseState.rgbButtons[i] & KEY_PRESSED_FLAG) && !(d_mouseStatePrev.rgbButtons[i] & KEY_PRESSED_FLAG))
+    if ((d_mouseState.rgbButtons[iButton] & KEY_PRESSED_FLAG) && !(d_mouseStatePrev.rgbButtons[iButton] & KEY_PRESSED_FLAG))
     {
       if (d_inputPars.inputHandler())
       {
         bool handled = false;
-        if (!d_inputPars.inputHandler()->onMouseDown(i, handled))
+        if (!d_inputPars.inputHandler()->onMouseDown((MouseButton)iButton, handled))
         {
           echo("ERROR: Error while onMouseDown().");
           return false;
         }
       }
     }
-    else if (!(d_mouseState.rgbButtons[i] & KEY_PRESSED_FLAG) && (d_mouseStatePrev.rgbButtons[i] & KEY_PRESSED_FLAG))
+    else if (!(d_mouseState.rgbButtons[iButton] & KEY_PRESSED_FLAG) && (d_mouseStatePrev.rgbButtons[iButton] & KEY_PRESSED_FLAG))
     {
       if (d_inputPars.inputHandler())
       {
         bool handled = false;
-        if (!d_inputPars.inputHandler()->onMouseUp(i, handled))
+        if (!d_inputPars.inputHandler()->onMouseUp((MouseButton)iButton, handled))
         {
           echo("ERROR: Error while onMouseUp().");
           return false;

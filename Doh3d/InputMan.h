@@ -8,8 +8,6 @@
 namespace Doh3d
 {
 
-#define MBUTTON_LEFT	0
-#define MBUTTON_RIGHT	1
 #define KBUTTONS_MAX	256
 #define CHARSCOUNT 145
 

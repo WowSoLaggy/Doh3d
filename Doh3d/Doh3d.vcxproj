@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AlphaMap.cpp" />
-    <ClCompile Include="AnimationController.cpp" />
     <ClCompile Include="Charset.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -34,6 +33,7 @@
     <ClCompile Include="GPanel.cpp" />
     <ClCompile Include="GPanel_old.cpp" />
     <ClCompile Include="GText.cpp" />
+    <ClCompile Include="IAnimated.cpp" />
     <ClCompile Include="IControlable.cpp" />
     <ClCompile Include="IMovable2F.cpp" />
     <ClCompile Include="IMovable2I.cpp" />
@@ -70,7 +70,6 @@
     <ClInclude Include="..\libs\Timer.h" />
     <ClInclude Include="AlphaMap.h" />
     <ClInclude Include="Animation.h" />
-    <ClInclude Include="AnimationController.h" />
     <ClInclude Include="AnimationSet.h" />
     <ClInclude Include="BitmapChar.h" />
     <ClInclude Include="Circle.h" />
@@ -87,6 +86,7 @@
     <ClInclude Include="GPanel_old.h" />
     <ClInclude Include="GText.h" />
     <ClInclude Include="GuiList.h" />
+    <ClInclude Include="IAnimated.h" />
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="IControlable.h" />
     <ClInclude Include="IDrawable.h" />

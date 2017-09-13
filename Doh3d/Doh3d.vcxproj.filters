@@ -40,9 +40,6 @@
     <Filter Include="src\Gui\Text">
       <UniqueIdentifier>{69111f54-4631-463b-882e-4f430bbe43f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\ResourceMan\Texture">
-      <UniqueIdentifier>{c4a05524-9296-49e5-9d40-06eb26d749b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Animation">
       <UniqueIdentifier>{2309e8c4-8079-4809-b097-f51ed8e03ec7}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,9 @@
     </Filter>
     <Filter Include="src\Math\Collisions">
       <UniqueIdentifier>{897c0d40-ebcc-40bd-870c-461aba14fcb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ResourceMan\Textures">
+      <UniqueIdentifier>{c4a05524-9296-49e5-9d40-06eb26d749b3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -118,13 +118,10 @@
       <Filter>src\Gui\Text</Filter>
     </ClCompile>
     <ClCompile Include="AlphaMap.cpp">
-      <Filter>src\ResourceMan\Texture</Filter>
+      <Filter>src\ResourceMan\Textures</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>src\ResourceMan\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationController.cpp">
-      <Filter>src\Animation</Filter>
+      <Filter>src\ResourceMan\Textures</Filter>
     </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>src\Math</Filter>
@@ -188,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>src\Math\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="IAnimated.cpp">
+      <Filter>src\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -261,18 +261,15 @@
       <Filter>src\Gui\Text</Filter>
     </ClInclude>
     <ClInclude Include="AlphaMap.h">
-      <Filter>src\ResourceMan\Texture</Filter>
+      <Filter>src\ResourceMan\Textures</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>src\ResourceMan\Texture</Filter>
+      <Filter>src\ResourceMan\Textures</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>src\Animation</Filter>
     </ClInclude>
     <ClInclude Include="AnimationSet.h">
-      <Filter>src\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationController.h">
       <Filter>src\Animation</Filter>
     </ClInclude>
     <ClInclude Include="..\libs\Timer.h">
@@ -385,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>src\Math\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="IAnimated.h">
+      <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

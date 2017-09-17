@@ -37,8 +37,19 @@ namespace Doh3d
 
   Position2I Screen::getClientCenter()
 	{
-		return Position2I(RenderMan::getRenderPars().resolutionWidth() / 2, RenderMan::getRenderPars().resolutionHeight() / 2);
+		return Position2I(getClientCenterX(), getClientCenterY());
 	}
+
+  int Screen::getClientCenterX()
+  {
+    return getClientWidth() / 2;
+  }
+
+  int Screen::getClientCenterY()
+  {
+    return getClientHeight() / 2;
+  }
+
 
   Position2I Screen::getClientTopLeft()
   {
@@ -47,7 +58,7 @@ namespace Doh3d
 
   Position2I Screen::getClientRightBottom()
   {
-    return Position2I(RenderMan::getRenderPars().resolutionWidth(), RenderMan::getRenderPars().resolutionHeight());
+    return Position2I(getClientWidth(), getClientHeight());
   }
 
 

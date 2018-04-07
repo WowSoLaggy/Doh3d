@@ -15,7 +15,10 @@ namespace Doh3d
       : InputPars(1, 1, true, nullptr) { }
 
     InputPars(float pMouseSensX, float pMouseSensY, bool pMouseAcceleration, IInputHandler* pInputHandler)
-      : d_mouseSensX(pMouseSensX), d_mouseSensY(pMouseSensY), d_inputhandler(pInputHandler)
+      : d_mouseSensX(pMouseSensX)
+      , d_mouseSensY(pMouseSensY)
+      , d_mouseAcceleration(pMouseAcceleration)
+      , d_inputhandler(pInputHandler)
     { }
 
 

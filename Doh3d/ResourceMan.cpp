@@ -211,7 +211,7 @@ namespace Doh3d
       return false;
     }
 
-    pTi = std::distance(d_textures.begin(), it);
+    pTi = static_cast<TextureId>(std::distance(d_textures.begin(), it));
 
     return true;
   }
@@ -274,7 +274,7 @@ namespace Doh3d
           echo("ERROR: Invalid texture file name: \"", textureFileName, "\".");
           return false;
         }
-        int finalToken = tokens.size() - 1;
+        int finalToken = static_cast<int>(tokens.size()) - 1;
 
         d_textures.push_back(Texture(
           textureFileName,

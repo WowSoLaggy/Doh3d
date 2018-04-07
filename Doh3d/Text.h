@@ -20,7 +20,7 @@ namespace Doh3d
     bool setText(const std::string& pText);
     bool setFont(const std::string& pFont);
 
-		unsigned int getTextLength() const { return d_text.length(); }
+		int getTextLength() const { return static_cast<int>(d_text.length()); }
 		int getCharOffset(int pPos) const { return d_charOffsets[pPos]; }
 
 	private:

@@ -15,7 +15,7 @@
 
 namespace Doh3d
 {
-	using std::tr2::sys::path;
+  using namespace std::experimental::filesystem;
 
 
 	// Trims the given string from the start (removes all spaces)
